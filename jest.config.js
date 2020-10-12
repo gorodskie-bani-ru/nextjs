@@ -17,4 +17,5 @@ module.exports = {
     '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/__tests__/__mocks__/fileMock.js',
   },
   modulePaths: ['<rootDir>'],
+  testURL: 'http://localhost:3000',
 }

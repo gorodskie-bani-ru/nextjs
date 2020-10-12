@@ -5,34 +5,63 @@ import {
   InMemoryCache,
   NormalizedCacheObject,
 } from '@apollo/client'
+import { onError } from '@apollo/client/link/error'
 import { concatPagination } from '@apollo/client/utilities'
 import URI from 'urijs'
+import fetch from 'cross-fetch'
 
 let apolloClient: ApolloClient<NormalizedCacheObject>
 
 function createApolloClient() {
   const uri = new URI()
 
-  let origin = uri.origin()
+  const origin = uri.origin()
 
-  if (!origin) {
-    const os = require('os')
+  let endpoint
 
-    const hostname = os.hostname()
+  if (origin) {
+    endpoint = `${origin}/api/`
+  } else {
+    /**
+     * ToDo: fix for vercel.com
+     */
 
-    const PORT = process.env.PORT || 3000
+    // const os = require('os')
 
-    origin = `http://${hostname}:${PORT}`
+    // const hostname = os.hostname()
+
+    // const PORT = process.env.PORT || 3000
+
+    // origin = `http://${hostname}:${PORT}`
+    endpoint =
+      process.env.API_ENDPOINT ||
+      'https://nextjs-graphql-with-prisma-simple.vercel.app/api'
   }
 
-  const endpoint = `${origin}/api/`
+  const errorLink = onError((error) => {
+    const { graphQLErrors, networkError } = error
+
+    if (graphQLErrors)
+      graphQLErrors.map(({ message, locations, path }) =>
+        console.error(
+          `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
+        )
+      )
+
+    if (networkError) {
+      console.error(`[Network error]: ${networkError}`)
+    }
+  })
+
+  const httpLink = new HttpLink({
+    fetch,
+    uri: endpoint, // Server URL (must be absolute)
+    credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
+  })
 
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
-    link: new HttpLink({
-      uri: endpoint, // Server URL (must be absolute)
-      credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
-    }),
+    link: errorLink.concat(httpLink),
     cache: new InMemoryCache({
       typePolicies: {
         Query: {
