@@ -6,3 +6,5 @@ public
 coverage
 dist
 generated
+src/modules/old/
+src/components
