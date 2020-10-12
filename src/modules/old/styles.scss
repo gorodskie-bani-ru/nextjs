@@ -1,10 +1,27 @@
-@import "./less/theme";
+// @import "./less/theme.scss";
 
-@import "./bootswatch/cerulean/bootstrap.css";
-@import "./bootswatch/bower_components/font-awesome/css/font-awesome.min.css";
+@import "src/modules/old/bootswatch/cerulean/bootstrap.css";
+@import "src/modules/old/bootswatch/bower_components/font-awesome/css/font-awesome.min.css";
 
 // @import '~alertifyjs/build/css/themes/bootstrap.min.css';
 // @import '~alertifyjs/build/css/alertify.css';
+
+$baseFont: 'Open Sans';
+$baseFontSize: e('12px/14px');
+$baseFontWeight: 400;
+
+$hoverLinkColor: #005580;
+
+$leaf: url("./img/leaf.png") no-repeat scroll 10px center rgba(0, 0, 0, 0);
+$leaf-paddings: 6px 0 6px 40px;
+$leaf-font-size: 17px;
+$leaf-font-weight: bold;
+
+.brand-leaf{
+    width: 59px;
+    background-repeat: no-repeat;
+}   
+
 
 
 #main{
@@ -526,8 +543,8 @@ p{
     
     .title{
         display:inline-block;
-        background: @leaf;
-        padding: @leaf-paddings;
+        background: $leaf;
+        padding: $leaf-paddings;
         margin: 0;
     }
 }
@@ -550,7 +567,9 @@ p{
             }
             
             .leaf{
-                .brand-leaf;
+
+                width: 59px;
+                background-repeat: no-repeat;
                 
                 &.leaf-l{
                     background-image: url(./img/bath-logo.png);

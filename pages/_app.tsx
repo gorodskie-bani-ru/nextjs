@@ -1,3 +1,7 @@
+// import 'src/modules/old/bootswatch/bower_components/font-awesome/css/font-awesome.css';
+// import 'src/components/App/styles/styles.less'
+import 'src/components/App/styles/styles.scss'
+
 import React, { useMemo } from 'react'
 import { ApolloProvider } from '@apollo/client'
 import { ThemeProvider } from '@material-ui/core/styles'
@@ -8,12 +12,28 @@ import CardContent from '@material-ui/core/CardContent'
 import Grid from '@material-ui/core/Grid'
 
 import { useApollo } from 'src/lib/apolloClient'
+import jquery from 'jquery'
 
-import 'src/components/App/styles/styles.less'
+import MainMenu from 'src/components/App/MainMenu'
+import Head from 'next/head'
+
+// import 'src/modules/old/bootswatch/2/font/fontawesome-webfont.woff';
 
 export type AppProps = {
   Component: any
   pageProps: any
+}
+
+declare global {
+  interface Window {
+    $: any
+    jQuery: any
+  }
+}
+
+if (typeof window !== 'undefined') {
+  window.$ = window.jQuery = jquery
+  require('bootstrap/dist/js/bootstrap')
 }
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -58,6 +78,16 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <ThemeProvider theme={theme}>
+      <Head>
+        {/* PWA primary color */}
+        <meta name="theme-color" content={theme.palette.primary.main} />
+        {/* <link
+          rel="stylesheet"
+          // href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+        /> */}
+      </Head>
+
       <style jsx global>{`
         #__next {
           height: 100%;
@@ -95,6 +125,8 @@ export default function App({ Component, pageProps }: AppProps) {
             :
             null
           } */}
+
+          <MainMenu />
 
           <Component {...pageProps} />
 

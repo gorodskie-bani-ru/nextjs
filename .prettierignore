@@ -7,4 +7,9 @@ coverage
 dist
 generated
 src/modules/old/
-src/components
+src/components/*
+!src/components/App
+!src/components/Pages
+src/components/Pages/*
+!src/components/Pages/layout.*
+!src/components/Pages/MainPage
