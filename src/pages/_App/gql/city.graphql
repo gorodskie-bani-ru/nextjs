@@ -1,0 +1,32 @@
+query cities(
+  $resourcesLimit: Int = 3
+  $resourcesCoords: SearchCoordsType
+  $resourcesCenter: InputCoordsType
+) {
+  cities: resources(
+    limit: $resourcesLimit
+    coords: $resourcesCoords
+    center: $resourcesCenter
+    parent: 1296
+  ) {
+    ...ListCity
+  }
+}
+
+fragment ListCity on ResourceType {
+  id
+  name
+  longtitle
+  alias
+  uri
+  coords {
+    lat
+    lng
+    zoom
+  }
+  image
+  imageFormats {
+    marker_thumb
+  }
+  parent
+}

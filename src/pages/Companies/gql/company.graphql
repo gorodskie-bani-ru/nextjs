@@ -1,0 +1,181 @@
+query companies(
+  $companiesLimit: Int = 2
+  $companyIds: [Int]
+  $companiesSearchQuery: String
+  $companiesCoords: SearchCoordsType
+  $companiesCenter: InputCoordsType
+) {
+  companiesList(
+    limit: $companiesLimit
+    ids: $companyIds
+    # uri:$resourceUri
+    search: $companiesSearchQuery
+    coords: $companiesCoords
+    center: $companiesCenter
+  ) {
+    count
+    total
+    limit
+    page
+    object {
+      ...ListCompany
+    }
+  }
+}
+
+fragment ListCompany on Company {
+  ...CompanyFields
+
+  # ... on Company @include(if:$getCompanyFullData)
+  # {
+  #   description
+  #   content
+  # }
+
+  # comments (
+  #   sort: $companyCommentsSort
+  # ) @include(if: $getCompanyComments)
+  # {
+  #   id
+  #   thread_id
+  #   text{
+  #     ...CommentState
+  #   }
+  #   author_username
+  #   author_fullname
+  #   author_avatar
+  #   createdby
+  #   parent
+  #   published
+  #   deleted
+  #   createdon
+  #   Company @include(if:$getCommentCompany)
+  #   {
+  #     ...CompanyFields
+  #   }
+  #   Author @include(if:$getCommentAuthor)
+  #   {
+  #     ...User
+  #   }
+  # }
+
+  ratingAvg {
+    rating
+    max_vote
+    min_vote
+    type
+    target_id
+    quantity
+    quantity_voters
+    voted_companies
+    voted_users
+    voter
+    # voters @include(if:$getRatingVoters)
+    # {
+    #   ...User
+    # }
+  }
+
+  #   topics @include(if:$getCompanyTopics)
+  #   {
+  #     ...Topic
+  #   }
+
+  #   editVersions @include(if:$companyGetEditVersions)
+  #   {
+  #     ...editVersion
+  #   }
+}
+
+fragment CompanyFields on Company {
+  id
+  name
+  longtitle
+  alias
+  uri
+  city_id
+  city
+  city_uri
+  template
+  published
+  publishedon
+  pubdate
+  createdon
+  createdby
+  editedby
+  editedon
+  mapIcon
+  image
+  # ...imageFormats @include(if:$getImageFormats)
+
+  # gallery @include(if:$getCompanyGallery)
+  # {
+  #   image
+  #   imageFormats @include(if:$getImageFormats)
+  #   {
+  #     original
+  #     thumb
+  #     marker_thumb
+  #     slider_thumb
+  #     slider_dot_thumb
+  #     small
+  #     middle
+  #     big
+  #   }
+  # }
+  coords {
+    lat
+    lng
+  }
+  # tvs @include(if:$getTVs)
+  # {
+  #   address
+  #   site
+  #   facility_type
+  #   phones
+  #   work_time
+  #   prices
+  #   metro
+  #   approved
+  # }
+  # schedule @include(if:$companyGetSchedules)
+  # {
+  #   ...ScheduleDay
+  # }
+  # schedule_men @include(if:$companyGetSchedules)
+  # {
+  #   ...ScheduleDay
+  # }
+  # schedule_women @include(if:$companyGetSchedules)
+  # {
+  #   ...ScheduleDay
+  # }
+  # schedule_family @include(if:$companyGetSchedules)
+  # {
+  #   ...ScheduleDay
+  # }
+  # prices @include(if:$companyGetPrices){
+  #   ...CommentState
+  # }
+  errors
+  _isDirty
+}
+
+# fragment ScheduleDay on ScheduleDayType{
+#   start{
+#     ...ScheduleDayRange
+#   }
+#   end{
+#     ...ScheduleDayRange
+#   }
+# }
+
+# fragment ScheduleDayRange on ScheduleDayRangeType{
+#   year
+#   month
+#   day
+#   hour
+#   minute
+#   second
+#   weekDay
+# }

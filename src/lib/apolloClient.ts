@@ -3,14 +3,19 @@ import {
   ApolloClient,
   HttpLink,
   InMemoryCache,
-  NormalizedCacheObject,
+  // NormalizedCacheObject,
 } from '@apollo/client'
 import { onError } from '@apollo/client/link/error'
 import { concatPagination } from '@apollo/client/utilities'
 import URI from 'urijs'
 import fetch from 'cross-fetch'
+import { ApolloClientNormolized } from './interfaces'
 
-let apolloClient: ApolloClient<NormalizedCacheObject>
+import chalk from 'chalk'
+import Debug from 'debug'
+const debug = Debug('apolloClient')
+
+let apolloClient: ApolloClientNormolized
 
 function createApolloClient() {
   const uri = new URI()
@@ -75,6 +80,10 @@ function createApolloClient() {
 }
 
 export function initializeApollo(initialState?: any) {
+  // debug('initializeApollo')
+
+  debug(chalk.red('initializeApollo'))
+
   const _apolloClient = apolloClient ?? createApolloClient()
   // const _apolloClient = createApolloClient()
 
@@ -99,6 +108,29 @@ export function initializeApollo(initialState?: any) {
 }
 
 export function useApollo(initialState: any) {
-  const store = useMemo(() => initializeApollo(initialState), [initialState])
-  return store
+  // console.log('useApollo');
+
+  debug(chalk.green('useApollo'))
+
+  return useMemo(() => initializeApollo(initialState), [initialState])
 }
+
+// export function useApollo(initialState: any, initialStore?: ApolloClientNormolized) {
+
+//   // console.log('useApollo');
+
+//   debug(chalk.green('useApollo'))
+
+//   /**
+//    * На стороне сервера по умолчанию аполло-клиент создается при каждом обращении.
+//    * Это нам не очень подходит, так как сложно создать общий кэш всех запросов на выходе,
+//    * да и с производительностью похуже.
+//    * При этом надо учитывать, что клиент должен быть уникальный на каждый запрос к серверу.
+//    * Поэтому мы передаем готовый клиент из главного App.
+//    * Надо будет все внимательно оттестировать, но по идее все должно работать норм.
+//    */
+//   // const store = useMemo(() => initialStore || initializeApollo(initialState), [initialState, initialStore])
+//   const store = useMemo(() => initializeApollo(initialState), [initialState, initialStore])
+
+//   return store
+// }

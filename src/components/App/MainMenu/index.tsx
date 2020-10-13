@@ -276,10 +276,11 @@ export default class MainMenu extends PureComponent {
 
     return (
       <div
-        // className="navbar navbar-default"
-        className="navbar navbar-default navbar-fixed-top"
+        className="navbar navbar-default"
+        // className="navbar navbar-default navbar-fixed-top"
         style={{
           marginBottom: 0,
+          borderRadius: 0,
         }}
       >
         <div className="container">
