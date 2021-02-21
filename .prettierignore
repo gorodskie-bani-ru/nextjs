@@ -2,7 +2,6 @@ node_modules
 .next
 yarn.lock
 package-lock.json
-public
 coverage
 dist
 generated
@@ -13,3 +12,12 @@ src/components/*
 src/components/Pages/*
 !src/components/Pages/layout.*
 !src/components/Pages/MainPage
+.storybook
+storybook-static
+/.vscode
+/packages
+/public
+/shared
+
+# cypress
+/cypress

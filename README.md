@@ -10,8 +10,10 @@ Bootstrap a developer-friendly NextJS app configured with:
 
 - Support custom GraphQL API endpoints.
 - Frontend GraphQL API schema and types generation.
+- [SASS/SCSS](https://sass-lang.com/) and [styled-components](https://styled-components.com/).
 - [Typescript](https://www.typescriptlang.org/) and [server](https://github.com/TypeStrong/ts-node)
 - Linting with [ESLint](https://eslint.org/)
+- [Storybook](https://storybook.js.org/)
 - Formatting with [Prettier](https://prettier.io/)
 - Linting, typechecking and formatting on by default using [`husky`](https://github.com/typicode/husky) for commit hooks
 - Testing with [Jest](https://jestjs.io/) and [`react-testing-library`](https://testing-library.com/docs/react-testing-library/intro)
@@ -20,7 +22,7 @@ Bootstrap a developer-friendly NextJS app configured with:
 
 Deploy the example using [Vercel](https://vercel.com):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/vercel/next.js/tree/canary/examples/with-typescript-eslint-jest)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/prisma-cms/nextjs)
 
 ## How to use
 
@@ -65,15 +67,27 @@ yarn dev
 yarn lint
 ```
 
-### TS
+### Typescript types checking
 
-```
+```bash
 yarn types
 ```
 
 ### Jest unit tests
 
-**Attension!** For unit tests started server required.
+```bash
+yarn test
+```
+
+### Test code coverage
+
+```bash
+yarn test --coverage
+```
+
+### Jest unit tests real API
+
+**Attension!** For unit tests with real API started server required.
 
 ```bash
 # Build bundles
@@ -86,13 +100,33 @@ yarn start
 After this open yet another terminal and run tests
 
 ```bash
-yarn test
+yarn test:api
 ```
 
 ### Run all test
 
 ```bash
-yarn test-all
+yarn test:all
+```
+
+### Analyze bundles
+
+```bash
+yarn build:analyze
+```
+
+### Storybook
+
+#### dev
+
+```bash
+yarn storybook
+```
+
+#### build storybook
+
+```bash
+yarn build:storybook
 ```
 
 Deploy it to the cloud with [Vercel](https://vercel.com/import?filter=next.js&utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).

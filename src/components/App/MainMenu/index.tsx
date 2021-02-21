@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-bind */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { PureComponent } from 'react'
 
 // import PropTypes from 'prop-types'

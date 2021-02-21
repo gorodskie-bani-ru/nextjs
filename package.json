@@ -1,19 +1,26 @@
 {
-  "name": "@prisma-cms/nextjs",
+  "name": "@gorodskie-bani/nextjs",
+  "private": true,
   "author": "@Fi1osof",
   "license": "MIT",
   "version": "1.1.1",
   "scripts": {
     "dev": "nodemon",
     "build": "next build && tsc --project tsconfig.server.json",
-    "build:analyze": "ANALYZE=true yarn build",
-    "start": "cross-env NODE_ENV=production node dist/index.js",
-    "generate:types": "ts-node -P tsconfig.server.json src/modules/gql/cli/generateTypes/run",
+    "build:analyze": "cross-env ANALYZE=true yarn build",
+    "start": "cross-env NODE_ENV=production node dist/server/index.js",
+    "generate:types": "cross-env NODE_PATH=. ts-node -P tsconfig.server.json src/modules/gql/cli/generateTypes/run",
     "types": "tsc --pretty --noEmit",
+    "types:server": "yarn types -P tsconfig.server.json",
     "format": "prettier --write .",
     "lint": "eslint . --ext ts --ext tsx --ext js",
+    "storybook": "start-storybook -p 6006",
+    "build:storybook": "build-storybook",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
     "test": "jest",
-    "test-all": "yarn lint && yarn types && yarn test"
+    "test:api": "cross-env TEST_REAL_API=true jest",
+    "test:all": "yarn lint && yarn types && yarn cy:run && yarn test"
   },
   "husky": {
     "hooks": {

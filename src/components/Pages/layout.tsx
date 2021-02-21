@@ -40,7 +40,11 @@ import { PureComponent } from 'react'
 // 	triggerGoal: PropTypes.func.isRequired,
 // });
 
+/**
+ * @deprecated
+ */
 export default class Page extends PureComponent {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   state: any = {}
 
   // static contextTypes = contextTypes;

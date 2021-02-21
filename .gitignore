@@ -34,8 +34,20 @@ yarn-error.log*
 # vercel
 .vercel
 
+# IDE
+.vscode
+
 # yarn
 yarn.lock
 
 # envs
 .env
+
+# storybook
+storybook-static
+
+# jest
+__snapshots__
+
+# cypress
+/cypress

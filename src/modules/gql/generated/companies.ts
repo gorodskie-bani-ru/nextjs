@@ -14,7 +14,7 @@ import { ListCompanyFragmentDoc } from './ListCompany';
 import * as Apollo from '@apollo/client';
 export type CompaniesQueryVariables = Types.Exact<{
   companiesLimit?: Types.Maybe<Types.Scalars['Int']>;
-  companyIds?: Types.Maybe<Array<Types.Maybe<Types.Scalars['Int']>>>;
+  companyIds?: Types.Maybe<Array<Types.Maybe<Types.Scalars['Int']>> | Types.Maybe<Types.Scalars['Int']>>;
   companiesSearchQuery?: Types.Maybe<Types.Scalars['String']>;
   companiesCoords?: Types.Maybe<Types.SearchCoordsType>;
   companiesCenter?: Types.Maybe<Types.InputCoordsType>;
@@ -29,7 +29,13 @@ export type CompaniesQuery = { __typename?: 'RootType', companiesList?: Types.Ma
 
 export const CompaniesDocument = gql`
     query companies($companiesLimit: Int = 2, $companyIds: [Int], $companiesSearchQuery: String, $companiesCoords: SearchCoordsType, $companiesCenter: InputCoordsType) {
-  companiesList(limit: $companiesLimit, ids: $companyIds, search: $companiesSearchQuery, coords: $companiesCoords, center: $companiesCenter) {
+  companiesList(
+    limit: $companiesLimit
+    ids: $companyIds
+    search: $companiesSearchQuery
+    coords: $companiesCoords
+    center: $companiesCenter
+  ) {
     count
     total
     limit

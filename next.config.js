@@ -1,26 +1,107 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
+const webpack = (config, options) => {
+  // Note: we provide webpack above so you should not `require` it
+  // Perform customizations to webpack config
 
-const withPlugins = require('next-compose-plugins')
+  const MomentLocalesPlugin = require('moment-locales-webpack-plugin')
 
-/**
- * Просто так некст не дружит с лесс
- * https://github.com/vercel/next-plugins/issues/624
- */
-const nextConfig = {
-  env: {
-    spaceID: process.env.spaceID,
-    accessTokenDelivery: process.env.accessTokenDelivery,
-  },
-  distDir: '.next',
-  webpack: (config, _options) => {
-    // modify the `config` here
+  /**
+   * Fix locales issue
+   * https://github.com/moment/moment/issues/2517#issuecomment-620674018
+   */
+  config.plugins.push(
+    new MomentLocalesPlugin({
+      localesToKeep: ['ru', 'en'],
+    })
+  )
 
-    return config
-  },
+  config.module.rules.push({
+    test: /\.svg/,
+    use: [
+      options.defaultLoaders.babel,
+      {
+        loader: 'file-loader',
+        options: {
+          limit: 1000,
+          name: '[name]_[hash].[ext]',
+          publicPath: `/_next/static/svg`,
+          outputPath: 'static/svg',
+        },
+      },
+    ],
+  })
+
+  config.module.rules.push({
+    test: /\.pdf/,
+    use: [
+      options.defaultLoaders.babel,
+      {
+        loader: 'file-loader',
+        options: {
+          limit: 1000,
+          name: '[name]_[hash].[ext]',
+          publicPath: `/_next/static/pdf`,
+          outputPath: 'static/pdf',
+        },
+      },
+    ],
+  })
+
+  // https://github.com/vercel/next.js/issues/11164#issuecomment-602204795
+  config.module.rules.push({
+    test: /\.(png|jpe?g|gif)$/i,
+    // loader: 'url-loader',
+    issuer: {
+      // nextjs already handles url() in css/sass/scss files
+      test: /\.\w+(?<!(s?c|sa)ss)$/i,
+    },
+    use: [
+      {
+        loader: 'url-loader',
+        options: {
+          context: 'src',
+          name() {
+            if (process.env.NODE_ENV === 'development') {
+              return '[path][name].[ext]'
+            }
+
+            return '[contenthash].[ext]'
+          },
+          publicPath: `/_next/static/media`,
+          outputPath: 'static/media',
+          limit: 1000,
+        },
+      },
+    ],
+  })
+
+  // Object.assign(config, {
+  //   // https://nextjs.org/docs/api-reference/next.config.js/disabling-etag-generation
+  //   generateEtags: false,
+  // });
+
+  return config
+
+  // Important: return the modified config
+  // return {
+  //   ...config,
+
+  //   // https://nextjs.org/docs/api-reference/next.config.js/disabling-etag-generation
+  //   generateEtags: false,
+  // }
 }
 
-const plugins = [withBundleAnalyzer]
+module.exports = (phase, defaultConfig) => {
+  // if(phase === "phase-development-server") {
+  if (phase !== 'phase-production-server') {
+    const withBundleAnalyzer = require('@next/bundle-analyzer')({
+      enabled: process.env.ANALYZE === 'true',
+    })
 
-module.exports = withPlugins(plugins, nextConfig)
+    return withBundleAnalyzer({
+      webpack,
+    })
+  }
+
+  // else
+  return defaultConfig
+}

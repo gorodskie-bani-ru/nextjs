@@ -1,5 +1,13 @@
 {
   "compilerOptions": {
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin",
+        "validate": false
+      }
+    ],
+    // Moved into next-env.d.ts
+    // "types": ["jest", "cypress"],
     "target": "esnext",
     "module": "esnext",
     "jsx": "preserve",
@@ -17,10 +25,17 @@
     "isolatedModules": true,
     "removeComments": false,
     "preserveConstEnums": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true
   },
-  "exclude": ["node_modules", "dist", ".next", "out", "next.config.js"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".next",
+    "out",
+    "next.config.js",
+    "packages"
+  ],
+  "include": ["next-env.d.ts", ".storybook/*.tsx", "**/*.ts", "**/*.tsx"]
 }

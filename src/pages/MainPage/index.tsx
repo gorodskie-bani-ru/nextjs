@@ -1,6 +1,7 @@
 // import { useRouter } from 'next/router'
 import Head from 'next/head'
 import { default as MainPage } from 'src/components/Pages/MainPage'
+import { Page } from '../_App/interfaces'
 // import { GetStaticProps } from 'next'
 // import { GetServerSideProps } from 'next'
 
@@ -11,7 +12,7 @@ import { default as MainPage } from 'src/components/Pages/MainPage'
 
 // import { initializeApollo } from '../src/lib/apolloClient'
 
-export const Home = (): JSX.Element => {
+export const Home: Page = (): JSX.Element => {
   // const router = useRouter()
 
   // const {

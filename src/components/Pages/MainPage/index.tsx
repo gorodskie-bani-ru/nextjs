@@ -56,6 +56,7 @@ export default class MainPage extends Page {
 
   // }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async loadServerData(provider: any, options: any = {}) {
     // const {
     // 	// ...debugOptions

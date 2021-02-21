@@ -27,7 +27,12 @@ export type CitiesQuery = { __typename?: 'RootType', cities?: Types.Maybe<Array<
 
 export const CitiesDocument = gql`
     query cities($resourcesLimit: Int = 3, $resourcesCoords: SearchCoordsType, $resourcesCenter: InputCoordsType) {
-  cities: resources(limit: $resourcesLimit, coords: $resourcesCoords, center: $resourcesCenter, parent: 1296) {
+  cities: resources(
+    limit: $resourcesLimit
+    coords: $resourcesCoords
+    center: $resourcesCenter
+    parent: 1296
+  ) {
     ...ListCity
   }
 }

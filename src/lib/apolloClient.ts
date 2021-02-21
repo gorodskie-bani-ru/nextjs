@@ -79,6 +79,7 @@ function createApolloClient() {
   })
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function initializeApollo(initialState?: any) {
   // debug('initializeApollo')
 
@@ -107,6 +108,7 @@ export function initializeApollo(initialState?: any) {
   return _apolloClient
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function useApollo(initialState: any) {
   // console.log('useApollo');
 

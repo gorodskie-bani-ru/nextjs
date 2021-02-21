@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useMemo } from 'react'
 import App, { AppContext, AppInitialProps } from 'next/app'
 import { ApolloProvider } from '@apollo/client'
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import theme from 'src/theme'
+import muiTheme from 'src/theme/muiTheme'
 import Link from 'next/link'
 import CardContent from '@material-ui/core/CardContent'
 import Grid from '@material-ui/core/Grid'
@@ -17,16 +18,11 @@ import Cities from './Cities'
 
 import { CitiesDocument, CitiesQueryResult } from 'src/modules/gql/generated'
 
-import { NextPageContextCustom } from './interfaces'
+import { NextPageContextCustom, AppProps } from './interfaces'
 
 // import chalk from 'chalk';
 // import Debug from 'debug';
 // const debug = Debug('apolloClient');
-
-export type AppProps = {
-  Component: any
-  pageProps: any
-}
 
 declare global {
   interface Window {
@@ -37,6 +33,7 @@ declare global {
 
 if (typeof window !== 'undefined') {
   window.$ = window.jQuery = jquery
+  // eslint-disable-next-line no-restricted-modules
   require('bootstrap/dist/js/bootstrap')
 }
 
@@ -91,12 +88,12 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   }, [])
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={muiTheme}>
       <Head>
         {/* 
           PWA primary color 
         */}
-        <meta name="theme-color" content={theme.palette.primary.main} />
+        <meta name="theme-color" content={muiTheme.palette.primary.main} />
       </Head>
 
       <style jsx global>{`

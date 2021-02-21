@@ -10,3 +10,13 @@ src/components/*
 src/components/Pages/*
 !src/components/Pages/layout.*
 !src/components/Pages/MainPage
+**/.storybook/*
+**/storybook-static/*
+/.vscode
+/packages
+/public
+/shared
+generated
+
+# cypress
+/cypress
