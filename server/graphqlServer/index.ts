@@ -1,9 +1,9 @@
 // import { ApolloServer, gql, makeExecutableSchema } from 'apollo-server-micro'
 
-import { schema } from '../nexus/schema'
+import { schema } from '../nexus'
 
 import { ApolloServer, ExpressContext } from 'apollo-server-express'
-import { context, PrismaContext } from '../nexus/schema/context'
+import { context, PrismaContext } from '../nexus/context'
 
 export default new ApolloServer({
   schema,
