@@ -269,6 +269,14 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  City: {
+    // root type
+    alias?: string | null // String
+    id: number // Int!
+    longtitle: string // String!
+    pagetitle: string // String!
+    uri?: string | null // String
+  }
   Company: {
     // root type
     alias?: string | null // String
@@ -309,6 +317,15 @@ export type NexusGenAllTypes = NexusGenRootTypes &
   NexusGenEnums
 
 export interface NexusGenFieldTypes {
+  City: {
+    // field return type
+    alias: string | null // String
+    id: number // Int!
+    longtitle: string // String!
+    name: string // String!
+    pagetitle: string // String!
+    uri: string | null // String
+  }
   Company: {
     // field return type
     alias: string | null // String
@@ -333,6 +350,7 @@ export interface NexusGenFieldTypes {
   }
   Query: {
     // field return type
+    cities: NexusGenRootTypes['City'][] // [City!]!
     companies: NexusGenRootTypes['Company'][] // [Company!]!
     resources: NexusGenRootTypes['Resource'][] // [Resource!]!
     resourcesCount: number // Int!
@@ -350,6 +368,15 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
+  City: {
+    // field return type name
+    alias: 'String'
+    id: 'Int'
+    longtitle: 'String'
+    name: 'String'
+    pagetitle: 'String'
+    uri: 'String'
+  }
   Company: {
     // field return type name
     alias: 'String'
@@ -374,6 +401,7 @@ export interface NexusGenFieldTypeNames {
   }
   Query: {
     // field return type name
+    cities: 'City'
     companies: 'Company'
     resources: 'Resource'
     resourcesCount: 'Int'
@@ -392,6 +420,12 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   Query: {
+    cities: {
+      // args
+      skip?: number | null // Int
+      take?: number | null // Int
+      where?: NexusGenInputs['bani684_site_contentWhereInput'] | null // bani684_site_contentWhereInput
+    }
     companies: {
       // args
       skip?: number | null // Int

@@ -24,11 +24,7 @@ query companies(
   #     ...ListCompany
   #   }
   # }
-  companies(
-    skip: $skip
-    take: $take
-    where: $where
-  ) {
+  companies(skip: $skip, take: $take, where: $where) {
     ...ListCompany
   }
 }

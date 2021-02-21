@@ -1,32 +1,34 @@
 query cities(
-  $resourcesLimit: Int = 3
-  $resourcesCoords: SearchCoordsType
-  $resourcesCenter: InputCoordsType
+  # $resourcesLimit: Int = 3
+  # $resourcesCoords: SearchCoordsType
+  # $resourcesCenter: InputCoordsType
+  $take: Int
+  $skip: Int
+  $where: bani684_site_contentWhereInput
 ) {
-  cities: resources(
-    limit: $resourcesLimit
-    coords: $resourcesCoords
-    center: $resourcesCenter
-    parent: 1296
+  cities: cities(
+    # limit: $resourcesLimit
+    # coords: $resourcesCoords
+    # center: $resourcesCenter
+    # parent: 1296
+    take: $take
+    skip: $skip
+    where: $where
   ) {
-    ...ListCity
+    id
+    name
+    longtitle
+    alias
+    uri
+    # coords {
+    #   lat
+    #   lng
+    #   zoom
+    # }
+    # image
+    # imageFormats {
+    #   marker_thumb
+    # }
+    # parent
   }
-}
-
-fragment ListCity on ResourceType {
-  id
-  name
-  longtitle
-  alias
-  uri
-  coords {
-    lat
-    lng
-    zoom
-  }
-  image
-  imageFormats {
-    marker_thumb
-  }
-  parent
 }

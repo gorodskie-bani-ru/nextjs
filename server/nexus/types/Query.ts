@@ -11,7 +11,7 @@ export const Query = objectType({
   definition(t) {
     t.nonNull.list.nonNull.field('companies', {
       // alias: 'companies',
-      description: 'Все компании',
+      description: 'Компании',
       type: 'Company',
       // ordering: true,
       // filtering: true,
@@ -26,7 +26,8 @@ export const Query = objectType({
           'where'
         >
 
-        const { deleted = false, published = true } = variables.where || {}
+        const { deleted = false, published = true, hidemenu = false } =
+          variables.where || {}
 
         return ctx.prisma.bani684_site_content
           .findMany({
@@ -37,6 +38,7 @@ export const Query = objectType({
                   template: 27,
                   deleted,
                   published,
+                  hidemenu,
                 },
                 {
                   ...variables.where,
@@ -108,52 +110,75 @@ export const Query = objectType({
               }
             })
           )
+      },
+    })
 
-        // return ctx.prisma.bani684_site_content.findMany({
-        //   select: {
-        //     id: true,
-        //     pagetitle: true,
-        //     longtitle: true,
-        //   },
-        // });
+    t.nonNull.list.nonNull.field('cities', {
+      // alias: 'companies',
+      description: 'Города',
+      type: 'City',
+      // ordering: true,
+      // filtering: true,
+      args: {
+        where: 'bani684_site_contentWhereInput',
+        take: 'Int',
+        skip: 'Int',
+      },
+      resolve(_, args, ctx) {
+        const variables = args as Pick<
+          Prisma.bani684_site_contentFindManyArgs,
+          'where'
+        >
 
-        // const variables : NexusGenArgTypes["Query"]["companies"] = {
-        //   ...args,
-        // }
+        const { deleted = false, published = true, hidemenu = false } =
+          variables.where || {}
 
-        // const result = await ctx.prisma.bani684_site_content.findMany(variables);
-        // // const result = await ctx.prisma.bani684_site_content.findMany({
-        // //   // take: 3,
-        // //   select: {
-        // //     id: true,
-        // //     pagetitle: true,
-        // //     // TemplateValues: {
-        // //     //   select: {
-        // //     //     id: true,
-        // //     //     contentid: true,
-        // //     //     tmplvarid: true,
-        // //     //     value: true,
-        // //     //   },
-        // //     // },
-        // //     // TemplateVarValues: {
-        // //     //   select: {
-        // //     //     id: true,
-        // //     //   },
-        // //     // },
-        // //   },
-        // //   // where: {
-        // //   //   TemplateVarValues: {
-        // //   //     some: {},
-        // //   //   },
-        // //   // },
-        // //   ...args,
-        // // });
+        return ctx.prisma.bani684_site_content.findMany({
+          ...variables,
+          where: {
+            AND: [
+              {
+                template: 27,
+                deleted,
+                published,
+                hidemenu,
+              },
+              {
+                ...variables.where,
+              },
+            ],
+          },
+          select: {
+            id: true,
+            pagetitle: true,
+            longtitle: true,
+            // description: true,
+            alias: true,
+            uri: true,
+            // published: true,
+            // createdby: true,
+            // createdon: true,
+            // editedby: true,
+            // editedon: true,
+            TemplateVarValues: {
+              select: {
+                id: true,
+                contentid: true,
+                tmplvarid: true,
+                value: true,
+              },
+            },
+          },
+        })
+        // .then((records) =>
+        //   records.map((n) => {
+        //     const { TemplateVarValues } = n
 
-        // // const result = await ctx.prisma.bani684_site_content.findMany(_args);
-
-        // console.log('result', JSON.stringify(result, undefined, 2));
-
-        // return result;
+        //     return {
+        //       ...n,
+        //     }
+        //   })
+        // )
       },
     })
 

@@ -12,6 +12,21 @@ input BoolFilter {
   not: NestedBoolFilter
 }
 
+"""
+Город
+"""
+type City {
+  alias: String
+  id: Int!
+  longtitle: String!
+  name: String!
+  pagetitle: String!
+  uri: String
+}
+
+"""
+Компания
+"""
 type Company {
   alias: String
   coords: Coordinates
@@ -96,7 +111,12 @@ input NestedStringNullableFilter {
 
 type Query {
   """
-  Все компании
+  Города
+  """
+  cities(skip: Int, take: Int, where: bani684_site_contentWhereInput): [City!]!
+
+  """
+  Компании
   """
   companies(
     skip: Int

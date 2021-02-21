@@ -32,6 +32,18 @@ export interface BoolFilter {
   not?: Maybe<NestedBoolFilter>;
 }
 
+/** Город */
+export interface City {
+  __typename?: 'City';
+  alias?: Maybe<Scalars['String']>;
+  id: Scalars['Int'];
+  longtitle: Scalars['String'];
+  name: Scalars['String'];
+  pagetitle: Scalars['String'];
+  uri?: Maybe<Scalars['String']>;
+}
+
+/** Компания */
 export interface Company {
   __typename?: 'Company';
   alias?: Maybe<Scalars['String']>;
@@ -114,13 +126,22 @@ export interface NestedStringNullableFilter {
 
 export interface Query {
   __typename?: 'Query';
-  /** Все компании */
+  /** Города */
+  cities: Array<City>;
+  /** Компании */
   companies: Array<Company>;
   /** Все ресурсы */
   resources: Array<Resource>;
   /** Количество всех ресурсов */
   resourcesCount: Scalars['Int'];
 }
+
+
+export type QueryCitiesArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
+  where?: Maybe<Bani684SiteContentWhereInput>;
+};
 
 
 export type QueryCompaniesArgs = {

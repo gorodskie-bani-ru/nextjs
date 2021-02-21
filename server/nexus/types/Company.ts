@@ -16,6 +16,7 @@ import { objectType } from 'nexus'
 
 export const Company = objectType({
   name: 'Company',
+  description: 'Компания',
   // sourceType: {
   //   module: '@prisma/client',
   //   export: 'bani684_site_content',
