@@ -3,7 +3,7 @@
 import { schema } from '../nexus/schema'
 
 import { ApolloServer, ExpressContext } from 'apollo-server-express'
-import { context, PrismaContext } from '../nexus/context'
+import { context, PrismaContext } from '../nexus/schema/context'
 
 export default new ApolloServer({
   schema,
