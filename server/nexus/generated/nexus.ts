@@ -271,9 +271,15 @@ export interface NexusGenScalars {
 export interface NexusGenObjects {
   Company: {
     // root type
+    coords?: NexusGenRootTypes['Coordinates'] | null // Coordinates
     id: number // Int!
     longtitle: string // String!
     pagetitle: string // String!
+  }
+  Coordinates: {
+    // root type
+    lat: number // Float!
+    lng: number // Float!
   }
   Query: {}
   Resource: bani684_site_content
@@ -296,10 +302,16 @@ export type NexusGenAllTypes = NexusGenRootTypes &
 export interface NexusGenFieldTypes {
   Company: {
     // field return type
+    coords: NexusGenRootTypes['Coordinates'] | null // Coordinates
     id: number // Int!
     longtitle: string // String!
     name: string // String!
     pagetitle: string // String!
+  }
+  Coordinates: {
+    // field return type
+    lat: number // Float!
+    lng: number // Float!
   }
   Query: {
     // field return type
@@ -322,10 +334,16 @@ export interface NexusGenFieldTypes {
 export interface NexusGenFieldTypeNames {
   Company: {
     // field return type name
+    coords: 'Coordinates'
     id: 'Int'
     longtitle: 'String'
     name: 'String'
     pagetitle: 'String'
+  }
+  Coordinates: {
+    // field return type name
+    lat: 'Float'
+    lng: 'Float'
   }
   Query: {
     // field return type name

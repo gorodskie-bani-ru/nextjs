@@ -13,10 +13,16 @@ input BoolFilter {
 }
 
 type Company {
+  coords: Coordinates
   id: Int!
   longtitle: String!
   name: String!
   pagetitle: String!
+}
+
+type Coordinates {
+  lat: Float!
+  lng: Float!
 }
 
 """

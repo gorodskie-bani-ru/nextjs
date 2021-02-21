@@ -5,7 +5,7 @@ import { objectType } from 'nexus'
 // city
 // city_uri
 // template
-// 
+//
 // publishedon
 // pubdate
 // createdby
@@ -28,6 +28,9 @@ export const Company = objectType({
       resolve: (_) => _.pagetitle,
     })
     t.nonNull.string('longtitle')
+    t.field('coords', {
+      type: 'Coordinates',
+    })
     // t.nonNull.string('description')
     // t.nonNull.date("createdon")
     // t.nonNull.date("publishedon")
@@ -55,4 +58,3 @@ export const Company = objectType({
     // })
   },
 })
-
