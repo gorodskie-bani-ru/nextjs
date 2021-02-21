@@ -12,10 +12,14 @@ const CompaniesPage = () => {
     // loading,
     // error,
     data,
-  } = useCompaniesQuery()
+  } = useCompaniesQuery({
+    variables: {
+      take: 3,
+    },
+  })
 
   const companiesList =
-    data?.companiesList?.object?.map((company) => {
+    data?.companies.map((company) => {
       if (!company || !company.uri) {
         return null
       }

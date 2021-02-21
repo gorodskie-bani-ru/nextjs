@@ -54,7 +54,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   // } = pageProps;
 
   // const apolloClient = useApollo(pageProps.initialApolloState, store as ApolloClientNormolized);
-  const apolloClient = useApollo(pageProps.initialApolloState)
+  const apolloClient = useApollo(pageProps.initialApolloState, false)
 
   // debug(chalk[apolloClient ? 'green' : 'red']('MyApp apolloClient exists'))
 
@@ -193,7 +193,10 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
    * с приложения и далее выполняемый страниц и документа,
    * передаем аполло-клиент далее в контекст приложения.
    */
-  const apolloClient = initializeApollo()
+  const apolloClient = initializeApollo({
+    withWs: false,
+    appContext,
+  })
 
   const newAppContext = {
     ...appContext,
