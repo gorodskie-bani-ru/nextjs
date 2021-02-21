@@ -48,12 +48,14 @@ async function getQueryFiles() {
   return files
 }
 
+const namingConvention = {
+  enumValues: 'upper-case#upperCase',
+  typeNames: 'pascal-case#pascalCase',
+}
+
 export const typescriptPluginConfig: TypeScriptPluginConfig = {
   onlyOperationTypes: false,
-  namingConvention: {
-    enumValues: 'upper-case#upperCase',
-    typeNames: 'pascal-case#pascalCase',
-  },
+  namingConvention,
   scalars,
   declarationKind: {
     type: 'interface',
@@ -119,18 +121,30 @@ const typescriptConfig = {
 async function generateTypesFromSchema() {
   const schema = path.join(OUTPUT_PATH, 'schema.json')
 
-  await codegen.generate(
-    {
-      schema,
-      generates: {
-        [TYPES_FILE_PATH]: typescriptConfig,
-        [APOLLO_HELPER_FILE_PATH]: {
-          plugins: ['typescript-apollo-client-helpers'],
-        },
+  const input: Types.Config = {
+    schema,
+    generates: {
+      [TYPES_FILE_PATH]: typescriptConfig,
+      [APOLLO_HELPER_FILE_PATH]: {
+        plugins: ['typescript-apollo-client-helpers'],
       },
     },
-    true
-  )
+  }
+
+  await codegen.generate(input, true)
+
+  // await codegen.generate(
+  //   {
+  //     schema,
+  //     generates: {
+  //       [TYPES_FILE_PATH]: typescriptConfig,
+  //       [APOLLO_HELPER_FILE_PATH]: {
+  //         plugins: ['typescript-apollo-client-helpers'],
+  //       },
+  //     },
+  //   },
+  //   true
+  // )
 }
 
 /**
@@ -192,14 +206,10 @@ async function generateTypesFromMap() {
     },
   }
 
-  const config: TypeScriptPluginConfig = {
-    scalars,
-  }
-
   const input: Types.Config = {
     schema: path.join(OUTPUT_PATH, 'schema.json'),
     documents,
-    config,
+    config: typescriptPluginConfig,
     generates: {
       types: codegenConfig,
     },

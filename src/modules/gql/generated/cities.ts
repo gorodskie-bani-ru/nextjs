@@ -13,7 +13,7 @@ import * as Apollo from '@apollo/client';
 export type CitiesQueryVariables = Types.Exact<{
   take?: Types.Maybe<Types.Scalars['Int']>;
   skip?: Types.Maybe<Types.Scalars['Int']>;
-  where?: Types.Maybe<Types.Bani684_Site_ContentWhereInput>;
+  where?: Types.Maybe<Types.Bani684SiteContentWhereInput>;
 }>;
 
 

@@ -15,7 +15,7 @@ import * as Apollo from '@apollo/client';
 export type CompaniesQueryVariables = Types.Exact<{
   skip?: Types.Maybe<Types.Scalars['Int']>;
   take?: Types.Maybe<Types.Scalars['Int']>;
-  where?: Types.Maybe<Types.Bani684_Site_ContentWhereInput>;
+  where?: Types.Maybe<Types.Bani684SiteContentWhereInput>;
 }>;
 
 
