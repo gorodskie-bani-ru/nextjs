@@ -5,7 +5,7 @@ import { objectType } from 'nexus'
 // city
 // city_uri
 // template
-// 
+//
 // publishedon
 // pubdate
 // createdby
@@ -24,4 +24,3 @@ export const TemplateVarValue = objectType({
     t.nonNull.int('id')
   },
 })
-

@@ -1,29 +1,39 @@
 query companies(
-  $companiesLimit: Int = 2
-  $companyIds: [Int]
-  $companiesSearchQuery: String
-  $companiesCoords: SearchCoordsType
-  $companiesCenter: InputCoordsType
+  # $companiesLimit: Int = 2
+  # $companyIds: [Int]
+  # $companiesSearchQuery: String
+  # $companiesCoords: SearchCoordsType
+  # $companiesCenter: InputCoordsType
+  $skip: Int
+  $take: Int
+  $where: bani684_site_contentWhereInput
 ) {
-  companiesList(
-    limit: $companiesLimit
-    ids: $companyIds
-    # uri:$resourceUri
-    search: $companiesSearchQuery
-    coords: $companiesCoords
-    center: $companiesCenter
+  # companiesList(
+  #   limit: $companiesLimit
+  #   ids: $companyIds
+  #   # uri:$resourceUri
+  #   search: $companiesSearchQuery
+  #   coords: $companiesCoords
+  #   center: $companiesCenter
+  # ) {
+  #   count
+  #   total
+  #   limit
+  #   page
+  #   object {
+  #     ...ListCompany
+  #   }
+  # }
+  companies(
+    skip: $skip
+    take: $take
+    where: $where
   ) {
-    count
-    total
-    limit
-    page
-    object {
-      ...ListCompany
-    }
+    ...ListCompany
   }
 }
 
-fragment ListCompany on Resource {
+fragment ListCompany on Company {
   ...CompanyFields
 
   # ... on Company @include(if:$getCompanyFullData)
@@ -59,22 +69,22 @@ fragment ListCompany on Resource {
   #   }
   # }
 
-  ratingAvg {
-    rating
-    max_vote
-    min_vote
-    type
-    target_id
-    quantity
-    quantity_voters
-    voted_companies
-    voted_users
-    voter
-    # voters @include(if:$getRatingVoters)
-    # {
-    #   ...User
-    # }
-  }
+  # ratingAvg {
+  #   rating
+  #   max_vote
+  #   min_vote
+  #   type
+  #   target_id
+  #   quantity
+  #   quantity_voters
+  #   voted_companies
+  #   voted_users
+  #   voter
+  #   # voters @include(if:$getRatingVoters)
+  #   # {
+  #   #   ...User
+  #   # }
+  # }
 
   #   topics @include(if:$getCompanyTopics)
   #   {
@@ -87,7 +97,7 @@ fragment ListCompany on Resource {
   #   }
 }
 
-fragment CompanyFields on Resource {
+fragment CompanyFields on Company {
   id
   name
   longtitle
@@ -96,15 +106,15 @@ fragment CompanyFields on Resource {
   # city_id
   # city
   # city_uri
-  template
+  # template
   published
-  publishedon
-  pubdate
+  # publishedon
+  # pubdate
   createdon
   createdby
   editedby
   editedon
-  mapIcon
+  # mapIcon
   image
   # ...imageFormats @include(if:$getImageFormats)
 
@@ -157,8 +167,8 @@ fragment CompanyFields on Resource {
   # prices @include(if:$companyGetPrices){
   #   ...CommentState
   # }
-  errors
-  _isDirty
+  # errors
+  # _isDirty
 }
 
 # fragment ScheduleDay on ScheduleDayType{

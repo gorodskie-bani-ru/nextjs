@@ -271,10 +271,19 @@ export interface NexusGenScalars {
 export interface NexusGenObjects {
   Company: {
     // root type
+    alias?: string | null // String
     coords?: NexusGenRootTypes['Coordinates'] | null // Coordinates
+    createdby: number // Int!
+    createdon: NexusGenScalars['DateTime'] // DateTime!
+    description: string // String!
+    editedby: number // Int!
+    editedon: NexusGenScalars['DateTime'] // DateTime!
     id: number // Int!
+    image?: string | null // String
     longtitle: string // String!
     pagetitle: string // String!
+    published: boolean // Boolean!
+    uri?: string | null // String
   }
   Coordinates: {
     // root type
@@ -302,11 +311,20 @@ export type NexusGenAllTypes = NexusGenRootTypes &
 export interface NexusGenFieldTypes {
   Company: {
     // field return type
+    alias: string | null // String
     coords: NexusGenRootTypes['Coordinates'] | null // Coordinates
+    createdby: number // Int!
+    createdon: NexusGenScalars['DateTime'] // DateTime!
+    description: string // String!
+    editedby: number // Int!
+    editedon: NexusGenScalars['DateTime'] // DateTime!
     id: number // Int!
+    image: string | null // String
     longtitle: string // String!
     name: string // String!
     pagetitle: string // String!
+    published: boolean // Boolean!
+    uri: string | null // String
   }
   Coordinates: {
     // field return type
@@ -334,11 +352,20 @@ export interface NexusGenFieldTypes {
 export interface NexusGenFieldTypeNames {
   Company: {
     // field return type name
+    alias: 'String'
     coords: 'Coordinates'
+    createdby: 'Int'
+    createdon: 'DateTime'
+    description: 'String'
+    editedby: 'Int'
+    editedon: 'DateTime'
     id: 'Int'
+    image: 'String'
     longtitle: 'String'
     name: 'String'
     pagetitle: 'String'
+    published: 'Boolean'
+    uri: 'String'
   }
   Coordinates: {
     // field return type name
@@ -367,8 +394,6 @@ export interface NexusGenArgTypes {
   Query: {
     companies: {
       // args
-      cursor?: NexusGenInputs['bani684_site_contentWhereUniqueInput'] | null // bani684_site_contentWhereUniqueInput
-      orderBy?: NexusGenInputs['bani684_site_contentOrderByInput'][] | null // [bani684_site_contentOrderByInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['bani684_site_contentWhereInput'] | null // bani684_site_contentWhereInput

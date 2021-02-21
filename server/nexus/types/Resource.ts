@@ -5,7 +5,7 @@ import { objectType } from 'nexus'
 // city
 // city_uri
 // template
-// 
+//
 // publishedon
 // pubdate
 // createdby
@@ -55,4 +55,3 @@ export const Resource = objectType({
     // })
   },
 })
-

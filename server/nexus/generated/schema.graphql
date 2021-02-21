@@ -13,11 +13,20 @@ input BoolFilter {
 }
 
 type Company {
+  alias: String
   coords: Coordinates
+  createdby: Int!
+  createdon: DateTime!
+  description: String!
+  editedby: Int!
+  editedon: DateTime!
   id: Int!
+  image: String
   longtitle: String!
   name: String!
   pagetitle: String!
+  published: Boolean!
+  uri: String
 }
 
 type Coordinates {
@@ -90,8 +99,6 @@ type Query {
   Все компании
   """
   companies(
-    cursor: bani684_site_contentWhereUniqueInput
-    orderBy: [bani684_site_contentOrderByInput!]
     skip: Int
     take: Int
     where: bani684_site_contentWhereInput

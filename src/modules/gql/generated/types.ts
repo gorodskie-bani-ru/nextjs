@@ -21,9 +21,39 @@ export type Scalars = {
   DateTime: globalThis.Date;
 };
 
+export interface Bani684SiteTmplvarContentvaluesListRelationFilter {
+  every?: Maybe<Bani684SiteTmplvarContentvaluesWhereInput>;
+  none?: Maybe<Bani684SiteTmplvarContentvaluesWhereInput>;
+  some?: Maybe<Bani684SiteTmplvarContentvaluesWhereInput>;
+}
+
 export interface BoolFilter {
   equals?: Maybe<Scalars['Boolean']>;
   not?: Maybe<NestedBoolFilter>;
+}
+
+export interface Company {
+  __typename?: 'Company';
+  alias?: Maybe<Scalars['String']>;
+  coords?: Maybe<Coordinates>;
+  createdby: Scalars['Int'];
+  createdon: Scalars['DateTime'];
+  description: Scalars['String'];
+  editedby: Scalars['Int'];
+  editedon: Scalars['DateTime'];
+  id: Scalars['Int'];
+  image?: Maybe<Scalars['String']>;
+  longtitle: Scalars['String'];
+  name: Scalars['String'];
+  pagetitle: Scalars['String'];
+  published: Scalars['Boolean'];
+  uri?: Maybe<Scalars['String']>;
+}
+
+export interface Coordinates {
+  __typename?: 'Coordinates';
+  lat: Scalars['Float'];
+  lng: Scalars['Float'];
 }
 
 
@@ -84,6 +114,8 @@ export interface NestedStringNullableFilter {
 
 export interface Query {
   __typename?: 'Query';
+  /** Все компании */
+  companies: Array<Company>;
   /** Все ресурсы */
   resources: Array<Resource>;
   /** Количество всех ресурсов */
@@ -91,12 +123,18 @@ export interface Query {
 }
 
 
+export type QueryCompaniesArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
+  where?: Maybe<Bani684SiteContentWhereInput>;
+};
+
+
 export type QueryResourcesArgs = {
-  after?: Maybe<Bani684SiteContentWhereUniqueInput>;
-  before?: Maybe<Bani684SiteContentWhereUniqueInput>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  cursor?: Maybe<Bani684SiteContentWhereUniqueInput>;
   orderBy?: Maybe<Array<Bani684SiteContentOrderByInput>>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
   where?: Maybe<Bani684SiteContentWhereInput>;
 };
 
@@ -107,21 +145,9 @@ export type QueryResourcesCountArgs = {
 
 export interface Resource {
   __typename?: 'Resource';
-  alias?: Maybe<Scalars['String']>;
-  content?: Maybe<Scalars['String']>;
-  createdby: Scalars['Int'];
-  createdon: Scalars['DateTime'];
-  description: Scalars['String'];
-  editedby: Scalars['Int'];
-  editedon: Scalars['DateTime'];
   id: Scalars['Int'];
   longtitle: Scalars['String'];
   name: Scalars['String'];
-  pubdate: Scalars['DateTime'];
-  published: Scalars['Boolean'];
-  publishedon: Scalars['DateTime'];
-  template: Scalars['Int'];
-  uri?: Maybe<Scalars['String']>;
 }
 
 export enum SortOrder {
@@ -207,6 +233,7 @@ export interface Bani684SiteContentWhereInput {
   AND?: Maybe<Array<Bani684SiteContentWhereInput>>;
   NOT?: Maybe<Array<Bani684SiteContentWhereInput>>;
   OR?: Maybe<Array<Bani684SiteContentWhereInput>>;
+  TemplateVarValues?: Maybe<Bani684SiteTmplvarContentvaluesListRelationFilter>;
   alias?: Maybe<StringNullableFilter>;
   cacheable?: Maybe<BoolFilter>;
   class_key?: Maybe<StringFilter>;
@@ -254,4 +281,20 @@ export interface Bani684SiteContentWhereInput {
 
 export interface Bani684SiteContentWhereUniqueInput {
   id?: Maybe<Scalars['Int']>;
+}
+
+export interface Bani684SiteTmplvarContentvalues {
+  __typename?: 'bani684_site_tmplvar_contentvalues';
+  id: Scalars['Int'];
+}
+
+export interface Bani684SiteTmplvarContentvaluesWhereInput {
+  AND?: Maybe<Array<Bani684SiteTmplvarContentvaluesWhereInput>>;
+  NOT?: Maybe<Array<Bani684SiteTmplvarContentvaluesWhereInput>>;
+  OR?: Maybe<Array<Bani684SiteTmplvarContentvaluesWhereInput>>;
+  Resource?: Maybe<Bani684SiteContentWhereInput>;
+  contentid?: Maybe<IntFilter>;
+  id?: Maybe<IntFilter>;
+  tmplvarid?: Maybe<IntFilter>;
+  value?: Maybe<StringFilter>;
 }
