@@ -15,52 +15,9 @@ import './fix/pluralize'
 // import { GraphQLDateTime } from 'graphql-iso-date'
 import { nexusPrisma } from 'nexus-plugin-prisma'
 
+import * as types from './types'
+
 // export const DateTime = asNexusMethod(GraphQLDateTime, 'date')
-
-// const Query = objectType({
-//   name: 'Query',
-//   definition(t) {
-//     // t.nonNull.list.nonNull.field("resources", {
-//     //   type: Resource,
-//     //   resolve: (_, _args, ctx) => {
-
-//     //     return ctx.prisma.bani684_site_content.findMany();
-//     //   }
-//     // });
-
-//     t.crud.bani684SiteContents({
-//       alias: "resources",
-//       type: "Resource",
-//       ordering: true,
-//       filtering: true,
-//     });
-//   },
-// })
-
-// const Resource = objectType({
-//   name: 'Resource',
-//   sourceType: {
-//     module: '@prisma/client',
-//     export: "bani684_site_content",
-//   },
-//   definition(t) {
-//     t.nonNull.int('id')
-//     t.nonNull.string('pagetitle')
-//     // t.nonNull.date("createdon")
-//     // t.string("content")
-//     // t.nonNull.string('email')
-//     // t.nonNull.list.nonNull.field('posts', {
-//     //   type: 'Post',
-//     //   resolve: (parent, _, context) => {
-//     //     return context.prisma.user
-//     //       .findUnique({
-//     //         where: { id: parent.id || undefined },
-//     //       })
-//     //       .posts()
-//     //   },
-//     // })
-//   },
-// })
 
 export const schema = makeSchema({
   plugins: [
@@ -73,11 +30,12 @@ export const schema = makeSchema({
       },
     }),
   ],
-  types: [
+  types: {
+    ...types,
     // Query,
     // Resource,
     // DateTime,
-  ],
+  },
   outputs: {
     schema: __dirname + '/generated/schema.graphql',
     typegen: __dirname + '/generated/nexus.ts',

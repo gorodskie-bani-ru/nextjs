@@ -5,6 +5,7 @@
 
 
 import { PrismaContext } from "./../context"
+import { bani684_site_content } from "@prisma/client"
 
 
 declare global {
@@ -19,9 +20,186 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  BoolFilter: { // input type
+    equals?: boolean | null; // Boolean
+    not?: NexusGenInputs['NestedBoolFilter'] | null; // NestedBoolFilter
+  }
+  IntFilter: { // input type
+    equals?: number | null; // Int
+    gt?: number | null; // Int
+    gte?: number | null; // Int
+    in?: number[] | null; // [Int!]
+    lt?: number | null; // Int
+    lte?: number | null; // Int
+    not?: NexusGenInputs['NestedIntFilter'] | null; // NestedIntFilter
+    notIn?: number[] | null; // [Int!]
+  }
+  NestedBoolFilter: { // input type
+    equals?: boolean | null; // Boolean
+    not?: NexusGenInputs['NestedBoolFilter'] | null; // NestedBoolFilter
+  }
+  NestedIntFilter: { // input type
+    equals?: number | null; // Int
+    gt?: number | null; // Int
+    gte?: number | null; // Int
+    in?: number[] | null; // [Int!]
+    lt?: number | null; // Int
+    lte?: number | null; // Int
+    not?: NexusGenInputs['NestedIntFilter'] | null; // NestedIntFilter
+    notIn?: number[] | null; // [Int!]
+  }
+  NestedStringFilter: { // input type
+    contains?: string | null; // String
+    endsWith?: string | null; // String
+    equals?: string | null; // String
+    gt?: string | null; // String
+    gte?: string | null; // String
+    in?: string[] | null; // [String!]
+    lt?: string | null; // String
+    lte?: string | null; // String
+    not?: NexusGenInputs['NestedStringFilter'] | null; // NestedStringFilter
+    notIn?: string[] | null; // [String!]
+    startsWith?: string | null; // String
+  }
+  NestedStringNullableFilter: { // input type
+    contains?: string | null; // String
+    endsWith?: string | null; // String
+    equals?: string | null; // String
+    gt?: string | null; // String
+    gte?: string | null; // String
+    in?: string[] | null; // [String!]
+    lt?: string | null; // String
+    lte?: string | null; // String
+    not?: NexusGenInputs['NestedStringNullableFilter'] | null; // NestedStringNullableFilter
+    notIn?: string[] | null; // [String!]
+    startsWith?: string | null; // String
+  }
+  StringFilter: { // input type
+    contains?: string | null; // String
+    endsWith?: string | null; // String
+    equals?: string | null; // String
+    gt?: string | null; // String
+    gte?: string | null; // String
+    in?: string[] | null; // [String!]
+    lt?: string | null; // String
+    lte?: string | null; // String
+    not?: NexusGenInputs['NestedStringFilter'] | null; // NestedStringFilter
+    notIn?: string[] | null; // [String!]
+    startsWith?: string | null; // String
+  }
+  StringNullableFilter: { // input type
+    contains?: string | null; // String
+    endsWith?: string | null; // String
+    equals?: string | null; // String
+    gt?: string | null; // String
+    gte?: string | null; // String
+    in?: string[] | null; // [String!]
+    lt?: string | null; // String
+    lte?: string | null; // String
+    not?: NexusGenInputs['NestedStringNullableFilter'] | null; // NestedStringNullableFilter
+    notIn?: string[] | null; // [String!]
+    startsWith?: string | null; // String
+  }
+  bani684_site_contentOrderByInput: { // input type
+    alias?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    cacheable?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    class_key?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    content?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    contentType?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    content_dispo?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    content_type?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    context_key?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    createdby?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    createdon?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    deleted?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    deletedby?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    deletedon?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    description?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    donthit?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    editedby?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    editedon?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    hide_children_in_tree?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    hidemenu?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    introtext?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    isfolder?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    link_attributes?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    longtitle?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    menuindex?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    menutitle?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    pagetitle?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    parent?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    privatemgr?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    privateweb?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    properties?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    pub_date?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    published?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    publishedby?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    publishedon?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    richtext?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    searchable?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    show_in_tree?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    template?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    type?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    unpub_date?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    uri?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    uri_override?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  bani684_site_contentWhereInput: { // input type
+    AND?: NexusGenInputs['bani684_site_contentWhereInput'][] | null; // [bani684_site_contentWhereInput!]
+    NOT?: NexusGenInputs['bani684_site_contentWhereInput'][] | null; // [bani684_site_contentWhereInput!]
+    OR?: NexusGenInputs['bani684_site_contentWhereInput'][] | null; // [bani684_site_contentWhereInput!]
+    alias?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    cacheable?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
+    class_key?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    content?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    contentType?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    content_dispo?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
+    content_type?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    context_key?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    createdby?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    createdon?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    deleted?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
+    deletedby?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    deletedon?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    description?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    donthit?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
+    editedby?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    editedon?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    hide_children_in_tree?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
+    hidemenu?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
+    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    introtext?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    isfolder?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
+    link_attributes?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    longtitle?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    menuindex?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    menutitle?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    pagetitle?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    parent?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    privatemgr?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
+    privateweb?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
+    properties?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    pub_date?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    published?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
+    publishedby?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    publishedon?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    richtext?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
+    searchable?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
+    show_in_tree?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
+    template?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    type?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    unpub_date?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    uri?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    uri_override?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
+  }
+  bani684_site_contentWhereUniqueInput: { // input type
+    id?: number | null; // Int
+  }
 }
 
 export interface NexusGenEnums {
+  SortOrder: "asc" | "desc"
 }
 
 export interface NexusGenScalars {
@@ -34,6 +212,7 @@ export interface NexusGenScalars {
 
 export interface NexusGenObjects {
   Query: {};
+  Resource: bani684_site_content;
 }
 
 export interface NexusGenInterfaces {
@@ -44,21 +223,46 @@ export interface NexusGenUnions {
 
 export type NexusGenRootTypes = NexusGenObjects
 
-export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
+export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars & NexusGenEnums
 
 export interface NexusGenFieldTypes {
   Query: { // field return type
-    ok: boolean; // Boolean!
+    resources: NexusGenRootTypes['Resource'][]; // [Resource!]!
+  }
+  Resource: { // field return type
+    content: string | null; // String
+    description: string; // String!
+    id: number; // Int!
+    longtitle: string; // String!
+    pagetitle: string; // String!
+    uri: string | null; // String
   }
 }
 
 export interface NexusGenFieldTypeNames {
   Query: { // field return type name
-    ok: 'Boolean'
+    resources: 'Resource'
+  }
+  Resource: { // field return type name
+    content: 'String'
+    description: 'String'
+    id: 'Int'
+    longtitle: 'String'
+    pagetitle: 'String'
+    uri: 'String'
   }
 }
 
 export interface NexusGenArgTypes {
+  Query: {
+    resources: { // args
+      cursor?: NexusGenInputs['bani684_site_contentWhereUniqueInput'] | null; // bani684_site_contentWhereUniqueInput
+      orderBy?: NexusGenInputs['bani684_site_contentOrderByInput'][] | null; // [bani684_site_contentOrderByInput!]
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['bani684_site_contentWhereInput'] | null; // bani684_site_contentWhereInput
+    }
+  }
 }
 
 export interface NexusGenAbstractTypeMembers {
@@ -69,9 +273,9 @@ export interface NexusGenTypeInterfaces {
 
 export type NexusGenObjectNames = keyof NexusGenObjects;
 
-export type NexusGenInputNames = never;
+export type NexusGenInputNames = keyof NexusGenInputs;
 
-export type NexusGenEnumNames = never;
+export type NexusGenEnumNames = keyof NexusGenEnums;
 
 export type NexusGenInterfaceNames = never;
 
