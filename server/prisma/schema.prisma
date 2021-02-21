@@ -1,0 +1,1726 @@
+generator client {
+  provider        = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model bani684_access_actiondom {
+  id              Int    @id @default(autoincrement()) @db.UnsignedInt
+  target          String @default("") @db.VarChar(100)
+  principal_class String @default("modPrincipal") @db.VarChar(100)
+  principal       Int    @default(0) @db.UnsignedInt
+  authority       Int    @default(9999) @db.UnsignedInt
+  policy          Int    @default(0) @db.UnsignedInt
+
+  @@index([authority], name: "authority")
+  @@index([policy], name: "policy")
+  @@index([principal], name: "principal")
+  @@index([principal_class], name: "principal_class")
+  @@index([target], name: "target")
+}
+
+model bani684_access_actions {
+  id              Int    @id @default(autoincrement()) @db.UnsignedInt
+  target          String @default("") @db.VarChar(100)
+  principal_class String @default("modPrincipal") @db.VarChar(100)
+  principal       Int    @default(0) @db.UnsignedInt
+  authority       Int    @default(9999) @db.UnsignedInt
+  policy          Int    @default(0) @db.UnsignedInt
+
+  @@index([authority], name: "authority")
+  @@index([policy], name: "policy")
+  @@index([principal], name: "principal")
+  @@index([principal_class], name: "principal_class")
+  @@index([target], name: "target")
+}
+
+model bani684_access_category {
+  id              Int    @id @default(autoincrement()) @db.UnsignedInt
+  target          String @default("") @db.VarChar(100)
+  principal_class String @default("modPrincipal") @db.VarChar(100)
+  principal       Int    @default(0) @db.UnsignedInt
+  authority       Int    @default(9999) @db.UnsignedInt
+  policy          Int    @default(0) @db.UnsignedInt
+  context_key     String @default("") @db.VarChar(100)
+
+  @@index([authority], name: "authority")
+  @@index([context_key], name: "context_key")
+  @@index([policy], name: "policy")
+  @@index([principal], name: "principal")
+  @@index([principal_class], name: "principal_class")
+  @@index([target], name: "target")
+}
+
+model bani684_access_context {
+  id              Int    @id @default(autoincrement()) @db.UnsignedInt
+  target          String @default("") @db.VarChar(100)
+  principal_class String @default("modPrincipal") @db.VarChar(100)
+  principal       Int    @default(0) @db.UnsignedInt
+  authority       Int    @default(9999) @db.UnsignedInt
+  policy          Int    @default(0) @db.UnsignedInt
+
+  @@index([authority], name: "authority")
+  @@index([policy], name: "policy")
+  @@index([principal], name: "principal")
+  @@index([principal_class], name: "principal_class")
+  @@index([target], name: "target")
+}
+
+model bani684_access_elements {
+  id              Int    @id @default(autoincrement()) @db.UnsignedInt
+  target          String @default("") @db.VarChar(100)
+  principal_class String @default("modPrincipal") @db.VarChar(100)
+  principal       Int    @default(0) @db.UnsignedInt
+  authority       Int    @default(9999) @db.UnsignedInt
+  policy          Int    @default(0) @db.UnsignedInt
+  context_key     String @default("") @db.VarChar(100)
+
+  @@index([authority], name: "authority")
+  @@index([context_key], name: "context_key")
+  @@index([policy], name: "policy")
+  @@index([principal], name: "principal")
+  @@index([principal_class], name: "principal_class")
+  @@index([target], name: "target")
+}
+
+model bani684_access_media_source {
+  id              Int    @id @default(autoincrement()) @db.UnsignedInt
+  target          String @default("") @db.VarChar(100)
+  principal_class String @default("modPrincipal") @db.VarChar(100)
+  principal       Int    @default(0) @db.UnsignedInt
+  authority       Int    @default(9999) @db.UnsignedInt
+  policy          Int    @default(0) @db.UnsignedInt
+  context_key     String @default("") @db.VarChar(100)
+
+  @@index([authority], name: "authority")
+  @@index([context_key], name: "context_key")
+  @@index([policy], name: "policy")
+  @@index([principal], name: "principal")
+  @@index([principal_class], name: "principal_class")
+  @@index([target], name: "target")
+}
+
+model bani684_access_menus {
+  id              Int    @id @default(autoincrement()) @db.UnsignedInt
+  target          String @default("") @db.VarChar(100)
+  principal_class String @default("modPrincipal") @db.VarChar(100)
+  principal       Int    @default(0) @db.UnsignedInt
+  authority       Int    @default(9999) @db.UnsignedInt
+  policy          Int    @default(0) @db.UnsignedInt
+
+  @@index([authority], name: "authority")
+  @@index([policy], name: "policy")
+  @@index([principal], name: "principal")
+  @@index([principal_class], name: "principal_class")
+  @@index([target], name: "target")
+}
+
+model bani684_access_namespace {
+  id              Int    @id @default(autoincrement()) @db.UnsignedInt
+  target          String @default("") @db.VarChar(100)
+  principal_class String @default("modPrincipal") @db.VarChar(100)
+  principal       Int    @default(0) @db.UnsignedInt
+  authority       Int    @default(9999) @db.UnsignedInt
+  policy          Int    @default(0) @db.UnsignedInt
+  context_key     String @default("") @db.VarChar(100)
+
+  @@index([authority], name: "authority")
+  @@index([context_key], name: "context_key")
+  @@index([policy], name: "policy")
+  @@index([principal], name: "principal")
+  @@index([principal_class], name: "principal_class")
+  @@index([target], name: "target")
+}
+
+model bani684_access_permissions {
+  id          Int     @id @default(autoincrement()) @db.UnsignedInt
+  template    Int     @default(0) @db.UnsignedInt
+  name        String  @default("") @db.VarChar(255)
+  description String  @db.Text
+  value       Boolean @default(true)
+
+  @@index([name], name: "name")
+  @@index([template], name: "template")
+}
+
+model bani684_access_policies {
+  id          Int     @id @default(autoincrement()) @db.UnsignedInt
+  name        String  @unique @db.VarChar(255)
+  description String? @db.MediumText
+  parent      Int     @default(0) @db.UnsignedInt
+  template    Int     @default(0) @db.UnsignedInt
+  class       String  @default("") @db.VarChar(255)
+  data        String? @db.Text
+  lexicon     String  @default("permissions") @db.VarChar(255)
+
+  @@index([class], name: "class")
+  @@index([parent], name: "parent")
+  @@index([template], name: "template")
+}
+
+model bani684_access_policy_templates {
+  id             Int     @id @default(autoincrement()) @db.UnsignedInt
+  template_group Int     @default(0) @db.UnsignedInt
+  name           String  @default("") @db.VarChar(255)
+  description    String? @db.MediumText
+  lexicon        String  @default("permissions") @db.VarChar(255)
+}
+
+model bani684_access_policy_template_groups {
+  id          Int     @id @default(autoincrement()) @db.UnsignedInt
+  name        String  @default("") @db.VarChar(255)
+  description String? @db.MediumText
+}
+
+model bani684_access_resources {
+  id              Int    @id @default(autoincrement()) @db.UnsignedInt
+  target          String @default("") @db.VarChar(100)
+  principal_class String @default("modPrincipal") @db.VarChar(100)
+  principal       Int    @default(0) @db.UnsignedInt
+  authority       Int    @default(9999) @db.UnsignedInt
+  policy          Int    @default(0) @db.UnsignedInt
+  context_key     String @default("") @db.VarChar(100)
+
+  @@index([authority], name: "authority")
+  @@index([context_key], name: "context_key")
+  @@index([policy], name: "policy")
+  @@index([principal], name: "principal")
+  @@index([principal_class], name: "principal_class")
+  @@index([target], name: "target")
+}
+
+model bani684_access_resource_groups {
+  id              Int    @id @default(autoincrement()) @db.UnsignedInt
+  target          String @default("") @db.VarChar(100)
+  principal_class String @default("modPrincipal") @db.VarChar(100)
+  principal       Int    @default(0) @db.UnsignedInt
+  authority       Int    @default(9999) @db.UnsignedInt
+  policy          Int    @default(0) @db.UnsignedInt
+  context_key     String @default("") @db.VarChar(100)
+
+  @@index([authority], name: "authority")
+  @@index([context_key], name: "context_key")
+  @@index([policy], name: "policy")
+  @@index([principal], name: "principal")
+  @@index([principal_class, target, principal, authority], name: "principal_class")
+  @@index([target], name: "target")
+}
+
+model bani684_access_templatevars {
+  id              Int    @id @default(autoincrement()) @db.UnsignedInt
+  target          String @default("") @db.VarChar(100)
+  principal_class String @default("modPrincipal") @db.VarChar(100)
+  principal       Int    @default(0) @db.UnsignedInt
+  authority       Int    @default(9999) @db.UnsignedInt
+  policy          Int    @default(0) @db.UnsignedInt
+  context_key     String @default("") @db.VarChar(100)
+
+  @@index([authority], name: "authority")
+  @@index([context_key], name: "context_key")
+  @@index([policy], name: "policy")
+  @@index([principal], name: "principal")
+  @@index([principal_class], name: "principal_class")
+  @@index([target], name: "target")
+}
+
+model bani684_actiondom {
+  id               Int     @id @default(autoincrement()) @db.UnsignedInt
+  set              Int     @default(0)
+  action           String  @default("") @db.VarChar(255)
+  name             String  @default("") @db.VarChar(255)
+  description      String? @db.Text
+  xtype            String  @default("") @db.VarChar(100)
+  container        String  @default("") @db.VarChar(255)
+  rule             String  @default("") @db.VarChar(100)
+  value            String  @db.Text
+  constraint       String  @default("") @db.VarChar(255)
+  constraint_field String  @default("") @db.VarChar(100)
+  constraint_class String  @default("") @db.VarChar(100)
+  active           Boolean @default(true)
+  for_parent       Boolean @default(false)
+  rank             Int     @default(0)
+
+  @@index([action], name: "action")
+  @@index([active], name: "active")
+  @@index([for_parent], name: "for_parent")
+  @@index([name], name: "name")
+  @@index([rank], name: "rank")
+  @@index([set], name: "set")
+}
+
+model bani684_actions {
+  id          Int     @id @default(autoincrement()) @db.UnsignedInt
+  namespace   String  @default("core") @db.VarChar(100)
+  controller  String  @db.VarChar(255)
+  haslayout   Boolean @default(true)
+  lang_topics String  @db.Text
+  assets      String  @db.Text
+  help_url    String  @db.Text
+
+  @@index([controller], name: "controller")
+  @@index([namespace], name: "namespace")
+}
+
+model bani684_actions_fields {
+  id     Int    @id @default(autoincrement()) @db.UnsignedInt
+  action String @default("") @db.VarChar(255)
+  name   String @default("") @db.VarChar(255)
+  type   String @default("field") @db.VarChar(100)
+  tab    String @default("") @db.VarChar(255)
+  form   String @default("") @db.VarChar(255)
+  other  String @default("") @db.VarChar(255)
+  rank   Int    @default(0)
+
+  @@index([action], name: "action")
+  @@index([tab], name: "tab")
+  @@index([type], name: "type")
+}
+
+model bani684_active_users {
+  internalKey Int    @id @default(0)
+  username    String @default("") @db.VarChar(50)
+  lasthit     Int    @default(0)
+  id          Int?
+  action      String @default("") @db.VarChar(255)
+  ip          String @default("") @db.VarChar(20)
+}
+
+model bani684_categories {
+  id       Int    @id @default(autoincrement()) @db.UnsignedInt
+  parent   Int?   @default(0) @db.UnsignedInt
+  category String @default("") @db.VarChar(45)
+  rank     Int    @default(0)
+
+  @@unique([parent, category], name: "category")
+  @@index([parent], name: "parent")
+  @@index([rank], name: "rank")
+}
+
+model bani684_categories_closure {
+  ancestor   Int @default(0) @db.UnsignedInt
+  descendant Int @default(0) @db.UnsignedInt
+  depth      Int @default(0) @db.UnsignedInt
+
+  @@id([ancestor, descendant])
+}
+
+model bani684_class_map {
+  id           Int     @id @default(autoincrement()) @db.UnsignedInt
+  class        String  @unique @default("") @db.VarChar(120)
+  parent_class String  @default("") @db.VarChar(120)
+  name_field   String  @default("name") @db.VarChar(255)
+  path         String? @db.TinyText
+  lexicon      String  @default("core:resource") @db.VarChar(255)
+
+  @@index([name_field], name: "name_field")
+  @@index([parent_class], name: "parent_class")
+}
+
+model bani684_cmpgenerator {
+  id            Int       @id @default(autoincrement()) @db.UnsignedInt
+  package       String?   @default("") @db.VarChar(255)
+  database      String?   @default("") @db.VarChar(128)
+  tables        String?   @db.Text
+  table_prefix  String?   @default("") @db.VarChar(255)
+  build_scheme  Int?      @default(1)
+  build_package Int?      @default(1)
+  create_date   DateTime? @db.DateTime(0)
+  last_ran      DateTime? @db.DateTime(0)
+}
+
+model bani684_content_type {
+  id              Int     @id @default(autoincrement()) @db.UnsignedInt
+  name            String  @unique @db.VarChar(255)
+  description     String? @db.TinyText
+  mime_type       String? @db.TinyText
+  file_extensions String? @db.TinyText
+  headers         String? @db.MediumText
+  binary          Boolean @default(false)
+}
+
+model bani684_context {
+  key         String  @id @db.VarChar(100)
+  description String? @db.TinyText
+  rank        Int     @default(0)
+  name        String? @db.VarChar(255)
+
+  @@index([name], name: "name")
+  @@index([rank], name: "rank")
+}
+
+model bani684_context_resource {
+  context_key String @db.VarChar(255)
+  resource    Int    @db.UnsignedInt
+
+  @@id([context_key, resource])
+}
+
+model bani684_context_setting {
+  context_key String   @db.VarChar(255)
+  key         String   @db.VarChar(50)
+  value       String?  @db.MediumText
+  xtype       String   @default("textfield") @db.VarChar(75)
+  namespace   String   @default("core") @db.VarChar(40)
+  area        String   @default("") @db.VarChar(255)
+  editedon    DateTime @default(dbgenerated("'0000-00-00 00:00:00'")) 
+
+  @@id([context_key, key])
+}
+
+model bani684_dashboard {
+  id          Int     @id @default(autoincrement()) @db.UnsignedInt
+  name        String  @default("") @db.VarChar(255)
+  description String? @db.Text
+  hide_trees  Boolean @default(false)
+
+  @@index([hide_trees], name: "hide_trees")
+  @@index([name], name: "name")
+}
+
+model bani684_dashboard_widget {
+  id          Int     @id @default(autoincrement()) @db.UnsignedInt
+  name        String  @default("") @db.VarChar(255)
+  description String? @db.Text
+  type        String  @db.VarChar(100)
+  content     String? @db.MediumText
+  namespace   String  @default("") @db.VarChar(255)
+  lexicon     String  @default("core:dashboards") @db.VarChar(255)
+  size        String  @default("half") @db.VarChar(255)
+
+  @@index([lexicon], name: "lexicon")
+  @@index([name], name: "name")
+  @@index([namespace], name: "namespace")
+  @@index([type], name: "type")
+}
+
+model bani684_dashboard_widget_placement {
+  dashboard Int @default(0) @db.UnsignedInt
+  widget    Int @default(0) @db.UnsignedInt
+  rank      Int @default(0) @db.UnsignedInt
+
+  @@id([dashboard, widget])
+  @@index([rank], name: "rank")
+}
+
+model bani684_documentgroup_names {
+  id               Int     @id @default(autoincrement()) @db.UnsignedInt
+  name             String  @unique @default("") @db.VarChar(255)
+  private_memgroup Boolean @default(false)
+  private_webgroup Boolean @default(false)
+}
+
+model bani684_document_groups {
+  id             Int @id @default(autoincrement()) @db.UnsignedInt
+  document_group Int @default(0)
+  document       Int @default(0)
+
+  @@index([document], name: "document")
+  @@index([document_group], name: "document_group")
+}
+
+model bani684_edit_versions {
+  id        Int       @id @default(autoincrement()) @db.UnsignedInt
+  target_id Int       @db.UnsignedInt
+  data      String?   @db.Text
+  createdby Int?      @db.UnsignedInt
+  createdon DateTime  @default(now()) 
+  editedby  Int?      @db.UnsignedInt
+  editedon  DateTime? 
+  status    String    @default("0") @db.Char(1)
+
+  @@index([createdby], name: "createdby")
+  @@index([createdon], name: "createdon")
+  @@index([editedby], name: "editedby")
+  @@index([editedon], name: "editedon")
+  @@index([status], name: "status")
+  @@index([target_id], name: "target_id")
+}
+
+model bani684_element_property_sets {
+  element       Int    @default(0) @db.UnsignedInt
+  element_class String @default("") @db.VarChar(100)
+  property_set  Int    @default(0) @db.UnsignedInt
+
+  @@id([element, element_class, property_set])
+}
+
+model bani684_extension_packages {
+  id            Int       @id @default(autoincrement()) @db.UnsignedInt
+  namespace     String    @default("core") @db.VarChar(40)
+  name          String    @default("core") @db.VarChar(100)
+  path          String?   @db.Text
+  table_prefix  String    @default("") @db.VarChar(255)
+  service_class String    @default("") @db.VarChar(255)
+  service_name  String    @default("") @db.VarChar(255)
+  created_at    DateTime? @db.DateTime(0)
+  updated_at    DateTime? @db.DateTime(0)
+
+  @@index([name], name: "name")
+  @@index([namespace], name: "namespace")
+}
+
+model bani684_fc_profiles {
+  id          Int     @id @default(autoincrement()) @db.UnsignedInt
+  name        String  @default("") @db.VarChar(255)
+  description String  @db.Text
+  active      Boolean @default(false)
+  rank        Int     @default(0)
+
+  @@index([active], name: "active")
+  @@index([name], name: "name")
+  @@index([rank], name: "rank")
+}
+
+model bani684_fc_profiles_usergroups {
+  usergroup Int @default(0)
+  profile   Int @default(0)
+
+  @@id([usergroup, profile])
+}
+
+model bani684_fc_sets {
+  id               Int     @id @default(autoincrement()) @db.UnsignedInt
+  profile          Int     @default(0)
+  action           String  @default("") @db.VarChar(255)
+  description      String  @db.Text
+  active           Boolean @default(false)
+  template         Int     @default(0)
+  constraint       String  @default("") @db.VarChar(255)
+  constraint_field String  @default("") @db.VarChar(100)
+  constraint_class String  @default("") @db.VarChar(100)
+
+  @@index([action], name: "action")
+  @@index([active], name: "active")
+  @@index([profile], name: "profile")
+  @@index([template], name: "template")
+}
+
+model bani684_gallery_albums {
+  id             Int       @id @default(autoincrement()) @db.UnsignedInt
+  parent         Int       @default(0) @db.UnsignedInt
+  name           String    @default("") @db.VarChar(255)
+  year           String?   @db.VarChar(100)
+  description    String?   @db.Text
+  createdon      DateTime? @db.DateTime(0)
+  createdby      Int       @default(0) @db.UnsignedInt
+  rank           Int       @default(0) @db.UnsignedInt
+  active         Boolean   @default(false)
+  prominent      Boolean   @default(false)
+  watermark      String    @default("") @db.VarChar(255)
+  cover_filename String    @default("") @db.VarChar(255)
+
+  @@index([active], name: "active")
+  @@index([createdby], name: "createdby")
+  @@index([name], name: "name")
+  @@index([parent], name: "parent")
+  @@index([prominent], name: "prominent")
+  @@index([rank], name: "rank")
+}
+
+model bani684_gallery_album_contexts {
+  id          Int    @id @default(autoincrement()) @db.UnsignedInt
+  album       Int    @default(0) @db.UnsignedInt
+  context_key String @default("web") @db.VarChar(100)
+
+  @@index([album], name: "album")
+  @@index([context_key], name: "context_key")
+}
+
+model bani684_gallery_album_items {
+  id    Int @id @default(autoincrement()) @db.UnsignedInt
+  item  Int @default(0) @db.UnsignedInt
+  album Int @default(0) @db.UnsignedInt
+  rank  Int @default(0) @db.UnsignedInt
+
+  @@index([album], name: "album")
+  @@index([item], name: "item")
+  @@index([rank], name: "rank")
+}
+
+model bani684_gallery_items {
+  id            Int       @id @default(autoincrement()) @db.UnsignedInt
+  name          String    @default("") @db.VarChar(100)
+  filename      String    @default("") @db.VarChar(255)
+  description   String?   @db.Text
+  mediatype     String    @default("image") @db.VarChar(40)
+  url           String?   @db.Text
+  createdon     DateTime? @db.DateTime(0)
+  createdby     Int       @default(0) @db.UnsignedInt
+  active        Boolean   @default(false)
+  duration      String    @default("") @db.VarChar(40)
+  streamer      String?   @db.Text
+  watermark_pos String    @default("tl") @db.VarChar(10)
+
+  @@index([active], name: "active")
+  @@index([createdby], name: "createdby")
+  @@index([mediatype], name: "mediatype")
+  @@index([name], name: "name")
+}
+
+model bani684_gallery_tags {
+  id   Int    @id @default(autoincrement()) @db.UnsignedInt
+  item Int    @default(0) @db.UnsignedInt
+  tag  String @default("") @db.VarChar(255)
+
+  @@index([item], name: "item")
+  @@index([tag], name: "tag")
+}
+
+model bani684_lexicon_entries {
+  id        Int       @id @default(autoincrement()) @db.UnsignedInt
+  name      String    @default("") @db.VarChar(255)
+  value     String    @db.Text
+  topic     String    @default("default") @db.VarChar(255)
+  namespace String    @default("core") @db.VarChar(40)
+  language  String    @default("en") @db.VarChar(20)
+  createdon DateTime? @db.DateTime(0)
+  editedon  DateTime  @default(dbgenerated("'0000-00-00 00:00:00'")) 
+
+  @@index([language], name: "language")
+  @@index([name], name: "name")
+  @@index([namespace], name: "namespace")
+  @@index([topic], name: "topic")
+}
+
+model bani684_manager_log {
+  id       Int       @id @default(autoincrement()) @db.UnsignedInt
+  user     Int       @default(0) @db.UnsignedInt
+  occurred DateTime? @default(dbgenerated("'0000-00-00 00:00:00'")) @db.DateTime(0)
+  action   String    @default("") @db.VarChar(100)
+  classKey String    @default("") @db.VarChar(100)
+  item     String    @default("0") @db.VarChar(255)
+}
+
+model bani684_media_sources {
+  id          Int     @id @default(autoincrement()) @db.UnsignedInt
+  name        String  @default("") @db.VarChar(255)
+  description String? @db.Text
+  class_key   String  @default("sources.modFileMediaSource") @db.VarChar(100)
+  properties  String? @db.MediumText
+  is_stream   Boolean @default(true)
+
+  @@index([class_key], name: "class_key")
+  @@index([is_stream], name: "is_stream")
+  @@index([name], name: "name")
+}
+
+model bani684_media_sources_contexts {
+  source      Int    @default(0)
+  context_key String @default("web") @db.VarChar(100)
+
+  @@id([source, context_key])
+}
+
+model bani684_media_sources_elements {
+  source       Int    @default(0) @db.UnsignedInt
+  object_class String @default("modTemplateVar") @db.VarChar(100)
+  object       Int    @default(0) @db.UnsignedInt
+  context_key  String @default("web") @db.VarChar(100)
+
+  @@id([source, object, object_class, context_key])
+}
+
+model bani684_membergroup_names {
+  id          Int     @id @default(autoincrement()) @db.UnsignedInt
+  name        String  @unique @default("") @db.VarChar(255)
+  description String? @db.Text
+  parent      Int     @default(0) @db.UnsignedInt
+  rank        Int     @default(0) @db.UnsignedInt
+  dashboard   Int     @default(1) @db.UnsignedInt
+
+  @@index([dashboard], name: "dashboard")
+  @@index([parent], name: "parent")
+  @@index([rank], name: "rank")
+}
+
+model bani684_membergroup_template {
+  group    Int    @db.UnsignedInt
+  template String @db.VarChar(100)
+
+  @@id([group, template])
+}
+
+model bani684_member_groups {
+  id         Int @id @default(autoincrement()) @db.UnsignedInt
+  user_group Int @default(0) @db.UnsignedInt
+  member     Int @default(0) @db.UnsignedInt
+  role       Int @default(1) @db.UnsignedInt
+  rank       Int @default(0) @db.UnsignedInt
+
+  @@index([rank], name: "rank")
+  @@index([role], name: "role")
+}
+
+model bani684_menus {
+  text        String @id @default("") @db.VarChar(255)
+  parent      String @default("") @db.VarChar(255)
+  action      String @default("") @db.VarChar(255)
+  description String @default("") @db.VarChar(255)
+  icon        String @default("") @db.VarChar(255)
+  menuindex   Int    @default(0) @db.UnsignedInt
+  params      String @db.Text
+  handler     String @db.Text
+  permissions String @db.Text
+  namespace   String @default("core") @db.VarChar(100)
+
+  @@index([action], name: "action")
+  @@index([parent], name: "parent")
+}
+
+model bani684_migx_configs {
+  id            Int      @id @default(autoincrement()) @db.UnsignedInt
+  name          String   @default("") @db.VarChar(100)
+  formtabs      String   @db.Text
+  contextmenus  String   @db.Text
+  actionbuttons String   @db.Text
+  columnbuttons String   @db.Text
+  filters       String   @db.Text
+  extended      String   @db.Text
+  columns       String   @db.Text
+  createdby     Int      @default(0)
+  createdon     DateTime @db.DateTime(0)
+  editedby      Int      @default(0)
+  editedon      DateTime @db.DateTime(0)
+  deleted       Boolean  @default(false)
+  deletedon     DateTime @db.DateTime(0)
+  deletedby     Int      @default(0)
+  published     Boolean  @default(false)
+  publishedon   DateTime @db.DateTime(0)
+  publishedby   Int      @default(0)
+}
+
+model bani684_migx_config_elements {
+  id          Int      @id @default(autoincrement()) @db.UnsignedInt
+  config_id   Int      @default(0)
+  element_id  Int      @default(0)
+  rank        Int      @default(0)
+  createdby   Int      @default(0)
+  createdon   DateTime @db.DateTime(0)
+  editedby    Int      @default(0)
+  editedon    DateTime @db.DateTime(0)
+  deleted     Boolean  @default(false)
+  deletedon   DateTime @db.DateTime(0)
+  deletedby   Int      @default(0)
+  published   Boolean  @default(false)
+  publishedon DateTime @db.DateTime(0)
+  publishedby Int      @default(0)
+}
+
+model bani684_migx_elements {
+  id          Int      @id @default(autoincrement()) @db.UnsignedInt
+  type        String   @default("") @db.VarChar(100)
+  content     String   @db.Text
+  createdby   Int      @default(0)
+  createdon   DateTime @db.DateTime(0)
+  editedby    Int      @default(0)
+  editedon    DateTime @db.DateTime(0)
+  deleted     Boolean  @default(false)
+  deletedon   DateTime @db.DateTime(0)
+  deletedby   Int      @default(0)
+  published   Boolean  @default(false)
+  publishedon DateTime @db.DateTime(0)
+  publishedby Int      @default(0)
+}
+
+model bani684_migx_formtabs {
+  id                Int     @id @default(autoincrement()) @db.UnsignedInt
+  config_id         Int     @default(0)
+  caption           String  @default("") @db.VarChar(255)
+  pos               Int     @default(0)
+  print_before_tabs Boolean @default(false)
+  extended          String  @db.Text
+
+  @@index([config_id], name: "config_id")
+}
+
+model bani684_migx_formtab_fields {
+  id                    Int     @id @default(autoincrement()) @db.UnsignedInt
+  config_id             Int     @default(0)
+  formtab_id            Int     @default(0)
+  field                 String  @default("") @db.VarChar(255)
+  caption               String  @default("") @db.VarChar(255)
+  description           String  @db.Text
+  pos                   Int     @default(0)
+  description_is_code   Boolean @default(false)
+  inputTV               String  @default("") @db.VarChar(255)
+  inputTVtype           String  @default("") @db.VarChar(255)
+  validation            String  @db.Text
+  configs               String  @default("") @db.VarChar(255)
+  restrictive_condition String  @db.Text
+  display               String  @default("") @db.VarChar(255)
+  sourceFrom            String  @default("") @db.VarChar(255)
+  sources               String  @default("") @db.VarChar(255)
+  inputOptionValues     String  @db.Text
+  default               String  @db.Text
+  extended              String  @db.Text
+
+  @@index([config_id], name: "config_id")
+  @@index([field], name: "field")
+  @@index([formtab_id], name: "formtab_id")
+  @@index([pos], name: "pos")
+}
+
+model bani684_modhybridauth_providers {
+  id        Int     @id @default(autoincrement()) @db.UnsignedInt
+  name      String  @unique @db.VarChar(50)
+  keys      String  @db.Text
+  scope     String? @db.Text
+  enabled   String  @default("0") @db.Char(1)
+  class_key String  @default("modHybridAuthProvider") @db.VarChar(50)
+}
+
+model bani684_modhybridauth_user_profile {
+  id            Int                                        @id @default(autoincrement()) @db.UnsignedInt
+  internalKey   Int                                        @db.UnsignedInt
+  identifier    String                                     @db.VarChar(100)
+  provider      Int                                        @db.UnsignedInt
+  profileURL    String?                                    @db.VarChar(255)
+  webSiteURL    String?                                    @db.VarChar(255)
+  photoURL      String?                                    @db.VarChar(255)
+  displayName   String?                                    @db.VarChar(50)
+  description   String?                                    @db.Text
+  firstName     String?                                    @db.VarChar(100)
+  lastName      String?                                    @db.VarChar(100)
+  gender        bani684_modhybridauth_user_profile_gender?
+  language      String?                                    @db.VarChar(50)
+  age           Int?                                       @db.UnsignedInt
+  birthDay      Int?                                       @db.UnsignedInt
+  birthMonth    Int?                                       @db.UnsignedInt
+  birthYear     Int?                                       @db.UnsignedInt
+  email         String?                                    @db.VarChar(255)
+  emailVerified String?                                    @default("0") @db.Char(1)
+  phone         String?                                    @db.VarChar(50)
+  address       String?                                    @db.VarChar(255)
+  country       String?                                    @db.VarChar(100)
+  region        String?                                    @db.VarChar(100)
+  city          String?                                    @db.VarChar(100)
+  zip           Int?                                       @db.UnsignedInt
+  createdon     DateTime                                   @default(now()) 
+  extended      String?                                    @db.Text
+
+  @@unique([identifier, provider], name: "identifier")
+  @@unique([internalKey, provider], name: "internalKey")
+}
+
+model bani684_modsearch_indexes {
+  resource_id Int    @db.UnsignedInt
+  lemma       String @db.VarChar(100)
+
+  @@id([resource_id, lemma])
+}
+
+model bani684_modxsdk_package {
+  id            Int    @id @default(autoincrement()) @db.UnsignedInt
+  name          String @db.VarChar(100)
+  version_major Int    @default(0) @db.UnsignedInt
+  version_minor Int    @default(0)
+  version_patch Int    @default(0)
+  version_type  String @default("beta") @db.VarChar(100)
+
+  @@unique([name, version_major, version_minor, version_patch, version_type], name: "name")
+}
+
+model bani684_modxsdk_packagesource {
+  packageid Int @db.UnsignedInt
+  sourceid  Int @db.UnsignedInt
+
+  @@id([packageid, sourceid])
+}
+
+model bani684_modxsdk_package_vehicle {
+  packageid Int @db.UnsignedInt
+  vehicleid Int @db.UnsignedInt
+
+  @@id([packageid, vehicleid])
+}
+
+model bani684_modxsdk_project {
+  id          Int    @id @default(autoincrement()) @db.UnsignedInt
+  name        String @db.VarChar(100)
+  description String @db.Text
+}
+
+model bani684_modxsdk_project_package {
+  projectid Int @db.UnsignedInt
+  packageid Int @db.UnsignedInt
+
+  @@unique([projectid, packageid], name: "projectid")
+}
+
+model bani684_modxsdk_vehicle {
+  id   Int    @id @default(autoincrement()) @db.UnsignedInt
+  name String @db.VarChar(100)
+}
+
+model bani684_modxsite_cities {
+  id         Int     @id @default(autoincrement()) @db.UnsignedInt
+  city       String  @db.VarChar(100)
+  country_id Int     @db.UnsignedInt
+  rank       Int     @default(0) @db.UnsignedInt
+  link       Int?    @db.UnsignedInt
+  domain     String? @unique @db.VarChar(25)
+  big        String  @default("0") @db.Char(1)
+
+  @@unique([city, country_id], name: "Index")
+  @@index([rank], name: "rank")
+}
+
+model bani684_modxsite_companies {
+  id                Int                                           @id @default(autoincrement()) @db.UnsignedInt
+  name              String                                        @db.VarChar(255)
+  country_id        Int?                                          @db.UnsignedInt
+  city_id           Int?                                          @db.UnsignedInt
+  address           String                                        @default("") @db.VarChar(1024)
+  website           String                                        @default("") @db.VarChar(256)
+  email             String                                        @default("") @db.VarChar(100)
+  phone             String                                        @default("") @db.VarChar(256)
+  main_modx_version bani684_modxsite_companies_main_modx_version?
+  employees         Int                                           @default(0) @db.UnsignedInt
+  works             Int                                           @default(0) @db.UnsignedInt
+  foundation_date   Int?
+  resource_id       Int?                                          @unique @db.UnsignedInt
+  blog_id           Int?                                          @unique @db.UnsignedInt
+  owner             Int?                                          @db.UnsignedInt
+  use_owr_techs     Int                                           @default(0) @db.UnsignedTinyInt
+  createdby         Int                                           @db.UnsignedInt
+  createdon         Int                                           @db.UnsignedInt
+  editedby          Int?                                          @db.UnsignedInt
+  editedon          Int?                                          @db.UnsignedInt
+
+  @@index([city_id], name: "city")
+  @@index([country_id], name: "country")
+  @@index([createdby], name: "createdby")
+  @@index([createdon], name: "createdon")
+  @@index([editedby], name: "editedby")
+  @@index([employees], name: "employees")
+  @@index([main_modx_version], name: "main_modx_version")
+  @@index([name], name: "name")
+  @@index([owner], name: "owner")
+  @@index([use_owr_techs], name: "use_owr_techs")
+  @@index([works], name: "works")
+}
+
+model bani684_modxsite_countries {
+  id      Int    @id @default(autoincrement()) @db.UnsignedInt
+  country String @unique @db.VarChar(255)
+  rank    Int    @default(0) @db.UnsignedInt
+}
+
+model bani684_monitor_requests {
+  id                      Int      @id @default(autoincrement()) @db.UnsignedInt
+  parent                  Int      @db.UnsignedInt
+  path                    String   @db.VarChar(255)
+  site_url                String   @db.VarChar(255)
+  url                     String   @db.VarChar(1024)
+  context_key             String   @db.VarChar(100)
+  resource_id             Int?     @db.UnsignedInt
+  http_status             Int      @default(200) @db.UnsignedSmallInt
+  uuid                    String   @db.Char(36)
+  user_id                 Int      @default(0) @db.UnsignedInt
+  ip                      String   @db.VarChar(15)
+  date                    DateTime @default(now()) 
+  from_cache              String   @default("0") @db.Char(1)
+  phptemplates_non_cached String   @default("0") @db.Char(1)
+  time                    Decimal  @db.Decimal(10, 4)
+  php_memory              Decimal  @default(0.00) @db.Decimal(10, 2)
+  db_queries              Int      @default(0) @db.UnsignedInt
+  db_queries_time         Decimal  @default(0.0000) @db.Decimal(10, 4)
+  php_error               Int      @default(0) @db.UnsignedMediumInt
+  php_error_info          String   @db.Text
+  referer                 String   @db.Text
+  user_agent              String   @default("") @db.VarChar(1024)
+
+  @@index([date], name: "date")
+  @@index([ip], name: "ip")
+  @@index([parent], name: "parent")
+  @@index([php_error], name: "php_error")
+  @@index([resource_id], name: "resource_id")
+  @@index([user_agent], name: "user_agent")
+  @@index([user_id], name: "user_id")
+  @@index([path, site_url, uuid], name: "uuid")
+}
+
+model bani684_monitor_request_items {
+  id              Int     @id @default(autoincrement()) @db.UnsignedInt
+  request_id      Int     @db.UnsignedInt
+  parent          Int     @db.UnsignedInt
+  type            String  @db.VarChar(100)
+  name            String  @db.VarChar(100)
+  properties      String  @db.Text
+  time            Decimal @db.Decimal(10, 4)
+  php_memory      Decimal @default(0.00) @db.Decimal(10, 2)
+  db_queries      Int     @default(0) @db.UnsignedInt
+  db_queries_time Decimal @default(0.0000) @db.Decimal(10, 4)
+
+  @@index([name], name: "name")
+  @@index([parent], name: "parent")
+  @@index([request_id], name: "request_id")
+  @@index([type], name: "type")
+}
+
+model bani684_namespaces {
+  name        String  @id @default("") @db.VarChar(40)
+  path        String? @db.Text
+  assets_path String? @db.Text
+}
+
+model bani684_packman_profile {
+  id          Int    @id @default(autoincrement()) @db.UnsignedInt
+  name        String @default("") @db.VarChar(255)
+  description String @db.Text
+  data        String @db.Text
+
+  @@index([name], name: "name")
+}
+
+model bani684_property_set {
+  id          Int     @id @default(autoincrement()) @db.UnsignedInt
+  name        String  @unique @default("") @db.VarChar(50)
+  category    Int     @default(0)
+  description String  @default("") @db.VarChar(255)
+  properties  String? @db.Text
+
+  @@index([category], name: "category")
+}
+
+model bani684_redirects {
+  id          Int    @id @default(autoincrement()) @db.UnsignedInt
+  uri         String @unique @db.VarChar(255)
+  resource_id Int    @db.UnsignedInt
+}
+
+model bani684_register_messages {
+  topic    Int       @db.UnsignedInt
+  id       String    @db.VarChar(255)
+  created  DateTime  @db.DateTime(0)
+  valid    DateTime  @db.DateTime(0)
+  accessed DateTime? 
+  accesses Int       @default(0) @db.UnsignedInt
+  expires  Int       @default(0)
+  payload  String    @db.MediumText
+  kill     Boolean   @default(false)
+
+  @@id([topic, id])
+  @@index([accessed], name: "accessed")
+  @@index([accesses], name: "accesses")
+  @@index([created], name: "created")
+  @@index([expires], name: "expires")
+  @@index([valid], name: "valid")
+}
+
+model bani684_register_queues {
+  id      Int     @id @default(autoincrement()) @db.UnsignedInt
+  name    String  @unique @db.VarChar(255)
+  options String? @db.MediumText
+}
+
+model bani684_register_topics {
+  id      Int       @id @default(autoincrement()) @db.UnsignedInt
+  queue   Int       @db.UnsignedInt
+  name    String    @db.VarChar(255)
+  created DateTime  @db.DateTime(0)
+  updated DateTime? 
+  options String?   @db.MediumText
+
+  @@index([name], name: "name")
+  @@index([queue], name: "queue")
+}
+
+model bani684_search_stat {
+  id     Int      @id @default(autoincrement()) @db.UnsignedInt
+  query  String   @default("") @db.VarChar(255)
+  finded Int      @default(0) @db.UnsignedSmallInt
+  date   DateTime @default(now()) 
+
+  @@index([date], name: "date")
+  @@index([finded], name: "finded")
+  @@index([query], name: "query")
+}
+
+model bani684_session {
+  id     String  @id @default("") @db.VarChar(255)
+  access Int     @db.UnsignedInt
+  data   String? @db.MediumText
+
+  @@index([access], name: "access")
+}
+
+model bani684_site_content {
+  id                    Int     @id @default(autoincrement()) @db.UnsignedInt
+  type                  String  @default("document") @db.VarChar(20)
+  contentType           String  @default("text/html") @db.VarChar(50)
+  pagetitle             String  @default("") @db.VarChar(255)
+  longtitle             String  @default("") @db.VarChar(255)
+  description           String  @default("") @db.VarChar(255)
+  alias                 String? @default("") @db.VarChar(255)
+  link_attributes       String  @default("") @db.VarChar(255)
+  published             Boolean @default(false)
+  pub_date              Int     @default(0)
+  unpub_date            Int     @default(0)
+  parent                Int     @default(0)
+  isfolder              Boolean @default(false)
+  introtext             String? @db.Text
+  content               String? @db.MediumText
+  richtext              Boolean @default(true)
+  template              Int     @default(0)
+  menuindex             Int     @default(0)
+  searchable            Boolean @default(true)
+  cacheable             Boolean @default(true)
+  createdby             Int     @default(0)
+  createdon             Int     @default(0)
+  editedby              Int     @default(0)
+  editedon              Int     @default(0)
+  deleted               Boolean @default(false)
+  deletedon             Int     @default(0)
+  deletedby             Int     @default(0)
+  publishedon           Int     @default(0)
+  publishedby           Int     @default(0)
+  menutitle             String  @default("") @db.VarChar(255)
+  donthit               Boolean @default(false)
+  privateweb            Boolean @default(false)
+  privatemgr            Boolean @default(false)
+  content_dispo         Boolean @default(false)
+  hidemenu              Boolean @default(false)
+  class_key             String  @default("modDocument") @db.VarChar(100)
+  context_key           String  @default("web") @db.VarChar(100)
+  content_type          Int     @default(1) @db.UnsignedInt
+  uri                   String? 
+  uri_override          Boolean @default(false)
+  hide_children_in_tree Boolean @default(false)
+  show_in_tree          Boolean @default(true)
+  properties            String? @db.MediumText
+
+  @@index([alias], name: "alias")
+  @@index([parent, menuindex, id], name: "cache_refresh_idx")
+  @@index([cacheable], name: "cacheable")
+  @@index([class_key], name: "class_key")
+  @@index([context_key], name: "context_key")
+  @@index([hide_children_in_tree], name: "hide_children_in_tree")
+  @@index([hidemenu], name: "hidemenu")
+  @@index([isfolder], name: "isfolder")
+  @@index([menuindex], name: "menuindex")
+  @@index([parent], name: "parent")
+  @@index([pub_date], name: "pub_date")
+  @@index([published], name: "published")
+  @@index([searchable], name: "searchable")
+  @@index([show_in_tree], name: "show_in_tree")
+  @@index([template], name: "template")
+  @@index([unpub_date], name: "unpub_date")
+  @@index([uri], name: "uri")
+  @@index([uri_override], name: "uri_override")
+}
+
+model bani684_site_htmlsnippets {
+  id                  Int     @id @default(autoincrement()) @db.UnsignedInt
+  source              Int     @default(0) @db.UnsignedInt
+  property_preprocess Boolean @default(false)
+  name                String  @unique @default("") @db.VarChar(50)
+  description         String  @default("Chunk") @db.VarChar(255)
+  editor_type         Int     @default(0)
+  category            Int     @default(0)
+  cache_type          Boolean @default(false)
+  snippet             String? @db.MediumText
+  locked              Boolean @default(false)
+  properties          String? @db.Text
+  static              Boolean @default(false)
+  static_file         String  @default("") @db.VarChar(255)
+
+  @@index([category], name: "category")
+  @@index([locked], name: "locked")
+  @@index([static], name: "static")
+}
+
+model bani684_site_plugins {
+  id                  Int     @id @default(autoincrement()) @db.UnsignedInt
+  source              Int     @default(0) @db.UnsignedInt
+  property_preprocess Boolean @default(false)
+  name                String  @unique @default("") @db.VarChar(50)
+  description         String  @default("") @db.VarChar(255)
+  editor_type         Int     @default(0)
+  category            Int     @default(0)
+  cache_type          Boolean @default(false)
+  plugincode          String  @db.MediumText
+  locked              Boolean @default(false)
+  properties          String? @db.Text
+  disabled            Boolean @default(false)
+  moduleguid          String  @default("") @db.VarChar(32)
+  static              Boolean @default(false)
+  static_file         String  @default("") @db.VarChar(255)
+
+  @@index([category], name: "category")
+  @@index([disabled], name: "disabled")
+  @@index([locked], name: "locked")
+  @@index([static], name: "static")
+}
+
+model bani684_site_plugin_events {
+  pluginid    Int    @default(0)
+  event       String @default("") @db.VarChar(255)
+  priority    Int    @default(0)
+  propertyset Int    @default(0) @db.UnsignedInt
+
+  @@id([pluginid, event])
+  @@index([priority], name: "priority")
+}
+
+model bani684_site_snippets {
+  id                  Int     @id @default(autoincrement()) @db.UnsignedInt
+  source              Int     @default(0) @db.UnsignedInt
+  property_preprocess Boolean @default(false)
+  name                String  @unique @default("") @db.VarChar(50)
+  description         String  @default("") @db.VarChar(255)
+  editor_type         Int     @default(0)
+  category            Int     @default(0)
+  cache_type          Boolean @default(false)
+  snippet             String? @db.MediumText
+  locked              Boolean @default(false)
+  properties          String? @db.Text
+  moduleguid          String  @default("") @db.VarChar(32)
+  static              Boolean @default(false)
+  static_file         String  @default("") @db.VarChar(255)
+
+  @@index([category], name: "category")
+  @@index([locked], name: "locked")
+  @@index([moduleguid], name: "moduleguid")
+  @@index([static], name: "static")
+}
+
+model bani684_site_templates {
+  id                  Int     @id @default(autoincrement()) @db.UnsignedInt
+  source              Int     @default(0) @db.UnsignedInt
+  property_preprocess Boolean @default(false)
+  templatename        String  @unique @default("") @db.VarChar(50)
+  description         String  @default("Template") @db.VarChar(255)
+  editor_type         Int     @default(0)
+  category            Int     @default(0)
+  icon                String  @default("") @db.VarChar(255)
+  template_type       Int     @default(0)
+  content             String  @db.MediumText
+  locked              Boolean @default(false)
+  properties          String? @db.Text
+  static              Boolean @default(false)
+  static_file         String  @default("") @db.VarChar(255)
+
+  @@index([category], name: "category")
+  @@index([locked], name: "locked")
+  @@index([static], name: "static")
+}
+
+model bani684_site_tmplvars {
+  id                  Int     @id @default(autoincrement()) @db.UnsignedInt
+  source              Int     @default(0) @db.UnsignedInt
+  property_preprocess Boolean @default(false)
+  type                String  @default("") @db.VarChar(20)
+  name                String  @unique @default("") @db.VarChar(50)
+  caption             String  @default("") @db.VarChar(80)
+  description         String  @default("") @db.VarChar(255)
+  editor_type         Int     @default(0)
+  category            Int     @default(0)
+  locked              Boolean @default(false)
+  elements            String? @db.Text
+  rank                Int     @default(0)
+  display             String  @default("") @db.VarChar(20)
+  default_text        String? @db.MediumText
+  properties          String? @db.Text
+  input_properties    String? @db.Text
+  output_properties   String? @db.Text
+  static              Boolean @default(false)
+  static_file         String  @default("") @db.VarChar(255)
+
+  @@index([category], name: "category")
+  @@index([locked], name: "locked")
+  @@index([rank], name: "rank")
+  @@index([static], name: "static")
+}
+
+model bani684_site_tmplvar_access {
+  id            Int @id @default(autoincrement()) @db.UnsignedInt
+  tmplvarid     Int @default(0)
+  documentgroup Int @default(0)
+
+  @@index([tmplvarid, documentgroup], name: "tmplvar_template")
+}
+
+model bani684_site_tmplvar_contentvalues {
+  id        Int    @id @default(autoincrement()) @db.UnsignedInt
+  tmplvarid Int    @default(0)
+  contentid Int    @default(0)
+  value     String @db.MediumText
+
+  @@index([contentid], name: "contentid")
+  @@index([tmplvarid], name: "tmplvarid")
+  @@index([tmplvarid, contentid], name: "tv_cnt")
+}
+
+model bani684_site_tmplvar_templates {
+  tmplvarid  Int @default(0)
+  templateid Int @default(0)
+  rank       Int @default(0)
+
+  @@id([tmplvarid, templateid])
+}
+
+model bani684_society_blog_attributes {
+  id           Int     @id @default(autoincrement()) @db.UnsignedInt
+  resourceid   Int     @unique @db.UnsignedInt
+  content_hash String? @unique @db.Char(32)
+}
+
+model bani684_society_blog_topic {
+  id      Int @id @default(autoincrement()) @db.UnsignedInt
+  blogid  Int @db.UnsignedInt
+  topicid Int @db.UnsignedInt
+  rank    Int @default(0) @db.UnsignedInt
+
+  @@unique([blogid, topicid], name: "blogid")
+}
+
+model bani684_society_comments {
+  id             Int       @id @default(autoincrement()) @db.UnsignedInt
+  thread_id      Int?      @db.UnsignedInt
+  parent         Int?      @db.UnsignedInt
+  text           String    @db.Text
+  raw_text       String    @db.Text
+  ip             String    @default("0.0.0.0") @db.VarChar(16)
+  createdon      DateTime? @db.DateTime(0)
+  createdby      Int?      @db.UnsignedInt
+  editedon       DateTime? @db.DateTime(0)
+  editedby       Int?      @db.UnsignedInt
+  published      String    @default("1") @db.Char(1)
+  deleted        String    @default("0") @db.Char(1)
+  deletedon      DateTime? @db.DateTime(0)
+  deletedby      Int?      @db.UnsignedInt
+  comments_count Int       @default(0) @db.UnsignedInt
+  properties     String?   @db.Text
+
+  @@index([createdby], name: "createdby")
+  @@index([deleted], name: "deleted")
+  @@index([deletedby], name: "deletedby")
+  @@index([editedby], name: "editedby")
+  @@index([parent], name: "parent")
+  @@index([thread_id], name: "target_id")
+}
+
+model bani684_society_email_messages {
+  id      Int      @id @default(autoincrement()) @db.UnsignedInt
+  user_id Int      @db.UnsignedInt
+  subject String   @db.VarChar(256)
+  message String   @db.Text
+  date    DateTime @default(now()) 
+  status  Int      @default(1) @db.TinyInt
+
+  @@index([user_id], name: "user_id")
+}
+
+model bani684_society_notice_types {
+  id      Int     @id @default(autoincrement()) @db.UnsignedInt
+  type    String  @unique @db.VarChar(50)
+  comment String  @default("") @db.VarChar(256)
+  rank    Int     @db.UnsignedInt
+  target  String? @db.VarChar(100)
+}
+
+model bani684_society_notice_users {
+  id        Int @id @default(autoincrement()) @db.UnsignedInt
+  notice_id Int @db.UnsignedInt
+  user_id   Int @db.UnsignedInt
+  active    Int @default(1) @db.UnsignedTinyInt
+
+  @@unique([notice_id, user_id], name: "notice_id")
+  @@index([active], name: "active")
+}
+
+model bani684_society_subscribers {
+  userid       Int @db.UnsignedInt
+  subscriberid Int @db.UnsignedInt
+  rank         Int @default(0) @db.UnsignedInt
+
+  @@unique([userid, subscriberid], name: "userid")
+}
+
+model bani684_society_threads {
+  id             Int       @id @default(autoincrement()) @db.UnsignedInt
+  target_id      Int?      @db.UnsignedInt
+  target_class   String    @default("modResource") @db.VarChar(100)
+  comments_count Int       @default(0) @db.UnsignedInt
+  createdon      DateTime  @db.DateTime(0)
+  editedon       DateTime? @db.DateTime(0)
+  views          Int       @default(0) @db.UnsignedInt
+  rating         Float     @default(0.000) @db.Float
+  positive_votes Int       @default(0) @db.UnsignedInt
+  negative_votes Int       @default(0) @db.UnsignedInt
+  neutral_votes  Int       @default(0) @db.UnsignedInt
+
+  @@unique([target_id, target_class], name: "target_id")
+}
+
+model bani684_society_topic_attributes {
+  id           Int     @id @default(autoincrement()) @db.UnsignedInt
+  resourceid   Int     @unique @db.UnsignedInt
+  content_hash String? @unique @db.Char(32)
+  short_text   String  @db.Text
+  raw_content  String  @db.Text
+  topic_tags   String  @default("") @db.VarChar(1024)
+}
+
+model bani684_society_topic_tags {
+  id       Int     @id @default(autoincrement()) @db.UnsignedInt
+  topic_id Int     @db.UnsignedInt
+  tag      String  @db.VarChar(100)
+  active   Boolean @default(true)
+
+  @@unique([topic_id, tag], name: "topic_id")
+  @@index([active], name: "active")
+}
+
+model bani684_society_user_attributes {
+  id          Int @id @default(autoincrement()) @db.UnsignedInt
+  internalKey Int @unique @db.UnsignedInt
+  createdon   Int
+
+  @@index([createdon], name: "createdon")
+}
+
+model bani684_society_votes {
+  id             Int      @id @default(autoincrement()) @db.UnsignedInt
+  target_id      Int      @db.UnsignedInt
+  target_class   String   @db.VarChar(100)
+  type           Int      @default(0) @db.UnsignedInt
+  thread_id      Int?     @db.UnsignedInt
+  user_id        Int      @db.UnsignedInt
+  vote_direction String   @default("0") @db.Char(1)
+  vote_value     Float    @default(0.000) @db.Float
+  vote_date      DateTime @default(now()) 
+
+  @@unique([target_id, target_class, user_id, type], name: "target_id")
+  @@unique([thread_id, user_id, type], name: "thread_id")
+}
+
+model bani684_system_eventnames {
+  name      String @id @db.VarChar(50)
+  service   Int    @default(0) @db.UnsignedTinyInt
+  groupname String @default("") @db.VarChar(20)
+}
+
+model bani684_system_settings {
+  key       String   @id @default("") @db.VarChar(50)
+  value     String   @db.Text
+  xtype     String   @default("textfield") @db.VarChar(75)
+  namespace String   @default("core") @db.VarChar(40)
+  area      String   @default("") @db.VarChar(255)
+  editedon  DateTime @default(dbgenerated("'0000-00-00 00:00:00'")) 
+}
+
+model bani684_transport_packages {
+  signature     String    @id @db.VarChar(255)
+  created       DateTime  @db.DateTime(0)
+  updated       DateTime? 
+  installed     DateTime? @db.DateTime(0)
+  state         Boolean   @default(true)
+  workspace     Int       @default(0) @db.UnsignedInt
+  provider      Int       @default(0) @db.UnsignedInt
+  disabled      Boolean   @default(false)
+  source        String?   @db.TinyText
+  manifest      String?   @db.Text
+  attributes    String?   @db.MediumText
+  package_name  String    @db.VarChar(255)
+  metadata      String?   @db.Text
+  version_major Int       @default(0) @db.UnsignedSmallInt
+  version_minor Int       @default(0) @db.UnsignedSmallInt
+  version_patch Int       @default(0) @db.UnsignedSmallInt
+  release       String    @default("") @db.VarChar(100)
+  release_index Int       @default(0) @db.UnsignedSmallInt
+
+  @@index([disabled], name: "disabled")
+  @@index([package_name], name: "package_name")
+  @@index([provider], name: "provider")
+  @@index([release], name: "release")
+  @@index([release_index], name: "release_index")
+  @@index([version_major], name: "version_major")
+  @@index([version_minor], name: "version_minor")
+  @@index([version_patch], name: "version_patch")
+  @@index([workspace], name: "workspace")
+}
+
+model bani684_transport_providers {
+  id          Int       @id @default(autoincrement()) @db.UnsignedInt
+  name        String    @unique @db.VarChar(255)
+  description String?   @db.MediumText
+  service_url String?   @db.TinyText
+  username    String    @default("") @db.VarChar(255)
+  api_key     String    @default("") @db.VarChar(255)
+  created     DateTime  @db.DateTime(0)
+  updated     DateTime? 
+  active      Boolean   @default(true)
+  priority    Int       @default(10) @db.TinyInt
+  properties  String    @db.MediumText
+
+  @@index([api_key], name: "api_key")
+  @@index([username], name: "username")
+}
+
+model bani684_users {
+  id            Int     @id @default(autoincrement()) @db.UnsignedInt
+  username      String  @unique @default("") @db.VarChar(100)
+  password      String  @default("") @db.VarChar(100)
+  cachepwd      String  @default("") @db.VarChar(100)
+  class_key     String  @default("modUser") @db.VarChar(100)
+  active        Boolean @default(true)
+  remote_key    String? @db.VarChar(255)
+  remote_data   String? @db.Text
+  hash_class    String  @default("hashing.modPBKDF2") @db.VarChar(100)
+  salt          String  @default("") @db.VarChar(100)
+  primary_group Int     @default(0) @db.UnsignedInt
+  session_stale String? @db.Text
+  sudo          Boolean @default(false)
+  createdon     Int     @default(0)
+  delegate      String? @db.Char(1)
+  offer         String? @db.Text
+  offer_date    Int?    @db.UnsignedInt
+  contract_date Int?    @db.UnsignedInt
+  createdby     Int?    @db.UnsignedInt
+
+  @@index([class_key], name: "class_key")
+  @@index([contract_date], name: "contract_date")
+  @@index([createdby], name: "createdby")
+  @@index([delegate], name: "delegate")
+  @@index([offer_date], name: "offer_date")
+  @@index([primary_group], name: "primary_group")
+  @@index([remote_key], name: "remote_key")
+}
+
+model bani684_user_attributes {
+  id               Int     @id @default(autoincrement()) @db.UnsignedInt
+  internalKey      Int     @unique
+  fullname         String  @default("") @db.VarChar(100)
+  email            String  @default("") @db.VarChar(100)
+  phone            String  @default("") @db.VarChar(100)
+  mobilephone      String  @default("") @db.VarChar(100)
+  blocked          Boolean @default(false)
+  blockeduntil     Int     @default(0)
+  blockedafter     Int     @default(0)
+  logincount       Int     @default(0)
+  lastlogin        Int     @default(0)
+  thislogin        Int     @default(0)
+  failedlogincount Int     @default(0)
+  sessionid        String  @default("") @db.VarChar(100)
+  dob              Int     @default(0)
+  gender           Int     @default(0)
+  address          String  @db.Text
+  country          String  @default("") @db.VarChar(255)
+  city             String  @default("") @db.VarChar(255)
+  state            String  @default("") @db.VarChar(25)
+  zip              String  @default("") @db.VarChar(25)
+  fax              String  @default("") @db.VarChar(100)
+  photo            String  @default("") @db.VarChar(255)
+  comment          String  @db.Text
+  website          String  @default("") @db.VarChar(255)
+  extended         String? @db.Text
+}
+
+model bani684_user_group_roles {
+  id          Int     @id @default(autoincrement()) @db.UnsignedInt
+  name        String  @unique @db.VarChar(255)
+  description String? @db.MediumText
+  authority   Int     @default(9999) @db.UnsignedInt
+
+  @@index([authority], name: "authority")
+}
+
+model bani684_user_group_settings {
+  group     Int      @default(0) @db.UnsignedInt
+  key       String   @db.VarChar(50)
+  value     String?  @db.Text
+  xtype     String   @default("textfield") @db.VarChar(75)
+  namespace String   @default("core") @db.VarChar(40)
+  area      String   @default("") @db.VarChar(255)
+  editedon  DateTime @default(dbgenerated("'0000-00-00 00:00:00'")) 
+
+  @@id([group, key])
+}
+
+model bani684_user_messages {
+  id        Int      @id @default(autoincrement()) @db.UnsignedInt
+  type      String   @default("") @db.VarChar(15)
+  subject   String   @default("") @db.VarChar(255)
+  message   String   @db.Text
+  sender    Int      @default(0)
+  recipient Int      @default(0)
+  private   Int      @default(0) @db.TinyInt
+  date_sent DateTime @default(dbgenerated("'0000-00-00 00:00:00'")) @db.DateTime(0)
+  read      Boolean  @default(false)
+}
+
+model bani684_user_settings {
+  user      Int      @default(0)
+  key       String   @default("") @db.VarChar(50)
+  value     String?  @db.Text
+  xtype     String   @default("textfield") @db.VarChar(75)
+  namespace String   @default("core") @db.VarChar(40)
+  area      String   @default("") @db.VarChar(255)
+  editedon  DateTime @default(dbgenerated("'0000-00-00 00:00:00'")) 
+
+  @@id([user, key])
+}
+
+model bani684_versionx_chunk {
+  version_id  Int      @id @default(autoincrement()) @db.UnsignedInt
+  content_id  Int      @db.UnsignedInt
+  saved       DateTime @default(now()) 
+  user        Int      @default(0)
+  mode        String   @default("update") @db.VarChar(24)
+  marked      Boolean? @default(false)
+  name        String   @default("") @db.VarChar(50)
+  description String   @default("Chunk") @db.VarChar(255)
+  category    Int      @default(0)
+  snippet     String?  @db.MediumText
+  locked      Boolean  @default(false)
+  properties  String?  @db.MediumText
+
+  @@index([category], name: "category")
+  @@index([content_id], name: "content_id")
+  @@index([user], name: "user")
+}
+
+model bani684_versionx_plugin {
+  version_id  Int      @id @default(autoincrement()) @db.UnsignedInt
+  content_id  Int      @db.UnsignedInt
+  saved       DateTime @default(now()) 
+  user        Int      @default(0)
+  mode        String   @default("update") @db.VarChar(24)
+  marked      Boolean? @default(false)
+  name        String   @default("") @db.VarChar(50)
+  description String   @default("Chunk") @db.VarChar(255)
+  category    Int      @default(0)
+  plugincode  String   @db.MediumText
+  locked      Boolean  @default(false)
+  properties  String?  @db.MediumText
+  disabled    Boolean  @default(false)
+
+  @@index([category], name: "category")
+  @@index([content_id], name: "content_id")
+  @@index([user], name: "user")
+}
+
+model bani684_versionx_resource {
+  version_id  Int      @id @default(autoincrement()) @db.UnsignedInt
+  content_id  Int      @db.UnsignedInt
+  saved       DateTime @default(now()) 
+  user        Int      @default(0)
+  mode        String   @default("update") @db.VarChar(24)
+  marked      Boolean? @default(false)
+  title       String   @default("Unnamed") @db.VarChar(255)
+  context_key String   @default("web") @db.VarChar(255)
+  class       String   @default("modDocument") @db.VarChar(255)
+  content     String?  @db.MediumText
+  fields      String?  @db.MediumText
+  tvs         String?  @db.MediumText
+
+  @@index([content_id], name: "content_id")
+  @@index([user], name: "user")
+}
+
+model bani684_versionx_snippet {
+  version_id  Int      @id @default(autoincrement()) @db.UnsignedInt
+  content_id  Int      @db.UnsignedInt
+  saved       DateTime @default(now()) 
+  user        Int      @default(0)
+  mode        String   @default("update") @db.VarChar(24)
+  marked      Boolean? @default(false)
+  name        String   @default("") @db.VarChar(50)
+  description String   @default("Chunk") @db.VarChar(255)
+  category    Int      @default(0)
+  snippet     String?  @db.MediumText
+  locked      Boolean  @default(false)
+  properties  String?  @db.MediumText
+
+  @@index([category], name: "category")
+  @@index([content_id], name: "content_id")
+  @@index([user], name: "user")
+}
+
+model bani684_versionx_template {
+  version_id   Int      @id @default(autoincrement()) @db.UnsignedInt
+  content_id   Int      @db.UnsignedInt
+  saved        DateTime @default(now()) 
+  user         Int      @default(0)
+  mode         String   @default("update") @db.VarChar(24)
+  marked       Boolean? @default(false)
+  templatename String   @db.VarChar(50)
+  description  String?  @default("Template") @db.VarChar(255)
+  category     Int      @default(0)
+  content      String   @db.MediumText
+  locked       Boolean  @default(false)
+  properties   String?  @db.MediumText
+
+  @@index([category], name: "category")
+  @@index([content_id], name: "content_id")
+  @@index([user], name: "user")
+}
+
+model bani684_versionx_templatevar {
+  version_id        Int      @id @default(autoincrement()) @db.UnsignedInt
+  content_id        Int      @db.UnsignedInt
+  saved             DateTime @default(now()) 
+  user              Int      @default(0)
+  mode              String   @default("update") @db.VarChar(24)
+  marked            Boolean? @default(false)
+  type              String   @default("") @db.VarChar(20)
+  name              String   @default("") @db.VarChar(50)
+  caption           String   @default("") @db.VarChar(80)
+  description       String   @default("") @db.VarChar(255)
+  category          Int      @default(0)
+  locked            Boolean  @default(false)
+  rank              Int      @default(0)
+  display           String   @default("") @db.VarChar(20)
+  default_text      String?  @db.VarChar(2000)
+  properties        String?  @db.MediumText
+  input_properties  String?  @db.MediumText
+  output_properties String?  @db.MediumText
+
+  @@index([content_id], name: "content_id")
+  @@index([user], name: "user")
+}
+
+model bani684_visitors {
+  id        Int      @id @default(autoincrement()) @db.UnsignedInt
+  date      DateTime @db.DateTime(0)
+  url       String
+  referer   String
+  userAgent String
+  user_id   Int?     @db.UnsignedInt
+  ip        String   @db.VarChar(130)
+  status    Int      @db.SmallInt
+  cookie    String   @db.VarChar(32)
+
+  @@index([ip], name: "ip")
+  @@index([referer], name: "referer")
+  @@index([url], name: "url")
+  @@index([userAgent], name: "userAgent")
+  @@index([user_id], name: "user_id")
+}
+
+model bani684_workspaces {
+  id         Int      @id @default(autoincrement()) @db.UnsignedInt
+  name       String   @default("") @db.VarChar(255)
+  path       String   @unique @default("") @db.VarChar(255)
+  created    DateTime @db.DateTime(0)
+  active     Boolean  @default(false)
+  attributes String?  @db.MediumText
+
+  @@index([active], name: "active")
+  @@index([name], name: "name")
+}
+
+enum bani684_modhybridauth_user_profile_gender {
+  female
+  male
+}
+
+enum bani684_modxsite_companies_main_modx_version {
+  Evolution
+  Revolution
+}

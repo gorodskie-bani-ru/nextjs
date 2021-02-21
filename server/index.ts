@@ -1,7 +1,8 @@
 import express from 'express'
 import next from 'next'
-import { createProxyMiddleware } from 'http-proxy-middleware'
-import { endpoint } from '../src/config'
+// import { createProxyMiddleware } from 'http-proxy-middleware'
+// import { endpoint } from '../src/config'
+import graphqlServer from './graphqlServer'
 
 const cwd = process.cwd()
 
@@ -10,38 +11,43 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
-const apiProxy = createProxyMiddleware({
-  target: endpoint,
-  changeOrigin: true,
-  ws: true,
-  pathRewrite: {
-    '^/api(/|$)': '/',
-  },
-  onError: (err, _req, res) => {
-    console.error('apiProxy onError err', err)
+// const apiProxy = createProxyMiddleware({
+//   target: endpoint,
+//   changeOrigin: true,
+//   ws: true,
+//   pathRewrite: {
+//     '^/api(/|$)': '/',
+//   },
+//   onError: (err, _req, res) => {
+//     console.error('apiProxy onError err', err)
 
-    res.writeHead(500, {
-      'Content-Type': 'text/plain',
-    })
-    res.end(
-      'Something went wrong. And we are reporting a custom error message.'
-    )
-  },
-  router: (req) => {
-    if (!req.headers.referer && req.headers.host) {
-      req.headers.referer = `http://${req.headers.host}`
-    }
+//     res.writeHead(500, {
+//       'Content-Type': 'text/plain',
+//     })
+//     res.end(
+//       'Something went wrong. And we are reporting a custom error message.'
+//     )
+//   },
+//   router: (req) => {
+//     if (!req.headers.referer && req.headers.host) {
+//       req.headers.referer = `http://${req.headers.host}`
+//     }
 
-    return endpoint
-  },
-})
+//     return endpoint
+//   },
+// })
 
 app.prepare().then(() => {
   const server = express()
 
   server.use(express.static(cwd + '/shared'))
 
-  server.post('/api/', apiProxy)
+  // server.post('/api/', apiProxy)
+
+  graphqlServer.applyMiddleware({
+    app: server,
+    path: '/api',
+  })
 
   // Uncomment to serve storybook-static (before should run yarn build-storybook)
   // server.use('/storybook-static/', express.static('./storybook-static/'))
