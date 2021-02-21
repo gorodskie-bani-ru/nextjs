@@ -23,7 +23,7 @@ query companies(
   }
 }
 
-fragment ListCompany on Company {
+fragment ListCompany on Resource {
   ...CompanyFields
 
   # ... on Company @include(if:$getCompanyFullData)
@@ -87,15 +87,15 @@ fragment ListCompany on Company {
   #   }
 }
 
-fragment CompanyFields on Company {
+fragment CompanyFields on Resource {
   id
   name
   longtitle
   alias
   uri
-  city_id
-  city
-  city_uri
+  # city_id
+  # city
+  # city_uri
   template
   published
   publishedon

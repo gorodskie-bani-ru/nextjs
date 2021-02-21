@@ -1093,6 +1093,9 @@ model bani684_site_content {
   show_in_tree          Boolean @default(true)
   properties            String? @db.MediumText
 
+
+  TemplateVarValues       bani684_site_tmplvar_contentvalues[]
+
   @@index([alias], name: "alias")
   @@index([parent, menuindex, id], name: "cache_refresh_idx")
   @@index([cacheable], name: "cacheable")
@@ -1247,12 +1250,14 @@ model bani684_site_tmplvar_access {
 model bani684_site_tmplvar_contentvalues {
   id        Int    @id @default(autoincrement()) @db.UnsignedInt
   tmplvarid Int    @default(0)
-  contentid Int    @default(0)
+  contentid Int    @default(0)  @db.UnsignedInt
   value     String @db.MediumText
 
   @@index([contentid], name: "contentid")
   @@index([tmplvarid], name: "tmplvarid")
   @@index([tmplvarid, contentid], name: "tv_cnt")
+
+  Resource       bani684_site_content @relation(fields: [contentid], references: [id])
 }
 
 model bani684_site_tmplvar_templates {

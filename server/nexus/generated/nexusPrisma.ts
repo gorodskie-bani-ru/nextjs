@@ -459,7 +459,7 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'access' | 'data'
     }
     bani684SiteContents: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'type' | 'contentType' | 'pagetitle' | 'longtitle' | 'description' | 'alias' | 'link_attributes' | 'published' | 'pub_date' | 'unpub_date' | 'parent' | 'isfolder' | 'introtext' | 'content' | 'richtext' | 'template' | 'menuindex' | 'searchable' | 'cacheable' | 'createdby' | 'createdon' | 'editedby' | 'editedon' | 'deleted' | 'deletedon' | 'deletedby' | 'publishedon' | 'publishedby' | 'menutitle' | 'donthit' | 'privateweb' | 'privatemgr' | 'content_dispo' | 'hidemenu' | 'class_key' | 'context_key' | 'content_type' | 'uri' | 'uri_override' | 'hide_children_in_tree' | 'show_in_tree' | 'properties'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'type' | 'contentType' | 'pagetitle' | 'longtitle' | 'description' | 'alias' | 'link_attributes' | 'published' | 'pub_date' | 'unpub_date' | 'parent' | 'isfolder' | 'introtext' | 'content' | 'richtext' | 'template' | 'menuindex' | 'searchable' | 'cacheable' | 'createdby' | 'createdon' | 'editedby' | 'editedon' | 'deleted' | 'deletedon' | 'deletedby' | 'publishedon' | 'publishedby' | 'menutitle' | 'donthit' | 'privateweb' | 'privatemgr' | 'content_dispo' | 'hidemenu' | 'class_key' | 'context_key' | 'content_type' | 'uri' | 'uri_override' | 'hide_children_in_tree' | 'show_in_tree' | 'properties' | 'TemplateVarValues'
       ordering: 'id' | 'type' | 'contentType' | 'pagetitle' | 'longtitle' | 'description' | 'alias' | 'link_attributes' | 'published' | 'pub_date' | 'unpub_date' | 'parent' | 'isfolder' | 'introtext' | 'content' | 'richtext' | 'template' | 'menuindex' | 'searchable' | 'cacheable' | 'createdby' | 'createdon' | 'editedby' | 'editedon' | 'deleted' | 'deletedon' | 'deletedby' | 'publishedon' | 'publishedby' | 'menutitle' | 'donthit' | 'privateweb' | 'privatemgr' | 'content_dispo' | 'hidemenu' | 'class_key' | 'context_key' | 'content_type' | 'uri' | 'uri_override' | 'hide_children_in_tree' | 'show_in_tree' | 'properties'
     }
     bani684SiteHtmlsnippetss: {
@@ -491,8 +491,8 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'tmplvarid' | 'documentgroup'
     }
     bani684SiteTmplvarContentvaluess: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'tmplvarid' | 'contentid' | 'value'
-      ordering: 'id' | 'tmplvarid' | 'contentid' | 'value'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'tmplvarid' | 'contentid' | 'value' | 'Resource'
+      ordering: 'id' | 'tmplvarid' | 'contentid' | 'value' | 'Resource'
     }
     bani684SiteTmplvarTemplatess: {
       filtering: 'AND' | 'OR' | 'NOT' | 'tmplvarid' | 'templateid' | 'rank'
@@ -860,7 +860,10 @@ interface NexusPrismaInputs {
 
   }
   bani684_site_content: {
-
+    TemplateVarValues: {
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'tmplvarid' | 'contentid' | 'value' | 'Resource'
+      ordering: 'id' | 'tmplvarid' | 'contentid' | 'value' | 'Resource'
+    }
   }
   bani684_site_htmlsnippets: {
 
@@ -2689,6 +2692,7 @@ interface NexusPrismaOutputs {
     hide_children_in_tree: 'Boolean'
     show_in_tree: 'Boolean'
     properties: 'String'
+    TemplateVarValues: 'bani684_site_tmplvar_contentvalues'
   }
   bani684_site_htmlsnippets: {
     id: 'Int'
@@ -2791,6 +2795,7 @@ interface NexusPrismaOutputs {
     tmplvarid: 'Int'
     contentid: 'Int'
     value: 'String'
+    Resource: 'bani684_site_content'
   }
   bani684_site_tmplvar_templates: {
     tmplvarid: 'Int'

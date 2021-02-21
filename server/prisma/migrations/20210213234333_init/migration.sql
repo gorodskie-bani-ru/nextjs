@@ -1434,7 +1434,7 @@ INDEX `tmplvar_template`(`tmplvarid`, `documentgroup`),
 CREATE TABLE `bani684_site_tmplvar_contentvalues` (
     `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
     `tmplvarid` INTEGER NOT NULL DEFAULT 0,
-    `contentid` INTEGER NOT NULL DEFAULT 0,
+    `contentid` INTEGER UNSIGNED NOT NULL DEFAULT 0,
     `value` MEDIUMTEXT NOT NULL,
 INDEX `contentid`(`contentid`),
 INDEX `tmplvarid`(`tmplvarid`),

@@ -6,25 +6,32 @@ import {
   // stringArg,
   // inputObjectType,
   // arg,
-  // asNexusMethod,
+  asNexusMethod,
   // enumType,
 } from 'nexus'
 
 import './fix/pluralize'
 
-// import { GraphQLDateTime } from 'graphql-iso-date'
+import { GraphQLDateTime } from 'graphql-iso-date'
 import { nexusPrisma } from 'nexus-plugin-prisma'
 
 import * as types from './types'
 
-// export const DateTime = asNexusMethod(GraphQLDateTime, 'date')
+export const DateTime = asNexusMethod(GraphQLDateTime, 'date')
 
 export const schema = makeSchema({
+  shouldGenerateArtifacts: process.env.NODE_ENV === 'development',
+  shouldExitAfterGenerateArtifacts: process.env.NODE_ENV !== 'development',
   plugins: [
     nexusPrisma({
       experimentalCRUD: true,
-      atomicOperations: true,
+      // atomicOperations: true,
+
+      /**
+       * Это обязательно, иначе в аргументах будет first, который призма теперь не знает
+       */
       paginationStrategy: 'prisma',
+
       outputs: {
         typegen: __dirname + '/generated/nexusPrisma.ts',
       },
@@ -34,7 +41,7 @@ export const schema = makeSchema({
     ...types,
     // Query,
     // Resource,
-    // DateTime,
+    DateTime,
   },
   outputs: {
     schema: __dirname + '/generated/schema.graphql',
@@ -52,4 +59,8 @@ export const schema = makeSchema({
       },
     ],
   },
+  prettierConfig:
+    process.env.NODE_ENV === 'development'
+      ? require.resolve(process.cwd() + '/.prettierrc')
+      : undefined,
 })

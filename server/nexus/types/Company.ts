@@ -14,15 +14,15 @@ import { objectType } from 'nexus'
 // mapIcon
 // image
 
-export const Resource = objectType({
-  name: 'Resource',
-  sourceType: {
-    module: '@prisma/client',
-    export: 'bani684_site_content',
-  },
+export const Company = objectType({
+  name: 'Company',
+  // sourceType: {
+  //   module: '@prisma/client',
+  //   export: 'bani684_site_content',
+  // },
   definition(t) {
     t.nonNull.int('id')
-    // t.nonNull.string('pagetitle')
+    t.nonNull.string('pagetitle')
     t.nonNull.string('name', {
       // deprecation: "",
       resolve: (_) => _.pagetitle,
