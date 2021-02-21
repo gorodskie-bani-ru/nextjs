@@ -279,7 +279,7 @@ export interface NexusGenObjects {
   }
   Company: {
     // root type
-    alias: string // String!
+    alias?: string | null // String
     coords?: NexusGenRootTypes['Coordinates'] | null // Coordinates
     createdby: number // Int!
     createdon: NexusGenScalars['DateTime'] // DateTime!
@@ -291,7 +291,7 @@ export interface NexusGenObjects {
     longtitle: string // String!
     pagetitle: string // String!
     published: boolean // Boolean!
-    uri: string // String!
+    uri?: string | null // String
   }
   Coordinates: {
     // root type
@@ -328,7 +328,7 @@ export interface NexusGenFieldTypes {
   }
   Company: {
     // field return type
-    alias: string // String!
+    alias: string | null // String
     coords: NexusGenRootTypes['Coordinates'] | null // Coordinates
     createdby: number // Int!
     createdon: NexusGenScalars['DateTime'] // DateTime!
@@ -341,7 +341,7 @@ export interface NexusGenFieldTypes {
     name: string // String!
     pagetitle: string // String!
     published: boolean // Boolean!
-    uri: string // String!
+    uri: string | null // String
   }
   Coordinates: {
     // field return type

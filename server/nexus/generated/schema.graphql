@@ -28,7 +28,7 @@ type City {
 Компания
 """
 type Company {
-  alias: String!
+  alias: String
   coords: Coordinates
   createdby: Int!
   createdon: DateTime!
@@ -41,7 +41,7 @@ type Company {
   name: String!
   pagetitle: String!
   published: Boolean!
-  uri: String!
+  uri: String
 }
 
 type Coordinates {

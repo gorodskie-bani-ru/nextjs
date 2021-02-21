@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/camelcase */
 /* eslint-disable @typescript-eslint/ban-ts-ignore */
-/* eslint-disable no-console */
 import { objectType } from 'nexus'
 
 import { Prisma } from '@prisma/client'
@@ -77,9 +76,6 @@ export const Query = objectType({
               const coordsTV = TemplateVarValues.find(
                 (tv) => tv.tmplvarid === 27
               )
-
-              // console.log('TemplateVarValues', TemplateVarValues);
-              console.log('coordsTV', coordsTV)
 
               let coords: NexusGenObjects['Coordinates'] | null = null
 
