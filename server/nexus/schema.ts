@@ -10,6 +10,8 @@ import {
   // enumType,
 } from 'nexus'
 
+import './fix/pluralize'
+
 // import { GraphQLDateTime } from 'graphql-iso-date'
 import { nexusPrisma } from 'nexus-plugin-prisma'
 
@@ -66,6 +68,9 @@ export const schema = makeSchema({
       experimentalCRUD: true,
       atomicOperations: true,
       paginationStrategy: 'prisma',
+      outputs: {
+        typegen: __dirname + '/generated/nexusPrisma.ts',
+      },
     }),
   ],
   types: [
