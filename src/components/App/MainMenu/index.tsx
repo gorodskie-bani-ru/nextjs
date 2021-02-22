@@ -212,7 +212,22 @@ const MainMenu: React.FC = () => {
     }
   }, [context?.cities])
 
-  const citiesList = useMemo<JSX.Element[]>(() => {
+  const baseUrl = '/'
+
+  const citiesList = useMemo<JSX.Element | null>(() => {
+    // const coords = null
+
+    const coordsUrl = ''
+
+    // if (coords) {
+    //   const { lat, lng, zoom } = coords
+
+    //   if (lat && lng && zoom) {
+    //     coordsUrl += '@' + [lat, lng, zoom].join(',')
+    //     baseUrl += coordsUrl
+    //   }
+    // }
+
     const citiesList: JSX.Element[] = []
 
     cities.map((city) => {
@@ -235,12 +250,42 @@ const MainMenu: React.FC = () => {
       )
     })
 
-    return citiesList
-  }, [cities, closeMenu])
+    // return citiesList
+
+    const citiesOpened = false
+
+    return (
+      (mainCity && citiesList && citiesList.length && (
+        <li>
+          <a
+            href={`/city/${coordsUrl}`}
+            title="Бани в городах"
+            className="dropdown-toggle"
+            data-toggle="dropdown"
+          >
+            {mainCity.name} <i className="fa fa-angle-down"></i>
+          </a>
+          <ul
+            className="dropdown-menu"
+            style={{
+              display: citiesOpened ? 'block' : undefined,
+              maxHeight: '70vh',
+              overflow: 'auto',
+            }}
+          >
+            {citiesList}
+          </ul>
+        </li>
+      )) ||
+      null
+    )
+  }, [cities, closeMenu, mainCity])
+
+  // TODO Remove
+  citiesList
 
   return useMemo(() => {
     const user = null
-    const coords = null
 
     // const { username } = user || {}
 
@@ -249,20 +294,6 @@ const MainMenu: React.FC = () => {
     // const ratings = []
     // const cities = []
     // const ratingsOpened = false;
-    const citiesOpened = false
-
-    let baseUrl = '/'
-
-    let coordsUrl = ''
-
-    if (coords) {
-      const { lat, lng, zoom } = coords
-
-      if (lat && lng && zoom) {
-        coordsUrl += '@' + [lat, lng, zoom].join(',')
-        baseUrl += coordsUrl
-      }
-    }
 
     // const ratingsList: JSX.Element[] = []
 
@@ -356,29 +387,10 @@ const MainMenu: React.FC = () => {
               </ul>
             </li>*/}
 
-              {(mainCity && citiesList && citiesList.length && (
-                <li>
-                  <a
-                    href={`/city/${coordsUrl}`}
-                    title="Бани в городах"
-                    className="dropdown-toggle"
-                    data-toggle="dropdown"
-                  >
-                    {mainCity.name} <i className="fa fa-angle-down"></i>
-                  </a>
-                  <ul
-                    className="dropdown-menu"
-                    style={{
-                      display: citiesOpened ? 'block' : undefined,
-                      maxHeight: '70vh',
-                      overflow: 'auto',
-                    }}
-                  >
-                    {citiesList}
-                  </ul>
-                </li>
-              )) ||
-                null}
+              {/* 
+              // TODO Restore citiesList
+              {citiesList} 
+              */}
 
               {/* {(ratingsList && ratingsList.length && (
               <li>
@@ -536,7 +548,7 @@ const MainMenu: React.FC = () => {
         </div>
       </div>
     )
-  }, [citiesList, closeMenu, mainCity])
+  }, [baseUrl, closeMenu])
   // }
 }
 
