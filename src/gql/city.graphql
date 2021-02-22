@@ -16,7 +16,7 @@ query cities(
     where: $where
   ) {
     id
-    name
+    pagetitle
     longtitle
     alias
     uri

@@ -35,13 +35,12 @@ export interface BoolFilter {
 /** Город */
 export interface City {
   __typename?: 'City';
-  TemplateVarValues: Array<Bani684SiteTmplvarContentvalues>;
+  TemplateVarValues?: Maybe<Array<Bani684SiteTmplvarContentvalues>>;
   alias?: Maybe<Scalars['String']>;
   /** Координаты */
   coords?: Maybe<Coordinates>;
   id: Scalars['Int'];
   longtitle: Scalars['String'];
-  name: Scalars['String'];
   pagetitle: Scalars['String'];
   uri?: Maybe<Scalars['String']>;
 }
@@ -49,7 +48,7 @@ export interface City {
 /** Компания */
 export interface Company {
   __typename?: 'Company';
-  TemplateVarValues: Array<Bani684SiteTmplvarContentvalues>;
+  TemplateVarValues?: Maybe<Array<Bani684SiteTmplvarContentvalues>>;
   alias?: Maybe<Scalars['String']>;
   /** Координаты */
   coords?: Maybe<Coordinates>;
@@ -61,7 +60,6 @@ export interface Company {
   id: Scalars['Int'];
   image?: Maybe<Scalars['String']>;
   longtitle: Scalars['String'];
-  name: Scalars['String'];
   pagetitle: Scalars['String'];
   published: Scalars['Boolean'];
   uri?: Maybe<Scalars['String']>;
@@ -139,12 +137,12 @@ export interface Query {
   companies: Array<Company>;
   /** Ресурсы */
   resources: Array<Resource>;
-  /** Количество всех ресурсов */
-  resourcesCount: Scalars['Int'];
 }
 
 
 export type QueryCitiesArgs = {
+  cursor?: Maybe<Bani684SiteContentWhereUniqueInput>;
+  orderBy?: Maybe<Array<Bani684SiteContentOrderByInput>>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<Bani684SiteContentWhereInput>;
@@ -152,6 +150,8 @@ export type QueryCitiesArgs = {
 
 
 export type QueryCompaniesArgs = {
+  cursor?: Maybe<Bani684SiteContentWhereUniqueInput>;
+  orderBy?: Maybe<Array<Bani684SiteContentOrderByInput>>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<Bani684SiteContentWhereInput>;
@@ -166,16 +166,20 @@ export type QueryResourcesArgs = {
   where?: Maybe<Bani684SiteContentWhereInput>;
 };
 
-
-export type QueryResourcesCountArgs = {
-  where?: Maybe<Bani684SiteContentWhereInput>;
-};
-
 export interface Resource {
   __typename?: 'Resource';
+  TemplateVarValues?: Maybe<Array<Bani684SiteTmplvarContentvalues>>;
+  alias?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['String']>;
+  createdby: Scalars['Int'];
+  createdon: Scalars['DateTime'];
+  description: Scalars['String'];
   id: Scalars['Int'];
   longtitle: Scalars['String'];
-  name: Scalars['String'];
+  pagetitle: Scalars['String'];
+  published: Scalars['Boolean'];
+  template: Scalars['Int'];
+  uri?: Maybe<Scalars['String']>;
 }
 
 export enum SortOrder {

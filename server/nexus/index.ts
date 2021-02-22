@@ -55,11 +55,34 @@ export const schema = makeSchema({
     export: 'PrismaContext',
   },
   sourceTypes: {
+    debug: process.env.NODE_ENV === 'development',
     modules: [
       {
         module: '@prisma/client',
         alias: 'prisma',
       },
+      // {
+      //   module: require.resolve('/disk480/www/gorodskie-bani.ru/v2/front/node_modules/.prisma/client/index.d.ts'),
+      //   alias: 'prisma',
+      // },
+      // {
+      //   module: require.resolve('/disk480/www/gorodskie-bani.ru/v2/front/server/nexus/types/index.ts'),
+      //   alias: 'inputs',
+      // },
+      // {
+      //   module: '@prisma/client',
+      //   alias: 'bani684_site_contentWhereInput',
+      // },
+
+      // sourceType: {
+      // },
+      // {
+      //   module: path.join(
+      //     __dirname,
+      //     './endpoints/landing-public/api/generated/PromoCode_.ts'
+      //   ),
+      //   alias: 'PromoCode_',
+      // },
     ],
   },
   prettierConfig:

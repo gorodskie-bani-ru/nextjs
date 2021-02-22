@@ -95,7 +95,7 @@ fragment ListCompany on Company {
 
 fragment CompanyFields on Company {
   id
-  name
+  pagetitle
   longtitle
   alias
   uri

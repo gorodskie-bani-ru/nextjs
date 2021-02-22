@@ -12,10 +12,6 @@ export const Company = objectType({
   definition(t) {
     t.nonNull.int('id')
     t.nonNull.string('pagetitle')
-    t.nonNull.string('name', {
-      // deprecation: "",
-      resolve: (_) => _.pagetitle,
-    })
     t.nonNull.string('longtitle')
     t.nonNull.string('description')
     t.nonNull.int('createdby')
@@ -42,7 +38,7 @@ export const Company = objectType({
     })
 
     // t.nonNull.string('email')
-    t.nonNull.list.nonNull.field('TemplateVarValues', {
+    t.list.nonNull.field('TemplateVarValues', {
       type: 'bani684_site_tmplvar_contentvalues',
     })
   },

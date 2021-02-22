@@ -6,7 +6,7 @@ import { TemplateVarIDs } from '../../../constants'
  * Координаты
  */
 export const coordsResolver = (parent: SourceValue<'City' | 'Company'>) => {
-  const coordsTV = parent.TemplateVarValues.find(
+  const coordsTV = parent.TemplateVarValues?.find(
     (tv) => tv.tmplvarid === TemplateVarIDs.coors
   )
 

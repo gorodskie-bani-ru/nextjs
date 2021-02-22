@@ -16,7 +16,7 @@ input BoolFilter {
 Город
 """
 type City {
-  TemplateVarValues: [bani684_site_tmplvar_contentvalues!]!
+  TemplateVarValues: [bani684_site_tmplvar_contentvalues!]
   alias: String
 
   """
@@ -25,7 +25,6 @@ type City {
   coords: Coordinates
   id: Int!
   longtitle: String!
-  name: String!
   pagetitle: String!
   uri: String
 }
@@ -34,7 +33,7 @@ type City {
 Компания
 """
 type Company {
-  TemplateVarValues: [bani684_site_tmplvar_contentvalues!]!
+  TemplateVarValues: [bani684_site_tmplvar_contentvalues!]
   alias: String
 
   """
@@ -49,7 +48,6 @@ type Company {
   id: Int!
   image: String
   longtitle: String!
-  name: String!
   pagetitle: String!
   published: Boolean!
   uri: String
@@ -129,12 +127,20 @@ type Query {
   """
   Города
   """
-  cities(skip: Int, take: Int, where: bani684_site_contentWhereInput): [City!]!
+  cities(
+    cursor: bani684_site_contentWhereUniqueInput
+    orderBy: [bani684_site_contentOrderByInput!]
+    skip: Int
+    take: Int
+    where: bani684_site_contentWhereInput
+  ): [City!]!
 
   """
   Компании
   """
   companies(
+    cursor: bani684_site_contentWhereUniqueInput
+    orderBy: [bani684_site_contentOrderByInput!]
     skip: Int
     take: Int
     where: bani684_site_contentWhereInput
@@ -150,17 +156,21 @@ type Query {
     take: Int
     where: bani684_site_contentWhereInput
   ): [Resource!]!
-
-  """
-  Количество всех ресурсов
-  """
-  resourcesCount(where: bani684_site_contentWhereInput): Int!
 }
 
 type Resource {
+  TemplateVarValues: [bani684_site_tmplvar_contentvalues!]
+  alias: String
+  content: String
+  createdby: Int!
+  createdon: DateTime!
+  description: String!
   id: Int!
   longtitle: String!
-  name: String!
+  pagetitle: String!
+  published: Boolean!
+  template: Int!
+  uri: String
 }
 
 enum SortOrder {

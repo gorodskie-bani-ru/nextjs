@@ -11,10 +11,6 @@ export const City = objectType({
   definition(t) {
     t.nonNull.int('id')
     t.nonNull.string('pagetitle')
-    t.nonNull.string('name', {
-      // deprecation: "",
-      resolve: (_) => _.pagetitle,
-    })
     t.nonNull.string('longtitle')
     t.string('uri')
     t.string('alias')
@@ -28,7 +24,7 @@ export const City = objectType({
       resolve: coordsResolver,
     })
 
-    t.nonNull.list.nonNull.field('TemplateVarValues', {
+    t.list.nonNull.field('TemplateVarValues', {
       type: 'bani684_site_tmplvar_contentvalues',
     })
   },

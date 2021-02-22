@@ -4,7 +4,6 @@
  */
 
 import { PrismaContext } from './../context'
-import { bani684_site_content } from '@prisma/client'
 import { core } from 'nexus'
 declare global {
   interface NexusGenCustomInputMethods<TypeName extends string> {
@@ -271,7 +270,9 @@ export interface NexusGenScalars {
 export interface NexusGenObjects {
   City: {
     // root type
-    TemplateVarValues: NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][] // [bani684_site_tmplvar_contentvalues!]!
+    TemplateVarValues?:
+      | NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][]
+      | null // [bani684_site_tmplvar_contentvalues!]
     alias?: string | null // String
     id: number // Int!
     longtitle: string // String!
@@ -280,7 +281,9 @@ export interface NexusGenObjects {
   }
   Company: {
     // root type
-    TemplateVarValues: NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][] // [bani684_site_tmplvar_contentvalues!]!
+    TemplateVarValues?:
+      | NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][]
+      | null // [bani684_site_tmplvar_contentvalues!]
     alias?: string | null // String
     createdby: number // Int!
     createdon: NexusGenScalars['DateTime'] // DateTime!
@@ -301,7 +304,23 @@ export interface NexusGenObjects {
     zoom?: number | null // Int
   }
   Query: {}
-  Resource: bani684_site_content
+  Resource: {
+    // root type
+    TemplateVarValues?:
+      | NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][]
+      | null // [bani684_site_tmplvar_contentvalues!]
+    alias?: string | null // String
+    content?: string | null // String
+    createdby: number // Int!
+    createdon: NexusGenScalars['DateTime'] // DateTime!
+    description: string // String!
+    id: number // Int!
+    longtitle: string // String!
+    pagetitle: string // String!
+    published: boolean // Boolean!
+    template: number // Int!
+    uri?: string | null // String
+  }
   bani684_site_tmplvar_contentvalues: {
     // root type
     contentid: number // Int!
@@ -324,18 +343,21 @@ export type NexusGenAllTypes = NexusGenRootTypes &
 export interface NexusGenFieldTypes {
   City: {
     // field return type
-    TemplateVarValues: NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][] // [bani684_site_tmplvar_contentvalues!]!
+    TemplateVarValues:
+      | NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][]
+      | null // [bani684_site_tmplvar_contentvalues!]
     alias: string | null // String
     coords: NexusGenRootTypes['Coordinates'] | null // Coordinates
     id: number // Int!
     longtitle: string // String!
-    name: string // String!
     pagetitle: string // String!
     uri: string | null // String
   }
   Company: {
     // field return type
-    TemplateVarValues: NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][] // [bani684_site_tmplvar_contentvalues!]!
+    TemplateVarValues:
+      | NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][]
+      | null // [bani684_site_tmplvar_contentvalues!]
     alias: string | null // String
     coords: NexusGenRootTypes['Coordinates'] | null // Coordinates
     createdby: number // Int!
@@ -346,7 +368,6 @@ export interface NexusGenFieldTypes {
     id: number // Int!
     image: string | null // String
     longtitle: string // String!
-    name: string // String!
     pagetitle: string // String!
     published: boolean // Boolean!
     uri: string | null // String
@@ -362,13 +383,23 @@ export interface NexusGenFieldTypes {
     cities: NexusGenRootTypes['City'][] // [City!]!
     companies: NexusGenRootTypes['Company'][] // [Company!]!
     resources: NexusGenRootTypes['Resource'][] // [Resource!]!
-    resourcesCount: number // Int!
   }
   Resource: {
     // field return type
+    TemplateVarValues:
+      | NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][]
+      | null // [bani684_site_tmplvar_contentvalues!]
+    alias: string | null // String
+    content: string | null // String
+    createdby: number // Int!
+    createdon: NexusGenScalars['DateTime'] // DateTime!
+    description: string // String!
     id: number // Int!
     longtitle: string // String!
-    name: string // String!
+    pagetitle: string // String!
+    published: boolean // Boolean!
+    template: number // Int!
+    uri: string | null // String
   }
   bani684_site_tmplvar_contentvalues: {
     // field return type
@@ -387,7 +418,6 @@ export interface NexusGenFieldTypeNames {
     coords: 'Coordinates'
     id: 'Int'
     longtitle: 'String'
-    name: 'String'
     pagetitle: 'String'
     uri: 'String'
   }
@@ -404,7 +434,6 @@ export interface NexusGenFieldTypeNames {
     id: 'Int'
     image: 'String'
     longtitle: 'String'
-    name: 'String'
     pagetitle: 'String'
     published: 'Boolean'
     uri: 'String'
@@ -420,13 +449,21 @@ export interface NexusGenFieldTypeNames {
     cities: 'City'
     companies: 'Company'
     resources: 'Resource'
-    resourcesCount: 'Int'
   }
   Resource: {
     // field return type name
+    TemplateVarValues: 'bani684_site_tmplvar_contentvalues'
+    alias: 'String'
+    content: 'String'
+    createdby: 'Int'
+    createdon: 'DateTime'
+    description: 'String'
     id: 'Int'
     longtitle: 'String'
-    name: 'String'
+    pagetitle: 'String'
+    published: 'Boolean'
+    template: 'Int'
+    uri: 'String'
   }
   bani684_site_tmplvar_contentvalues: {
     // field return type name
@@ -441,12 +478,16 @@ export interface NexusGenArgTypes {
   Query: {
     cities: {
       // args
+      cursor?: NexusGenInputs['bani684_site_contentWhereUniqueInput'] | null // bani684_site_contentWhereUniqueInput
+      orderBy?: NexusGenInputs['bani684_site_contentOrderByInput'][] | null // [bani684_site_contentOrderByInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['bani684_site_contentWhereInput'] | null // bani684_site_contentWhereInput
     }
     companies: {
       // args
+      cursor?: NexusGenInputs['bani684_site_contentWhereUniqueInput'] | null // bani684_site_contentWhereUniqueInput
+      orderBy?: NexusGenInputs['bani684_site_contentOrderByInput'][] | null // [bani684_site_contentOrderByInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['bani684_site_contentWhereInput'] | null // bani684_site_contentWhereInput
@@ -457,10 +498,6 @@ export interface NexusGenArgTypes {
       orderBy?: NexusGenInputs['bani684_site_contentOrderByInput'][] | null // [bani684_site_contentOrderByInput!]
       skip?: number | null // Int
       take?: number | null // Int
-      where?: NexusGenInputs['bani684_site_contentWhereInput'] | null // bani684_site_contentWhereInput
-    }
-    resourcesCount: {
-      // args
       where?: NexusGenInputs['bani684_site_contentWhereInput'] | null // bani684_site_contentWhereInput
     }
   }

@@ -3,7 +3,10 @@
 import { objectType } from 'nexus'
 import { companies } from './definitions/Company'
 import { cities } from './definitions/City'
-import { resources, resourcesCount } from './definitions/Resource'
+import {
+  resources,
+  // resourcesCount,
+} from './definitions/Resource'
 
 export const Query = objectType({
   name: 'Query',
@@ -11,7 +14,7 @@ export const Query = objectType({
     companies(t)
     cities(t)
     resources(t)
-    resourcesCount(t)
+    // resourcesCount(t)
 
     // t.crud.bani684SiteContents({
     //   alias: 'resources',

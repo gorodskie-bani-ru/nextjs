@@ -227,7 +227,7 @@ const MainMenu: React.FC = () => {
     const citiesList: JSX.Element[] = []
 
     cities.map((city) => {
-      const { id, name, coords, alias: uri } = city
+      const { id, pagetitle: name, coords, alias: uri } = city
 
       if (!coords) {
         return
@@ -259,7 +259,7 @@ const MainMenu: React.FC = () => {
             className="dropdown-toggle"
             data-toggle="dropdown"
           >
-            {mainCity.name} <i className="fa fa-angle-down"></i>
+            {mainCity.pagetitle} <i className="fa fa-angle-down"></i>
           </a>
           <ul
             className="dropdown-menu"

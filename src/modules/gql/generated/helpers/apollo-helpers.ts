@@ -1,16 +1,15 @@
 import { FieldPolicy, FieldReadFunction, TypePolicies, TypePolicy } from '@apollo/client/cache';
-export type CityKeySpecifier = ('TemplateVarValues' | 'alias' | 'coords' | 'id' | 'longtitle' | 'name' | 'pagetitle' | 'uri' | CityKeySpecifier)[];
+export type CityKeySpecifier = ('TemplateVarValues' | 'alias' | 'coords' | 'id' | 'longtitle' | 'pagetitle' | 'uri' | CityKeySpecifier)[];
 export type CityFieldPolicy = {
 	TemplateVarValues?: FieldPolicy<any> | FieldReadFunction<any>,
 	alias?: FieldPolicy<any> | FieldReadFunction<any>,
 	coords?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	longtitle?: FieldPolicy<any> | FieldReadFunction<any>,
-	name?: FieldPolicy<any> | FieldReadFunction<any>,
 	pagetitle?: FieldPolicy<any> | FieldReadFunction<any>,
 	uri?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type CompanyKeySpecifier = ('TemplateVarValues' | 'alias' | 'coords' | 'createdby' | 'createdon' | 'description' | 'editedby' | 'editedon' | 'id' | 'image' | 'longtitle' | 'name' | 'pagetitle' | 'published' | 'uri' | CompanyKeySpecifier)[];
+export type CompanyKeySpecifier = ('TemplateVarValues' | 'alias' | 'coords' | 'createdby' | 'createdon' | 'description' | 'editedby' | 'editedon' | 'id' | 'image' | 'longtitle' | 'pagetitle' | 'published' | 'uri' | CompanyKeySpecifier)[];
 export type CompanyFieldPolicy = {
 	TemplateVarValues?: FieldPolicy<any> | FieldReadFunction<any>,
 	alias?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -23,7 +22,6 @@ export type CompanyFieldPolicy = {
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	image?: FieldPolicy<any> | FieldReadFunction<any>,
 	longtitle?: FieldPolicy<any> | FieldReadFunction<any>,
-	name?: FieldPolicy<any> | FieldReadFunction<any>,
 	pagetitle?: FieldPolicy<any> | FieldReadFunction<any>,
 	published?: FieldPolicy<any> | FieldReadFunction<any>,
 	uri?: FieldPolicy<any> | FieldReadFunction<any>
@@ -34,18 +32,26 @@ export type CoordinatesFieldPolicy = {
 	lng?: FieldPolicy<any> | FieldReadFunction<any>,
 	zoom?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type QueryKeySpecifier = ('cities' | 'companies' | 'resources' | 'resourcesCount' | QueryKeySpecifier)[];
+export type QueryKeySpecifier = ('cities' | 'companies' | 'resources' | QueryKeySpecifier)[];
 export type QueryFieldPolicy = {
 	cities?: FieldPolicy<any> | FieldReadFunction<any>,
 	companies?: FieldPolicy<any> | FieldReadFunction<any>,
-	resources?: FieldPolicy<any> | FieldReadFunction<any>,
-	resourcesCount?: FieldPolicy<any> | FieldReadFunction<any>
+	resources?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type ResourceKeySpecifier = ('id' | 'longtitle' | 'name' | ResourceKeySpecifier)[];
+export type ResourceKeySpecifier = ('TemplateVarValues' | 'alias' | 'content' | 'createdby' | 'createdon' | 'description' | 'id' | 'longtitle' | 'pagetitle' | 'published' | 'template' | 'uri' | ResourceKeySpecifier)[];
 export type ResourceFieldPolicy = {
+	TemplateVarValues?: FieldPolicy<any> | FieldReadFunction<any>,
+	alias?: FieldPolicy<any> | FieldReadFunction<any>,
+	content?: FieldPolicy<any> | FieldReadFunction<any>,
+	createdby?: FieldPolicy<any> | FieldReadFunction<any>,
+	createdon?: FieldPolicy<any> | FieldReadFunction<any>,
+	description?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	longtitle?: FieldPolicy<any> | FieldReadFunction<any>,
-	name?: FieldPolicy<any> | FieldReadFunction<any>
+	pagetitle?: FieldPolicy<any> | FieldReadFunction<any>,
+	published?: FieldPolicy<any> | FieldReadFunction<any>,
+	template?: FieldPolicy<any> | FieldReadFunction<any>,
+	uri?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type bani684_site_tmplvar_contentvaluesKeySpecifier = ('contentid' | 'id' | 'tmplvarid' | 'value' | bani684_site_tmplvar_contentvaluesKeySpecifier)[];
 export type bani684_site_tmplvar_contentvaluesFieldPolicy = {

@@ -24,7 +24,7 @@ const CompaniesPage = () => {
         return null
       }
 
-      const { id, name, uri } = company
+      const { id, pagetitle: name, uri } = company
 
       return (
         <div key={id}>

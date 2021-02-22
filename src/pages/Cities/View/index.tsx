@@ -15,7 +15,7 @@ const CitiesPageView: React.FC<CitiesPageViewProps> = ({ cities }) => {
           return (
             <Grid key={n.id} item xs={12} sm={4} md={3}>
               <Link href={n.uri || '/'}>
-                <a title={n.name}>{n.name}</a>
+                <a title={n.pagetitle}>{n.pagetitle}</a>
               </Link>
             </Grid>
           )

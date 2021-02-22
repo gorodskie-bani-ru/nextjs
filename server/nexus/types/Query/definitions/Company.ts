@@ -5,17 +5,24 @@ import { companiesResolver } from '../resolvers/companiesResolver'
 // import { NexusGenObjects } from 'server/nexus/generated/nexus'
 
 export const companies = (t: ObjectDefinitionBlock<'Query'>) => {
-  t.nonNull.list.nonNull.field('companies', {
-    // alias: 'companies',
+  // t.nonNull.list.nonNull.field('companies', {
+  //   // alias: 'companies',
+  //   description: 'Компании',
+  //   type: 'Company',
+  //   // ordering: true,
+  //   // filtering: true,
+  //   args: {
+  //     // where: 'bani684_site_contentWhereInput',
+  //     take: 'Int',
+  //     skip: 'Int',
+  //   },
+
+  t.crud.bani684SiteContents({
+    alias: 'companies',
     description: 'Компании',
     type: 'Company',
-    // ordering: true,
-    // filtering: true,
-    args: {
-      where: 'bani684_site_contentWhereInput',
-      take: 'Int',
-      skip: 'Int',
-    },
+    ordering: true,
+    filtering: true,
     resolve: companiesResolver,
     // resolve(_, args, ctx) {
     //   const variables = args as Pick<
