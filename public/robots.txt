@@ -1,0 +1,9 @@
+User-agent: *
+Host: https://gorodskie-bani.ru/
+Disallow: 
+Disallow: /assets/*.php
+Disallow: /*?=
+Sitemap: https://gorodskie-bani.ru/sitemap.xml
+Sitemap: https://gorodskie-bani.ru/sitemap/people.xml
+Sitemap: https://gorodskie-bani.ru/sitemap/comments.xml
+Sitemap: https://gorodskie-bani.ru/sitemap/tags.xml
