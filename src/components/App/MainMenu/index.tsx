@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 import React, { useCallback, useContext, useMemo } from 'react'
 
 // import PropTypes from 'prop-types'
@@ -195,8 +193,6 @@ const MainMenu: React.FC = () => {
   // }, [])
 
   const context = useContext(AppContext)
-
-  console.log('context', context)
 
   /**
    * Формируем список городов с сортировкой

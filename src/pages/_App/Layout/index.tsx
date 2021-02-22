@@ -47,7 +47,7 @@ const Layout: React.FC = ({ children, ...other }) => {
           margin: '0 auto',
           // padding: '0 16px',
           height: '100%',
-          border: '1px solid',
+          // border: '1px solid',
           display: 'flex',
           flexDirection: 'column',
         }}
@@ -79,7 +79,7 @@ const Layout: React.FC = ({ children, ...other }) => {
           style={{
             overflow: 'auto',
             flex: 1,
-            border: '1px solid green',
+            // border: '1px solid green',
             padding: '20px 16px',
           }}
         >

@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useMemo } from 'react'
 import NextApp, { AppContext as NextAppContext } from 'next/app'
 import { ApolloProvider } from '@apollo/client'
@@ -32,7 +30,9 @@ import { AppContext, AppContextValue } from './Context'
 
 declare global {
   interface Window {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     $: any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     jQuery: any
   }
 }
@@ -75,8 +75,6 @@ const App: MainApp<AppProps> = ({ Component, pageProps }) => {
   const citiesData = useCitiesQuery({
     client: apolloClient,
   })
-
-  console.log('citiesData', citiesData.data?.cities)
 
   /**
    * Формируем контекст
