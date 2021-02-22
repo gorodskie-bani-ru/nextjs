@@ -1,6 +1,6 @@
 import express from 'express'
 import next from 'next'
-// import { createProxyMiddleware } from 'http-proxy-middleware'
+import { createProxyMiddleware } from 'http-proxy-middleware'
 // import { endpoint } from '../src/config'
 import graphqlServer from './graphqlServer'
 
@@ -37,12 +37,26 @@ const handle = app.getRequestHandler()
 //   },
 // })
 
+/**
+ * Проксирование на nginx
+ */
+const siteProxy = createProxyMiddleware({
+  target: process.env.SITE_URL,
+  changeOrigin: true,
+  ws: false,
+})
+
 app.prepare().then(() => {
   const server = express()
 
   server.use(express.static(cwd + '/shared'))
 
   // server.post('/api/', apiProxy)
+
+  /**
+   * Проксирование на картинки
+   */
+  server.use('/images/', siteProxy)
 
   graphqlServer.applyMiddleware({
     app: server,

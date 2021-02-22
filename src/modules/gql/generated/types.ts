@@ -49,7 +49,12 @@ export interface City {
 export interface Company {
   __typename?: 'Company';
   TemplateVarValues?: Maybe<Array<Bani684SiteTmplvarContentvalues>>;
+  /** Адрес (без указания города) */
+  address?: Maybe<Scalars['String']>;
+  /** Комментарии к адресу */
+  addressComments?: Maybe<Scalars['String']>;
   alias?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['String']>;
   /** Координаты */
   coords?: Maybe<Coordinates>;
   createdby: Scalars['Int'];
@@ -57,12 +62,17 @@ export interface Company {
   description: Scalars['String'];
   editedby: Scalars['Int'];
   editedon: Scalars['DateTime'];
+  gallery: Array<GalleryImage>;
   id: Scalars['Int'];
   image?: Maybe<Scalars['String']>;
   longtitle: Scalars['String'];
   pagetitle: Scalars['String'];
+  /** Цены */
+  prices?: Maybe<Scalars['String']>;
   published: Scalars['Boolean'];
   uri?: Maybe<Scalars['String']>;
+  /** Рабочее время */
+  workTime?: Maybe<Scalars['String']>;
 }
 
 export interface Coordinates {
@@ -73,6 +83,13 @@ export interface Coordinates {
   zoom?: Maybe<Scalars['Int']>;
 }
 
+
+export interface GalleryImage {
+  __typename?: 'GalleryImage';
+  description: Scalars['String'];
+  image: Scalars['String'];
+  title: Scalars['String'];
+}
 
 export interface IntFilter {
   equals?: Maybe<Scalars['Int']>;

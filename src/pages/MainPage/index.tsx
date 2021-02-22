@@ -1,6 +1,6 @@
 // import { useRouter } from 'next/router'
-import Head from 'next/head'
-import OldMainPage from 'src/components_old/Pages/MainPage'
+import { NextSeo } from 'next-seo'
+// import OldMainPage from 'src/components_old/Pages/MainPage'
 import { Page } from '../_App/interfaces'
 // import { GetStaticProps } from 'next'
 // import { GetServerSideProps } from 'next'
@@ -12,6 +12,18 @@ import { Page } from '../_App/interfaces'
 
 // import { initializeApollo } from '../src/lib/apolloClient'
 
+import {
+  useCompaniesQuery,
+  CompaniesDocument,
+  CompaniesQueryVariables,
+} from 'src/modules/gql/generated'
+
+import CompaniesView from '../Companies/View'
+
+const variables: CompaniesQueryVariables = {
+  take: 12,
+}
+
 export const MainPage: Page = (): JSX.Element => {
   // const router = useRouter()
 
@@ -19,51 +31,33 @@ export const MainPage: Page = (): JSX.Element => {
   //   // query: { skip, first },
   // } = router
 
+  const companiesResponse = useCompaniesQuery({
+    variables,
+  })
+
   return (
     <>
-      <Head>
-        <title>Бани Москвы | Городские и общественные бани</title>
-        <link rel="icon" href="/favicon.ico" />
-        <meta name="description" content="Все Городские и общественные бани" />
-      </Head>
+      <NextSeo
+        title="Городские и общественные бани"
+        description="Все Городские и общественные бани"
+      />
 
-      <OldMainPage />
+      {/* <OldMainPage /> */}
+
+      <CompaniesView componies={companiesResponse.data?.companies || []} />
     </>
   )
 }
 
-// MainPage.getInitialProps = () => {
+MainPage.getInitialProps = async (appContext) => {
+  const { apolloClient } = appContext
 
-//   return {
-//     statusCode: 404,
-//   }
-// }
+  await apolloClient.query({
+    query: CompaniesDocument,
+    variables,
+  })
 
-// export const getServerSideProps: GetServerSideProps = async (context) => {
-//   const { skip, first } = context.query
-
-//   const apolloClient = initializeApollo()
-
-//   await apolloClient.query({
-//     query: ALL_POSTS_QUERY,
-//     variables: {
-//       ...allPostsQueryVars,
-//       skip:
-//         skip && typeof skip === 'string'
-//           ? parseInt(skip)
-//           : allPostsQueryVars.skip,
-//       first:
-//         first && typeof first === 'string'
-//           ? parseInt(first)
-//           : allPostsQueryVars.first,
-//     },
-//   })
-
-//   return {
-//     props: {
-//       initialApolloState: apolloClient.cache.extract(),
-//     },
-//   }
-// }
+  return {}
+}
 
 export default MainPage

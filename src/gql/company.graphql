@@ -7,6 +7,8 @@ query companies(
   $skip: Int
   $take: Int
   $where: bani684_site_contentWhereInput
+  $orderBy: [bani684_site_contentOrderByInput!]
+  $withContent: Boolean = false
 ) {
   # companiesList(
   #   limit: $companiesLimit
@@ -24,9 +26,20 @@ query companies(
   #     ...ListCompany
   #   }
   # }
-  companies(skip: $skip, take: $take, where: $where) {
-    ...ListCompany
+  companies(skip: $skip, take: $take, where: $where, orderBy: $orderBy) {
+    ...Company_
   }
+}
+
+fragment Company_ on Company {
+  ...ListCompany
+  # TemplateVarValues {
+  #   id
+  #   tmplvarid
+  #   contentid
+  #   value
+  # }
+  content @include(if: $withContent)
 }
 
 fragment ListCompany on Company {
@@ -135,15 +148,24 @@ fragment CompanyFields on Company {
   }
   # tvs @include(if:$getTVs)
   # {
-  #   address
+  address
   #   site
   #   facility_type
   #   phones
   #   work_time
-  #   prices
+  workTime
+  prices
+  # pricesComments
   #   metro
   #   approved
   # }
+
+  gallery {
+    image
+    title
+    description
+  }
+
   # schedule @include(if:$companyGetSchedules)
   # {
   #   ...ScheduleDay

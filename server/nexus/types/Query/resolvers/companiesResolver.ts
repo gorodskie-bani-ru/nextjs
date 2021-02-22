@@ -37,6 +37,7 @@ export const companiesResolver: FieldResolver<
       description: true,
       alias: true,
       uri: true,
+      content: true,
       published: true,
       createdby: true,
       createdon: true,

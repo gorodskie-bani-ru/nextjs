@@ -285,13 +285,13 @@ export interface NexusGenObjects {
       | NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][]
       | null // [bani684_site_tmplvar_contentvalues!]
     alias?: string | null // String
+    content?: string | null // String
     createdby: number // Int!
     createdon: NexusGenScalars['DateTime'] // DateTime!
     description: string // String!
     editedby: number // Int!
     editedon: NexusGenScalars['DateTime'] // DateTime!
     id: number // Int!
-    image?: string | null // String
     longtitle: string // String!
     pagetitle: string // String!
     published: boolean // Boolean!
@@ -302,6 +302,12 @@ export interface NexusGenObjects {
     lat: number // Float!
     lng: number // Float!
     zoom?: number | null // Int
+  }
+  GalleryImage: {
+    // root type
+    description: string // String!
+    image: string // String!
+    title: string // String!
   }
   Query: {}
   Resource: {
@@ -358,25 +364,37 @@ export interface NexusGenFieldTypes {
     TemplateVarValues:
       | NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][]
       | null // [bani684_site_tmplvar_contentvalues!]
+    address: string | null // String
+    addressComments: string | null // String
     alias: string | null // String
+    content: string | null // String
     coords: NexusGenRootTypes['Coordinates'] | null // Coordinates
     createdby: number // Int!
     createdon: NexusGenScalars['DateTime'] // DateTime!
     description: string // String!
     editedby: number // Int!
     editedon: NexusGenScalars['DateTime'] // DateTime!
+    gallery: NexusGenRootTypes['GalleryImage'][] // [GalleryImage!]!
     id: number // Int!
     image: string | null // String
     longtitle: string // String!
     pagetitle: string // String!
+    prices: string | null // String
     published: boolean // Boolean!
     uri: string | null // String
+    workTime: string | null // String
   }
   Coordinates: {
     // field return type
     lat: number // Float!
     lng: number // Float!
     zoom: number | null // Int
+  }
+  GalleryImage: {
+    // field return type
+    description: string // String!
+    image: string // String!
+    title: string // String!
   }
   Query: {
     // field return type
@@ -424,25 +442,37 @@ export interface NexusGenFieldTypeNames {
   Company: {
     // field return type name
     TemplateVarValues: 'bani684_site_tmplvar_contentvalues'
+    address: 'String'
+    addressComments: 'String'
     alias: 'String'
+    content: 'String'
     coords: 'Coordinates'
     createdby: 'Int'
     createdon: 'DateTime'
     description: 'String'
     editedby: 'Int'
     editedon: 'DateTime'
+    gallery: 'GalleryImage'
     id: 'Int'
     image: 'String'
     longtitle: 'String'
     pagetitle: 'String'
+    prices: 'String'
     published: 'Boolean'
     uri: 'String'
+    workTime: 'String'
   }
   Coordinates: {
     // field return type name
     lat: 'Float'
     lng: 'Float'
     zoom: 'Int'
+  }
+  GalleryImage: {
+    // field return type name
+    description: 'String'
+    image: 'String'
+    title: 'String'
   }
   Query: {
     // field return type name

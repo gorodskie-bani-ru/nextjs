@@ -9,28 +9,40 @@ export type CityFieldPolicy = {
 	pagetitle?: FieldPolicy<any> | FieldReadFunction<any>,
 	uri?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type CompanyKeySpecifier = ('TemplateVarValues' | 'alias' | 'coords' | 'createdby' | 'createdon' | 'description' | 'editedby' | 'editedon' | 'id' | 'image' | 'longtitle' | 'pagetitle' | 'published' | 'uri' | CompanyKeySpecifier)[];
+export type CompanyKeySpecifier = ('TemplateVarValues' | 'address' | 'addressComments' | 'alias' | 'content' | 'coords' | 'createdby' | 'createdon' | 'description' | 'editedby' | 'editedon' | 'gallery' | 'id' | 'image' | 'longtitle' | 'pagetitle' | 'prices' | 'published' | 'uri' | 'workTime' | CompanyKeySpecifier)[];
 export type CompanyFieldPolicy = {
 	TemplateVarValues?: FieldPolicy<any> | FieldReadFunction<any>,
+	address?: FieldPolicy<any> | FieldReadFunction<any>,
+	addressComments?: FieldPolicy<any> | FieldReadFunction<any>,
 	alias?: FieldPolicy<any> | FieldReadFunction<any>,
+	content?: FieldPolicy<any> | FieldReadFunction<any>,
 	coords?: FieldPolicy<any> | FieldReadFunction<any>,
 	createdby?: FieldPolicy<any> | FieldReadFunction<any>,
 	createdon?: FieldPolicy<any> | FieldReadFunction<any>,
 	description?: FieldPolicy<any> | FieldReadFunction<any>,
 	editedby?: FieldPolicy<any> | FieldReadFunction<any>,
 	editedon?: FieldPolicy<any> | FieldReadFunction<any>,
+	gallery?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	image?: FieldPolicy<any> | FieldReadFunction<any>,
 	longtitle?: FieldPolicy<any> | FieldReadFunction<any>,
 	pagetitle?: FieldPolicy<any> | FieldReadFunction<any>,
+	prices?: FieldPolicy<any> | FieldReadFunction<any>,
 	published?: FieldPolicy<any> | FieldReadFunction<any>,
-	uri?: FieldPolicy<any> | FieldReadFunction<any>
+	uri?: FieldPolicy<any> | FieldReadFunction<any>,
+	workTime?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type CoordinatesKeySpecifier = ('lat' | 'lng' | 'zoom' | CoordinatesKeySpecifier)[];
 export type CoordinatesFieldPolicy = {
 	lat?: FieldPolicy<any> | FieldReadFunction<any>,
 	lng?: FieldPolicy<any> | FieldReadFunction<any>,
 	zoom?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type GalleryImageKeySpecifier = ('description' | 'image' | 'title' | GalleryImageKeySpecifier)[];
+export type GalleryImageFieldPolicy = {
+	description?: FieldPolicy<any> | FieldReadFunction<any>,
+	image?: FieldPolicy<any> | FieldReadFunction<any>,
+	title?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type QueryKeySpecifier = ('cities' | 'companies' | 'resources' | QueryKeySpecifier)[];
 export type QueryFieldPolicy = {
@@ -72,6 +84,10 @@ export type TypedTypePolicies = TypePolicies & {
 	Coordinates?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | CoordinatesKeySpecifier | (() => undefined | CoordinatesKeySpecifier),
 		fields?: CoordinatesFieldPolicy,
+	},
+	GalleryImage?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | GalleryImageKeySpecifier | (() => undefined | GalleryImageKeySpecifier),
+		fields?: GalleryImageFieldPolicy,
 	},
 	Query?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | QueryKeySpecifier | (() => undefined | QueryKeySpecifier),

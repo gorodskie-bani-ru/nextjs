@@ -8,30 +8,32 @@
 
 import * as Types from './types';
 
-import { ListCompanyFragment } from './ListCompany';
+import { CompanyFragment } from './Company_';
 import { gql } from '@apollo/client';
-import { ListCompanyFragmentDoc } from './ListCompany';
+import { CompanyFragmentDoc } from './Company_';
 import * as Apollo from '@apollo/client';
 export type CompaniesQueryVariables = Types.Exact<{
   skip?: Types.Maybe<Types.Scalars['Int']>;
   take?: Types.Maybe<Types.Scalars['Int']>;
   where?: Types.Maybe<Types.Bani684SiteContentWhereInput>;
+  orderBy?: Types.Maybe<Array<Types.Bani684SiteContentOrderByInput> | Types.Bani684SiteContentOrderByInput>;
+  withContent?: Types.Maybe<Types.Scalars['Boolean']>;
 }>;
 
 
 export type CompaniesQuery = { __typename?: 'Query', companies: Array<(
     { __typename?: 'Company' }
-    & ListCompanyFragment
+    & CompanyFragment
   )> };
 
 
 export const CompaniesDocument = gql`
-    query companies($skip: Int, $take: Int, $where: bani684_site_contentWhereInput) {
-  companies(skip: $skip, take: $take, where: $where) {
-    ...ListCompany
+    query companies($skip: Int, $take: Int, $where: bani684_site_contentWhereInput, $orderBy: [bani684_site_contentOrderByInput!], $withContent: Boolean = false) {
+  companies(skip: $skip, take: $take, where: $where, orderBy: $orderBy) {
+    ...Company_
   }
 }
-    ${ListCompanyFragmentDoc}`;
+    ${CompanyFragmentDoc}`;
 
 /**
  * __useCompaniesQuery__
@@ -48,6 +50,8 @@ export const CompaniesDocument = gql`
  *      skip: // value for 'skip'
  *      take: // value for 'take'
  *      where: // value for 'where'
+ *      orderBy: // value for 'orderBy'
+ *      withContent: // value for 'withContent'
  *   },
  * });
  */
