@@ -6,9 +6,9 @@ import React, { useCallback, useContext, useMemo } from 'react'
 
 import Link from 'next/link'
 
-import Grid from '@material-ui/core/Grid'
+// import Grid from '@material-ui/core/Grid'
 import IconButton from '@material-ui/core/IconButton'
-import LoginIcon from '@material-ui/icons/PermIdentity'
+// import LoginIcon from '@material-ui/icons/PermIdentity'
 import AddIcon from '@material-ui/icons/Add'
 // import AtentionIcon from 'material-ui-icons/ErrorOutline'
 
@@ -186,13 +186,13 @@ const MainMenu: React.FC = () => {
     $('#navbar-main').removeClass('in')
   }, [])
 
-  const loginClicked = useCallback(() => {
-    console.log('loginClicked')
-  }, [])
+  // const loginClicked = useCallback(() => {
+  //   console.log('loginClicked')
+  // }, [])
 
-  const logout = useCallback(() => {
-    console.log('logout')
-  }, [])
+  // const logout = useCallback(() => {
+  //   console.log('logout')
+  // }, [])
 
   const context = useContext(AppContext)
 
@@ -244,7 +244,7 @@ const MainMenu: React.FC = () => {
 
     // const { username } = user || {}
 
-    const username = null
+    // const username = null
 
     // const ratings = []
     // const cities = []
@@ -487,7 +487,7 @@ const MainMenu: React.FC = () => {
                 </Link>
               </li>
 
-              {user ? (
+              {/* {user ? (
                 <li className="dropdown">
                   <a
                     id="office"
@@ -498,14 +498,6 @@ const MainMenu: React.FC = () => {
                       display: 'flex',
                     }}
                   >
-                    {/* <Avatar
-                    user={user}
-                    style={{
-                      width: 20,
-                      height: 20,
-                      fontSize: '18px',
-                    }}
-                  /> */}
                     Avatar
                     <span className="caret"></span>
                   </a>
@@ -536,7 +528,7 @@ const MainMenu: React.FC = () => {
                     </Grid>
                   </a>
                 </li>
-              )}
+              )} */}
             </ul>
 
             {/* <WsProxy /> */}
@@ -544,7 +536,7 @@ const MainMenu: React.FC = () => {
         </div>
       </div>
     )
-  }, [citiesList, closeMenu, loginClicked, logout, mainCity])
+  }, [citiesList, closeMenu, mainCity])
   // }
 }
 
