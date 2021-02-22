@@ -42,7 +42,7 @@ const Layout: React.FC = ({ children, ...other }) => {
     return (
       <div
         style={{
-          maxWidth: 1260,
+          // maxWidth: 1260,
           width: '100%',
           margin: '0 auto',
           // padding: '0 16px',
@@ -80,37 +80,44 @@ const Layout: React.FC = ({ children, ...other }) => {
             overflow: 'auto',
             flex: 1,
             // border: '1px solid green',
-            padding: '20px 16px',
           }}
         >
-          {children}
+          <div
+            style={{
+              maxWidth: 1260,
+              margin: '0 auto',
+              padding: '20px 16px',
+            }}
+          >
+            {children}
 
-          <CardContent>
-            <Grid
-              container
-              style={{
-                paddingTop: 30,
-              }}
-            >
-              <Grid item xs>
-                {counters}
-              </Grid>
+            <CardContent>
+              <Grid
+                container
+                style={{
+                  paddingTop: 30,
+                }}
+              >
+                <Grid item xs>
+                  {counters}
+                </Grid>
 
-              <Grid item>
-                <Link href="/ratings/">
-                  <a title="Рейтинги бань">Рейтинги бань</a>
-                </Link>
-              </Grid>
+                <Grid item>
+                  <Link href="/ratings/">
+                    <a title="Рейтинги бань">Рейтинги бань</a>
+                  </Link>
+                </Grid>
 
-              <Grid item>
-                <Link href="/contacts.html">
-                  <a title="Разместить информацию о бане">
-                    Добавить баню или сауну
-                  </a>
-                </Link>
+                <Grid item>
+                  <Link href="/contacts.html">
+                    <a title="Разместить информацию о бане">
+                      Добавить баню или сауну
+                    </a>
+                  </Link>
+                </Grid>
               </Grid>
-            </Grid>
-          </CardContent>
+            </CardContent>
+          </div>
         </div>
       </div>
     )
