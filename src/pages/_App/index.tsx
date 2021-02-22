@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useMemo } from 'react'
-import NextApp, { AppContext } from 'next/app'
+import NextApp, { AppContext as NextAppContext } from 'next/app'
 import { ApolloProvider } from '@apollo/client'
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -24,6 +24,7 @@ import { NextSeo, NextSeoProps } from 'next-seo'
 import Page404 from '../_Error/404'
 import ErrorPage from '../_Error'
 import Layout from './Layout'
+import { AppContext, AppContextValue } from './Context'
 
 // import chalk from 'chalk';
 // import Debug from 'debug';
@@ -76,6 +77,16 @@ const App: MainApp<AppProps> = ({ Component, pageProps }) => {
   })
 
   console.log('citiesData', citiesData.data?.cities)
+
+  /**
+   * Формируем контекст
+   */
+
+  const context = useMemo<AppContextValue>(() => {
+    return {
+      cities: citiesData.data?.cities ?? [],
+    }
+  }, [citiesData.data?.cities])
 
   const content = useMemo(() => {
     const meta: NextSeoProps = {}
@@ -134,13 +145,15 @@ const App: MainApp<AppProps> = ({ Component, pageProps }) => {
       <CssBaseline />
 
       <ApolloProvider client={apolloClient}>
-        <Layout>{content}</Layout>
+        <AppContext.Provider value={context}>
+          <Layout>{content}</Layout>
+        </AppContext.Provider>
       </ApolloProvider>
     </ThemeProvider>
   )
 }
 
-App.getInitialProps = async (appContext: AppContext) => {
+App.getInitialProps = async (appContext: NextAppContext) => {
   /**
    * Initialize apollo-client and path into page props for collect
    * all data in cache.

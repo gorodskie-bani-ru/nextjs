@@ -1,6 +1,6 @@
-/* eslint-disable react/jsx-no-bind */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { PureComponent } from 'react'
+/* eslint-disable no-console */
+
+import React, { useCallback, useContext, useMemo } from 'react'
 
 // import PropTypes from 'prop-types'
 
@@ -19,8 +19,9 @@ import AddIcon from '@material-ui/icons/Add'
 // import cookies from 'js-cookie'
 
 import $ from 'jquery'
+import { AppContext } from 'src/pages/_App/Context'
 
-export default class MainMenu extends PureComponent {
+const MainMenu: React.FC = () => {
   // static contextTypes = {
   //   user: PropTypes.object.isRequired,
   //   userActions: PropTypes.object.isRequired,
@@ -37,17 +38,17 @@ export default class MainMenu extends PureComponent {
   //   document: PropTypes.object.isRequired,
   // }
 
-  state: any
+  // state: any
 
-  constructor(props: any) {
-    super(props)
+  // constructor(props: any) {
+  //   super(props)
 
-    this.state = {
-      ratingsOpened: false,
-      citiesOpened: false,
-      cities: [],
-    }
-  }
+  //   this.state = {
+  //     ratingsOpened: false,
+  //     citiesOpened: false,
+  //     cities: [],
+  //   }
+  // }
 
   // componentWillMount() {
   //   const { ResourcesStore } = this.context
@@ -158,50 +159,57 @@ export default class MainMenu extends PureComponent {
   //     })
   // }
 
-  addTopic() {
-    const { localQuery } = this.context
-
-    localQuery({
-      operationName: 'addTopic',
-    }).catch((e: Error) => {
-      console.error(e)
-    })
-  }
-
-  closeMenu() {
-    $('#navbar-main').removeClass('in')
-  }
-
   // triggerGoal(goal) {
   //   const { triggerGoal } = this.context
 
   //   triggerGoal(goal)
   // }
 
-  render() {
-    // const {
-    //   coords,
-    //   user: { user },
-    //   userActions,
-    // } = this.context
+  // render() {
+  // const {
+  //   coords,
+  //   user: { user },
+  //   userActions,
+  // } = this.context
 
-    const user: any = null
+  // const addTopic = () => {
+  //   const { localQuery } = this.context
+
+  //   localQuery({
+  //     operationName: 'addTopic',
+  //   }).catch((e: Error) => {
+  //     console.error(e)
+  //   })
+  // }
+
+  const closeMenu = useCallback(() => {
+    $('#navbar-main').removeClass('in')
+  }, [])
+
+  const loginClicked = useCallback(() => {
+    console.log('loginClicked')
+  }, [])
+
+  const logout = useCallback(() => {
+    console.log('logout')
+  }, [])
+
+  const context = useContext(AppContext)
+
+  console.log('context', context)
+
+  return useMemo(() => {
+    const user = null
     const coords = null
 
-    const userActions: any = {
-      loginClicked: () => {
-        // eslint-disable-next-line no-console
-        console.log('loginClicked')
-      },
-      logout: () => {
-        // eslint-disable-next-line no-console
-        console.log('logout')
-      },
-    }
+    // const { username } = user || {}
 
-    const { username } = user || {}
+    const username = null
 
-    const { ratings, cities, ratingsOpened, citiesOpened } = this.state
+    // const ratings = []
+    // const cities = []
+    // const ratingsOpened = false;
+    const citiesOpened = false
 
     let baseUrl = '/'
 
@@ -218,63 +226,54 @@ export default class MainMenu extends PureComponent {
 
     const citiesList: JSX.Element[] = []
 
-    cities &&
-      cities.map((city: any) => {
-        const { id, name, coords, alias: uri } = city
+    context?.cities.map((city) => {
+      const { id, name, coords, alias: uri } = city
 
-        if (!coords) {
-          return
-        }
+      if (!coords) {
+        return
+      }
 
-        const { lat, lng } = coords
+      const { lat, lng } = coords
 
-        const link = `/${uri}@` + [lat, lng, 12].join(',')
+      const link = `/${uri}@` + [lat, lng, 12].join(',')
 
-        citiesList.push(
-          <li key={id}>
-            <Link href={link}>
-              <a
-                onClick={() => {
-                  this.closeMenu()
-                }}
-              >
-                {name}
-              </a>
-            </Link>
-          </li>
-        )
-      })
+      citiesList.push(
+        <li key={id}>
+          <Link href={link}>
+            <a onClick={closeMenu}>{name}</a>
+          </Link>
+        </li>
+      )
+    })
 
-    const ratingsList: JSX.Element[] = []
+    // const ratingsList: JSX.Element[] = []
 
-    ratings &&
-      ratings.map((item: any) => {
-        const { Type } = item
+    // ratings &&
+    //   ratings.map((item: any) => {
+    //     const { Type } = item
 
-        if (!Type) {
-          return
-        }
+    //     if (!Type) {
+    //       return
+    //     }
 
-        const { id, name, uri } = Type
+    //     const { id, name, uri } = Type
 
-        const link = `/${uri}`
+    //     const link = `/${uri}`
 
-        ratingsList.push(
-          <li key={id}>
-            <Link href={link}>
-              <a
-                onClick={() => {
-                  this.closeMenu()
-                }}
-              >
-                {name}
-              </a>
-            </Link>
-          </li>
-        )
-      })
+    //     ratingsList.push(
+    //       <li key={id}>
+    //         <Link href={link}>
+    //           <a
+    //             onClick={closeMenu}
+    //           >
+    //             {name}
+    //           </a>
+    //         </Link>
+    //       </li>
+    //     )
+    //   })
 
-    const mainCity = cities && cities[0]
+    const mainCity = context?.cities[0]
 
     return (
       <div
@@ -321,25 +320,25 @@ export default class MainMenu extends PureComponent {
               }}
             >
               {/*<li>
-                <a 
-                  href="/" 
-                  title="Все бани на карте" 
-                  className="dropdown-toggle" 
-                  data-toggle="dropdown"
-                >На карте <i className="fa fa-angle-down"></i></a>
-                <ul 
-                  className="dropdown-menu"
-                  style={{
-                    display: citiesOpened ? 'block' : undefined,
-                    maxHeight: "70vh",
-                    overflow: "auto",
-                  }}
-                >
+              <a 
+                href="/" 
+                title="Все бани на карте" 
+                className="dropdown-toggle" 
+                data-toggle="dropdown"
+              >На карте <i className="fa fa-angle-down"></i></a>
+              <ul 
+                className="dropdown-menu"
+                style={{
+                  display: citiesOpened ? 'block' : undefined,
+                  maxHeight: "70vh",
+                  overflow: "auto",
+                }}
+              >
 
-                  {citiesList}
+                {citiesList}
 
-                </ul>
-              </li>*/}
+              </ul>
+            </li>*/}
 
               {(mainCity && citiesList && citiesList.length && (
                 <li>
@@ -365,28 +364,28 @@ export default class MainMenu extends PureComponent {
               )) ||
                 null}
 
-              {(ratingsList && ratingsList.length && (
-                <li>
-                  <Link href="/ratings/">
-                    <a
-                      title="Рейтинги заведений"
-                      className="dropdown-toggle"
-                      data-toggle="dropdown"
-                    >
-                      Рейтинги <i className="fa fa-angle-down"></i>
-                    </a>
-                  </Link>
-                  <ul
-                    className="dropdown-menu"
-                    style={{
-                      display: ratingsOpened ? 'block' : undefined,
-                    }}
+              {/* {(ratingsList && ratingsList.length && (
+              <li>
+                <Link href="/ratings/">
+                  <a
+                    title="Рейтинги заведений"
+                    className="dropdown-toggle"
+                    data-toggle="dropdown"
                   >
-                    {ratingsList}
-                  </ul>
-                </li>
-              )) ||
-                null}
+                    Рейтинги <i className="fa fa-angle-down"></i>
+                  </a>
+                </Link>
+                <ul
+                  className="dropdown-menu"
+                  style={{
+                    display: ratingsOpened ? 'block' : undefined,
+                  }}
+                >
+                  {ratingsList}
+                </ul>
+              </li>
+            )) ||
+              null} */}
 
               <li>
                 <Link href="/topics/">
@@ -403,9 +402,7 @@ export default class MainMenu extends PureComponent {
                     <Link href="/bani-otzivy/">
                       <a
                         title="Обзоры и отзывы"
-                        onClick={() => {
-                          this.closeMenu()
-                        }}
+                        onClick={closeMenu}
                         style={{
                           paddingLeft: 25,
                           paddingRight: 25,
@@ -422,9 +419,7 @@ export default class MainMenu extends PureComponent {
                     >
                       <a
                         title="Новости"
-                        onClick={() => {
-                          this.closeMenu()
-                        }}
+                        onClick={closeMenu}
                         style={{
                           paddingLeft: 25,
                           paddingRight: 25,
@@ -440,9 +435,7 @@ export default class MainMenu extends PureComponent {
                         <a
                           title="Добавить публикацию"
                           rel="nofollow"
-                          onClick={() => {
-                            this.closeMenu()
-                          }}
+                          onClick={closeMenu}
                           style={{
                             display: 'flex',
                             alignItems: 'center',
@@ -472,12 +465,7 @@ export default class MainMenu extends PureComponent {
 
               <li className="last">
                 <Link href="/contacts.html">
-                  <a
-                    title="Контакты"
-                    onClick={() => {
-                      this.closeMenu()
-                    }}
-                  >
+                  <a title="Контакты" onClick={closeMenu}>
                     Контакты
                   </a>
                 </Link>
@@ -495,13 +483,13 @@ export default class MainMenu extends PureComponent {
                     }}
                   >
                     {/* <Avatar
-                      user={user}
-                      style={{
-                        width: 20,
-                        height: 20,
-                        fontSize: '18px',
-                      }}
-                    /> */}
+                    user={user}
+                    style={{
+                      width: 20,
+                      height: 20,
+                      fontSize: '18px',
+                    }}
+                  /> */}
                     Avatar
                     <span className="caret"></span>
                   </a>
@@ -512,12 +500,7 @@ export default class MainMenu extends PureComponent {
 
                     <li className="divider"></li>
                     <li>
-                      <a
-                        href="javascript:;"
-                        onClick={() => {
-                          userActions.logout()
-                        }}
-                      >
+                      <a href="javascript:;" onClick={logout}>
                         <i className="glyphicon glyphicon-log-out"></i> Выйти
                       </a>
                     </li>
@@ -525,13 +508,7 @@ export default class MainMenu extends PureComponent {
                 </li>
               ) : (
                 <li>
-                  <a
-                    href="javascript:;"
-                    rel="nofollow"
-                    onClick={() => {
-                      userActions.loginClicked()
-                    }}
-                  >
+                  <a href="javascript:;" rel="nofollow" onClick={loginClicked}>
                     <Grid container alignItems="center">
                       <LoginIcon
                         style={{
@@ -551,5 +528,8 @@ export default class MainMenu extends PureComponent {
         </div>
       </div>
     )
-  }
+  }, [closeMenu, context?.cities, loginClicked, logout])
+  // }
 }
+
+export default MainMenu

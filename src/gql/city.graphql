@@ -20,11 +20,11 @@ query cities(
     longtitle
     alias
     uri
-    # coords {
-    #   lat
-    #   lng
-    #   zoom
-    # }
+    coords {
+      lat
+      lng
+      zoom
+    }
     # image
     # imageFormats {
     #   marker_thumb

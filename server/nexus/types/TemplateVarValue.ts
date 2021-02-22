@@ -22,5 +22,8 @@ export const TemplateVarValue = objectType({
   // },
   definition(t) {
     t.nonNull.int('id')
+    t.nonNull.int('tmplvarid')
+    t.nonNull.int('contentid')
+    t.nonNull.string('value')
   },
 })

@@ -1,18 +1,6 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import { objectType } from 'nexus'
-
-// alias
-// city_id
-// city
-// city_uri
-// template
-//
-// publishedon
-// pubdate
-// createdby
-// editedby
-// editedon
-// mapIcon
-// image
+import { coordsResolver } from './Query/resolvers/coords'
 
 export const Company = objectType({
   name: 'Company',
@@ -43,20 +31,19 @@ export const Company = objectType({
     t.nonNull.date('editedon')
     // t.nonNull.string("alias")
     t.string('image')
+    // t.field('coords', {
+    //   type: 'Coordinates',
+    // })
+
     t.field('coords', {
       type: 'Coordinates',
+      description: 'Координаты',
+      resolve: coordsResolver,
     })
 
     // t.nonNull.string('email')
-    // t.nonNull.list.nonNull.field('TemplateVarValues', {
-    //   type: 'bani684_site_tmplvar_contentvalues',
-    //   // resolve: (parent, _, context) => {
-    //   //   return context.prisma.user
-    //   //     .findUnique({
-    //   //       where: { id: parent.id || undefined },
-    //   //     })
-    //   //     .posts()
-    //   // },
-    // })
+    t.nonNull.list.nonNull.field('TemplateVarValues', {
+      type: 'bani684_site_tmplvar_contentvalues',
+    })
   },
 })

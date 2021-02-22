@@ -271,6 +271,7 @@ export interface NexusGenScalars {
 export interface NexusGenObjects {
   City: {
     // root type
+    TemplateVarValues: NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][] // [bani684_site_tmplvar_contentvalues!]!
     alias?: string | null // String
     id: number // Int!
     longtitle: string // String!
@@ -279,8 +280,8 @@ export interface NexusGenObjects {
   }
   Company: {
     // root type
+    TemplateVarValues: NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][] // [bani684_site_tmplvar_contentvalues!]!
     alias?: string | null // String
-    coords?: NexusGenRootTypes['Coordinates'] | null // Coordinates
     createdby: number // Int!
     createdon: NexusGenScalars['DateTime'] // DateTime!
     description: string // String!
@@ -297,12 +298,16 @@ export interface NexusGenObjects {
     // root type
     lat: number // Float!
     lng: number // Float!
+    zoom?: number | null // Int
   }
   Query: {}
   Resource: bani684_site_content
   bani684_site_tmplvar_contentvalues: {
     // root type
+    contentid: number // Int!
     id: number // Int!
+    tmplvarid: number // Int!
+    value: string // String!
   }
 }
 
@@ -319,7 +324,9 @@ export type NexusGenAllTypes = NexusGenRootTypes &
 export interface NexusGenFieldTypes {
   City: {
     // field return type
+    TemplateVarValues: NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][] // [bani684_site_tmplvar_contentvalues!]!
     alias: string | null // String
+    coords: NexusGenRootTypes['Coordinates'] | null // Coordinates
     id: number // Int!
     longtitle: string // String!
     name: string // String!
@@ -328,6 +335,7 @@ export interface NexusGenFieldTypes {
   }
   Company: {
     // field return type
+    TemplateVarValues: NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][] // [bani684_site_tmplvar_contentvalues!]!
     alias: string | null // String
     coords: NexusGenRootTypes['Coordinates'] | null // Coordinates
     createdby: number // Int!
@@ -347,6 +355,7 @@ export interface NexusGenFieldTypes {
     // field return type
     lat: number // Float!
     lng: number // Float!
+    zoom: number | null // Int
   }
   Query: {
     // field return type
@@ -363,14 +372,19 @@ export interface NexusGenFieldTypes {
   }
   bani684_site_tmplvar_contentvalues: {
     // field return type
+    contentid: number // Int!
     id: number // Int!
+    tmplvarid: number // Int!
+    value: string // String!
   }
 }
 
 export interface NexusGenFieldTypeNames {
   City: {
     // field return type name
+    TemplateVarValues: 'bani684_site_tmplvar_contentvalues'
     alias: 'String'
+    coords: 'Coordinates'
     id: 'Int'
     longtitle: 'String'
     name: 'String'
@@ -379,6 +393,7 @@ export interface NexusGenFieldTypeNames {
   }
   Company: {
     // field return type name
+    TemplateVarValues: 'bani684_site_tmplvar_contentvalues'
     alias: 'String'
     coords: 'Coordinates'
     createdby: 'Int'
@@ -398,6 +413,7 @@ export interface NexusGenFieldTypeNames {
     // field return type name
     lat: 'Float'
     lng: 'Float'
+    zoom: 'Int'
   }
   Query: {
     // field return type name
@@ -414,7 +430,10 @@ export interface NexusGenFieldTypeNames {
   }
   bani684_site_tmplvar_contentvalues: {
     // field return type name
+    contentid: 'Int'
     id: 'Int'
+    tmplvarid: 'Int'
+    value: 'String'
   }
 }
 

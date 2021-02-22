@@ -16,7 +16,13 @@ input BoolFilter {
 Город
 """
 type City {
+  TemplateVarValues: [bani684_site_tmplvar_contentvalues!]!
   alias: String
+
+  """
+  Координаты
+  """
+  coords: Coordinates
   id: Int!
   longtitle: String!
   name: String!
@@ -28,7 +34,12 @@ type City {
 Компания
 """
 type Company {
+  TemplateVarValues: [bani684_site_tmplvar_contentvalues!]!
   alias: String
+
+  """
+  Координаты
+  """
   coords: Coordinates
   createdby: Int!
   createdon: DateTime!
@@ -47,6 +58,11 @@ type Company {
 type Coordinates {
   lat: Float!
   lng: Float!
+
+  """
+  Дефолтное знаяение приближенности карты. Используется в городах.
+  """
+  zoom: Int
 }
 
 """
@@ -125,7 +141,7 @@ type Query {
   ): [Company!]!
 
   """
-  Все ресурсы
+  Ресурсы
   """
   resources(
     cursor: bani684_site_contentWhereUniqueInput
@@ -281,7 +297,10 @@ input bani684_site_contentWhereUniqueInput {
 }
 
 type bani684_site_tmplvar_contentvalues {
+  contentid: Int!
   id: Int!
+  tmplvarid: Int!
+  value: String!
 }
 
 input bani684_site_tmplvar_contentvaluesWhereInput {
