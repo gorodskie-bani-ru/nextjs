@@ -4,7 +4,8 @@ import { Prisma } from '@prisma/client'
 
 export const companiesResolver: FieldResolver<
   'Query',
-  'companies' | 'cities'
+  // 'companies' | 'cities'
+  'companies'
 > = (_, args, ctx) => {
   const variables = args as Pick<
     Prisma.bani684_site_contentFindManyArgs,

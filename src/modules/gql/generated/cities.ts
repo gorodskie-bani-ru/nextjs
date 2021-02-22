@@ -17,7 +17,7 @@ export type CitiesQueryVariables = Types.Exact<{
 }>;
 
 
-export type CitiesQuery = { __typename?: 'Query', cities: Array<{ __typename?: 'City', id: number, name: string, longtitle: string, alias?: Types.Maybe<string>, uri?: Types.Maybe<string> }> };
+export type CitiesQuery = { __typename?: 'Query', cities: Array<{ __typename?: 'City', id: number, name: string, longtitle: string, alias?: Types.Maybe<string>, uri?: Types.Maybe<string>, coords?: Types.Maybe<{ __typename?: 'Coordinates', lat: number, lng: number, zoom?: Types.Maybe<number> }> }> };
 
 
 export const CitiesDocument = gql`
@@ -28,6 +28,11 @@ export const CitiesDocument = gql`
     longtitle
     alias
     uri
+    coords {
+      lat
+      lng
+      zoom
+    }
   }
 }
     `;

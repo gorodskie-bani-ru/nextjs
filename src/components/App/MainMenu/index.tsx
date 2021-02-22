@@ -198,6 +198,46 @@ const MainMenu: React.FC = () => {
 
   console.log('context', context)
 
+  /**
+   * Формируем список городов с сортировкой
+   */
+  const { cities, mainCity } = useMemo(() => {
+    const cities = context?.cities ?? []
+
+    const mainCity = cities[0]
+
+    return {
+      cities,
+      mainCity,
+    }
+  }, [context?.cities])
+
+  const citiesList = useMemo<JSX.Element[]>(() => {
+    const citiesList: JSX.Element[] = []
+
+    cities.map((city) => {
+      const { id, name, coords, alias: uri } = city
+
+      if (!coords) {
+        return
+      }
+
+      const { lat, lng } = coords
+
+      const link = `/${uri}@` + [lat, lng, 12].join(',')
+
+      citiesList.push(
+        <li key={id}>
+          <Link href={link}>
+            <a onClick={closeMenu}>{name}</a>
+          </Link>
+        </li>
+      )
+    })
+
+    return citiesList
+  }, [cities, closeMenu])
+
   return useMemo(() => {
     const user = null
     const coords = null
@@ -223,28 +263,6 @@ const MainMenu: React.FC = () => {
         baseUrl += coordsUrl
       }
     }
-
-    const citiesList: JSX.Element[] = []
-
-    context?.cities.map((city) => {
-      const { id, name, coords, alias: uri } = city
-
-      if (!coords) {
-        return
-      }
-
-      const { lat, lng } = coords
-
-      const link = `/${uri}@` + [lat, lng, 12].join(',')
-
-      citiesList.push(
-        <li key={id}>
-          <Link href={link}>
-            <a onClick={closeMenu}>{name}</a>
-          </Link>
-        </li>
-      )
-    })
 
     // const ratingsList: JSX.Element[] = []
 
@@ -272,8 +290,6 @@ const MainMenu: React.FC = () => {
     //       </li>
     //     )
     //   })
-
-    const mainCity = context?.cities[0]
 
     return (
       <div
@@ -528,7 +544,7 @@ const MainMenu: React.FC = () => {
         </div>
       </div>
     )
-  }, [closeMenu, context?.cities, loginClicked, logout])
+  }, [citiesList, closeMenu, loginClicked, logout, mainCity])
   // }
 }
 

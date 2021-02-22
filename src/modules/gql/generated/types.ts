@@ -35,7 +35,10 @@ export interface BoolFilter {
 /** Город */
 export interface City {
   __typename?: 'City';
+  TemplateVarValues: Array<Bani684SiteTmplvarContentvalues>;
   alias?: Maybe<Scalars['String']>;
+  /** Координаты */
+  coords?: Maybe<Coordinates>;
   id: Scalars['Int'];
   longtitle: Scalars['String'];
   name: Scalars['String'];
@@ -46,7 +49,9 @@ export interface City {
 /** Компания */
 export interface Company {
   __typename?: 'Company';
+  TemplateVarValues: Array<Bani684SiteTmplvarContentvalues>;
   alias?: Maybe<Scalars['String']>;
+  /** Координаты */
   coords?: Maybe<Coordinates>;
   createdby: Scalars['Int'];
   createdon: Scalars['DateTime'];
@@ -66,6 +71,8 @@ export interface Coordinates {
   __typename?: 'Coordinates';
   lat: Scalars['Float'];
   lng: Scalars['Float'];
+  /** Дефолтное знаяение приближенности карты. Используется в городах. */
+  zoom?: Maybe<Scalars['Int']>;
 }
 
 
@@ -130,7 +137,7 @@ export interface Query {
   cities: Array<City>;
   /** Компании */
   companies: Array<Company>;
-  /** Все ресурсы */
+  /** Ресурсы */
   resources: Array<Resource>;
   /** Количество всех ресурсов */
   resourcesCount: Scalars['Int'];
@@ -306,7 +313,10 @@ export interface Bani684SiteContentWhereUniqueInput {
 
 export interface Bani684SiteTmplvarContentvalues {
   __typename?: 'bani684_site_tmplvar_contentvalues';
+  contentid: Scalars['Int'];
   id: Scalars['Int'];
+  tmplvarid: Scalars['Int'];
+  value: Scalars['String'];
 }
 
 export interface Bani684SiteTmplvarContentvaluesWhereInput {
