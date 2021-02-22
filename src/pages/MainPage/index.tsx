@@ -1,6 +1,6 @@
 // import { useRouter } from 'next/router'
 import Head from 'next/head'
-import OldMainPage from 'src/components/Pages/MainPage'
+import OldMainPage from 'src/components_old/Pages/MainPage'
 import { Page } from '../_App/interfaces'
 // import { GetStaticProps } from 'next'
 // import { GetServerSideProps } from 'next'

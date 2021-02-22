@@ -20,8 +20,11 @@ import * as types from './types'
 export const DateTime = asNexusMethod(GraphQLDateTime, 'date')
 
 export const schema = makeSchema({
-  shouldGenerateArtifacts: process.env.NODE_ENV === 'development',
-  shouldExitAfterGenerateArtifacts: process.env.NODE_ENV !== 'development',
+  /**
+   * Надо будет перепроверить правильно ли использовать эти настройки
+   */
+  // shouldGenerateArtifacts: process.env.NODE_ENV === 'development',
+  // shouldExitAfterGenerateArtifacts: process.env.NODE_ENV !== 'development',
   plugins: [
     nexusPrisma({
       experimentalCRUD: true,

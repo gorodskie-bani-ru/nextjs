@@ -8,7 +8,8 @@ import { context, PrismaContext } from '../nexus/context'
 export default new ApolloServer({
   schema,
   // Run GraphQL playground in dev mode only
-  playground: process.env.NODE_ENV === 'development',
+  // playground: process.env.NODE_ENV === 'development',
+  playground: true,
   context: async (_requestContext: ExpressContext): Promise<PrismaContext> => {
     // let viewer: LandingViewerQuery | undefined
 

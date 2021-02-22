@@ -4,12 +4,7 @@
 **/dist/*
 **/coverage/*
 src/modules/old/
-src/components/*
-!src/components/App
-!src/components/Pages
-src/components/Pages/*
-!src/components/Pages/layout.*
-!src/components/Pages/MainPage
+src/components_old/
 **/.storybook/*
 **/storybook-static/*
 /.vscode

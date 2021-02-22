@@ -3,7 +3,7 @@ import React, { useMemo } from 'react'
 import Link from 'next/link'
 import CardContent from '@material-ui/core/CardContent'
 import Grid from '@material-ui/core/Grid'
-import MainMenu from 'src/components/App/MainMenu'
+import MainMenu from './MainMenu'
 
 /**
  * Общий лейаут для всех страниц сайта
