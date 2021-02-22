@@ -1,6 +1,6 @@
 // import { useRouter } from 'next/router'
 import Head from 'next/head'
-import { default as MainPage } from 'src/components/Pages/MainPage'
+import OldMainPage from 'src/components/Pages/MainPage'
 import { Page } from '../_App/interfaces'
 // import { GetStaticProps } from 'next'
 // import { GetServerSideProps } from 'next'
@@ -12,7 +12,7 @@ import { Page } from '../_App/interfaces'
 
 // import { initializeApollo } from '../src/lib/apolloClient'
 
-export const Home: Page = (): JSX.Element => {
+export const MainPage: Page = (): JSX.Element => {
   // const router = useRouter()
 
   // const {
@@ -27,10 +27,17 @@ export const Home: Page = (): JSX.Element => {
         <meta name="description" content="Все Городские и общественные бани" />
       </Head>
 
-      <MainPage />
+      <OldMainPage />
     </>
   )
 }
+
+// MainPage.getInitialProps = () => {
+
+//   return {
+//     statusCode: 404,
+//   }
+// }
 
 // export const getServerSideProps: GetServerSideProps = async (context) => {
 //   const { skip, first } = context.query
@@ -59,4 +66,4 @@ export const Home: Page = (): JSX.Element => {
 //   }
 // }
 
-export default Home
+export default MainPage
