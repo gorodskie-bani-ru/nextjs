@@ -8,7 +8,9 @@
 
 import * as Types from './types';
 
+import { CityFragment } from './city';
 import { gql } from '@apollo/client';
+import { CityFragmentDoc } from './city';
 import * as Apollo from '@apollo/client';
 export type CitiesQueryVariables = Types.Exact<{
   take?: Types.Maybe<Types.Scalars['Int']>;
@@ -17,25 +19,19 @@ export type CitiesQueryVariables = Types.Exact<{
 }>;
 
 
-export type CitiesQuery = { __typename?: 'Query', cities: Array<{ __typename?: 'City', id: number, pagetitle: string, longtitle: string, alias?: Types.Maybe<string>, uri?: Types.Maybe<string>, coords?: Types.Maybe<{ __typename?: 'Coordinates', lat: number, lng: number, zoom?: Types.Maybe<number> }> }> };
+export type CitiesQuery = { __typename?: 'Query', cities: Array<(
+    { __typename?: 'City' }
+    & CityFragment
+  )> };
 
 
 export const CitiesDocument = gql`
     query cities($take: Int, $skip: Int, $where: bani684_site_contentWhereInput) {
   cities: cities(take: $take, skip: $skip, where: $where) {
-    id
-    pagetitle
-    longtitle
-    alias
-    uri
-    coords {
-      lat
-      lng
-      zoom
-    }
+    ...city
   }
 }
-    `;
+    ${CityFragmentDoc}`;
 
 /**
  * __useCitiesQuery__

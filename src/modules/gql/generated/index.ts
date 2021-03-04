@@ -2,4 +2,7 @@ export * from './CompanyFields';
 export * from './Company_';
 export * from './ListCompany';
 export * from './cities';
-export * from './companies';export * from './types';
+export * from './city';
+export * from './companies';
+export * from './resource';
+export * from './resources';export * from './types';

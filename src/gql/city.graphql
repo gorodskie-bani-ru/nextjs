@@ -15,20 +15,24 @@ query cities(
     skip: $skip
     where: $where
   ) {
-    id
-    pagetitle
-    longtitle
-    alias
-    uri
-    coords {
-      lat
-      lng
-      zoom
-    }
-    # image
-    # imageFormats {
-    #   marker_thumb
-    # }
-    # parent
+    ...city
   }
+}
+
+fragment city on City {
+  id
+  pagetitle
+  longtitle
+  alias
+  uri
+  coords {
+    lat
+    lng
+    zoom
+  }
+  # image
+  # imageFormats {
+  #   marker_thumb
+  # }
+  # parent
 }

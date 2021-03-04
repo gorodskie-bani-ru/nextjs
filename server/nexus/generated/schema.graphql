@@ -26,6 +26,7 @@ type City {
   id: Int!
   longtitle: String!
   pagetitle: String!
+  template: Int!
   uri: String
 }
 
@@ -67,6 +68,8 @@ type Company {
   """
   prices: String
   published: Boolean!
+  searchable: Boolean!
+  template: Int!
   uri: String
 
   """
@@ -178,12 +181,11 @@ type Query {
   Ресурсы
   """
   resources(
-    cursor: bani684_site_contentWhereUniqueInput
     orderBy: [bani684_site_contentOrderByInput!]
     skip: Int
     take: Int
     where: bani684_site_contentWhereInput
-  ): [Resource!]!
+  ): [ResourceUnion!]!
 }
 
 type Resource {
@@ -197,9 +199,15 @@ type Resource {
   longtitle: String!
   pagetitle: String!
   published: Boolean!
+  searchable: Boolean!
   template: Int!
   uri: String
 }
+
+"""
+Компания, Город или иной ресурс
+"""
+union ResourceUnion = City | Company | Resource
 
 enum SortOrder {
   asc

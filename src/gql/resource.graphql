@@ -1,0 +1,26 @@
+query resources(
+  $where: bani684_site_contentWhereInput
+  $orderBy: [bani684_site_contentOrderByInput!]
+  $take: Int
+  $skip: Int
+) {
+  resources(where: $where, orderBy: $orderBy, take: $take, skip: $skip) {
+    ...resource
+  }
+}
+
+fragment resource on ResourceUnion {
+  ... on Resource {
+    id
+    pagetitle
+    uri
+  }
+
+  ... on Company {
+    ...CompanyFields
+  }
+
+  ... on City {
+    ...city
+  }
+}

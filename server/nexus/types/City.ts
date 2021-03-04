@@ -12,6 +12,7 @@ export const City = objectType({
     t.nonNull.int('id')
     t.nonNull.string('pagetitle')
     t.nonNull.string('longtitle')
+    t.nonNull.int('template')
     t.string('uri')
     t.string('alias')
     // t.field('coords', {

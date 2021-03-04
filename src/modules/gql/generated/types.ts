@@ -42,6 +42,7 @@ export interface City {
   id: Scalars['Int'];
   longtitle: Scalars['String'];
   pagetitle: Scalars['String'];
+  template: Scalars['Int'];
   uri?: Maybe<Scalars['String']>;
 }
 
@@ -70,6 +71,8 @@ export interface Company {
   /** Цены */
   prices?: Maybe<Scalars['String']>;
   published: Scalars['Boolean'];
+  searchable: Scalars['Boolean'];
+  template: Scalars['Int'];
   uri?: Maybe<Scalars['String']>;
   /** Рабочее время */
   workTime?: Maybe<Scalars['String']>;
@@ -153,7 +156,7 @@ export interface Query {
   /** Компании */
   companies: Array<Company>;
   /** Ресурсы */
-  resources: Array<Resource>;
+  resources: Array<ResourceUnion>;
 }
 
 
@@ -176,7 +179,6 @@ export type QueryCompaniesArgs = {
 
 
 export type QueryResourcesArgs = {
-  cursor?: Maybe<Bani684SiteContentWhereUniqueInput>;
   orderBy?: Maybe<Array<Bani684SiteContentOrderByInput>>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
@@ -195,9 +197,13 @@ export interface Resource {
   longtitle: Scalars['String'];
   pagetitle: Scalars['String'];
   published: Scalars['Boolean'];
+  searchable: Scalars['Boolean'];
   template: Scalars['Int'];
   uri?: Maybe<Scalars['String']>;
 }
+
+/** Компания, Город или иной ресурс */
+export type ResourceUnion = City | Company | Resource;
 
 export enum SortOrder {
   ASC = 'asc',

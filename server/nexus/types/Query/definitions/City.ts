@@ -59,6 +59,7 @@ export const cities = (t: ObjectDefinitionBlock<'Query'>) => {
           // createdon: true,
           // editedby: true,
           // editedon: true,
+          template: true,
           TemplateVarValues: {
             select: {
               id: true,

@@ -277,6 +277,7 @@ export interface NexusGenObjects {
     id: number // Int!
     longtitle: string // String!
     pagetitle: string // String!
+    template: number // Int!
     uri?: string | null // String
   }
   Company: {
@@ -295,6 +296,8 @@ export interface NexusGenObjects {
     longtitle: string // String!
     pagetitle: string // String!
     published: boolean // Boolean!
+    searchable: boolean // Boolean!
+    template: number // Int!
     uri?: string | null // String
   }
   Coordinates: {
@@ -324,6 +327,7 @@ export interface NexusGenObjects {
     longtitle: string // String!
     pagetitle: string // String!
     published: boolean // Boolean!
+    searchable: boolean // Boolean!
     template: number // Int!
     uri?: string | null // String
   }
@@ -338,9 +342,14 @@ export interface NexusGenObjects {
 
 export interface NexusGenInterfaces {}
 
-export interface NexusGenUnions {}
+export interface NexusGenUnions {
+  ResourceUnion:
+    | NexusGenRootTypes['City']
+    | NexusGenRootTypes['Company']
+    | NexusGenRootTypes['Resource']
+}
 
-export type NexusGenRootTypes = NexusGenObjects
+export type NexusGenRootTypes = NexusGenObjects & NexusGenUnions
 
 export type NexusGenAllTypes = NexusGenRootTypes &
   NexusGenScalars &
@@ -357,6 +366,7 @@ export interface NexusGenFieldTypes {
     id: number // Int!
     longtitle: string // String!
     pagetitle: string // String!
+    template: number // Int!
     uri: string | null // String
   }
   Company: {
@@ -381,6 +391,8 @@ export interface NexusGenFieldTypes {
     pagetitle: string // String!
     prices: string | null // String
     published: boolean // Boolean!
+    searchable: boolean // Boolean!
+    template: number // Int!
     uri: string | null // String
     workTime: string | null // String
   }
@@ -400,7 +412,7 @@ export interface NexusGenFieldTypes {
     // field return type
     cities: NexusGenRootTypes['City'][] // [City!]!
     companies: NexusGenRootTypes['Company'][] // [Company!]!
-    resources: NexusGenRootTypes['Resource'][] // [Resource!]!
+    resources: NexusGenRootTypes['ResourceUnion'][] // [ResourceUnion!]!
   }
   Resource: {
     // field return type
@@ -416,6 +428,7 @@ export interface NexusGenFieldTypes {
     longtitle: string // String!
     pagetitle: string // String!
     published: boolean // Boolean!
+    searchable: boolean // Boolean!
     template: number // Int!
     uri: string | null // String
   }
@@ -437,6 +450,7 @@ export interface NexusGenFieldTypeNames {
     id: 'Int'
     longtitle: 'String'
     pagetitle: 'String'
+    template: 'Int'
     uri: 'String'
   }
   Company: {
@@ -459,6 +473,8 @@ export interface NexusGenFieldTypeNames {
     pagetitle: 'String'
     prices: 'String'
     published: 'Boolean'
+    searchable: 'Boolean'
+    template: 'Int'
     uri: 'String'
     workTime: 'String'
   }
@@ -478,7 +494,7 @@ export interface NexusGenFieldTypeNames {
     // field return type name
     cities: 'City'
     companies: 'Company'
-    resources: 'Resource'
+    resources: 'ResourceUnion'
   }
   Resource: {
     // field return type name
@@ -492,6 +508,7 @@ export interface NexusGenFieldTypeNames {
     longtitle: 'String'
     pagetitle: 'String'
     published: 'Boolean'
+    searchable: 'Boolean'
     template: 'Int'
     uri: 'String'
   }
@@ -524,7 +541,6 @@ export interface NexusGenArgTypes {
     }
     resources: {
       // args
-      cursor?: NexusGenInputs['bani684_site_contentWhereUniqueInput'] | null // bani684_site_contentWhereUniqueInput
       orderBy?: NexusGenInputs['bani684_site_contentOrderByInput'][] | null // [bani684_site_contentOrderByInput!]
       skip?: number | null // Int
       take?: number | null // Int
@@ -533,7 +549,9 @@ export interface NexusGenArgTypes {
   }
 }
 
-export interface NexusGenAbstractTypeMembers {}
+export interface NexusGenAbstractTypeMembers {
+  ResourceUnion: 'City' | 'Company' | 'Resource'
+}
 
 export interface NexusGenTypeInterfaces {}
 
@@ -547,11 +565,11 @@ export type NexusGenInterfaceNames = never
 
 export type NexusGenScalarNames = keyof NexusGenScalars
 
-export type NexusGenUnionNames = never
+export type NexusGenUnionNames = keyof NexusGenUnions
 
 export type NexusGenObjectsUsingAbstractStrategyIsTypeOf = never
 
-export type NexusGenAbstractsUsingStrategyResolveType = never
+export type NexusGenAbstractsUsingStrategyResolveType = 'ResourceUnion'
 
 export type NexusGenFeaturesConfig = {
   abstractTypeStrategies: {

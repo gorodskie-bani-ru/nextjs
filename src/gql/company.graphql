@@ -115,8 +115,9 @@ fragment CompanyFields on Company {
   # city_id
   # city
   # city_uri
-  # template
+  template
   published
+  searchable
   # publishedon
   # pubdate
   createdon

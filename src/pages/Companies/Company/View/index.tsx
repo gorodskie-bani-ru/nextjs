@@ -354,9 +354,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company: item }) => {
             </Grid>
 
             <Grid item xs={12} sm>
-              {inEditMode ? //   } //     (errors && errors.address) || 'Укажите подробный адрес' //   helperText={ //   error={errors && errors.address ? true : false} //   label="Адрес" // <TextField
-              //   name="address"
-              //   value={address || ''}
+              {inEditMode ? //   value={address || ''} //   name="address" //   } //     (errors && errors.address) || 'Укажите подробный адрес' //   helperText={ //   error={errors && errors.address ? true : false} //   label="Адрес" // <TextField
               //   onChange={this.onChange}
               //   onFocus={() => this.onFocus('address')}
               // />
@@ -387,9 +385,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company: item }) => {
                 ''
               )}
 
-              {inEditMode ? //   onChange={this.onChange} //   value={metro || ''} //   name="metro" //   helperText="Укажите ближайшие станции метро через запятую" //   label="Метро" // <TextField
-              //   onFocus={() => this.onFocus('metro')}
-              // />
+              {inEditMode ? // /> //   onFocus={() => this.onFocus('metro')} //   onChange={this.onChange} //   value={metro || ''} //   name="metro" //   helperText="Укажите ближайшие станции метро через запятую" //   label="Метро" // <TextField
               null : metro ? ( // TODO Restore metro
                 <Grid
                   container
@@ -418,9 +414,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company: item }) => {
                 ''
               )}
 
-              {inEditMode ? //   onChange={this.onChange} //   value={phones || ''} //   name="phones" //   helperText="Можно указать несколько телефонов через запятую" //   label="Телефон" // <TextField
-              //   onFocus={() => this.onFocus('phones')}
-              // />
+              {inEditMode ? // /> //   onFocus={() => this.onFocus('phones')} //   onChange={this.onChange} //   value={phones || ''} //   name="phones" //   helperText="Можно указать несколько телефонов через запятую" //   label="Телефон" // <TextField
               null : phones ? (
                 <Grid
                   container
@@ -459,9 +453,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company: item }) => {
                 ''
               )}
 
-              {inEditMode ? //   value={site || ''} //   name="site" //   helperText="Если адрес начинается с https, обязательно укажите вместе с ним, например, https://ваш_сайт/" //   label="Сайт" // <TextField
-              //   onChange={this.onChange}
-              //   onFocus={() => this.onFocus('site')}
+              {inEditMode ? //   onFocus={() => this.onFocus('site')} //   onChange={this.onChange} //   value={site || ''} //   name="site" //   helperText="Если адрес начинается с https, обязательно укажите вместе с ним, например, https://ваш_сайт/" //   label="Сайт" // <TextField
               // />
               null : site ? (
                 <Grid

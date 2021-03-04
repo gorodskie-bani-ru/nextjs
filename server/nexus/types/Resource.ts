@@ -1,4 +1,4 @@
-import { objectType } from 'nexus'
+import { objectType, unionType } from 'nexus'
 
 // alias
 // city_id
@@ -13,6 +13,24 @@ import { objectType } from 'nexus'
 // editedon
 // mapIcon
 // image
+
+export const ResourceUnion = unionType({
+  name: 'ResourceUnion',
+  description: 'Компания, Город или иной ресурс',
+  definition(t) {
+    t.members('Resource', 'Company', 'City')
+  },
+  // resolveType: (item) => item.name,
+  resolveType: (item) => {
+    if (item.template === 26) {
+      return 'City'
+    } else if (item.template === 27) {
+      return 'Company'
+    }
+
+    return 'Resource'
+  },
+})
 
 export const Resource = objectType({
   name: 'Resource',
@@ -34,6 +52,7 @@ export const Resource = objectType({
     t.nonNull.int('template')
     t.nonNull.boolean('published')
     t.nonNull.int('createdby')
+    t.nonNull.boolean('searchable')
     // t.nonNull.int("editedby")
     // t.nonNull.date("editedon")
 

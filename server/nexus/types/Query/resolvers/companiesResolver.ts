@@ -43,6 +43,8 @@ export const companiesResolver: FieldResolver<
       createdon: true,
       editedby: true,
       editedon: true,
+      template: true,
+      searchable: true,
       TemplateVarValues: {
         select: {
           id: true,

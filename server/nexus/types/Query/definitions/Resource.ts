@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/camelcase */
 /* eslint-disable @typescript-eslint/ban-ts-ignore */
 
-import { ObjectDefinitionBlock } from 'nexus/dist/core'
+import { list, nonNull, ObjectDefinitionBlock } from 'nexus/dist/core'
 import { Prisma } from '@prisma/client'
 
 export const resources = (t: ObjectDefinitionBlock<'Query'>) => {
@@ -21,12 +21,20 @@ export const resources = (t: ObjectDefinitionBlock<'Query'>) => {
   //     take: 'Int',
   //     skip: 'Int',
   //   },
-  t.crud.bani684SiteContents({
-    alias: 'resources',
+  // t.crud.bani684SiteContents({
+
+  t.nonNull.list.nonNull.field('resources', {
+    // alias: 'resources',
     description: 'Ресурсы',
-    type: 'Resource',
-    ordering: true,
-    filtering: true,
+    type: 'ResourceUnion',
+    // ordering: true,
+    // filtering: true,
+    args: {
+      where: 'bani684_site_contentWhereInput',
+      orderBy: list(nonNull('bani684_site_contentOrderByInput')),
+      take: 'Int',
+      skip: 'Int',
+    },
     resolve(_, args, ctx) {
       const variables = args as Pick<
         Prisma.bani684_site_contentFindManyArgs,
@@ -61,6 +69,7 @@ export const resources = (t: ObjectDefinitionBlock<'Query'>) => {
           createdby: true,
           createdon: true,
           template: true,
+          searchable: true,
           // editedby: true,
           // editedon: true,
           TemplateVarValues: {
@@ -71,6 +80,9 @@ export const resources = (t: ObjectDefinitionBlock<'Query'>) => {
               value: true,
             },
           },
+          content: true,
+          editedby: true,
+          editedon: true,
         },
         // orderBy: {
         //   pagetitle: "asc",
