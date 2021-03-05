@@ -33,6 +33,7 @@ import {
   // Path,
 } from 'react-static-google-map'
 import { ItemMapProps } from './interfaces'
+import { CardContent, Paper } from '@material-ui/core'
 
 const ItemMap: React.FC<ItemMapProps> = ({
   item,
@@ -144,7 +145,7 @@ const ItemMap: React.FC<ItemMapProps> = ({
 
   const { lat, lng } = coords || {}
 
-  return useMemo(() => {
+  const content = useMemo(() => {
     if (!lat || !lng) {
       return null
     }
@@ -308,7 +309,7 @@ const ItemMap: React.FC<ItemMapProps> = ({
                 padding: 4,
               }}
             >
-              <a
+              {/* <a
                 href="https://maps.yandex.ru"
                 rel="nofollow noreferrer"
                 style={{
@@ -319,7 +320,7 @@ const ItemMap: React.FC<ItemMapProps> = ({
                 target="_blank"
               >
                 Yandex.Maps
-              </a>
+              </a> */}
             </Control>
           ) : null}
         </div>
@@ -339,6 +340,19 @@ const ItemMap: React.FC<ItemMapProps> = ({
     onClick,
     onGoogleApiLoaded,
   ])
+
+  return content ? (
+    <CardContent>
+      <Paper
+        style={{
+          height: 400,
+          position: 'relative',
+        }}
+      >
+        {content}
+      </Paper>
+    </CardContent>
+  ) : null
 }
 
 export default ItemMap

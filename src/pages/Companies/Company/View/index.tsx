@@ -10,6 +10,8 @@ import { Card, CardHeader } from '@material-ui/core'
 import AddressIcon from './icons/address'
 import Site from './Site'
 
+import Editor, { PrismaCmsEditorProps } from '@prisma-cms/editor'
+
 import dynamic from 'next/dynamic'
 
 const ItemMap = dynamic(import('./ItemMap'), {
@@ -19,82 +21,132 @@ const ItemMap = dynamic(import('./ItemMap'), {
 // import moment from 'moment'
 
 const CompanyView: React.FC<CompanyViewProps> = ({ company: item }) => {
-  return useMemo(() => {
-    // const { documentActions, user } = this.context
+  // const { documentActions, user } = this.context
 
-    // const { user: currentUser } = user || {}
+  // const { user: currentUser } = user || {}
 
-    // let {
-    //   // company: item,
-    //   tabIndex,
-    // } = this.state
+  // let {
+  //   // company: item,
+  //   tabIndex,
+  // } = this.state
 
-    // if (!item) {
-    //   return null
-    // }
+  // if (!item) {
+  //   return null
+  // }
 
-    // let itemData = { ...item }
-    const itemData = item
+  // let itemData = { ...item }
+  const itemData = item
 
-    // const {
-    //   // galleryItem,
-    //   // galleryExpanded,
-    //   sending,
-    //   diffs,
-    // } = this.state
+  // const {
+  //   // galleryItem,
+  //   // galleryExpanded,
+  //   sending,
+  //   diffs,
+  // } = this.state
 
-    // const newCommentForm = currentUser ? true : false
+  // const newCommentForm = currentUser ? true : false
 
-    // Перегружаем измененные данные
-    // if (diffs && diffs.data) {
-    //   Object.assign(itemData, diffs.data)
-    // }
+  // Перегружаем измененные данные
+  // if (diffs && diffs.data) {
+  //   Object.assign(itemData, diffs.data)
+  // }
 
-    const {
-      // id,
-      // id: companyId,
-      pagetitle: name,
-      // uri,
-      // imageFormats: image,
-      image,
-      gallery,
-      // TemplateVarValues: tvs,
-      content: itemContent,
-      // city,
-      // createdon,
-      // createdby,
-      // coords,
+  const {
+    // id,
+    // id: companyId,
+    pagetitle: name,
+    // uri,
+    // imageFormats: image,
+    image,
+    gallery,
+    // TemplateVarValues: tvs,
+    content: itemContent,
+    // city,
+    // createdon,
+    // createdby,
+    // coords,
 
-      // TODO: Fix comments
-      // comments,
+    // TODO: Fix comments
+    // comments,
 
-      // editedon,
-      // editVersions,
-      // schedule,
-      // schedule_men,
-      // schedule_women,
-      // schedule_family,
+    // editedon,
+    // editVersions,
+    // schedule,
+    // schedule_men,
+    // schedule_women,
+    // schedule_family,
 
-      // prices,
+    // prices,
 
-      // _errors: errors,
-      // _isDirty,
-      // } = item;
-      address,
-      workTime,
-    } = itemData
+    // _errors: errors,
+    // _isDirty,
+    // } = item;
+    address,
+    workTime,
+  } = useMemo(() => {
+    return itemData
+  }, [itemData])
 
+  const prices = useMemo(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let prices: Record<string, any> | undefined
+    // let prices: Record<string, any> | string | undefined
 
     if (item.prices) {
       try {
-        prices = JSON.parse(item.prices)
+        const prices = JSON.parse(item.prices) as PrismaCmsEditorProps['value']
+
+        return prices && typeof prices === 'object' ? (
+          <Editor
+            editorKey="prices"
+            // label="Цены"
+            // error={errors && errors.prices ? true : false}
+            // helperText={
+            //   (errors && errors.prices) ||
+            //   'Распишите цены, включая цены на допуслуги'
+            // }
+            // name="prices"
+            // onChange={(event) => {
+            //   const { target } = event || {}
+
+            //   if (!target) {
+            //     return
+            //   }
+
+            //   const { name, value } = target
+
+            //   let { _isDirty } = item
+
+            //   _isDirty = _isDirty || {}
+
+            //   Object.assign(_isDirty, {
+            //     prices: value,
+            //   })
+
+            //   Object.assign(item, {
+            //     prices,
+            //     _isDirty,
+            //   })
+            // }}
+            // onFocus={() => this.onFocus('prices')}
+            value={prices}
+          />
+        ) : null
       } catch (error) {
-        console.error(error)
+        // console.error('JSON.parse error', error, item.prices)
+        // TODO На сервере это или строка или JSON
+
+        return (
+          <div
+            dangerouslySetInnerHTML={{
+              __html: item.prices,
+            }}
+          />
+        )
       }
     }
+  }, [item.prices])
 
+  return useMemo(() => {
     // const {
     //   metro,
     //   phones,
@@ -489,39 +541,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company: item }) => {
                   {/* 
                     TODO Restore Editor
                     */}
-                  {/* <Editor
-                    // label="Цены"
-                    error={errors && errors.prices ? true : false}
-                    helperText={
-                      (errors && errors.prices) ||
-                      'Распишите цены, включая цены на допуслуги'
-                    }
-                    name="prices"
-                    value={prices || ''}
-                    onChange={(event) => {
-                      const { target } = event || {}
-
-                      if (!target) {
-                        return
-                      }
-
-                      const { name, value } = target
-
-                      let { _isDirty } = item
-
-                      _isDirty = _isDirty || {}
-
-                      Object.assign(_isDirty, {
-                        prices: value,
-                      })
-
-                      Object.assign(item, {
-                        prices,
-                        _isDirty,
-                      })
-                    }}
-                    onFocus={() => this.onFocus('prices')}
-                  /> */}
+                  {prices}
                 </div>
               ) : prices ? (
                 <div
@@ -667,15 +687,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company: item }) => {
           </CardContent>
         ) : null}
 
-        <CardContent>
-          <Paper
-            style={{
-              height: 400,
-            }}
-          >
-            <ItemMap item={item} />
-          </Paper>
-        </CardContent>
+        <ItemMap item={item} />
 
         {Gallery}
 
@@ -705,7 +717,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company: item }) => {
         ) : null} */}
       </Card>
     )
-  }, [item])
+  }, [address, gallery, image, item, itemContent, name, prices, workTime])
 }
 
 export default CompanyView
