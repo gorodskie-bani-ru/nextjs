@@ -20,7 +20,7 @@ export type UsersQueryVariables = Types.Exact<{
 }>;
 
 
-export type UsersQuery = { __typename?: 'Query', users: Array<(
+export type UsersQuery = { __typename?: 'Query', usersCount: number, users: Array<(
     { __typename?: 'User' }
     & UserFragment
   )> };
@@ -31,6 +31,7 @@ export const UsersDocument = gql`
   users(where: $where, orderBy: $orderBy, skip: $skip, take: $take) {
     ...user_
   }
+  usersCount(where: $where)
 }
     ${UserFragmentDoc}`;
 

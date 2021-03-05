@@ -216,6 +216,11 @@ type Query {
     take: Int
     where: bani684_usersWhereInput
   ): [User!]!
+
+  """
+  Количество пользователей
+  """
+  usersCount(where: bani684_usersWhereInput): Int!
 }
 
 type Resource {

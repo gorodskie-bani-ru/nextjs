@@ -4,10 +4,15 @@ import {
   GridTableItemStyled,
   GridTableStyled,
 } from 'src/components/ui/GridTable/styles'
+import Pagination from 'src/components/ui/Pagination'
 import { UsersPageViewProps } from './interfaces'
 import UsersPageViewUser from './User'
 
-const UsersPageView: React.FC<UsersPageViewProps> = ({ users, ...other }) => {
+const UsersPageView: React.FC<UsersPageViewProps> = ({
+  users,
+  pagination,
+  ...other
+}) => {
   return useMemo(() => {
     return (
       <>
@@ -30,9 +35,11 @@ const UsersPageView: React.FC<UsersPageViewProps> = ({ users, ...other }) => {
             return <UsersPageViewUser key={n.id} user={n} />
           })}
         </GridTableStyled>
+
+        <Pagination {...pagination} />
       </>
     )
-  }, [other, users])
+  }, [other, pagination, users])
 }
 
 export default UsersPageView

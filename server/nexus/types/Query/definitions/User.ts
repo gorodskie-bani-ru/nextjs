@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import { Prisma } from '@prisma/client'
-import { ObjectDefinitionBlock } from 'nexus/dist/core'
+import { arg, ObjectDefinitionBlock } from 'nexus/dist/core'
 
 const select = {
   id: true,
@@ -19,6 +19,20 @@ export default (t: ObjectDefinitionBlock<'Query'>) => {
   //     return null
   //   },
   // })
+
+  t.nonNull.int('usersCount', {
+    description: 'Количество пользователей',
+    args: {
+      where: arg({
+        type: 'bani684_usersWhereInput',
+      }),
+    },
+    resolve(_, args, ctx) {
+      return ctx.prisma.bani684_users.count(
+        args as Pick<Prisma.bani684_usersCountArgs, 'where'>
+      )
+    },
+  })
 
   t.crud.bani684Users({
     type: 'User',

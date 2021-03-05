@@ -47,13 +47,14 @@ export type GalleryImageFieldPolicy = {
 	image?: FieldPolicy<any> | FieldReadFunction<any>,
 	title?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type QueryKeySpecifier = ('cities' | 'companies' | 'resources' | 'user' | 'users' | QueryKeySpecifier)[];
+export type QueryKeySpecifier = ('cities' | 'companies' | 'resources' | 'user' | 'users' | 'usersCount' | QueryKeySpecifier)[];
 export type QueryFieldPolicy = {
 	cities?: FieldPolicy<any> | FieldReadFunction<any>,
 	companies?: FieldPolicy<any> | FieldReadFunction<any>,
 	resources?: FieldPolicy<any> | FieldReadFunction<any>,
 	user?: FieldPolicy<any> | FieldReadFunction<any>,
-	users?: FieldPolicy<any> | FieldReadFunction<any>
+	users?: FieldPolicy<any> | FieldReadFunction<any>,
+	usersCount?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type ResourceKeySpecifier = ('TemplateVarValues' | 'alias' | 'content' | 'createdby' | 'createdon' | 'description' | 'id' | 'longtitle' | 'pagetitle' | 'published' | 'searchable' | 'template' | 'uri' | ResourceKeySpecifier)[];
 export type ResourceFieldPolicy = {

@@ -1,7 +1,10 @@
+import { PaginationProps } from 'src/components/ui/Pagination'
 import { UsersPageViewUserProps } from './User/interfaces'
 
-export interface UsersPageViewProps {
+export type UsersPageViewProps = {
   // data: UsersConnectionQuery | null | undefined
 
   users: UsersPageViewUserProps['user'][]
+
+  pagination: PaginationProps
 }

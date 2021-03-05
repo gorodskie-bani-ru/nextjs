@@ -567,6 +567,7 @@ export interface NexusGenFieldTypes {
     resources: NexusGenRootTypes['ResourceUnion'][] // [ResourceUnion!]!
     user: NexusGenRootTypes['User'] | null // User
     users: NexusGenRootTypes['User'][] // [User!]!
+    usersCount: number // Int!
   }
   Resource: {
     // field return type
@@ -667,6 +668,7 @@ export interface NexusGenFieldTypeNames {
     resources: 'ResourceUnion'
     user: 'User'
     users: 'User'
+    usersCount: 'Int'
   }
   Resource: {
     // field return type name
@@ -744,6 +746,10 @@ export interface NexusGenArgTypes {
       orderBy?: NexusGenInputs['bani684_usersOrderByInput'][] | null // [bani684_usersOrderByInput!]
       skip?: number | null // Int
       take?: number | null // Int
+      where?: NexusGenInputs['bani684_usersWhereInput'] | null // bani684_usersWhereInput
+    }
+    usersCount: {
+      // args
       where?: NexusGenInputs['bani684_usersWhereInput'] | null // bani684_usersWhereInput
     }
   }

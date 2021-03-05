@@ -181,6 +181,8 @@ export interface Query {
   resources: Array<ResourceUnion>;
   user?: Maybe<User>;
   users: Array<User>;
+  /** Количество пользователей */
+  usersCount: Scalars['Int'];
 }
 
 
@@ -220,6 +222,11 @@ export type QueryUsersArgs = {
   orderBy?: Maybe<Array<Bani684UsersOrderByInput>>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
+  where?: Maybe<Bani684UsersWhereInput>;
+};
+
+
+export type QueryUsersCountArgs = {
   where?: Maybe<Bani684UsersWhereInput>;
 };
 
