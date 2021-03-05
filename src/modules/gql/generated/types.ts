@@ -105,6 +105,17 @@ export interface IntFilter {
   notIn?: Maybe<Array<Scalars['Int']>>;
 }
 
+export interface IntNullableFilter {
+  equals?: Maybe<Scalars['Int']>;
+  gt?: Maybe<Scalars['Int']>;
+  gte?: Maybe<Scalars['Int']>;
+  in?: Maybe<Array<Scalars['Int']>>;
+  lt?: Maybe<Scalars['Int']>;
+  lte?: Maybe<Scalars['Int']>;
+  not?: Maybe<NestedIntNullableFilter>;
+  notIn?: Maybe<Array<Scalars['Int']>>;
+}
+
 export interface NestedBoolFilter {
   equals?: Maybe<Scalars['Boolean']>;
   not?: Maybe<NestedBoolFilter>;
@@ -118,6 +129,17 @@ export interface NestedIntFilter {
   lt?: Maybe<Scalars['Int']>;
   lte?: Maybe<Scalars['Int']>;
   not?: Maybe<NestedIntFilter>;
+  notIn?: Maybe<Array<Scalars['Int']>>;
+}
+
+export interface NestedIntNullableFilter {
+  equals?: Maybe<Scalars['Int']>;
+  gt?: Maybe<Scalars['Int']>;
+  gte?: Maybe<Scalars['Int']>;
+  in?: Maybe<Array<Scalars['Int']>>;
+  lt?: Maybe<Scalars['Int']>;
+  lte?: Maybe<Scalars['Int']>;
+  not?: Maybe<NestedIntNullableFilter>;
   notIn?: Maybe<Array<Scalars['Int']>>;
 }
 
@@ -155,8 +177,12 @@ export interface Query {
   cities: Array<City>;
   /** Компании */
   companies: Array<Company>;
+  /** Текущий пользователь */
+  me?: Maybe<User>;
   /** Ресурсы */
   resources: Array<ResourceUnion>;
+  user?: Maybe<User>;
+  users: Array<User>;
 }
 
 
@@ -183,6 +209,20 @@ export type QueryResourcesArgs = {
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<Bani684SiteContentWhereInput>;
+};
+
+
+export type QueryUserArgs = {
+  where: Bani684UsersWhereUniqueInput;
+};
+
+
+export type QueryUsersArgs = {
+  cursor?: Maybe<Bani684UsersWhereUniqueInput>;
+  orderBy?: Maybe<Array<Bani684UsersOrderByInput>>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
+  where?: Maybe<Bani684UsersWhereInput>;
 };
 
 export interface Resource {
@@ -236,6 +276,15 @@ export interface StringNullableFilter {
   not?: Maybe<NestedStringNullableFilter>;
   notIn?: Maybe<Array<Scalars['String']>>;
   startsWith?: Maybe<Scalars['String']>;
+}
+
+/** Пользователь */
+export interface User {
+  __typename?: 'User';
+  active: Scalars['Boolean'];
+  id: Scalars['Int'];
+  sudo?: Maybe<Scalars['Boolean']>;
+  username?: Maybe<Scalars['String']>;
 }
 
 export interface Bani684SiteContentOrderByInput {
@@ -355,4 +404,56 @@ export interface Bani684SiteTmplvarContentvaluesWhereInput {
   id?: Maybe<IntFilter>;
   tmplvarid?: Maybe<IntFilter>;
   value?: Maybe<StringFilter>;
+}
+
+export interface Bani684UsersOrderByInput {
+  active?: Maybe<SortOrder>;
+  cachepwd?: Maybe<SortOrder>;
+  class_key?: Maybe<SortOrder>;
+  contract_date?: Maybe<SortOrder>;
+  createdby?: Maybe<SortOrder>;
+  createdon?: Maybe<SortOrder>;
+  delegate?: Maybe<SortOrder>;
+  hash_class?: Maybe<SortOrder>;
+  id?: Maybe<SortOrder>;
+  offer?: Maybe<SortOrder>;
+  offer_date?: Maybe<SortOrder>;
+  password?: Maybe<SortOrder>;
+  primary_group?: Maybe<SortOrder>;
+  remote_data?: Maybe<SortOrder>;
+  remote_key?: Maybe<SortOrder>;
+  salt?: Maybe<SortOrder>;
+  session_stale?: Maybe<SortOrder>;
+  sudo?: Maybe<SortOrder>;
+  username?: Maybe<SortOrder>;
+}
+
+export interface Bani684UsersWhereInput {
+  AND?: Maybe<Array<Bani684UsersWhereInput>>;
+  NOT?: Maybe<Array<Bani684UsersWhereInput>>;
+  OR?: Maybe<Array<Bani684UsersWhereInput>>;
+  active?: Maybe<BoolFilter>;
+  cachepwd?: Maybe<StringFilter>;
+  class_key?: Maybe<StringFilter>;
+  contract_date?: Maybe<IntNullableFilter>;
+  createdby?: Maybe<IntNullableFilter>;
+  createdon?: Maybe<IntFilter>;
+  delegate?: Maybe<StringNullableFilter>;
+  hash_class?: Maybe<StringFilter>;
+  id?: Maybe<IntFilter>;
+  offer?: Maybe<StringNullableFilter>;
+  offer_date?: Maybe<IntNullableFilter>;
+  password?: Maybe<StringFilter>;
+  primary_group?: Maybe<IntFilter>;
+  remote_data?: Maybe<StringNullableFilter>;
+  remote_key?: Maybe<StringNullableFilter>;
+  salt?: Maybe<StringFilter>;
+  session_stale?: Maybe<StringNullableFilter>;
+  sudo?: Maybe<BoolFilter>;
+  username?: Maybe<StringFilter>;
+}
+
+export interface Bani684UsersWhereUniqueInput {
+  id?: Maybe<Scalars['Int']>;
+  username?: Maybe<Scalars['String']>;
 }

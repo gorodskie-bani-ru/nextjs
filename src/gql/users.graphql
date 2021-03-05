@@ -1,0 +1,21 @@
+query users(
+  $where: bani684_usersWhereInput
+  $orderBy: [bani684_usersOrderByInput!]
+  $skip: Int
+  $take: Int
+) {
+  users(where: $where, orderBy: $orderBy, skip: $skip, take: $take) {
+    ...user_
+  }
+}
+
+query user($where: bani684_usersWhereUniqueInput!) {
+  user(where: $where) {
+    ...user_
+  }
+}
+
+fragment user_ on User {
+  id
+  username
+}

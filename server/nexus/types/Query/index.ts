@@ -3,6 +3,7 @@
 import { objectType } from 'nexus'
 import { companies } from './definitions/Company'
 import { cities } from './definitions/City'
+import userDefinitions from './definitions/User'
 import {
   resources,
   // resourcesCount,
@@ -14,6 +15,7 @@ export const Query = objectType({
     companies(t)
     cities(t)
     resources(t)
+    userDefinitions(t)
     // resourcesCount(t)
 
     // t.nonNull.list.field("resources", {

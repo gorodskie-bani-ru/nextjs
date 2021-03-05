@@ -1,9 +1,11 @@
 import React, { useMemo } from 'react'
 import NextApp, { AppContext as NextAppContext } from 'next/app'
 import { ApolloProvider } from '@apollo/client'
-import { ThemeProvider } from '@material-ui/core/styles'
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles/'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import muiTheme from 'src/theme/muiTheme'
+import { ThemeProvider } from 'styled-components'
+import theme from 'src/theme'
 
 import { useApollo, initializeApollo } from 'src/lib/apolloClient'
 import jquery from 'jquery'
@@ -23,6 +25,7 @@ import Page404 from '../_Error/404'
 import ErrorPage from '../_Error'
 import Layout from './Layout'
 import { AppContext, AppContextValue } from './Context'
+import { GlobalStyle } from 'src/theme/GlobalStyle'
 
 // import chalk from 'chalk';
 // import Debug from 'debug';
@@ -123,31 +126,34 @@ const App: MainApp<AppProps> = ({ Component, pageProps }) => {
   }, [statusCode, pageProps])
 
   return (
-    <ThemeProvider theme={muiTheme}>
-      <Head>
-        {/* 
+    <MuiThemeProvider theme={muiTheme}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Head>
+          {/* 
           PWA primary color 
         */}
-        <meta name="theme-color" content={muiTheme.palette.primary.main} />
-      </Head>
+          <meta name="theme-color" content={muiTheme.palette.primary.main} />
+        </Head>
 
-      <style jsx global>{`
-        #__next {
-          height: 100%;
-        }
-      `}</style>
+        <style jsx global>{`
+          #__next {
+            height: 100%;
+          }
+        `}</style>
 
-      {/* 
+        {/* 
         CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. 
       */}
-      <CssBaseline />
+        <CssBaseline />
 
-      <ApolloProvider client={apolloClient}>
-        <AppContext.Provider value={context}>
-          <Layout>{content}</Layout>
-        </AppContext.Provider>
-      </ApolloProvider>
-    </ThemeProvider>
+        <ApolloProvider client={apolloClient}>
+          <AppContext.Provider value={context}>
+            <Layout>{content}</Layout>
+          </AppContext.Provider>
+        </ApolloProvider>
+      </ThemeProvider>
+    </MuiThemeProvider>
   )
 }
 

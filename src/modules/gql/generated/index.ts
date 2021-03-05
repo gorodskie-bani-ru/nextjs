@@ -4,4 +4,7 @@ export * from './ListCompany';
 export * from './cities';
 export * from './city';
 export * from './companies';
-export * from './resources';export * from './types';
+export * from './resources';
+export * from './user';
+export * from './user_';
+export * from './users';export * from './types';

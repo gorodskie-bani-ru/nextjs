@@ -110,6 +110,17 @@ input IntFilter {
   notIn: [Int!]
 }
 
+input IntNullableFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntNullableFilter
+  notIn: [Int!]
+}
+
 input NestedBoolFilter {
   equals: Boolean
   not: NestedBoolFilter
@@ -123,6 +134,17 @@ input NestedIntFilter {
   lt: Int
   lte: Int
   not: NestedIntFilter
+  notIn: [Int!]
+}
+
+input NestedIntNullableFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntNullableFilter
   notIn: [Int!]
 }
 
@@ -178,6 +200,11 @@ type Query {
   ): [Company!]!
 
   """
+  Текущий пользователь
+  """
+  me: User
+
+  """
   Ресурсы
   """
   resources(
@@ -186,6 +213,14 @@ type Query {
     take: Int
     where: bani684_site_contentWhereInput
   ): [ResourceUnion!]!
+  user(where: bani684_usersWhereUniqueInput!): User
+  users(
+    cursor: bani684_usersWhereUniqueInput
+    orderBy: [bani684_usersOrderByInput!]
+    skip: Int
+    take: Int
+    where: bani684_usersWhereInput
+  ): [User!]!
 }
 
 type Resource {
@@ -240,6 +275,16 @@ input StringNullableFilter {
   not: NestedStringNullableFilter
   notIn: [String!]
   startsWith: String
+}
+
+"""
+Пользователь
+"""
+type User {
+  active: Boolean!
+  id: Int!
+  sudo: Boolean
+  username: String
 }
 
 input bani684_site_contentOrderByInput {
@@ -358,4 +403,56 @@ input bani684_site_tmplvar_contentvaluesWhereInput {
   id: IntFilter
   tmplvarid: IntFilter
   value: StringFilter
+}
+
+input bani684_usersOrderByInput {
+  active: SortOrder
+  cachepwd: SortOrder
+  class_key: SortOrder
+  contract_date: SortOrder
+  createdby: SortOrder
+  createdon: SortOrder
+  delegate: SortOrder
+  hash_class: SortOrder
+  id: SortOrder
+  offer: SortOrder
+  offer_date: SortOrder
+  password: SortOrder
+  primary_group: SortOrder
+  remote_data: SortOrder
+  remote_key: SortOrder
+  salt: SortOrder
+  session_stale: SortOrder
+  sudo: SortOrder
+  username: SortOrder
+}
+
+input bani684_usersWhereInput {
+  AND: [bani684_usersWhereInput!]
+  NOT: [bani684_usersWhereInput!]
+  OR: [bani684_usersWhereInput!]
+  active: BoolFilter
+  cachepwd: StringFilter
+  class_key: StringFilter
+  contract_date: IntNullableFilter
+  createdby: IntNullableFilter
+  createdon: IntFilter
+  delegate: StringNullableFilter
+  hash_class: StringFilter
+  id: IntFilter
+  offer: StringNullableFilter
+  offer_date: IntNullableFilter
+  password: StringFilter
+  primary_group: IntFilter
+  remote_data: StringNullableFilter
+  remote_key: StringNullableFilter
+  salt: StringFilter
+  session_stale: StringNullableFilter
+  sudo: BoolFilter
+  username: StringFilter
+}
+
+input bani684_usersWhereUniqueInput {
+  id: Int
+  username: String
 }

@@ -47,11 +47,14 @@ export type GalleryImageFieldPolicy = {
 	image?: FieldPolicy<any> | FieldReadFunction<any>,
 	title?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type QueryKeySpecifier = ('cities' | 'companies' | 'resources' | QueryKeySpecifier)[];
+export type QueryKeySpecifier = ('cities' | 'companies' | 'me' | 'resources' | 'user' | 'users' | QueryKeySpecifier)[];
 export type QueryFieldPolicy = {
 	cities?: FieldPolicy<any> | FieldReadFunction<any>,
 	companies?: FieldPolicy<any> | FieldReadFunction<any>,
-	resources?: FieldPolicy<any> | FieldReadFunction<any>
+	me?: FieldPolicy<any> | FieldReadFunction<any>,
+	resources?: FieldPolicy<any> | FieldReadFunction<any>,
+	user?: FieldPolicy<any> | FieldReadFunction<any>,
+	users?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type ResourceKeySpecifier = ('TemplateVarValues' | 'alias' | 'content' | 'createdby' | 'createdon' | 'description' | 'id' | 'longtitle' | 'pagetitle' | 'published' | 'searchable' | 'template' | 'uri' | ResourceKeySpecifier)[];
 export type ResourceFieldPolicy = {
@@ -68,6 +71,13 @@ export type ResourceFieldPolicy = {
 	searchable?: FieldPolicy<any> | FieldReadFunction<any>,
 	template?: FieldPolicy<any> | FieldReadFunction<any>,
 	uri?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type UserKeySpecifier = ('active' | 'id' | 'sudo' | 'username' | UserKeySpecifier)[];
+export type UserFieldPolicy = {
+	active?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	sudo?: FieldPolicy<any> | FieldReadFunction<any>,
+	username?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type bani684_site_tmplvar_contentvaluesKeySpecifier = ('contentid' | 'id' | 'tmplvarid' | 'value' | bani684_site_tmplvar_contentvaluesKeySpecifier)[];
 export type bani684_site_tmplvar_contentvaluesFieldPolicy = {
@@ -100,6 +110,10 @@ export type TypedTypePolicies = TypePolicies & {
 	Resource?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | ResourceKeySpecifier | (() => undefined | ResourceKeySpecifier),
 		fields?: ResourceFieldPolicy,
+	},
+	User?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | UserKeySpecifier | (() => undefined | UserKeySpecifier),
+		fields?: UserFieldPolicy,
 	},
 	bani684_site_tmplvar_contentvalues?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | bani684_site_tmplvar_contentvaluesKeySpecifier | (() => undefined | bani684_site_tmplvar_contentvaluesKeySpecifier),

@@ -11,7 +11,7 @@ const CompaniesView: React.FC<CompaniesViewProps> = ({ componies }) => {
         <CompaniesViewStyled>
           <Grid container>
             {componies.map((n) => (
-              <Grid key={n.id} xs={12} sm={6} md={4} lg={3}>
+              <Grid key={n.id} item xs={12} sm={6} md={4} lg={3}>
                 <CompaniesViewCompany company={n} />
               </Grid>
             ))}

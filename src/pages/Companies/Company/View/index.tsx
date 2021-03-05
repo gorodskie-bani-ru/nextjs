@@ -347,10 +347,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company: item }) => {
             </Grid>
 
             <Grid item xs={12} sm>
-              {inEditMode ? //   onChange={this.onChange} //   value={address || ''} //   name="address" //   } //     (errors && errors.address) || 'Укажите подробный адрес' //   helperText={ //   error={errors && errors.address ? true : false} //   label="Адрес" // <TextField
-              //   onFocus={() => this.onFocus('address')}
-              // />
-              null : addresses.length ? (
+              {inEditMode ? null : addresses.length ? ( // /> //   onFocus={() => this.onFocus('address')} //   onChange={this.onChange} //   value={address || ''} //   name="address" //   } //     (errors && errors.address) || 'Укажите подробный адрес' //   helperText={ //   error={errors && errors.address ? true : false} //   label="Адрес" // <TextField
                 <Grid
                   container
                   // gutter={0}
@@ -443,8 +440,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company: item }) => {
                 ''
               )}
 
-              {inEditMode ? // /> //   onFocus={() => this.onFocus('site')} //   onChange={this.onChange} //   value={site || ''} //   name="site" //   helperText="Если адрес начинается с https, обязательно укажите вместе с ним, например, https://ваш_сайт/" //   label="Сайт" // <TextField
-              null : site ? (
+              {inEditMode ? null : site ? ( // /> //   onFocus={() => this.onFocus('site')} //   onChange={this.onChange} //   value={site || ''} //   name="site" //   helperText="Если адрес начинается с https, обязательно укажите вместе с ним, например, https://ваш_сайт/" //   label="Сайт" // <TextField
                 <Grid
                   container
                   // gutter={0}

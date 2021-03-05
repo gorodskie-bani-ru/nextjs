@@ -63,6 +63,17 @@ export interface NexusGenInputs {
     not?: NexusGenInputs['NestedIntFilter'] | null // NestedIntFilter
     notIn?: number[] | null // [Int!]
   }
+  IntNullableFilter: {
+    // input type
+    equals?: number | null // Int
+    gt?: number | null // Int
+    gte?: number | null // Int
+    in?: number[] | null // [Int!]
+    lt?: number | null // Int
+    lte?: number | null // Int
+    not?: NexusGenInputs['NestedIntNullableFilter'] | null // NestedIntNullableFilter
+    notIn?: number[] | null // [Int!]
+  }
   NestedBoolFilter: {
     // input type
     equals?: boolean | null // Boolean
@@ -77,6 +88,17 @@ export interface NexusGenInputs {
     lt?: number | null // Int
     lte?: number | null // Int
     not?: NexusGenInputs['NestedIntFilter'] | null // NestedIntFilter
+    notIn?: number[] | null // [Int!]
+  }
+  NestedIntNullableFilter: {
+    // input type
+    equals?: number | null // Int
+    gt?: number | null // Int
+    gte?: number | null // Int
+    in?: number[] | null // [Int!]
+    lt?: number | null // Int
+    lte?: number | null // Int
+    not?: NexusGenInputs['NestedIntNullableFilter'] | null // NestedIntNullableFilter
     notIn?: number[] | null // [Int!]
   }
   NestedStringFilter: {
@@ -252,6 +274,58 @@ export interface NexusGenInputs {
     tmplvarid?: NexusGenInputs['IntFilter'] | null // IntFilter
     value?: NexusGenInputs['StringFilter'] | null // StringFilter
   }
+  bani684_usersOrderByInput: {
+    // input type
+    active?: NexusGenEnums['SortOrder'] | null // SortOrder
+    cachepwd?: NexusGenEnums['SortOrder'] | null // SortOrder
+    class_key?: NexusGenEnums['SortOrder'] | null // SortOrder
+    contract_date?: NexusGenEnums['SortOrder'] | null // SortOrder
+    createdby?: NexusGenEnums['SortOrder'] | null // SortOrder
+    createdon?: NexusGenEnums['SortOrder'] | null // SortOrder
+    delegate?: NexusGenEnums['SortOrder'] | null // SortOrder
+    hash_class?: NexusGenEnums['SortOrder'] | null // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    offer?: NexusGenEnums['SortOrder'] | null // SortOrder
+    offer_date?: NexusGenEnums['SortOrder'] | null // SortOrder
+    password?: NexusGenEnums['SortOrder'] | null // SortOrder
+    primary_group?: NexusGenEnums['SortOrder'] | null // SortOrder
+    remote_data?: NexusGenEnums['SortOrder'] | null // SortOrder
+    remote_key?: NexusGenEnums['SortOrder'] | null // SortOrder
+    salt?: NexusGenEnums['SortOrder'] | null // SortOrder
+    session_stale?: NexusGenEnums['SortOrder'] | null // SortOrder
+    sudo?: NexusGenEnums['SortOrder'] | null // SortOrder
+    username?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  bani684_usersWhereInput: {
+    // input type
+    AND?: NexusGenInputs['bani684_usersWhereInput'][] | null // [bani684_usersWhereInput!]
+    NOT?: NexusGenInputs['bani684_usersWhereInput'][] | null // [bani684_usersWhereInput!]
+    OR?: NexusGenInputs['bani684_usersWhereInput'][] | null // [bani684_usersWhereInput!]
+    active?: NexusGenInputs['BoolFilter'] | null // BoolFilter
+    cachepwd?: NexusGenInputs['StringFilter'] | null // StringFilter
+    class_key?: NexusGenInputs['StringFilter'] | null // StringFilter
+    contract_date?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    createdby?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    createdon?: NexusGenInputs['IntFilter'] | null // IntFilter
+    delegate?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    hash_class?: NexusGenInputs['StringFilter'] | null // StringFilter
+    id?: NexusGenInputs['IntFilter'] | null // IntFilter
+    offer?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    offer_date?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    password?: NexusGenInputs['StringFilter'] | null // StringFilter
+    primary_group?: NexusGenInputs['IntFilter'] | null // IntFilter
+    remote_data?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    remote_key?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    salt?: NexusGenInputs['StringFilter'] | null // StringFilter
+    session_stale?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    sudo?: NexusGenInputs['BoolFilter'] | null // BoolFilter
+    username?: NexusGenInputs['StringFilter'] | null // StringFilter
+  }
+  bani684_usersWhereUniqueInput: {
+    // input type
+    id?: number | null // Int
+    username?: string | null // String
+  }
 }
 
 export interface NexusGenEnums {
@@ -330,6 +404,13 @@ export interface NexusGenObjects {
     searchable: boolean // Boolean!
     template: number // Int!
     uri?: string | null // String
+  }
+  User: {
+    // root type
+    active: boolean // Boolean!
+    id: number // Int!
+    sudo?: boolean | null // Boolean
+    username?: string | null // String
   }
   bani684_site_tmplvar_contentvalues: {
     // root type
@@ -412,7 +493,10 @@ export interface NexusGenFieldTypes {
     // field return type
     cities: NexusGenRootTypes['City'][] // [City!]!
     companies: NexusGenRootTypes['Company'][] // [Company!]!
+    me: NexusGenRootTypes['User'] | null // User
     resources: NexusGenRootTypes['ResourceUnion'][] // [ResourceUnion!]!
+    user: NexusGenRootTypes['User'] | null // User
+    users: NexusGenRootTypes['User'][] // [User!]!
   }
   Resource: {
     // field return type
@@ -431,6 +515,13 @@ export interface NexusGenFieldTypes {
     searchable: boolean // Boolean!
     template: number // Int!
     uri: string | null // String
+  }
+  User: {
+    // field return type
+    active: boolean // Boolean!
+    id: number // Int!
+    sudo: boolean | null // Boolean
+    username: string | null // String
   }
   bani684_site_tmplvar_contentvalues: {
     // field return type
@@ -494,7 +585,10 @@ export interface NexusGenFieldTypeNames {
     // field return type name
     cities: 'City'
     companies: 'Company'
+    me: 'User'
     resources: 'ResourceUnion'
+    user: 'User'
+    users: 'User'
   }
   Resource: {
     // field return type name
@@ -511,6 +605,13 @@ export interface NexusGenFieldTypeNames {
     searchable: 'Boolean'
     template: 'Int'
     uri: 'String'
+  }
+  User: {
+    // field return type name
+    active: 'Boolean'
+    id: 'Int'
+    sudo: 'Boolean'
+    username: 'String'
   }
   bani684_site_tmplvar_contentvalues: {
     // field return type name
@@ -545,6 +646,18 @@ export interface NexusGenArgTypes {
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['bani684_site_contentWhereInput'] | null // bani684_site_contentWhereInput
+    }
+    user: {
+      // args
+      where: NexusGenInputs['bani684_usersWhereUniqueInput'] // bani684_usersWhereUniqueInput!
+    }
+    users: {
+      // args
+      cursor?: NexusGenInputs['bani684_usersWhereUniqueInput'] | null // bani684_usersWhereUniqueInput
+      orderBy?: NexusGenInputs['bani684_usersOrderByInput'][] | null // [bani684_usersOrderByInput!]
+      skip?: number | null // Int
+      take?: number | null // Int
+      where?: NexusGenInputs['bani684_usersWhereInput'] | null // bani684_usersWhereInput
     }
   }
 }
