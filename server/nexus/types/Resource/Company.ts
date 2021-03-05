@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import { objectType } from 'nexus'
-import { TemplateVarIDs } from '../constants'
-import { coordsResolver } from './Query/resolvers/coords'
+import { TemplateVarIDs } from '../../constants'
+import { coordsResolver } from '../Query/resolvers/coords'
 
 export const Company = objectType({
   name: 'Company',

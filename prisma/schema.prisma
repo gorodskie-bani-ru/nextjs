@@ -1069,7 +1069,7 @@ model bani684_site_content {
   menuindex             Int     @default(0)
   searchable            Boolean @default(true)
   cacheable             Boolean @default(true)
-  createdby             Int     @default(0)
+  createdby             Int     @db.UnsignedInt
   createdon             Int     @default(0)
   editedby              Int     @default(0)
   editedon              Int     @default(0)
@@ -1095,6 +1095,8 @@ model bani684_site_content {
 
 
   TemplateVarValues bani684_site_tmplvar_contentvalues[]
+
+  CreatedBy bani684_users @relation(fields: [createdby], references: [id])
 
   @@index([alias], name: "alias")
   @@index([parent, menuindex, id], name: "cache_refresh_idx")
@@ -1489,6 +1491,7 @@ model bani684_users {
   createdby     Int?    @db.UnsignedInt
 
   Attributes bani684_user_attributes?
+  Resources  bani684_site_content[]
 
   @@index([class_key], name: "class_key")
   @@index([contract_date], name: "contract_date")

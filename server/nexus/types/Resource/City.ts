@@ -1,5 +1,5 @@
 import { objectType } from 'nexus'
-import { coordsResolver } from './Query/resolvers/coords'
+import { coordsResolver } from '../Query/resolvers/coords'
 
 export const City = objectType({
   name: 'City',

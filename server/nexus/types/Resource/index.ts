@@ -1,5 +1,8 @@
 import { objectType, unionType } from 'nexus'
 
+export * from './Company'
+export * from './City'
+
 // alias
 // city_id
 // city
@@ -79,3 +82,10 @@ export const Resource = objectType({
     // })
   },
 })
+
+// export const Comment = extendType({
+//   type: "Resource",
+//   definition(){
+
+//   }
+// });

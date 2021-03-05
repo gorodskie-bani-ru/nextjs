@@ -1236,7 +1236,7 @@ CREATE TABLE `bani684_site_content` (
     `menuindex` INTEGER NOT NULL DEFAULT 0,
     `searchable` BOOLEAN NOT NULL DEFAULT true,
     `cacheable` BOOLEAN NOT NULL DEFAULT true,
-    `createdby` INTEGER NOT NULL DEFAULT 0,
+    `createdby` INTEGER UNSIGNED NOT NULL ,
     `createdon` INTEGER NOT NULL DEFAULT 0,
     `editedby` INTEGER NOT NULL DEFAULT 0,
     `editedon` INTEGER NOT NULL DEFAULT 0,

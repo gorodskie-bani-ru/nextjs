@@ -39,6 +39,12 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  Bani684_site_contentListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['bani684_site_contentWhereInput'] | null // bani684_site_contentWhereInput
+    none?: NexusGenInputs['bani684_site_contentWhereInput'] | null // bani684_site_contentWhereInput
+    some?: NexusGenInputs['bani684_site_contentWhereInput'] | null // bani684_site_contentWhereInput
+  }
   Bani684_site_tmplvar_contentvaluesListRelationFilter: {
     // input type
     every?:
@@ -159,6 +165,7 @@ export interface NexusGenInputs {
   }
   bani684_site_contentOrderByInput: {
     // input type
+    CreatedBy?: NexusGenInputs['bani684_usersOrderByInput'] | null // bani684_usersOrderByInput
     alias?: NexusGenEnums['SortOrder'] | null // SortOrder
     cacheable?: NexusGenEnums['SortOrder'] | null // SortOrder
     class_key?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -206,6 +213,7 @@ export interface NexusGenInputs {
   bani684_site_contentWhereInput: {
     // input type
     AND?: NexusGenInputs['bani684_site_contentWhereInput'][] | null // [bani684_site_contentWhereInput!]
+    CreatedBy?: NexusGenInputs['bani684_usersWhereInput'] | null // bani684_usersWhereInput
     NOT?: NexusGenInputs['bani684_site_contentWhereInput'][] | null // [bani684_site_contentWhereInput!]
     OR?: NexusGenInputs['bani684_site_contentWhereInput'][] | null // [bani684_site_contentWhereInput!]
     TemplateVarValues?:
@@ -365,6 +373,7 @@ export interface NexusGenInputs {
     Attributes?: NexusGenInputs['bani684_user_attributesWhereInput'] | null // bani684_user_attributesWhereInput
     NOT?: NexusGenInputs['bani684_usersWhereInput'][] | null // [bani684_usersWhereInput!]
     OR?: NexusGenInputs['bani684_usersWhereInput'][] | null // [bani684_usersWhereInput!]
+    Resources?: NexusGenInputs['Bani684_site_contentListRelationFilter'] | null // Bani684_site_contentListRelationFilter
     active?: NexusGenInputs['BoolFilter'] | null // BoolFilter
     cachepwd?: NexusGenInputs['StringFilter'] | null // StringFilter
     class_key?: NexusGenInputs['StringFilter'] | null // StringFilter
