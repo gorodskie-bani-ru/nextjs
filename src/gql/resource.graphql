@@ -5,22 +5,18 @@ query resources(
   $skip: Int
 ) {
   resources(where: $where, orderBy: $orderBy, take: $take, skip: $skip) {
-    ...resource
-  }
-}
+    ... on Resource {
+      id
+      pagetitle
+      uri
+    }
 
-fragment resource on ResourceUnion {
-  ... on Resource {
-    id
-    pagetitle
-    uri
-  }
+    ... on Company {
+      ...CompanyFields
+    }
 
-  ... on Company {
-    ...CompanyFields
-  }
-
-  ... on City {
-    ...city
+    ... on City {
+      ...city
+    }
   }
 }

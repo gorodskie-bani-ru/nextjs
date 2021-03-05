@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-bind */
 import React, { useMemo } from 'react'
 import CardContent from '@material-ui/core/CardContent'
 import Paper from '@material-ui/core/Paper'
@@ -6,11 +5,17 @@ import Grid from '@material-ui/core/Grid'
 import { CompanyViewProps } from './interfaces'
 // import SchedulesList from './SchedulesList'
 import GallerySlider from './GallerySlider'
-import ItemMap from './ItemMap'
 import { imageFormats } from 'src/helpers/imageFormats'
 import { Card, CardHeader } from '@material-ui/core'
 import AddressIcon from './icons/address'
 import Site from './Site'
+
+import dynamic from 'next/dynamic'
+
+const ItemMap = dynamic(import('./ItemMap'), {
+  ssr: false,
+})
+
 // import moment from 'moment'
 
 const CompanyView: React.FC<CompanyViewProps> = ({ company: item }) => {
@@ -58,7 +63,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company: item }) => {
       // city,
       // createdon,
       // createdby,
-      coords,
+      // coords,
 
       // TODO: Fix comments
       // comments,
@@ -115,8 +120,6 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company: item }) => {
     // const inEditMode = _isDirty ? true : false
     const inEditMode = false
 
-    let content
-
     // const canEdit = typeof window !== 'undefined'
     // const canEdit = false
 
@@ -153,68 +156,6 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company: item }) => {
     //     </CardContent>
     //   )) ||
     //   ''
-
-    let itemMap
-
-    // TODO Fix logic
-    if (typeof window !== 'undefined' && (coords || inEditMode)) {
-      itemMap = (
-        <CardContent>
-          <Paper
-            style={{
-              height: 400,
-            }}
-          >
-            <ItemMap
-              company={item}
-              // updateItem={this.updateItem}
-              // updateItem={updateItem}
-              // showSearchControl={true}
-              // onFocus={() => this.onFocus('coords')}
-              // onChange={(item, data) => {
-              //   this.clearErrors('coords')
-              // }}
-              // error={errors && errors.coords ? true : false}
-              // helperText={(errors && errors.coords) || undefined}
-              // helper={
-              //   (inEditMode && (
-              //     <Paper
-              //       style={{
-              //         padding: 15,
-              //       }}
-              //     >
-              //       <p>
-              //         Это поле позволяет точно указать координаты вашего
-              //         заведения. Для этого просто переместите на карте маркер
-              //         мышкой в нужную позицию.
-              //       </p>
-
-              //       <p>
-              //         Если маркер находится не в том районе карты, где вам
-              //         нужно, можете в этом поисковом поле набрать нужный вам
-              //         адрес, после чего кликнуть подходящий предложенный вариант
-              //         и маркер автоматически переместится в выбранный район.
-              //       </p>
-
-              //       <p>
-              //         Смотрите видео как это работает: <br />
-              //         <iframe
-              //           width="560"
-              //           height="315"
-              //           src="https://www.youtube.com/embed/4V_GzUk0PTQ?rel=0&amp;showinfo=0"
-              //           frameBorder="0"
-              //           allowFullScreen
-              //         ></iframe>
-              //       </p>
-              //     </Paper>
-              //   )) ||
-              //   undefined
-              // }
-            />
-          </Paper>
-        </CardContent>
-      )
-    }
 
     // TODO Fix edit Versions
     // let editVersionsList
@@ -354,8 +295,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company: item }) => {
             </Grid>
 
             <Grid item xs={12} sm>
-              {inEditMode ? //   value={address || ''} //   name="address" //   } //     (errors && errors.address) || 'Укажите подробный адрес' //   helperText={ //   error={errors && errors.address ? true : false} //   label="Адрес" // <TextField
-              //   onChange={this.onChange}
+              {inEditMode ? //   onChange={this.onChange} //   value={address || ''} //   name="address" //   } //     (errors && errors.address) || 'Укажите подробный адрес' //   helperText={ //   error={errors && errors.address ? true : false} //   label="Адрес" // <TextField
               //   onFocus={() => this.onFocus('address')}
               // />
               null : addresses.length ? (
@@ -385,8 +325,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company: item }) => {
                 ''
               )}
 
-              {inEditMode ? // /> //   onFocus={() => this.onFocus('metro')} //   onChange={this.onChange} //   value={metro || ''} //   name="metro" //   helperText="Укажите ближайшие станции метро через запятую" //   label="Метро" // <TextField
-              null : metro ? ( // TODO Restore metro
+              {inEditMode ? null : metro ? ( // /> //   onFocus={() => this.onFocus('metro')} //   onChange={this.onChange} //   value={metro || ''} //   name="metro" //   helperText="Укажите ближайшие станции метро через запятую" //   label="Метро" // <TextField // TODO Restore metro
                 <Grid
                   container
                   // gutter={0}
@@ -414,8 +353,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company: item }) => {
                 ''
               )}
 
-              {inEditMode ? // /> //   onFocus={() => this.onFocus('phones')} //   onChange={this.onChange} //   value={phones || ''} //   name="phones" //   helperText="Можно указать несколько телефонов через запятую" //   label="Телефон" // <TextField
-              null : phones ? (
+              {inEditMode ? null : phones ? ( // /> //   onFocus={() => this.onFocus('phones')} //   onChange={this.onChange} //   value={phones || ''} //   name="phones" //   helperText="Можно указать несколько телефонов через запятую" //   label="Телефон" // <TextField
                 <Grid
                   container
                   // gutter={0}
@@ -453,8 +391,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company: item }) => {
                 ''
               )}
 
-              {inEditMode ? //   onFocus={() => this.onFocus('site')} //   onChange={this.onChange} //   value={site || ''} //   name="site" //   helperText="Если адрес начинается с https, обязательно укажите вместе с ним, например, https://ваш_сайт/" //   label="Сайт" // <TextField
-              // />
+              {inEditMode ? // /> //   onFocus={() => this.onFocus('site')} //   onChange={this.onChange} //   value={site || ''} //   name="site" //   helperText="Если адрес начинается с https, обязательно укажите вместе с ним, например, https://ваш_сайт/" //   label="Сайт" // <TextField
               null : site ? (
                 <Grid
                   container
@@ -625,87 +562,6 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company: item }) => {
       </CardContent>
     )
 
-    if (inEditMode) {
-      // let tabContent
-      // switch (tabIndex) {
-      //   case 0:
-      //     tabContent = mainInfo
-      //     break
-      //   case 1:
-      //     tabContent = (
-      //       <div
-      //         style={{
-      //           paddingTop: 20,
-      //         }}
-      //       >
-      //         {schedulesContent}
-      //         <div
-      //           style={{
-      //             paddingTop: 20,
-      //           }}
-      //         >
-      //           <TextField
-      //             label="Уточнение к графику работы"
-      //             multiline
-      //             error={errors && errors.workTime ? true : false}
-      //             helperText={
-      //               (errors && errors.workTime) ||
-      //               'Например, время работы кассы'
-      //             }
-      //             name="workTime"
-      //             value={workTime || ''}
-      //             // multiline
-      //             onChange={this.onChange}
-      //             onFocus={() => this.onFocus('workTime')}
-      //           />
-      //         </div>
-      //         <ScheduleEditor
-      //           item={item}
-      //         // onChange={::this.updateItem}
-      //         // onFocus={::this.onFocus}
-      //         />
-      //       </div>
-      //     )
-      //     break
-      //   case 2:
-      //     tabContent = (
-      //       <GalleryEditor
-      //         classes={{}}
-      //         item={item}
-      //         onSelectContactImage={() => { }}
-      //         // updateItem={::this.updateItem}
-      //         style={{
-      //           marginBottom: gallery && gallery.length ? 0 : 250,
-      //         }}
-      //       // onUpload={::this.onUpload}
-      //       // updateItem={::this.updateItem}
-      //       />
-      //     )
-      //     break
-      // }
-      // content = (
-      //   <div>
-      //     <CardContent>
-      //       <Tabs
-      //         index={tabIndex}
-      //         onChange={this.handleTabIndexChange}
-      //         textColor="accent"
-      //         fullWidth
-      //       >
-      //         <Tab label="Основная информация" />
-      //         <Tab label="График работы" />
-      //         <Tab label="Галерея" />
-      //       </Tabs>
-      //     </CardContent>
-      //     {tabContent}
-      //   </div>
-      // )
-    } else {
-      content = []
-
-      content.push(mainInfo)
-    }
-
     return (
       <Card
         style={{
@@ -798,7 +654,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company: item }) => {
           // subheader={<RatingField item={item} />}
         />
 
-        {content}
+        {mainInfo}
 
         {itemContent ? (
           <CardContent>
@@ -811,7 +667,15 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company: item }) => {
           </CardContent>
         ) : null}
 
-        {itemMap}
+        <CardContent>
+          <Paper
+            style={{
+              height: 400,
+            }}
+          >
+            <ItemMap item={item} />
+          </Paper>
+        </CardContent>
 
         {Gallery}
 

@@ -1,5 +1,14 @@
 import { CompanyViewProps } from '../interfaces'
 
 export type ItemMapProps = {
-  company: CompanyViewProps['company']
+  item: CompanyViewProps['company']
+  fullMap?: boolean
 }
+
+// export type ItemMapState = {
+//   // mapTilesLoaded: boolean
+//   draggable: boolean
+//   map: unknown,
+//   maps: unknown,
+//   fullMap: boolean
+// }

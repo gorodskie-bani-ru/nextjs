@@ -8,9 +8,11 @@
 
 import * as Types from './types';
 
-import { ResourceCityFragment, ResourceCompanyFragment, ResourceResourceFragment } from './resource';
+import { CompanyFieldsFragment } from './CompanyFields';
+import { CityFragment } from './city';
 import { gql } from '@apollo/client';
-import { ResourceFragmentDoc } from './resource';
+import { CompanyFieldsFragmentDoc } from './CompanyFields';
+import { CityFragmentDoc } from './city';
 import * as Apollo from '@apollo/client';
 export type ResourcesQueryVariables = Types.Exact<{
   where?: Types.Maybe<Types.Bani684SiteContentWhereInput>;
@@ -22,23 +24,31 @@ export type ResourcesQueryVariables = Types.Exact<{
 
 export type ResourcesQuery = { __typename?: 'Query', resources: Array<(
     { __typename?: 'City' }
-    & ResourceCityFragment
+    & CityFragment
   ) | (
     { __typename?: 'Company' }
-    & ResourceCompanyFragment
-  ) | (
-    { __typename?: 'Resource' }
-    & ResourceResourceFragment
-  )> };
+    & CompanyFieldsFragment
+  ) | { __typename?: 'Resource', id: number, pagetitle: string, uri?: Types.Maybe<string> }> };
 
 
 export const ResourcesDocument = gql`
     query resources($where: bani684_site_contentWhereInput, $orderBy: [bani684_site_contentOrderByInput!], $take: Int, $skip: Int) {
   resources(where: $where, orderBy: $orderBy, take: $take, skip: $skip) {
-    ...resource
+    ... on Resource {
+      id
+      pagetitle
+      uri
+    }
+    ... on Company {
+      ...CompanyFields
+    }
+    ... on City {
+      ...city
+    }
   }
 }
-    ${ResourceFragmentDoc}`;
+    ${CompanyFieldsFragmentDoc}
+${CityFragmentDoc}`;
 
 /**
  * __useResourcesQuery__
