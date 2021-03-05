@@ -281,8 +281,11 @@ export interface User {
   __typename?: 'User';
   Attributes?: Maybe<UserAttributes>;
   active: Scalars['Boolean'];
+  createdon: Scalars['DateTime'];
   fullname?: Maybe<Scalars['String']>;
   id: Scalars['Int'];
+  /** Аватар */
+  image?: Maybe<Scalars['String']>;
   username?: Maybe<Scalars['String']>;
 }
 
@@ -291,6 +294,7 @@ export interface UserAttributes {
   __typename?: 'UserAttributes';
   fullname: Scalars['String'];
   id: Scalars['Int'];
+  photo: Scalars['String'];
 }
 
 export interface Bani684SiteContentOrderByInput {

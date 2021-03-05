@@ -278,8 +278,14 @@ input StringNullableFilter {
 type User {
   Attributes: UserAttributes
   active: Boolean!
+  createdon: DateTime!
   fullname: String
   id: Int!
+
+  """
+  Аватар
+  """
+  image: String
   username: String
 }
 
@@ -289,6 +295,7 @@ type User {
 type UserAttributes {
   fullname: String!
   id: Int!
+  photo: String!
 }
 
 input bani684_site_contentOrderByInput {

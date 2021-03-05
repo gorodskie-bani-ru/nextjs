@@ -15,7 +15,6 @@ import { ParsedUrlQuery } from 'querystring'
 const take = 10
 
 const defaultVariables: UsersQueryVariables = {
-  where: {},
   take,
 }
 

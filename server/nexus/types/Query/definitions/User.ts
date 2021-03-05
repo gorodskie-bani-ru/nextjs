@@ -7,6 +7,7 @@ const select = {
   active: true,
   username: true,
   sudo: true,
+  createdon: true,
   Attributes: true,
 }
 
@@ -47,6 +48,16 @@ export default (t: ObjectDefinitionBlock<'Query'>) => {
         ...variables,
         select,
       })
+      // .then((users) => {
+
+      //   return users.map((user) => {
+
+      //     return {
+      //       ...user,
+      //       createdon: new Date(user.createdon * 1000),
+      //     }
+      //   })
+      // })
     },
   })
 }

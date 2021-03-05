@@ -473,6 +473,7 @@ export interface NexusGenObjects {
     // root type
     Attributes?: NexusGenRootTypes['UserAttributes'] | null // UserAttributes
     active: boolean // Boolean!
+    createdon: NexusGenScalars['DateTime'] // DateTime!
     id: number // Int!
     username?: string | null // String
   }
@@ -480,6 +481,7 @@ export interface NexusGenObjects {
     // root type
     fullname: string // String!
     id: number // Int!
+    photo: string // String!
   }
   bani684_site_tmplvar_contentvalues: {
     // root type
@@ -588,14 +590,17 @@ export interface NexusGenFieldTypes {
     // field return type
     Attributes: NexusGenRootTypes['UserAttributes'] | null // UserAttributes
     active: boolean // Boolean!
+    createdon: NexusGenScalars['DateTime'] // DateTime!
     fullname: string | null // String
     id: number // Int!
+    image: string | null // String
     username: string | null // String
   }
   UserAttributes: {
     // field return type
     fullname: string // String!
     id: number // Int!
+    photo: string // String!
   }
   bani684_site_tmplvar_contentvalues: {
     // field return type
@@ -683,14 +688,17 @@ export interface NexusGenFieldTypeNames {
     // field return type name
     Attributes: 'UserAttributes'
     active: 'Boolean'
+    createdon: 'DateTime'
     fullname: 'String'
     id: 'Int'
+    image: 'String'
     username: 'String'
   }
   UserAttributes: {
     // field return type name
     fullname: 'String'
     id: 'Int'
+    photo: 'String'
   }
   bani684_site_tmplvar_contentvalues: {
     // field return type name

@@ -71,18 +71,21 @@ export type ResourceFieldPolicy = {
 	template?: FieldPolicy<any> | FieldReadFunction<any>,
 	uri?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type UserKeySpecifier = ('Attributes' | 'active' | 'fullname' | 'id' | 'username' | UserKeySpecifier)[];
+export type UserKeySpecifier = ('Attributes' | 'active' | 'createdon' | 'fullname' | 'id' | 'image' | 'username' | UserKeySpecifier)[];
 export type UserFieldPolicy = {
 	Attributes?: FieldPolicy<any> | FieldReadFunction<any>,
 	active?: FieldPolicy<any> | FieldReadFunction<any>,
+	createdon?: FieldPolicy<any> | FieldReadFunction<any>,
 	fullname?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	image?: FieldPolicy<any> | FieldReadFunction<any>,
 	username?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type UserAttributesKeySpecifier = ('fullname' | 'id' | UserAttributesKeySpecifier)[];
+export type UserAttributesKeySpecifier = ('fullname' | 'id' | 'photo' | UserAttributesKeySpecifier)[];
 export type UserAttributesFieldPolicy = {
 	fullname?: FieldPolicy<any> | FieldReadFunction<any>,
-	id?: FieldPolicy<any> | FieldReadFunction<any>
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	photo?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type bani684_site_tmplvar_contentvaluesKeySpecifier = ('contentid' | 'id' | 'tmplvarid' | 'value' | bani684_site_tmplvar_contentvaluesKeySpecifier)[];
 export type bani684_site_tmplvar_contentvaluesFieldPolicy = {

@@ -20,4 +20,6 @@ fragment user_ on User {
   username
   fullname
   active
+  createdon
+  image
 }

@@ -26,6 +26,9 @@ import ErrorPage from '../_Error'
 import Layout from './Layout'
 import { AppContext, AppContextValue } from './Context'
 import { GlobalStyle } from 'src/theme/GlobalStyle'
+import moment from 'moment'
+
+moment.locale('ru')
 
 // import chalk from 'chalk';
 // import Debug from 'debug';

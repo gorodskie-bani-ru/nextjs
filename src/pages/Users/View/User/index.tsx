@@ -5,6 +5,7 @@ import {
 } from 'src/components/ui/GridTable/styles'
 import UserLink from 'src/components/ui/Link/User'
 import { UsersPageViewUserProps } from './interfaces'
+import moment from 'moment'
 
 const UsersPageViewUser: React.FC<UsersPageViewUserProps> = ({
   user,
@@ -16,7 +17,9 @@ const UsersPageViewUser: React.FC<UsersPageViewUserProps> = ({
         <GridTableAttributeStyled>
           <UserLink user={user} />
         </GridTableAttributeStyled>
-        <GridTableAttributeStyled>Дава регистрации</GridTableAttributeStyled>
+        <GridTableAttributeStyled>
+          {moment(user.createdon).format('DD-MM-YYYY')}
+        </GridTableAttributeStyled>
 
         {/* <GridTableAttributeStyled>Email</GridTableAttributeStyled> */}
       </GridTableItemStyled>
