@@ -59,6 +59,11 @@ const App: MainApp<AppProps> = ({ Component, pageProps }) => {
     if (jssStyles) {
       jssStyles.parentElement?.removeChild(jssStyles)
     }
+
+    // const jssStyles2 = document.querySelector('#server-side-jss')
+    // if (jssStyles2) {
+    //   jssStyles2.parentElement?.removeChild(jssStyles2)
+    // }
   }, [])
 
   // const {

@@ -1,10 +1,16 @@
 import * as React from 'react'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-import { ServerStyleSheets } from '@material-ui/core/styles'
+import {
+  ServerStyleSheets,
+  // createGenerateClassName,
+} from '@material-ui/core/styles'
 import theme from 'src/theme/muiTheme'
 // import createEmotionServer from '@emotion/server/create-instance';
 // import theme from '../src/theme';
 // import { cache } from './_app';
+import { ServerStyleSheet } from 'styled-components'
+
+// import { JssProvider, SheetsRegistry } from 'react-jss'
 
 // const { extractCritical } = createEmotionServer(cache);
 
@@ -55,24 +61,55 @@ MyDocument.getInitialProps = async (ctx) => {
   // 3. app.render
   // 4. page.render
 
+  const sheet = new ServerStyleSheet()
+  // const sheetsRegistry = new SheetsRegistry()
+  // const generateClassName = createGenerateClassName()
+
   // Render app and page and get the context of the page with collected side effects.
-  const sheets = new ServerStyleSheets()
+  const MUIsheets = new ServerStyleSheets()
   const originalRenderPage = ctx.renderPage
 
   ctx.renderPage = () =>
     originalRenderPage({
-      enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
+      enhanceApp: (App) => (props) => {
+        return (
+          <>
+            {MUIsheets.collect(
+              <>
+                {sheet.collectStyles(
+                  // <JssProvider
+                  //   registry={sheetsRegistry}
+                  //   generateClassName={generateClassName}
+                  // >
+                  <App {...props} />
+                  // </JssProvider>
+                )}
+              </>
+            )}
+          </>
+        )
+      },
     })
 
   const initialProps = await Document.getInitialProps(ctx)
   // const styles = extractCritical(initialProps.html);
+
+  // const css = sheetsRegistry.toString()
 
   return {
     ...initialProps,
     // Styles fragment is rendered after the app and page rendering finish.
     styles: [
       ...React.Children.toArray(initialProps.styles),
-      sheets.getStyleElement(),
+      MUIsheets.getStyleElement(),
+      sheet.getStyleElement(),
+      // <style
+      //   key="styles"
+      //   id="server-side-jss"
+      //   dangerouslySetInnerHTML={{
+      //     __html: css,
+      //   }}
+      // />,
       // <style
       //   key="emotion-style-tag"
       //   data-emotion={`css ${styles.ids.join(' ')}`}
