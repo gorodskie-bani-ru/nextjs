@@ -9,10 +9,15 @@ import { UserLinkProps } from './interfaces'
 const UserLink: React.FC<UserLinkProps> = ({ user, ...other }) => {
   return useMemo(() => {
     return (
-      <Link href={`/profile/${user.username}`} {...other}>
-        {user.username}
+      <Link
+        href={`/profile/${user.username}`}
+        title={user.fullname || user.username || undefined}
+        {...other}
+      >
+        {user.fullname || user.username}
       </Link>
     )
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [other, user.username])
 }
 

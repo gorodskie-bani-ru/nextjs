@@ -23,7 +23,7 @@ const UsersPageView: React.FC<UsersPageViewProps> = ({ users, ...other }) => {
           <GridTableAttributeStyled>Комментарии</GridTableAttributeStyled> 
           */}
 
-            <GridTableAttributeStyled>Емейл</GridTableAttributeStyled>
+            {/* <GridTableAttributeStyled>Емейл</GridTableAttributeStyled> */}
           </GridTableItemStyled>
 
           {users.map((n) => {

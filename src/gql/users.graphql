@@ -18,4 +18,6 @@ query user($where: bani684_usersWhereUniqueInput!) {
 fragment user_ on User {
   id
   username
+  fullname
+  active
 }

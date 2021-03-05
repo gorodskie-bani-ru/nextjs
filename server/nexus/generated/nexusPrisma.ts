@@ -563,11 +563,11 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'name' | 'description' | 'service_url' | 'username' | 'api_key' | 'created' | 'updated' | 'active' | 'priority' | 'properties'
     }
     bani684Userss: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'username' | 'password' | 'cachepwd' | 'class_key' | 'active' | 'remote_key' | 'remote_data' | 'hash_class' | 'salt' | 'primary_group' | 'session_stale' | 'sudo' | 'createdon' | 'delegate' | 'offer' | 'offer_date' | 'contract_date' | 'createdby'
-      ordering: 'id' | 'username' | 'password' | 'cachepwd' | 'class_key' | 'active' | 'remote_key' | 'remote_data' | 'hash_class' | 'salt' | 'primary_group' | 'session_stale' | 'sudo' | 'createdon' | 'delegate' | 'offer' | 'offer_date' | 'contract_date' | 'createdby'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'username' | 'password' | 'cachepwd' | 'class_key' | 'active' | 'remote_key' | 'remote_data' | 'hash_class' | 'salt' | 'primary_group' | 'session_stale' | 'sudo' | 'createdon' | 'delegate' | 'offer' | 'offer_date' | 'contract_date' | 'createdby' | 'Attributes'
+      ordering: 'id' | 'username' | 'password' | 'cachepwd' | 'class_key' | 'active' | 'remote_key' | 'remote_data' | 'hash_class' | 'salt' | 'primary_group' | 'session_stale' | 'sudo' | 'createdon' | 'delegate' | 'offer' | 'offer_date' | 'contract_date' | 'createdby' | 'Attributes'
     }
     bani684UserAttributess: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'internalKey' | 'fullname' | 'email' | 'phone' | 'mobilephone' | 'blocked' | 'blockeduntil' | 'blockedafter' | 'logincount' | 'lastlogin' | 'thislogin' | 'failedlogincount' | 'sessionid' | 'dob' | 'gender' | 'address' | 'country' | 'city' | 'state' | 'zip' | 'fax' | 'photo' | 'comment' | 'website' | 'extended'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'internalKey' | 'fullname' | 'email' | 'phone' | 'mobilephone' | 'blocked' | 'blockeduntil' | 'blockedafter' | 'logincount' | 'lastlogin' | 'thislogin' | 'failedlogincount' | 'sessionid' | 'dob' | 'gender' | 'address' | 'country' | 'city' | 'state' | 'zip' | 'fax' | 'photo' | 'comment' | 'website' | 'extended' | 'User'
       ordering: 'id' | 'internalKey' | 'fullname' | 'email' | 'phone' | 'mobilephone' | 'blocked' | 'blockeduntil' | 'blockedafter' | 'logincount' | 'lastlogin' | 'thislogin' | 'failedlogincount' | 'sessionid' | 'dob' | 'gender' | 'address' | 'country' | 'city' | 'state' | 'zip' | 'fax' | 'photo' | 'comment' | 'website' | 'extended'
     }
     bani684UserGroupRoless: {
@@ -2966,6 +2966,7 @@ interface NexusPrismaOutputs {
     offer_date: 'Int'
     contract_date: 'Int'
     createdby: 'Int'
+    Attributes: 'bani684_user_attributes'
   }
   bani684_user_attributes: {
     id: 'Int'
@@ -2994,6 +2995,7 @@ interface NexusPrismaOutputs {
     comment: 'String'
     website: 'String'
     extended: 'String'
+    User: 'bani684_users'
   }
   bani684_user_group_roles: {
     id: 'Int'

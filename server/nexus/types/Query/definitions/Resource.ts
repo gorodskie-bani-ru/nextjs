@@ -35,7 +35,7 @@ export const resources = (t: ObjectDefinitionBlock<'Query'>) => {
       take: 'Int',
       skip: 'Int',
     },
-    resolve(_, args, ctx) {
+    async resolve(_, args, ctx) {
       const variables = args as Pick<
         Prisma.bani684_site_contentFindManyArgs,
         'where'
@@ -44,7 +44,7 @@ export const resources = (t: ObjectDefinitionBlock<'Query'>) => {
       const { deleted = false, published = true, hidemenu = false } =
         variables.where || {}
 
-      return ctx.prisma.bani684_site_content.findMany({
+      const result = await ctx.prisma.bani684_site_content.findMany({
         ...variables,
         where: {
           AND: [
@@ -97,6 +97,8 @@ export const resources = (t: ObjectDefinitionBlock<'Query'>) => {
       //     }
       //   })
       // )
+
+      return result
     },
   })
 }

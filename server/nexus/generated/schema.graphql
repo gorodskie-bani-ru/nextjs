@@ -200,11 +200,6 @@ type Query {
   ): [Company!]!
 
   """
-  Текущий пользователь
-  """
-  me: User
-
-  """
   Ресурсы
   """
   resources(
@@ -281,10 +276,19 @@ input StringNullableFilter {
 Пользователь
 """
 type User {
+  Attributes: UserAttributes
   active: Boolean!
+  fullname: String
   id: Int!
-  sudo: Boolean
   username: String
+}
+
+"""
+Профиль пользователя
+"""
+type UserAttributes {
+  fullname: String!
+  id: Int!
 }
 
 input bani684_site_contentOrderByInput {
@@ -405,7 +409,70 @@ input bani684_site_tmplvar_contentvaluesWhereInput {
   value: StringFilter
 }
 
+input bani684_user_attributesOrderByInput {
+  address: SortOrder
+  blocked: SortOrder
+  blockedafter: SortOrder
+  blockeduntil: SortOrder
+  city: SortOrder
+  comment: SortOrder
+  country: SortOrder
+  dob: SortOrder
+  email: SortOrder
+  extended: SortOrder
+  failedlogincount: SortOrder
+  fax: SortOrder
+  fullname: SortOrder
+  gender: SortOrder
+  id: SortOrder
+  internalKey: SortOrder
+  lastlogin: SortOrder
+  logincount: SortOrder
+  mobilephone: SortOrder
+  phone: SortOrder
+  photo: SortOrder
+  sessionid: SortOrder
+  state: SortOrder
+  thislogin: SortOrder
+  website: SortOrder
+  zip: SortOrder
+}
+
+input bani684_user_attributesWhereInput {
+  AND: [bani684_user_attributesWhereInput!]
+  NOT: [bani684_user_attributesWhereInput!]
+  OR: [bani684_user_attributesWhereInput!]
+  User: bani684_usersWhereInput
+  address: StringFilter
+  blocked: BoolFilter
+  blockedafter: IntFilter
+  blockeduntil: IntFilter
+  city: StringFilter
+  comment: StringFilter
+  country: StringFilter
+  dob: IntFilter
+  email: StringFilter
+  extended: StringNullableFilter
+  failedlogincount: IntFilter
+  fax: StringFilter
+  fullname: StringFilter
+  gender: IntFilter
+  id: IntFilter
+  internalKey: IntFilter
+  lastlogin: IntFilter
+  logincount: IntFilter
+  mobilephone: StringFilter
+  phone: StringFilter
+  photo: StringFilter
+  sessionid: StringFilter
+  state: StringFilter
+  thislogin: IntFilter
+  website: StringFilter
+  zip: StringFilter
+}
+
 input bani684_usersOrderByInput {
+  Attributes: bani684_user_attributesOrderByInput
   active: SortOrder
   cachepwd: SortOrder
   class_key: SortOrder
@@ -429,6 +496,7 @@ input bani684_usersOrderByInput {
 
 input bani684_usersWhereInput {
   AND: [bani684_usersWhereInput!]
+  Attributes: bani684_user_attributesWhereInput
   NOT: [bani684_usersWhereInput!]
   OR: [bani684_usersWhereInput!]
   active: BoolFilter

@@ -47,11 +47,10 @@ export type GalleryImageFieldPolicy = {
 	image?: FieldPolicy<any> | FieldReadFunction<any>,
 	title?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type QueryKeySpecifier = ('cities' | 'companies' | 'me' | 'resources' | 'user' | 'users' | QueryKeySpecifier)[];
+export type QueryKeySpecifier = ('cities' | 'companies' | 'resources' | 'user' | 'users' | QueryKeySpecifier)[];
 export type QueryFieldPolicy = {
 	cities?: FieldPolicy<any> | FieldReadFunction<any>,
 	companies?: FieldPolicy<any> | FieldReadFunction<any>,
-	me?: FieldPolicy<any> | FieldReadFunction<any>,
 	resources?: FieldPolicy<any> | FieldReadFunction<any>,
 	user?: FieldPolicy<any> | FieldReadFunction<any>,
 	users?: FieldPolicy<any> | FieldReadFunction<any>
@@ -72,12 +71,18 @@ export type ResourceFieldPolicy = {
 	template?: FieldPolicy<any> | FieldReadFunction<any>,
 	uri?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type UserKeySpecifier = ('active' | 'id' | 'sudo' | 'username' | UserKeySpecifier)[];
+export type UserKeySpecifier = ('Attributes' | 'active' | 'fullname' | 'id' | 'username' | UserKeySpecifier)[];
 export type UserFieldPolicy = {
+	Attributes?: FieldPolicy<any> | FieldReadFunction<any>,
 	active?: FieldPolicy<any> | FieldReadFunction<any>,
+	fullname?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
-	sudo?: FieldPolicy<any> | FieldReadFunction<any>,
 	username?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type UserAttributesKeySpecifier = ('fullname' | 'id' | UserAttributesKeySpecifier)[];
+export type UserAttributesFieldPolicy = {
+	fullname?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type bani684_site_tmplvar_contentvaluesKeySpecifier = ('contentid' | 'id' | 'tmplvarid' | 'value' | bani684_site_tmplvar_contentvaluesKeySpecifier)[];
 export type bani684_site_tmplvar_contentvaluesFieldPolicy = {
@@ -114,6 +119,10 @@ export type TypedTypePolicies = TypePolicies & {
 	User?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | UserKeySpecifier | (() => undefined | UserKeySpecifier),
 		fields?: UserFieldPolicy,
+	},
+	UserAttributes?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | UserAttributesKeySpecifier | (() => undefined | UserAttributesKeySpecifier),
+		fields?: UserAttributesFieldPolicy,
 	},
 	bani684_site_tmplvar_contentvalues?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | bani684_site_tmplvar_contentvaluesKeySpecifier | (() => undefined | bani684_site_tmplvar_contentvaluesKeySpecifier),

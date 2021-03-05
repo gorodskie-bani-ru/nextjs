@@ -177,8 +177,6 @@ export interface Query {
   cities: Array<City>;
   /** Компании */
   companies: Array<Company>;
-  /** Текущий пользователь */
-  me?: Maybe<User>;
   /** Ресурсы */
   resources: Array<ResourceUnion>;
   user?: Maybe<User>;
@@ -281,10 +279,18 @@ export interface StringNullableFilter {
 /** Пользователь */
 export interface User {
   __typename?: 'User';
+  Attributes?: Maybe<UserAttributes>;
   active: Scalars['Boolean'];
+  fullname?: Maybe<Scalars['String']>;
   id: Scalars['Int'];
-  sudo?: Maybe<Scalars['Boolean']>;
   username?: Maybe<Scalars['String']>;
+}
+
+/** Профиль пользователя */
+export interface UserAttributes {
+  __typename?: 'UserAttributes';
+  fullname: Scalars['String'];
+  id: Scalars['Int'];
 }
 
 export interface Bani684SiteContentOrderByInput {
@@ -406,7 +412,70 @@ export interface Bani684SiteTmplvarContentvaluesWhereInput {
   value?: Maybe<StringFilter>;
 }
 
+export interface Bani684UserAttributesOrderByInput {
+  address?: Maybe<SortOrder>;
+  blocked?: Maybe<SortOrder>;
+  blockedafter?: Maybe<SortOrder>;
+  blockeduntil?: Maybe<SortOrder>;
+  city?: Maybe<SortOrder>;
+  comment?: Maybe<SortOrder>;
+  country?: Maybe<SortOrder>;
+  dob?: Maybe<SortOrder>;
+  email?: Maybe<SortOrder>;
+  extended?: Maybe<SortOrder>;
+  failedlogincount?: Maybe<SortOrder>;
+  fax?: Maybe<SortOrder>;
+  fullname?: Maybe<SortOrder>;
+  gender?: Maybe<SortOrder>;
+  id?: Maybe<SortOrder>;
+  internalKey?: Maybe<SortOrder>;
+  lastlogin?: Maybe<SortOrder>;
+  logincount?: Maybe<SortOrder>;
+  mobilephone?: Maybe<SortOrder>;
+  phone?: Maybe<SortOrder>;
+  photo?: Maybe<SortOrder>;
+  sessionid?: Maybe<SortOrder>;
+  state?: Maybe<SortOrder>;
+  thislogin?: Maybe<SortOrder>;
+  website?: Maybe<SortOrder>;
+  zip?: Maybe<SortOrder>;
+}
+
+export interface Bani684UserAttributesWhereInput {
+  AND?: Maybe<Array<Bani684UserAttributesWhereInput>>;
+  NOT?: Maybe<Array<Bani684UserAttributesWhereInput>>;
+  OR?: Maybe<Array<Bani684UserAttributesWhereInput>>;
+  User?: Maybe<Bani684UsersWhereInput>;
+  address?: Maybe<StringFilter>;
+  blocked?: Maybe<BoolFilter>;
+  blockedafter?: Maybe<IntFilter>;
+  blockeduntil?: Maybe<IntFilter>;
+  city?: Maybe<StringFilter>;
+  comment?: Maybe<StringFilter>;
+  country?: Maybe<StringFilter>;
+  dob?: Maybe<IntFilter>;
+  email?: Maybe<StringFilter>;
+  extended?: Maybe<StringNullableFilter>;
+  failedlogincount?: Maybe<IntFilter>;
+  fax?: Maybe<StringFilter>;
+  fullname?: Maybe<StringFilter>;
+  gender?: Maybe<IntFilter>;
+  id?: Maybe<IntFilter>;
+  internalKey?: Maybe<IntFilter>;
+  lastlogin?: Maybe<IntFilter>;
+  logincount?: Maybe<IntFilter>;
+  mobilephone?: Maybe<StringFilter>;
+  phone?: Maybe<StringFilter>;
+  photo?: Maybe<StringFilter>;
+  sessionid?: Maybe<StringFilter>;
+  state?: Maybe<StringFilter>;
+  thislogin?: Maybe<IntFilter>;
+  website?: Maybe<StringFilter>;
+  zip?: Maybe<StringFilter>;
+}
+
 export interface Bani684UsersOrderByInput {
+  Attributes?: Maybe<Bani684UserAttributesOrderByInput>;
   active?: Maybe<SortOrder>;
   cachepwd?: Maybe<SortOrder>;
   class_key?: Maybe<SortOrder>;
@@ -430,6 +499,7 @@ export interface Bani684UsersOrderByInput {
 
 export interface Bani684UsersWhereInput {
   AND?: Maybe<Array<Bani684UsersWhereInput>>;
+  Attributes?: Maybe<Bani684UserAttributesWhereInput>;
   NOT?: Maybe<Array<Bani684UsersWhereInput>>;
   OR?: Maybe<Array<Bani684UsersWhereInput>>;
   active?: Maybe<BoolFilter>;

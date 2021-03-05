@@ -3,11 +3,13 @@ import NextLink from 'next/link'
 import { LinkProps } from './interfaces'
 import { LinkStyled } from './styles'
 
-const Link: React.FC<LinkProps> = ({ children, href, ...other }) => {
+const Link: React.FC<LinkProps> = ({ children, href, title, ...other }) => {
   return (
     <>
       <NextLink href={href}>
-        <LinkStyled {...other}>{children}</LinkStyled>
+        <LinkStyled title={title} {...other}>
+          {children}
+        </LinkStyled>
       </NextLink>
     </>
   )

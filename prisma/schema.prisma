@@ -1,5 +1,5 @@
 generator client {
-  provider        = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -1087,14 +1087,14 @@ model bani684_site_content {
   class_key             String  @default("modDocument") @db.VarChar(100)
   context_key           String  @default("web") @db.VarChar(100)
   content_type          Int     @default(1) @db.UnsignedInt
-  uri                   String? 
+  uri                   String?
   uri_override          Boolean @default(false)
   hide_children_in_tree Boolean @default(false)
   show_in_tree          Boolean @default(true)
   properties            String? @db.MediumText
 
 
-  TemplateVarValues       bani684_site_tmplvar_contentvalues[]
+  TemplateVarValues bani684_site_tmplvar_contentvalues[]
 
   @@index([alias], name: "alias")
   @@index([parent, menuindex, id], name: "cache_refresh_idx")
@@ -1250,14 +1250,14 @@ model bani684_site_tmplvar_access {
 model bani684_site_tmplvar_contentvalues {
   id        Int    @id @default(autoincrement()) @db.UnsignedInt
   tmplvarid Int    @default(0)
-  contentid Int    @default(0)  @db.UnsignedInt
+  contentid Int    @default(0) @db.UnsignedInt
   value     String @db.MediumText
 
+
+  Resource bani684_site_content @relation(fields: [contentid], references: [id])
   @@index([contentid], name: "contentid")
   @@index([tmplvarid], name: "tmplvarid")
   @@index([tmplvarid, contentid], name: "tv_cnt")
-
-  Resource       bani684_site_content @relation(fields: [contentid], references: [id])
 }
 
 model bani684_site_tmplvar_templates {
@@ -1488,6 +1488,8 @@ model bani684_users {
   contract_date Int?    @db.UnsignedInt
   createdby     Int?    @db.UnsignedInt
 
+  Attributes bani684_user_attributes?
+
   @@index([class_key], name: "class_key")
   @@index([contract_date], name: "contract_date")
   @@index([createdby], name: "createdby")
@@ -1524,6 +1526,8 @@ model bani684_user_attributes {
   comment          String  @db.Text
   website          String  @default("") @db.VarChar(255)
   extended         String? @db.Text
+
+  User bani684_users @relation(fields: [internalKey], references: [id])
 }
 
 model bani684_user_group_roles {

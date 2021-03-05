@@ -18,7 +18,7 @@ const UsersPageViewUser: React.FC<UsersPageViewUserProps> = ({
         </GridTableAttributeStyled>
         <GridTableAttributeStyled>Дава регистрации</GridTableAttributeStyled>
 
-        <GridTableAttributeStyled>Email</GridTableAttributeStyled>
+        {/* <GridTableAttributeStyled>Email</GridTableAttributeStyled> */}
       </GridTableItemStyled>
     )
   }, [other, user])

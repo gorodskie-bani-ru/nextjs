@@ -9,11 +9,13 @@
 import * as Types from './types';
 
 import { gql } from '@apollo/client';
-export type UserFragment = { __typename?: 'User', id: number, username?: Types.Maybe<string> };
+export type UserFragment = { __typename?: 'User', id: number, username?: Types.Maybe<string>, fullname?: Types.Maybe<string>, active: boolean };
 
 export const UserFragmentDoc = gql`
     fragment user_ on User {
   id
   username
+  fullname
+  active
 }
     `;
