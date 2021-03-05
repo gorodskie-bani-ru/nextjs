@@ -365,7 +365,7 @@ model bani684_context_setting {
   xtype       String   @default("textfield") @db.VarChar(75)
   namespace   String   @default("core") @db.VarChar(40)
   area        String   @default("") @db.VarChar(255)
-  editedon    DateTime @default(dbgenerated("'0000-00-00 00:00:00'")) 
+  editedon    DateTime @db.DateTime(0)
 
   @@id([context_key, key])
 }
@@ -426,9 +426,9 @@ model bani684_edit_versions {
   target_id Int       @db.UnsignedInt
   data      String?   @db.Text
   createdby Int?      @db.UnsignedInt
-  createdon DateTime  @default(now()) 
+  createdon DateTime  @default(now("0")) @db.DateTime(0)
   editedby  Int?      @db.UnsignedInt
-  editedon  DateTime? 
+  editedon  DateTime? @db.DateTime(0)
   status    String    @default("0") @db.Char(1)
 
   @@index([createdby], name: "createdby")
@@ -577,7 +577,7 @@ model bani684_lexicon_entries {
   namespace String    @default("core") @db.VarChar(40)
   language  String    @default("en") @db.VarChar(20)
   createdon DateTime? @db.DateTime(0)
-  editedon  DateTime  @default(dbgenerated("'0000-00-00 00:00:00'")) 
+  editedon  DateTime  @db.DateTime(0)
 
   @@index([language], name: "language")
   @@index([name], name: "name")
@@ -588,7 +588,7 @@ model bani684_lexicon_entries {
 model bani684_manager_log {
   id       Int       @id @default(autoincrement()) @db.UnsignedInt
   user     Int       @default(0) @db.UnsignedInt
-  occurred DateTime? @default(dbgenerated("'0000-00-00 00:00:00'")) @db.DateTime(0)
+  occurred DateTime? @db.DateTime(0)
   action   String    @default("") @db.VarChar(100)
   classKey String    @default("") @db.VarChar(100)
   item     String    @default("0") @db.VarChar(255)
@@ -798,7 +798,7 @@ model bani684_modhybridauth_user_profile {
   region        String?                                    @db.VarChar(100)
   city          String?                                    @db.VarChar(100)
   zip           Int?                                       @db.UnsignedInt
-  createdon     DateTime                                   @default(now()) 
+  createdon     DateTime                                   @default(now("0")) @db.DateTime(0)
   extended      String?                                    @db.Text
 
   @@unique([identifier, provider], name: "identifier")
@@ -914,14 +914,14 @@ model bani684_monitor_requests {
   parent                  Int      @db.UnsignedInt
   path                    String   @db.VarChar(255)
   site_url                String   @db.VarChar(255)
-  url                     String   @db.VarChar(1024)
+  url                     String   @db.VarChar(768)
   context_key             String   @db.VarChar(100)
   resource_id             Int?     @db.UnsignedInt
   http_status             Int      @default(200) @db.UnsignedSmallInt
   uuid                    String   @db.Char(36)
   user_id                 Int      @default(0) @db.UnsignedInt
   ip                      String   @db.VarChar(15)
-  date                    DateTime @default(now()) 
+  date                    DateTime @default(now("0")) @db.DateTime(0)
   from_cache              String   @default("0") @db.Char(1)
   phptemplates_non_cached String   @default("0") @db.Char(1)
   time                    Decimal  @db.Decimal(10, 4)
@@ -931,7 +931,7 @@ model bani684_monitor_requests {
   php_error               Int      @default(0) @db.UnsignedMediumInt
   php_error_info          String   @db.Text
   referer                 String   @db.Text
-  user_agent              String   @default("") @db.VarChar(1024)
+  user_agent              String   @default("") @db.VarChar(768)
 
   @@index([date], name: "date")
   @@index([ip], name: "ip")
@@ -997,7 +997,7 @@ model bani684_register_messages {
   id       String    @db.VarChar(255)
   created  DateTime  @db.DateTime(0)
   valid    DateTime  @db.DateTime(0)
-  accessed DateTime? 
+  accessed DateTime? @db.DateTime(0)
   accesses Int       @default(0) @db.UnsignedInt
   expires  Int       @default(0)
   payload  String    @db.MediumText
@@ -1022,7 +1022,7 @@ model bani684_register_topics {
   queue   Int       @db.UnsignedInt
   name    String    @db.VarChar(255)
   created DateTime  @db.DateTime(0)
-  updated DateTime? 
+  updated DateTime? @db.DateTime(0)
   options String?   @db.MediumText
 
   @@index([name], name: "name")
@@ -1033,7 +1033,7 @@ model bani684_search_stat {
   id     Int      @id @default(autoincrement()) @db.UnsignedInt
   query  String   @default("") @db.VarChar(255)
   finded Int      @default(0) @db.UnsignedSmallInt
-  date   DateTime @default(now()) 
+  date   DateTime @default(now("0")) @db.DateTime(0)
 
   @@index([date], name: "date")
   @@index([finded], name: "finded")
@@ -1314,7 +1314,7 @@ model bani684_society_email_messages {
   user_id Int      @db.UnsignedInt
   subject String   @db.VarChar(256)
   message String   @db.Text
-  date    DateTime @default(now()) 
+  date    DateTime @default(now("0")) @db.DateTime(0)
   status  Int      @default(1) @db.TinyInt
 
   @@index([user_id], name: "user_id")
@@ -1398,7 +1398,7 @@ model bani684_society_votes {
   user_id        Int      @db.UnsignedInt
   vote_direction String   @default("0") @db.Char(1)
   vote_value     Float    @default(0.000) @db.Float
-  vote_date      DateTime @default(now()) 
+  vote_date      DateTime @default(now("0")) @db.DateTime(0)
 
   @@unique([target_id, target_class, user_id, type], name: "target_id")
   @@unique([thread_id, user_id, type], name: "thread_id")
@@ -1416,13 +1416,13 @@ model bani684_system_settings {
   xtype     String   @default("textfield") @db.VarChar(75)
   namespace String   @default("core") @db.VarChar(40)
   area      String   @default("") @db.VarChar(255)
-  editedon  DateTime @default(dbgenerated("'0000-00-00 00:00:00'")) 
+  editedon  DateTime @db.DateTime(0)
 }
 
 model bani684_transport_packages {
   signature     String    @id @db.VarChar(255)
   created       DateTime  @db.DateTime(0)
-  updated       DateTime? 
+  updated       DateTime? @db.DateTime(0)
   installed     DateTime? @db.DateTime(0)
   state         Boolean   @default(true)
   workspace     Int       @default(0) @db.UnsignedInt
@@ -1458,7 +1458,7 @@ model bani684_transport_providers {
   username    String    @default("") @db.VarChar(255)
   api_key     String    @default("") @db.VarChar(255)
   created     DateTime  @db.DateTime(0)
-  updated     DateTime? 
+  updated     DateTime? @db.DateTime(0)
   active      Boolean   @default(true)
   priority    Int       @default(10) @db.TinyInt
   properties  String    @db.MediumText
@@ -1499,7 +1499,7 @@ model bani684_users {
 
 model bani684_user_attributes {
   id               Int     @id @default(autoincrement()) @db.UnsignedInt
-  internalKey      Int     @unique
+  internalKey      Int     @unique @db.UnsignedInt
   fullname         String  @default("") @db.VarChar(100)
   email            String  @default("") @db.VarChar(100)
   phone            String  @default("") @db.VarChar(100)
@@ -1542,7 +1542,7 @@ model bani684_user_group_settings {
   xtype     String   @default("textfield") @db.VarChar(75)
   namespace String   @default("core") @db.VarChar(40)
   area      String   @default("") @db.VarChar(255)
-  editedon  DateTime @default(dbgenerated("'0000-00-00 00:00:00'")) 
+  editedon  DateTime @db.DateTime(0)
 
   @@id([group, key])
 }
@@ -1555,7 +1555,7 @@ model bani684_user_messages {
   sender    Int      @default(0)
   recipient Int      @default(0)
   private   Int      @default(0) @db.TinyInt
-  date_sent DateTime @default(dbgenerated("'0000-00-00 00:00:00'")) @db.DateTime(0)
+  date_sent DateTime @db.DateTime(0)
   read      Boolean  @default(false)
 }
 
@@ -1566,7 +1566,7 @@ model bani684_user_settings {
   xtype     String   @default("textfield") @db.VarChar(75)
   namespace String   @default("core") @db.VarChar(40)
   area      String   @default("") @db.VarChar(255)
-  editedon  DateTime @default(dbgenerated("'0000-00-00 00:00:00'")) 
+  editedon  DateTime @db.DateTime(0)
 
   @@id([user, key])
 }
@@ -1574,7 +1574,7 @@ model bani684_user_settings {
 model bani684_versionx_chunk {
   version_id  Int      @id @default(autoincrement()) @db.UnsignedInt
   content_id  Int      @db.UnsignedInt
-  saved       DateTime @default(now()) 
+  saved       DateTime @default(now("0")) @db.DateTime(0)
   user        Int      @default(0)
   mode        String   @default("update") @db.VarChar(24)
   marked      Boolean? @default(false)
@@ -1593,7 +1593,7 @@ model bani684_versionx_chunk {
 model bani684_versionx_plugin {
   version_id  Int      @id @default(autoincrement()) @db.UnsignedInt
   content_id  Int      @db.UnsignedInt
-  saved       DateTime @default(now()) 
+  saved       DateTime @default(now("0")) @db.DateTime(0)
   user        Int      @default(0)
   mode        String   @default("update") @db.VarChar(24)
   marked      Boolean? @default(false)
@@ -1613,7 +1613,7 @@ model bani684_versionx_plugin {
 model bani684_versionx_resource {
   version_id  Int      @id @default(autoincrement()) @db.UnsignedInt
   content_id  Int      @db.UnsignedInt
-  saved       DateTime @default(now()) 
+  saved       DateTime @default(now("0")) @db.DateTime(0)
   user        Int      @default(0)
   mode        String   @default("update") @db.VarChar(24)
   marked      Boolean? @default(false)
@@ -1631,7 +1631,7 @@ model bani684_versionx_resource {
 model bani684_versionx_snippet {
   version_id  Int      @id @default(autoincrement()) @db.UnsignedInt
   content_id  Int      @db.UnsignedInt
-  saved       DateTime @default(now()) 
+  saved       DateTime @default(now("0")) @db.DateTime(0)
   user        Int      @default(0)
   mode        String   @default("update") @db.VarChar(24)
   marked      Boolean? @default(false)
@@ -1650,7 +1650,7 @@ model bani684_versionx_snippet {
 model bani684_versionx_template {
   version_id   Int      @id @default(autoincrement()) @db.UnsignedInt
   content_id   Int      @db.UnsignedInt
-  saved        DateTime @default(now()) 
+  saved        DateTime @default(now("0")) @db.DateTime(0)
   user         Int      @default(0)
   mode         String   @default("update") @db.VarChar(24)
   marked       Boolean? @default(false)
@@ -1669,7 +1669,7 @@ model bani684_versionx_template {
 model bani684_versionx_templatevar {
   version_id        Int      @id @default(autoincrement()) @db.UnsignedInt
   content_id        Int      @db.UnsignedInt
-  saved             DateTime @default(now()) 
+  saved             DateTime @default(now("0")) @db.DateTime(0)
   user              Int      @default(0)
   mode              String   @default("update") @db.VarChar(24)
   marked            Boolean? @default(false)
