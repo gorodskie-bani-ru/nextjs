@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react'
 import {
-  UsersDocument,
-  UsersQueryVariables,
-  useUsersQuery,
+  ResourcesDocument,
+  ResourcesQueryVariables,
+  useResourcesQuery,
+  SortOrder,
 } from 'src/modules/gql/generated'
 
 import View from './View'
@@ -10,11 +11,12 @@ import View from './View'
 import { Page } from '../_App/interfaces'
 import { useRouter } from 'next/router'
 import { ParsedUrlQuery } from 'querystring'
+import { TopicsViewProps } from './View/interfaces'
 import { NextSeo } from 'next-seo'
 
 const getQueryParams = (
   query: ParsedUrlQuery
-): UsersQueryVariables & { page: number } => {
+): ResourcesQueryVariables & { page: number } => {
   let skip: number | undefined
 
   const take = 10
@@ -31,19 +33,19 @@ const getQueryParams = (
     skip,
     take,
     where: {
-      active: {
-        equals: true,
-      },
-      Attributes: {
-        blocked: {
-          equals: false,
-        },
+      template: {
+        in: [15, 28],
       },
     },
+    orderBy: {
+      createdon: SortOrder.DESC,
+    },
+    withContent: true,
+    withCreatedBy: true,
   }
 }
 
-const UsersPage: Page = () => {
+const TopicsPage: Page = () => {
   const router = useRouter()
 
   const { query } = router
@@ -54,7 +56,7 @@ const UsersPage: Page = () => {
     }
   }, [query])
 
-  const response = useUsersQuery({
+  const response = useResourcesQuery({
     variables: queryVariables,
     onError: console.error,
   })
@@ -64,9 +66,24 @@ const UsersPage: Page = () => {
   const page =
     (query.page && typeof query.page === 'string' && parseInt(query.page)) || 1
 
+  const topics = useMemo(() => {
+    const topics: TopicsViewProps['topics'] = []
+
+    response.data?.resources.map((n) => {
+      if (n.__typename === 'Resource') {
+        topics.push(n)
+      }
+    })
+
+    return topics
+  }, [response.data?.resources])
+
   return (
     <>
-      <NextSeo title="Пользователи" description="Все пользователи" />
+      <NextSeo
+        title="Обзоры и отзывы"
+        description="Обзоры и отзывы о банях и саунах"
+      />
 
       <View
         // {...queryResult}
@@ -75,22 +92,22 @@ const UsersPage: Page = () => {
         // variables={variables}
         // page={page}
         // loading={loading}
-        users={response.data?.users || []}
+        topics={topics}
         pagination={{
           limit: response.variables?.take || 0,
           page,
-          total: response.data?.usersCount || 0,
+          total: response.data?.resourcesCount || 0,
         }}
       />
     </>
   )
 }
 
-UsersPage.getInitialProps = async (context) => {
+TopicsPage.getInitialProps = async (context) => {
   const { apolloClient } = context
 
   await apolloClient.query({
-    query: UsersDocument,
+    query: ResourcesDocument,
 
     /**
      * Важно, чтобы все переменные запроса серверные и фронтовые совпадали,
@@ -104,4 +121,4 @@ UsersPage.getInitialProps = async (context) => {
   return {}
 }
 
-export default UsersPage
+export default TopicsPage

@@ -7,6 +7,7 @@ export * from './comment';
 export * from './commentNoNesting';
 export * from './comments';
 export * from './companies';
+export * from './resource';
 export * from './resources';
 export * from './user';
 export * from './user_';

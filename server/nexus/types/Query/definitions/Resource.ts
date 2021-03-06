@@ -1,34 +1,43 @@
 /* eslint-disable @typescript-eslint/camelcase */
 /* eslint-disable @typescript-eslint/ban-ts-ignore */
 
-import { list, nonNull, ObjectDefinitionBlock } from 'nexus/dist/core'
+import { arg, list, nonNull, ObjectDefinitionBlock } from 'nexus/dist/core'
 import { Prisma } from '@prisma/client'
+import { userSelect } from './User'
 
 export const resources = (t: ObjectDefinitionBlock<'Query'>) => {
-  // t.crud.bani684SiteContents({
-  //   alias: "tessss",
-  //   type: "Resource",
-  // })
+  const defaultWhere: Prisma.bani684_site_contentFindManyArgs['where'] = {
+    deleted: false,
+    published: true,
+    hidemenu: false,
+  }
 
-  // t.nonNull.list.nonNull.field('resources', {
-  //   // alias: 'companies',
-  //   description: 'Компании',
-  //   type: 'Resource',
-  //   // ordering: true,
-  //   // filtering: true,
-  //   args: {
-  //     // where: 'bani684_site_contentWhereInput',
-  //     take: 'Int',
-  //     skip: 'Int',
-  //   },
-  // t.crud.bani684SiteContents({
+  t.nonNull.int('resourcesCount', {
+    description: 'Количество ресурсов',
+    args: {
+      where: arg({
+        type: 'bani684_site_contentWhereInput',
+      }),
+    },
+    resolve(_, args, ctx) {
+      const variables = args as Pick<
+        Prisma.bani684_site_contentFindManyArgs,
+        'where'
+      >
+
+      return ctx.prisma.bani684_site_content.count({
+        ...variables,
+        where: {
+          ...defaultWhere,
+          ...variables.where,
+        },
+      })
+    },
+  })
 
   t.nonNull.list.nonNull.field('resources', {
-    // alias: 'resources',
     description: 'Ресурсы',
     type: 'ResourceUnion',
-    // ordering: true,
-    // filtering: true,
     args: {
       where: 'bani684_site_contentWhereInput',
       orderBy: list(nonNull('bani684_site_contentOrderByInput')),
@@ -41,22 +50,11 @@ export const resources = (t: ObjectDefinitionBlock<'Query'>) => {
         'where'
       >
 
-      const { deleted = false, published = true, hidemenu = false } =
-        variables.where || {}
-
       const result = await ctx.prisma.bani684_site_content.findMany({
         ...variables,
         where: {
-          AND: [
-            {
-              deleted,
-              published,
-              hidemenu,
-            },
-            {
-              ...variables.where,
-            },
-          ],
+          ...defaultWhere,
+          ...variables.where,
         },
         select: {
           id: true,
@@ -70,8 +68,9 @@ export const resources = (t: ObjectDefinitionBlock<'Query'>) => {
           createdon: true,
           template: true,
           searchable: true,
-          // editedby: true,
-          // editedon: true,
+          content: true,
+          editedby: true,
+          editedon: true,
           TemplateVarValues: {
             select: {
               id: true,
@@ -80,39 +79,12 @@ export const resources = (t: ObjectDefinitionBlock<'Query'>) => {
               value: true,
             },
           },
-          content: true,
-          editedby: true,
-          editedon: true,
+          CreatedBy: {
+            select: userSelect,
+          },
         },
-        // orderBy: {
-        //   pagetitle: "asc",
-        // },
       })
-      // .then((records) =>
-      //   records.map((n) => {
-      //     const { TemplateVarValues } = n
-
-      //     return {
-      //       ...n,
-      //     }
-      //   })
-      // )
-
       return result
     },
   })
 }
-
-// export const resourcesCount = (t: ObjectDefinitionBlock<'Query'>) => {
-//   t.nonNull.field('resourcesCount', {
-//     type: 'Int',
-//     description: 'Количество всех ресурсов',
-//     args: {
-//       where: 'bani684_site_contentWhereInput',
-//     },
-//     async resolve(_, args, ctx) {
-//       // @ts-ignore
-//       return ctx.prisma.bani684_site_content.count(args)
-//     },
-//   })
-// }

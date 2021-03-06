@@ -226,12 +226,14 @@ export interface Query {
   cities: Array<City>;
   /** Комментарии */
   comments: Array<Comment>;
-  /** Количество Комментариев */
+  /** Количество комментариев */
   commentsCount: Scalars['Int'];
   /** Компании */
   companies: Array<Company>;
   /** Ресурсы */
   resources: Array<ResourceUnion>;
+  /** Количество ресурсов */
+  resourcesCount: Scalars['Int'];
   user?: Maybe<User>;
   users: Array<User>;
   /** Количество пользователей */
@@ -279,6 +281,11 @@ export type QueryResourcesArgs = {
 };
 
 
+export type QueryResourcesCountArgs = {
+  where?: Maybe<Bani684SiteContentWhereInput>;
+};
+
+
 export type QueryUserArgs = {
   where: Bani684UsersWhereUniqueInput;
 };
@@ -299,6 +306,7 @@ export type QueryUsersCountArgs = {
 
 export interface Resource {
   __typename?: 'Resource';
+  CreatedBy?: Maybe<User>;
   TemplateVarValues?: Maybe<Array<Bani684SiteTmplvarContentvalues>>;
   alias?: Maybe<Scalars['String']>;
   content?: Maybe<Scalars['String']>;

@@ -3,27 +3,12 @@ import { objectType, unionType } from 'nexus'
 export * from './Company'
 export * from './City'
 
-// alias
-// city_id
-// city
-// city_uri
-// template
-//
-// publishedon
-// pubdate
-// createdby
-// editedby
-// editedon
-// mapIcon
-// image
-
 export const ResourceUnion = unionType({
   name: 'ResourceUnion',
   description: 'Компания, Город или иной ресурс',
   definition(t) {
     t.members('Resource', 'Company', 'City')
   },
-  // resolveType: (item) => item.name,
   resolveType: (item) => {
     if (item.template === 26) {
       return 'City'
@@ -56,36 +41,11 @@ export const Resource = objectType({
     t.nonNull.boolean('published')
     t.nonNull.int('createdby')
     t.nonNull.boolean('searchable')
-    // t.nonNull.int("editedby")
-    // t.nonNull.date("editedon")
-
-    // t.nonNull.string('email')
     t.list.nonNull.field('TemplateVarValues', {
       type: 'bani684_site_tmplvar_contentvalues',
-      // resolve: (parent, _, context) => {
-      //   return context.prisma.user
-      //     .findUnique({
-      //       where: { id: parent.id || undefined },
-      //     })
-      //     .posts()
-      // },
     })
-    // t.nonNull.list.nonNull.field('TemplateVarValues', {
-    //   type: 'bani684_site_tmplvar_contentvalues',
-    //   // resolve: (parent, _, context) => {
-    //   //   return context.prisma.user
-    //   //     .findUnique({
-    //   //       where: { id: parent.id || undefined },
-    //   //     })
-    //   //     .posts()
-    //   // },
-    // })
+    t.field('CreatedBy', {
+      type: 'User',
+    })
   },
 })
-
-// export const Comment = extendType({
-//   type: "Resource",
-//   definition(){
-
-//   }
-// });

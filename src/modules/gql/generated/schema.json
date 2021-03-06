@@ -2215,7 +2215,7 @@
           },
           {
             "name": "commentsCount",
-            "description": "Количество Комментариев",
+            "description": "Количество комментариев",
             "args": [
               {
                 "name": "where",
@@ -2417,6 +2417,35 @@
             "deprecationReason": null
           },
           {
+            "name": "resourcesCount",
+            "description": "Количество ресурсов",
+            "args": [
+              {
+                "name": "where",
+                "description": null,
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "bani684_site_contentWhereInput",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "user",
             "description": null,
             "args": [
@@ -2578,6 +2607,18 @@
         "name": "Resource",
         "description": null,
         "fields": [
+          {
+            "name": "CreatedBy",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "User",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
           {
             "name": "TemplateVarValues",
             "description": null,

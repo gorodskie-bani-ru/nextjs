@@ -2,6 +2,7 @@
 
 import { arg, ObjectDefinitionBlock } from 'nexus/dist/core'
 import { Prisma } from '@prisma/client'
+import { userSelect } from '../../User'
 // import { companiesResolver } from '../resolvers/Resource'
 
 export const comments = (t: ObjectDefinitionBlock<'Query'>) => {
@@ -11,7 +12,7 @@ export const comments = (t: ObjectDefinitionBlock<'Query'>) => {
   }
 
   t.nonNull.int('commentsCount', {
-    description: 'Количество Комментариев',
+    description: 'Количество комментариев',
     args: {
       where: arg({
         type: 'bani684_society_commentsWhereInput',
@@ -60,14 +61,7 @@ export const comments = (t: ObjectDefinitionBlock<'Query'>) => {
           deleted: true,
           comments_count: true,
           CreatedBy: {
-            select: {
-              id: true,
-              active: true,
-              username: true,
-              sudo: true,
-              createdon: true,
-              Attributes: true,
-            },
+            select: userSelect,
           },
         },
       })

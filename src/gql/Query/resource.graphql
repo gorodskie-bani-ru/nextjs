@@ -3,12 +3,12 @@ query resources(
   $orderBy: [bani684_site_contentOrderByInput!]
   $take: Int
   $skip: Int
+  $withContent: Boolean = false
+  $withCreatedBy: Boolean = false
 ) {
   resources(where: $where, orderBy: $orderBy, take: $take, skip: $skip) {
     ... on Resource {
-      id
-      pagetitle
-      uri
+      ...resource
     }
 
     ... on Company {
@@ -18,5 +18,18 @@ query resources(
     ... on City {
       ...city
     }
+  }
+
+  resourcesCount(where: $where)
+}
+
+fragment resource on Resource {
+  id
+  pagetitle
+  uri
+  createdon
+  content @include(if: $withContent)
+  CreatedBy @include(if: $withCreatedBy) {
+    ...user_
   }
 }

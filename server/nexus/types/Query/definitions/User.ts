@@ -2,7 +2,7 @@
 import { Prisma } from '@prisma/client'
 import { arg, ObjectDefinitionBlock } from 'nexus/dist/core'
 
-const select = {
+export const userSelect = {
   id: true,
   active: true,
   username: true,
@@ -45,7 +45,7 @@ export default (t: ObjectDefinitionBlock<'Query'>) => {
 
       return ctx.prisma.bani684_users.findUnique({
         ...variables,
-        select,
+        select: userSelect,
       })
     },
   })
@@ -60,7 +60,7 @@ export default (t: ObjectDefinitionBlock<'Query'>) => {
 
       return ctx.prisma.bani684_users.findMany({
         ...variables,
-        select,
+        select: userSelect,
       })
       // .then((users) => {
 

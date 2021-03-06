@@ -256,7 +256,7 @@ type Query {
   ): [Comment!]!
 
   """
-  Количество Комментариев
+  Количество комментариев
   """
   commentsCount(where: bani684_society_commentsWhereInput): Int!
 
@@ -280,6 +280,11 @@ type Query {
     take: Int
     where: bani684_site_contentWhereInput
   ): [ResourceUnion!]!
+
+  """
+  Количество ресурсов
+  """
+  resourcesCount(where: bani684_site_contentWhereInput): Int!
   user(where: bani684_usersWhereUniqueInput!): User
   users(
     cursor: bani684_usersWhereUniqueInput
@@ -296,6 +301,7 @@ type Query {
 }
 
 type Resource {
+  CreatedBy: User
   TemplateVarValues: [bani684_site_tmplvar_contentvalues!]
   alias: String
   content: String

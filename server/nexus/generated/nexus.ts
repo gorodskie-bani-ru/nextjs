@@ -551,6 +551,7 @@ export interface NexusGenObjects {
   Query: {}
   Resource: {
     // root type
+    CreatedBy?: NexusGenRootTypes['User'] | null // User
     TemplateVarValues?:
       | NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][]
       | null // [bani684_site_tmplvar_contentvalues!]
@@ -676,12 +677,14 @@ export interface NexusGenFieldTypes {
     commentsCount: number // Int!
     companies: NexusGenRootTypes['Company'][] // [Company!]!
     resources: NexusGenRootTypes['ResourceUnion'][] // [ResourceUnion!]!
+    resourcesCount: number // Int!
     user: NexusGenRootTypes['User'] | null // User
     users: NexusGenRootTypes['User'][] // [User!]!
     usersCount: number // Int!
   }
   Resource: {
     // field return type
+    CreatedBy: NexusGenRootTypes['User'] | null // User
     TemplateVarValues:
       | NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][]
       | null // [bani684_site_tmplvar_contentvalues!]
@@ -791,12 +794,14 @@ export interface NexusGenFieldTypeNames {
     commentsCount: 'Int'
     companies: 'Company'
     resources: 'ResourceUnion'
+    resourcesCount: 'Int'
     user: 'User'
     users: 'User'
     usersCount: 'Int'
   }
   Resource: {
     // field return type name
+    CreatedBy: 'User'
     TemplateVarValues: 'bani684_site_tmplvar_contentvalues'
     alias: 'String'
     content: 'String'
@@ -872,6 +877,10 @@ export interface NexusGenArgTypes {
       orderBy?: NexusGenInputs['bani684_site_contentOrderByInput'][] | null // [bani684_site_contentOrderByInput!]
       skip?: number | null // Int
       take?: number | null // Int
+      where?: NexusGenInputs['bani684_site_contentWhereInput'] | null // bani684_site_contentWhereInput
+    }
+    resourcesCount: {
+      // args
       where?: NexusGenInputs['bani684_site_contentWhereInput'] | null // bani684_site_contentWhereInput
     }
     user: {
