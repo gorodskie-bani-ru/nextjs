@@ -495,13 +495,20 @@ export interface NexusGenScalars {
 export interface NexusGenObjects {
   City: {
     // root type
+    CreatedBy?: NexusGenRootTypes['User'] | null // User
     TemplateVarValues?:
       | NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][]
       | null // [bani684_site_tmplvar_contentvalues!]
     alias?: string | null // String
+    content?: string | null // String
+    createdby: number // Int!
+    createdon: NexusGenScalars['DateTime'] // DateTime!
+    description: string // String!
     id: number // Int!
     longtitle: string // String!
     pagetitle: string // String!
+    published: boolean // Boolean!
+    searchable: boolean // Boolean!
     template: number // Int!
     uri?: string | null // String
   }
@@ -518,6 +525,7 @@ export interface NexusGenObjects {
   }
   Company: {
     // root type
+    CreatedBy?: NexusGenRootTypes['User'] | null // User
     TemplateVarValues?:
       | NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][]
       | null // [bani684_site_tmplvar_contentvalues!]
@@ -526,8 +534,6 @@ export interface NexusGenObjects {
     createdby: number // Int!
     createdon: NexusGenScalars['DateTime'] // DateTime!
     description: string // String!
-    editedby: number // Int!
-    editedon: NexusGenScalars['DateTime'] // DateTime!
     id: number // Int!
     longtitle: string // String!
     pagetitle: string // String!
@@ -549,6 +555,25 @@ export interface NexusGenObjects {
     title: string // String!
   }
   Query: {}
+  Rating: {
+    // root type
+    CreatedBy?: NexusGenRootTypes['User'] | null // User
+    TemplateVarValues?:
+      | NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][]
+      | null // [bani684_site_tmplvar_contentvalues!]
+    alias?: string | null // String
+    content?: string | null // String
+    createdby: number // Int!
+    createdon: NexusGenScalars['DateTime'] // DateTime!
+    description: string // String!
+    id: number // Int!
+    longtitle: string // String!
+    pagetitle: string // String!
+    published: boolean // Boolean!
+    searchable: boolean // Boolean!
+    template: number // Int!
+    uri?: string | null // String
+  }
   Resource: {
     // root type
     CreatedBy?: NexusGenRootTypes['User'] | null // User
@@ -560,7 +585,6 @@ export interface NexusGenObjects {
     createdby: number // Int!
     createdon: NexusGenScalars['DateTime'] // DateTime!
     description: string // String!
-    foot?: boolean | null // Boolean
     id: number // Int!
     longtitle: string // String!
     pagetitle: string // String!
@@ -597,16 +621,17 @@ export interface NexusGenObjects {
   }
 }
 
-export interface NexusGenInterfaces {}
-
-export interface NexusGenUnions {
-  ResourceUnion:
+export interface NexusGenInterfaces {
+  ResourceInterface:
     | NexusGenRootTypes['City']
     | NexusGenRootTypes['Company']
+    | NexusGenRootTypes['Rating']
     | NexusGenRootTypes['Resource']
 }
 
-export type NexusGenRootTypes = NexusGenObjects & NexusGenUnions
+export interface NexusGenUnions {}
+
+export type NexusGenRootTypes = NexusGenInterfaces & NexusGenObjects
 
 export type NexusGenAllTypes = NexusGenRootTypes &
   NexusGenScalars &
@@ -615,14 +640,23 @@ export type NexusGenAllTypes = NexusGenRootTypes &
 export interface NexusGenFieldTypes {
   City: {
     // field return type
+    Comments: NexusGenRootTypes['Comment'][] // [Comment!]!
+    CreatedBy: NexusGenRootTypes['User'] | null // User
     TemplateVarValues:
       | NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][]
       | null // [bani684_site_tmplvar_contentvalues!]
     alias: string | null // String
+    content: string | null // String
     coords: NexusGenRootTypes['Coordinates'] | null // Coordinates
+    createdby: number // Int!
+    createdon: NexusGenScalars['DateTime'] // DateTime!
+    description: string // String!
     id: number // Int!
+    image: string | null // String
     longtitle: string // String!
     pagetitle: string // String!
+    published: boolean // Boolean!
+    searchable: boolean // Boolean!
     template: number // Int!
     uri: string | null // String
   }
@@ -639,6 +673,8 @@ export interface NexusGenFieldTypes {
   }
   Company: {
     // field return type
+    Comments: NexusGenRootTypes['Comment'][] // [Comment!]!
+    CreatedBy: NexusGenRootTypes['User'] | null // User
     TemplateVarValues:
       | NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][]
       | null // [bani684_site_tmplvar_contentvalues!]
@@ -650,8 +686,6 @@ export interface NexusGenFieldTypes {
     createdby: number // Int!
     createdon: NexusGenScalars['DateTime'] // DateTime!
     description: string // String!
-    editedby: number // Int!
-    editedon: NexusGenScalars['DateTime'] // DateTime!
     gallery: NexusGenRootTypes['GalleryImage'][] // [GalleryImage!]!
     id: number // Int!
     image: string | null // String
@@ -682,11 +716,33 @@ export interface NexusGenFieldTypes {
     comments: NexusGenRootTypes['Comment'][] // [Comment!]!
     commentsCount: number // Int!
     companies: NexusGenRootTypes['Company'][] // [Company!]!
-    resources: NexusGenRootTypes['ResourceUnion'][] // [ResourceUnion!]!
+    ratings: NexusGenRootTypes['Rating'][] // [Rating!]!
+    resources: NexusGenRootTypes['ResourceInterface'][] // [ResourceInterface!]!
     resourcesCount: number // Int!
     user: NexusGenRootTypes['User'] | null // User
     users: NexusGenRootTypes['User'][] // [User!]!
     usersCount: number // Int!
+  }
+  Rating: {
+    // field return type
+    Comments: NexusGenRootTypes['Comment'][] // [Comment!]!
+    CreatedBy: NexusGenRootTypes['User'] | null // User
+    TemplateVarValues:
+      | NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][]
+      | null // [bani684_site_tmplvar_contentvalues!]
+    alias: string | null // String
+    content: string | null // String
+    createdby: number // Int!
+    createdon: NexusGenScalars['DateTime'] // DateTime!
+    description: string // String!
+    id: number // Int!
+    image: string | null // String
+    longtitle: string // String!
+    pagetitle: string // String!
+    published: boolean // Boolean!
+    searchable: boolean // Boolean!
+    template: number // Int!
+    uri: string | null // String
   }
   Resource: {
     // field return type
@@ -700,8 +756,8 @@ export interface NexusGenFieldTypes {
     createdby: number // Int!
     createdon: NexusGenScalars['DateTime'] // DateTime!
     description: string // String!
-    foot: boolean | null // Boolean
     id: number // Int!
+    image: string | null // String
     longtitle: string // String!
     pagetitle: string // String!
     published: boolean // Boolean!
@@ -738,17 +794,47 @@ export interface NexusGenFieldTypes {
     tmplvarid: number // Int!
     value: string // String!
   }
+  ResourceInterface: {
+    // field return type
+    Comments: NexusGenRootTypes['Comment'][] // [Comment!]!
+    CreatedBy: NexusGenRootTypes['User'] | null // User
+    TemplateVarValues:
+      | NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][]
+      | null // [bani684_site_tmplvar_contentvalues!]
+    alias: string | null // String
+    content: string | null // String
+    createdby: number // Int!
+    createdon: NexusGenScalars['DateTime'] // DateTime!
+    description: string // String!
+    id: number // Int!
+    image: string | null // String
+    longtitle: string // String!
+    pagetitle: string // String!
+    published: boolean // Boolean!
+    searchable: boolean // Boolean!
+    template: number // Int!
+    uri: string | null // String
+  }
 }
 
 export interface NexusGenFieldTypeNames {
   City: {
     // field return type name
+    Comments: 'Comment'
+    CreatedBy: 'User'
     TemplateVarValues: 'bani684_site_tmplvar_contentvalues'
     alias: 'String'
+    content: 'String'
     coords: 'Coordinates'
+    createdby: 'Int'
+    createdon: 'DateTime'
+    description: 'String'
     id: 'Int'
+    image: 'String'
     longtitle: 'String'
     pagetitle: 'String'
+    published: 'Boolean'
+    searchable: 'Boolean'
     template: 'Int'
     uri: 'String'
   }
@@ -765,6 +851,8 @@ export interface NexusGenFieldTypeNames {
   }
   Company: {
     // field return type name
+    Comments: 'Comment'
+    CreatedBy: 'User'
     TemplateVarValues: 'bani684_site_tmplvar_contentvalues'
     address: 'String'
     addressComments: 'String'
@@ -774,8 +862,6 @@ export interface NexusGenFieldTypeNames {
     createdby: 'Int'
     createdon: 'DateTime'
     description: 'String'
-    editedby: 'Int'
-    editedon: 'DateTime'
     gallery: 'GalleryImage'
     id: 'Int'
     image: 'String'
@@ -806,11 +892,31 @@ export interface NexusGenFieldTypeNames {
     comments: 'Comment'
     commentsCount: 'Int'
     companies: 'Company'
-    resources: 'ResourceUnion'
+    ratings: 'Rating'
+    resources: 'ResourceInterface'
     resourcesCount: 'Int'
     user: 'User'
     users: 'User'
     usersCount: 'Int'
+  }
+  Rating: {
+    // field return type name
+    Comments: 'Comment'
+    CreatedBy: 'User'
+    TemplateVarValues: 'bani684_site_tmplvar_contentvalues'
+    alias: 'String'
+    content: 'String'
+    createdby: 'Int'
+    createdon: 'DateTime'
+    description: 'String'
+    id: 'Int'
+    image: 'String'
+    longtitle: 'String'
+    pagetitle: 'String'
+    published: 'Boolean'
+    searchable: 'Boolean'
+    template: 'Int'
+    uri: 'String'
   }
   Resource: {
     // field return type name
@@ -822,8 +928,8 @@ export interface NexusGenFieldTypeNames {
     createdby: 'Int'
     createdon: 'DateTime'
     description: 'String'
-    foot: 'Boolean'
     id: 'Int'
+    image: 'String'
     longtitle: 'String'
     pagetitle: 'String'
     published: 'Boolean'
@@ -860,6 +966,25 @@ export interface NexusGenFieldTypeNames {
     tmplvarid: 'Int'
     value: 'String'
   }
+  ResourceInterface: {
+    // field return type name
+    Comments: 'Comment'
+    CreatedBy: 'User'
+    TemplateVarValues: 'bani684_site_tmplvar_contentvalues'
+    alias: 'String'
+    content: 'String'
+    createdby: 'Int'
+    createdon: 'DateTime'
+    description: 'String'
+    id: 'Int'
+    image: 'String'
+    longtitle: 'String'
+    pagetitle: 'String'
+    published: 'Boolean'
+    searchable: 'Boolean'
+    template: 'Int'
+    uri: 'String'
+  }
 }
 
 export interface NexusGenArgTypes {
@@ -885,6 +1010,14 @@ export interface NexusGenArgTypes {
       where?: NexusGenInputs['bani684_society_commentsWhereInput'] | null // bani684_society_commentsWhereInput
     }
     companies: {
+      // args
+      cursor?: NexusGenInputs['bani684_site_contentWhereUniqueInput'] | null // bani684_site_contentWhereUniqueInput
+      orderBy?: NexusGenInputs['bani684_site_contentOrderByInput'][] | null // [bani684_site_contentOrderByInput!]
+      skip?: number | null // Int
+      take?: number | null // Int
+      where?: NexusGenInputs['bani684_site_contentWhereInput'] | null // bani684_site_contentWhereInput
+    }
+    ratings: {
       // args
       cursor?: NexusGenInputs['bani684_site_contentWhereUniqueInput'] | null // bani684_site_contentWhereUniqueInput
       orderBy?: NexusGenInputs['bani684_site_contentOrderByInput'][] | null // [bani684_site_contentOrderByInput!]
@@ -923,10 +1056,15 @@ export interface NexusGenArgTypes {
 }
 
 export interface NexusGenAbstractTypeMembers {
-  ResourceUnion: 'City' | 'Company' | 'Resource'
+  ResourceInterface: 'City' | 'Company' | 'Rating' | 'Resource'
 }
 
-export interface NexusGenTypeInterfaces {}
+export interface NexusGenTypeInterfaces {
+  City: 'ResourceInterface'
+  Company: 'ResourceInterface'
+  Rating: 'ResourceInterface'
+  Resource: 'ResourceInterface'
+}
 
 export type NexusGenObjectNames = keyof NexusGenObjects
 
@@ -934,15 +1072,15 @@ export type NexusGenInputNames = keyof NexusGenInputs
 
 export type NexusGenEnumNames = keyof NexusGenEnums
 
-export type NexusGenInterfaceNames = never
+export type NexusGenInterfaceNames = keyof NexusGenInterfaces
 
 export type NexusGenScalarNames = keyof NexusGenScalars
 
-export type NexusGenUnionNames = keyof NexusGenUnions
+export type NexusGenUnionNames = never
 
 export type NexusGenObjectsUsingAbstractStrategyIsTypeOf = never
 
-export type NexusGenAbstractsUsingStrategyResolveType = 'ResourceUnion'
+export type NexusGenAbstractsUsingStrategyResolveType = 'ResourceInterface'
 
 export type NexusGenFeaturesConfig = {
   abstractTypeStrategies: {

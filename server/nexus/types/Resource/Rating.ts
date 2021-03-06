@@ -1,8 +1,10 @@
-import { extendType } from 'nexus'
+import { objectType } from 'nexus'
 
-export const Rating = extendType({
-  type: 'Resource',
+export const Rating = objectType({
+  name: 'Rating',
+  description: 'Рейтинг заведений',
+
   definition(t) {
-    t.boolean('foot')
+    t.implements('ResourceInterface')
   },
 })

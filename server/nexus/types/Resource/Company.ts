@@ -6,37 +6,27 @@ import { coordsResolver } from '../Query/resolvers/coords'
 export const Company = objectType({
   name: 'Company',
   description: 'Компания',
-  // sourceType: {
-  //   module: '@prisma/client',
-  //   export: 'bani684_site_content',
-  // },
+
   definition(t) {
-    t.nonNull.int('id')
-    t.nonNull.string('pagetitle')
-    t.nonNull.string('longtitle')
-    t.nonNull.string('description')
-    t.nonNull.int('createdby')
-    t.nonNull.date('createdon')
-    // t.nonNull.date("pubdate")
-    t.string('content')
-    t.string('uri')
-    t.string('alias')
-    t.nonNull.int('template')
-    t.nonNull.boolean('published')
-    t.nonNull.boolean('searchable')
-    // t.nonNull.date("publishedon")
-    t.nonNull.int('editedby')
-    t.nonNull.date('editedon')
-    // t.nonNull.string("alias")
-    t.string('image', {
-      resolve(parent) {
-        return (
-          parent.TemplateVarValues?.find(
-            (n) => n.tmplvarid === TemplateVarIDs.image
-          )?.value || null
-        )
-      },
-    })
+    t.implements('ResourceInterface')
+
+    //   t.nonNull.int('id')
+    //   t.nonNull.string('pagetitle')
+    //   t.nonNull.string('longtitle')
+    //   t.nonNull.string('description')
+    //   t.nonNull.int('createdby')
+    //   t.nonNull.date('createdon')
+    //   // t.nonNull.date("pubdate")
+    //   t.string('content')
+    //   t.string('uri')
+    //   t.string('alias')
+    //   t.nonNull.int('template')
+    //   t.nonNull.boolean('published')
+    //   t.nonNull.boolean('searchable')
+    //   // t.nonNull.date("publishedon")
+    //   t.nonNull.int('editedby')
+    //   t.nonNull.date('editedon')
+    //   // t.nonNull.string("alias")
     t.string('address', {
       description: 'Адрес (без указания города)',
       resolve(parent) {
@@ -77,15 +67,15 @@ export const Company = objectType({
         )
       },
     })
-    // t.string('pricesComments', {
-    //   description: "Комментарии к ценам",
-    //   resolve(parent) {
-    //     return parent.TemplateVarValues?.find(n => n.tmplvarid === TemplateVarIDs.pricesComments)?.value || null
-    //   }
-    // })
-    // t.field('coords', {
-    //   type: 'Coordinates',
-    // })
+    //   // t.string('pricesComments', {
+    //   //   description: "Комментарии к ценам",
+    //   //   resolve(parent) {
+    //   //     return parent.TemplateVarValues?.find(n => n.tmplvarid === TemplateVarIDs.pricesComments)?.value || null
+    //   //   }
+    //   // })
+    //   // t.field('coords', {
+    //   //   type: 'Coordinates',
+    //   // })
 
     t.field('coords', {
       type: 'Coordinates',
@@ -93,13 +83,13 @@ export const Company = objectType({
       resolve: coordsResolver,
     })
 
-    // t.nonNull.string('email')
-    t.list.nonNull.field('TemplateVarValues', {
-      type: 'bani684_site_tmplvar_contentvalues',
-    })
+    //   // t.nonNull.string('email')
+    //   t.list.nonNull.field('TemplateVarValues', {
+    //     type: 'bani684_site_tmplvar_contentvalues',
+    //   })
 
     t.nonNull.list.nonNull.field('gallery', {
-      type: GalleryImage,
+      type: 'GalleryImage',
       resolve(parent) {
         type File = {
           title: string
@@ -136,14 +126,5 @@ export const Company = objectType({
         return gallery
       },
     })
-  },
-})
-
-const GalleryImage = objectType({
-  name: 'GalleryImage',
-  definition(t) {
-    t.nonNull.string('title')
-    t.nonNull.string('image')
-    t.nonNull.string('description')
   },
 })

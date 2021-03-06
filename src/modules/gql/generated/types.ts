@@ -45,15 +45,25 @@ export interface BoolFilter {
 }
 
 /** Город */
-export interface City {
+export interface City extends ResourceInterface {
   __typename?: 'City';
+  /** Комментарии */
+  Comments: Array<Comment>;
+  CreatedBy?: Maybe<User>;
   TemplateVarValues?: Maybe<Array<Bani684SiteTmplvarContentvalues>>;
   alias?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['String']>;
   /** Координаты */
   coords?: Maybe<Coordinates>;
+  createdby: Scalars['Int'];
+  createdon: Scalars['DateTime'];
+  description: Scalars['String'];
   id: Scalars['Int'];
+  image?: Maybe<Scalars['String']>;
   longtitle: Scalars['String'];
   pagetitle: Scalars['String'];
+  published: Scalars['Boolean'];
+  searchable: Scalars['Boolean'];
   template: Scalars['Int'];
   uri?: Maybe<Scalars['String']>;
 }
@@ -74,8 +84,11 @@ export interface Comment {
 }
 
 /** Компания */
-export interface Company {
+export interface Company extends ResourceInterface {
   __typename?: 'Company';
+  /** Комментарии */
+  Comments: Array<Comment>;
+  CreatedBy?: Maybe<User>;
   TemplateVarValues?: Maybe<Array<Bani684SiteTmplvarContentvalues>>;
   /** Адрес (без указания города) */
   address?: Maybe<Scalars['String']>;
@@ -88,8 +101,6 @@ export interface Company {
   createdby: Scalars['Int'];
   createdon: Scalars['DateTime'];
   description: Scalars['String'];
-  editedby: Scalars['Int'];
-  editedon: Scalars['DateTime'];
   gallery: Array<GalleryImage>;
   id: Scalars['Int'];
   image?: Maybe<Scalars['String']>;
@@ -230,8 +241,10 @@ export interface Query {
   commentsCount: Scalars['Int'];
   /** Компании */
   companies: Array<Company>;
+  /** Рейтинги заведений */
+  ratings: Array<Rating>;
   /** Ресурсы */
-  resources: Array<ResourceUnion>;
+  resources: Array<ResourceInterface>;
   /** Количество ресурсов */
   resourcesCount: Scalars['Int'];
   user?: Maybe<User>;
@@ -273,6 +286,15 @@ export type QueryCompaniesArgs = {
 };
 
 
+export type QueryRatingsArgs = {
+  cursor?: Maybe<Bani684SiteContentWhereUniqueInput>;
+  orderBy?: Maybe<Array<Bani684SiteContentOrderByInput>>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
+  where?: Maybe<Bani684SiteContentWhereInput>;
+};
+
+
 export type QueryResourcesArgs = {
   orderBy?: Maybe<Array<Bani684SiteContentOrderByInput>>;
   skip?: Maybe<Scalars['Int']>;
@@ -304,7 +326,29 @@ export type QueryUsersCountArgs = {
   where?: Maybe<Bani684UsersWhereInput>;
 };
 
-export interface Resource {
+/** Рейтинг заведений */
+export interface Rating extends ResourceInterface {
+  __typename?: 'Rating';
+  /** Комментарии */
+  Comments: Array<Comment>;
+  CreatedBy?: Maybe<User>;
+  TemplateVarValues?: Maybe<Array<Bani684SiteTmplvarContentvalues>>;
+  alias?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['String']>;
+  createdby: Scalars['Int'];
+  createdon: Scalars['DateTime'];
+  description: Scalars['String'];
+  id: Scalars['Int'];
+  image?: Maybe<Scalars['String']>;
+  longtitle: Scalars['String'];
+  pagetitle: Scalars['String'];
+  published: Scalars['Boolean'];
+  searchable: Scalars['Boolean'];
+  template: Scalars['Int'];
+  uri?: Maybe<Scalars['String']>;
+}
+
+export interface Resource extends ResourceInterface {
   __typename?: 'Resource';
   /** Комментарии */
   Comments: Array<Comment>;
@@ -316,6 +360,7 @@ export interface Resource {
   createdon: Scalars['DateTime'];
   description: Scalars['String'];
   id: Scalars['Int'];
+  image?: Maybe<Scalars['String']>;
   longtitle: Scalars['String'];
   pagetitle: Scalars['String'];
   published: Scalars['Boolean'];
@@ -324,8 +369,25 @@ export interface Resource {
   uri?: Maybe<Scalars['String']>;
 }
 
-/** Компания, Город или иной ресурс */
-export type ResourceUnion = City | Company | Resource;
+export type ResourceInterface = {
+  /** Комментарии */
+  Comments: Array<Comment>;
+  CreatedBy?: Maybe<User>;
+  TemplateVarValues?: Maybe<Array<Bani684SiteTmplvarContentvalues>>;
+  alias?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['String']>;
+  createdby: Scalars['Int'];
+  createdon: Scalars['DateTime'];
+  description: Scalars['String'];
+  id: Scalars['Int'];
+  image?: Maybe<Scalars['String']>;
+  longtitle: Scalars['String'];
+  pagetitle: Scalars['String'];
+  published: Scalars['Boolean'];
+  searchable: Scalars['Boolean'];
+  template: Scalars['Int'];
+  uri?: Maybe<Scalars['String']>;
+};
 
 export enum SortOrder {
   ASC = 'asc',

@@ -4,20 +4,18 @@ import { coordsResolver } from '../Query/resolvers/coords'
 export const City = objectType({
   name: 'City',
   description: 'Город',
-  // sourceType: {
-  //   module: '@prisma/client',
-  //   export: 'bani684_site_content',
-  // },
+
   definition(t) {
-    t.nonNull.int('id')
-    t.nonNull.string('pagetitle')
-    t.nonNull.string('longtitle')
-    t.nonNull.int('template')
-    t.string('uri')
-    t.string('alias')
-    // t.field('coords', {
-    //   type: 'Coordinates',
-    // })
+    t.implements('ResourceInterface')
+    //   t.nonNull.int('id')
+    //   t.nonNull.string('pagetitle')
+    //   t.nonNull.string('longtitle')
+    //   t.nonNull.int('template')
+    //   t.string('uri')
+    //   t.string('alias')
+    //   // t.field('coords', {
+    //   //   type: 'Coordinates',
+    //   // })
 
     t.field('coords', {
       type: 'Coordinates',
@@ -25,8 +23,8 @@ export const City = objectType({
       resolve: coordsResolver,
     })
 
-    t.list.nonNull.field('TemplateVarValues', {
-      type: 'bani684_site_tmplvar_contentvalues',
-    })
+    //   t.list.nonNull.field('TemplateVarValues', {
+    //     type: 'bani684_site_tmplvar_contentvalues',
+    //   })
   },
 })

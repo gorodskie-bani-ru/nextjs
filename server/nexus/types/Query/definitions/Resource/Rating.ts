@@ -4,8 +4,8 @@ import { ObjectDefinitionBlock } from 'nexus/dist/core'
 import { Prisma } from '@prisma/client'
 // import { companiesResolver } from '../resolvers/Resource'
 
-export const cities = (t: ObjectDefinitionBlock<'Query'>) => {
-  // t.nonNull.list.nonNull.field('cities', {
+export default (t: ObjectDefinitionBlock<'Query'>) => {
+  // t.nonNull.list.nonNull.field('ratings', {
   //   description: 'Города',
   //   type: 'City',
   //   // ordering: true,
@@ -17,9 +17,9 @@ export const cities = (t: ObjectDefinitionBlock<'Query'>) => {
   //   },
 
   t.crud.bani684SiteContents({
-    alias: 'cities',
-    description: 'Города',
-    type: 'City',
+    alias: 'ratings',
+    description: 'Рейтинги заведений',
+    type: 'Rating',
     ordering: true,
     filtering: true,
     // resolve: companiesResolver,
@@ -37,7 +37,7 @@ export const cities = (t: ObjectDefinitionBlock<'Query'>) => {
         where: {
           AND: [
             {
-              template: 26,
+              template: 30,
               deleted,
               published,
               hidemenu,
@@ -54,14 +54,14 @@ export const cities = (t: ObjectDefinitionBlock<'Query'>) => {
           description: true,
           alias: true,
           uri: true,
-          content: true,
           published: true,
           createdby: true,
           createdon: true,
-          editedby: true,
-          editedon: true,
           template: true,
           searchable: true,
+          content: true,
+          editedby: true,
+          editedon: true,
           TemplateVarValues: {
             select: {
               id: true,
@@ -70,6 +70,9 @@ export const cities = (t: ObjectDefinitionBlock<'Query'>) => {
               value: true,
             },
           },
+          // CreatedBy: {
+          //   select: userSelect,
+          // },
         },
         // orderBy: {
         //   pagetitle: "asc",

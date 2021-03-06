@@ -1,14 +1,38 @@
+/* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/camelcase */
-import { objectType } from 'nexus'
+import { interfaceType, objectType } from 'nexus'
+import { TemplateVarIDs } from '../../constants'
 import { NexusGenObjects } from 'server/nexus/generated/nexus'
 import { commentSelect } from '../Query/definitions/society/Comment'
 
 export const Resource = objectType({
   name: 'Resource',
+  definition(t) {
+    t.implements('ResourceInterface')
+  },
+})
+
+export const ResourceInterface = interfaceType({
+  name: 'ResourceInterface',
   // sourceType: {
   //   module: '@prisma/client',
   //   export: 'bani684_site_content',
   // },
+  resolveType(item) {
+    // Город
+    if (item.template === 26) {
+      return 'City'
+    }
+    // Заведение
+    else if (item.template === 27) {
+      return 'Company'
+    }
+    // Рейтинг заведений
+    else if (item.template === 30) {
+      return 'Rating'
+    }
+    return 'Resource'
+  },
   definition(t) {
     t.nonNull.int('id')
     t.nonNull.string('pagetitle')
@@ -30,6 +54,18 @@ export const Resource = objectType({
     t.field('CreatedBy', {
       type: 'User',
     })
+
+    t.string('image', {
+      resolve(parent) {
+        return (
+          parent.TemplateVarValues?.find(
+            (n) => n.tmplvarid === TemplateVarIDs.image
+          )?.value || null
+        )
+      },
+    })
+
+    // TODO Создать отдельные типы Обзор и Топик и перенести получение комментов туда
     t.nonNull.list.nonNull.field('Comments', {
       type: 'Comment',
       description: 'Комментарии',

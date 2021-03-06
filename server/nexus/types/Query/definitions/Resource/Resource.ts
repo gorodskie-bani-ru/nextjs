@@ -37,7 +37,8 @@ export default (t: ObjectDefinitionBlock<'Query'>) => {
 
   t.nonNull.list.nonNull.field('resources', {
     description: 'Ресурсы',
-    type: 'ResourceUnion',
+    // type: 'ResourceUnion',
+    type: 'ResourceInterface',
     args: {
       where: 'bani684_site_contentWhereInput',
       orderBy: list(nonNull('bani684_site_contentOrderByInput')),

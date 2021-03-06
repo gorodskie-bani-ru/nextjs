@@ -27,17 +27,29 @@ input BoolFilter {
 """
 Город
 """
-type City {
+type City implements ResourceInterface {
+  """
+  Комментарии
+  """
+  Comments: [Comment!]!
+  CreatedBy: User
   TemplateVarValues: [bani684_site_tmplvar_contentvalues!]
   alias: String
+  content: String
 
   """
   Координаты
   """
   coords: Coordinates
+  createdby: Int!
+  createdon: DateTime!
+  description: String!
   id: Int!
+  image: String
   longtitle: String!
   pagetitle: String!
+  published: Boolean!
+  searchable: Boolean!
   template: Int!
   uri: String
 }
@@ -67,7 +79,12 @@ type Comment {
 """
 Компания
 """
-type Company {
+type Company implements ResourceInterface {
+  """
+  Комментарии
+  """
+  Comments: [Comment!]!
+  CreatedBy: User
   TemplateVarValues: [bani684_site_tmplvar_contentvalues!]
 
   """
@@ -89,8 +106,6 @@ type Company {
   createdby: Int!
   createdon: DateTime!
   description: String!
-  editedby: Int!
-  editedon: DateTime!
   gallery: [GalleryImage!]!
   id: Int!
   image: String
@@ -272,6 +287,17 @@ type Query {
   ): [Company!]!
 
   """
+  Рейтинги заведений
+  """
+  ratings(
+    cursor: bani684_site_contentWhereUniqueInput
+    orderBy: [bani684_site_contentOrderByInput!]
+    skip: Int
+    take: Int
+    where: bani684_site_contentWhereInput
+  ): [Rating!]!
+
+  """
   Ресурсы
   """
   resources(
@@ -279,7 +305,7 @@ type Query {
     skip: Int
     take: Int
     where: bani684_site_contentWhereInput
-  ): [ResourceUnion!]!
+  ): [ResourceInterface!]!
 
   """
   Количество ресурсов
@@ -300,7 +326,10 @@ type Query {
   usersCount(where: bani684_usersWhereInput): Int!
 }
 
-type Resource {
+"""
+Рейтинг заведений
+"""
+type Rating implements ResourceInterface {
   """
   Комментарии
   """
@@ -312,8 +341,8 @@ type Resource {
   createdby: Int!
   createdon: DateTime!
   description: String!
-  foot: Boolean
   id: Int!
+  image: String
   longtitle: String!
   pagetitle: String!
   published: Boolean!
@@ -322,10 +351,49 @@ type Resource {
   uri: String
 }
 
-"""
-Компания, Город или иной ресурс
-"""
-union ResourceUnion = City | Company | Resource
+type Resource implements ResourceInterface {
+  """
+  Комментарии
+  """
+  Comments: [Comment!]!
+  CreatedBy: User
+  TemplateVarValues: [bani684_site_tmplvar_contentvalues!]
+  alias: String
+  content: String
+  createdby: Int!
+  createdon: DateTime!
+  description: String!
+  id: Int!
+  image: String
+  longtitle: String!
+  pagetitle: String!
+  published: Boolean!
+  searchable: Boolean!
+  template: Int!
+  uri: String
+}
+
+interface ResourceInterface {
+  """
+  Комментарии
+  """
+  Comments: [Comment!]!
+  CreatedBy: User
+  TemplateVarValues: [bani684_site_tmplvar_contentvalues!]
+  alias: String
+  content: String
+  createdby: Int!
+  createdon: DateTime!
+  description: String!
+  id: Int!
+  image: String
+  longtitle: String!
+  pagetitle: String!
+  published: Boolean!
+  searchable: Boolean!
+  template: Int!
+  uri: String
+}
 
 enum SortOrder {
   asc

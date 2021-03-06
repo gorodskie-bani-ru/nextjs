@@ -32,7 +32,7 @@ export type ResourcesQuery = { __typename?: 'Query', resourcesCount: number, res
   ) | (
     { __typename?: 'Company' }
     & CompanyFieldsFragment
-  ) | (
+  ) | { __typename?: 'Rating' } | (
     { __typename?: 'Resource' }
     & ResourceFragment
   )> };

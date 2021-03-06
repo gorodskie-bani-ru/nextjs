@@ -122,8 +122,8 @@ fragment CompanyFields on Company {
   # pubdate
   createdon
   createdby
-  editedby
-  editedon
+  # editedby
+  # editedon
   # mapIcon
   image
   # ...imageFormats @include(if:$getImageFormats)
