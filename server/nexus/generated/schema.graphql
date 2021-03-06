@@ -301,6 +301,10 @@ type Query {
 }
 
 type Resource {
+  """
+  Комментарии
+  """
+  Comments: [Comment!]!
   CreatedBy: User
   TemplateVarValues: [bani684_site_tmplvar_contentvalues!]
   alias: String
@@ -353,6 +357,14 @@ input StringNullableFilter {
   not: NestedStringNullableFilter
   notIn: [String!]
   startsWith: String
+}
+
+"""
+Диалоговая ветвь
+"""
+type Thread {
+  id: Int!
+  target_class: String!
 }
 
 """

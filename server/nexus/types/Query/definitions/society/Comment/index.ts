@@ -5,6 +5,19 @@ import { Prisma } from '@prisma/client'
 import { userSelect } from '../../User'
 // import { companiesResolver } from '../resolvers/Resource'
 
+export const commentSelect = {
+  id: true,
+  text: true,
+  raw_text: true,
+  createdon: true,
+  published: true,
+  deleted: true,
+  comments_count: true,
+  CreatedBy: {
+    select: userSelect,
+  },
+}
+
 export const comments = (t: ObjectDefinitionBlock<'Query'>) => {
   const defaultWhere: Prisma.bani684_society_commentsFindManyArgs['where'] = {
     deleted: '0',
@@ -52,18 +65,7 @@ export const comments = (t: ObjectDefinitionBlock<'Query'>) => {
           ...defaultWhere,
           ...variables.where,
         },
-        select: {
-          id: true,
-          text: true,
-          raw_text: true,
-          createdon: true,
-          published: true,
-          deleted: true,
-          comments_count: true,
-          CreatedBy: {
-            select: userSelect,
-          },
-        },
+        select: commentSelect,
       })
     },
   })

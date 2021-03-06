@@ -306,6 +306,8 @@ export type QueryUsersCountArgs = {
 
 export interface Resource {
   __typename?: 'Resource';
+  /** Комментарии */
+  Comments: Array<Comment>;
   CreatedBy?: Maybe<User>;
   TemplateVarValues?: Maybe<Array<Bani684SiteTmplvarContentvalues>>;
   alias?: Maybe<Scalars['String']>;
@@ -356,6 +358,13 @@ export interface StringNullableFilter {
   not?: Maybe<NestedStringNullableFilter>;
   notIn?: Maybe<Array<Scalars['String']>>;
   startsWith?: Maybe<Scalars['String']>;
+}
+
+/** Диалоговая ветвь */
+export interface Thread {
+  __typename?: 'Thread';
+  id: Scalars['Int'];
+  target_class: Scalars['String'];
 }
 
 /** Пользователь */

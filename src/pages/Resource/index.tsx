@@ -57,6 +57,8 @@ export const getResourceVariables = (
     },
     withContent: true,
     withCreatedBy: true,
+    // TODO https://github.com/dotansimha/graphql-code-generator/pull/5598
+    // withComments: true,
   }
 
   return variables

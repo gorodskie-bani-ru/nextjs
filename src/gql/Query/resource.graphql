@@ -5,7 +5,8 @@ query resources(
   $skip: Int
   $withContent: Boolean = false
   $withCreatedBy: Boolean = false
-) {
+) # $withComments: Boolean = false
+{
   resources(where: $where, orderBy: $orderBy, take: $take, skip: $skip) {
     ... on Resource {
       ...resource
@@ -27,6 +28,11 @@ fragment resource on Resource {
   ...resourceNoNesting
   CreatedBy @include(if: $withCreatedBy) {
     ...user_
+  }
+  # TODO https://github.com/dotansimha/graphql-code-generator/pull/5598
+  # Comments @include(if: $withComments) {
+  Comments {
+    ...comment
   }
 }
 

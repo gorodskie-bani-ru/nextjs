@@ -6,6 +6,8 @@ import Link from '../Link'
 import Title from '../Title'
 import UserLink from '../Link/User'
 import moment from 'moment'
+import Paper from '../Paper'
+import Comment from '../Comment'
 
 const Topic: React.FC<TopicProps> = ({ topic, ...other }) => {
   const content = useMemo(() => {
@@ -30,15 +32,33 @@ const Topic: React.FC<TopicProps> = ({ topic, ...other }) => {
     }
   }, [topic.content])
 
+  const comments = useMemo(() => {
+    if (!topic.Comments.length) {
+      return null
+    }
+
+    return (
+      <div className="comments">
+        <Title variant="h3">Комментарии</Title>
+        {topic.Comments.map((n) => {
+          return <Comment key={n.id} comment={n} />
+        })}
+      </div>
+    )
+  }, [topic.Comments])
+
   return useMemo(() => {
     return (
       <TopicStyled {...other}>
-        <Link href={topic.uri || '#'} title={topic.pagetitle}>
-          <Title>{topic.pagetitle}</Title>
-        </Link>
-        {content && <div className="content">{content}</div>}
-        {topic.CreatedBy && <UserLink user={topic.CreatedBy} />} |{' '}
-        {topic.createdon && moment(topic.createdon).format('YYYY-MM-DD')}
+        <Paper>
+          <Link href={topic.uri || '#'} title={topic.pagetitle}>
+            <Title>{topic.pagetitle}</Title>
+          </Link>
+          {content && <div className="content">{content}</div>}
+          {topic.CreatedBy && <UserLink user={topic.CreatedBy} />} |{' '}
+          {topic.createdon && moment(topic.createdon).format('YYYY-MM-DD')}
+          {comments}
+        </Paper>
       </TopicStyled>
     )
   }, [
@@ -48,6 +68,7 @@ const Topic: React.FC<TopicProps> = ({ topic, ...other }) => {
     topic.CreatedBy,
     topic.createdon,
     content,
+    comments,
   ])
 }
 

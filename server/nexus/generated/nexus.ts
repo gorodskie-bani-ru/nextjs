@@ -568,6 +568,11 @@ export interface NexusGenObjects {
     template: number // Int!
     uri?: string | null // String
   }
+  Thread: {
+    // root type
+    id: number // Int!
+    target_class: string // String!
+  }
   User: {
     // root type
     Attributes?: NexusGenRootTypes['UserAttributes'] | null // UserAttributes
@@ -684,6 +689,7 @@ export interface NexusGenFieldTypes {
   }
   Resource: {
     // field return type
+    Comments: NexusGenRootTypes['Comment'][] // [Comment!]!
     CreatedBy: NexusGenRootTypes['User'] | null // User
     TemplateVarValues:
       | NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][]
@@ -700,6 +706,11 @@ export interface NexusGenFieldTypes {
     searchable: boolean // Boolean!
     template: number // Int!
     uri: string | null // String
+  }
+  Thread: {
+    // field return type
+    id: number // Int!
+    target_class: string // String!
   }
   User: {
     // field return type
@@ -801,6 +812,7 @@ export interface NexusGenFieldTypeNames {
   }
   Resource: {
     // field return type name
+    Comments: 'Comment'
     CreatedBy: 'User'
     TemplateVarValues: 'bani684_site_tmplvar_contentvalues'
     alias: 'String'
@@ -815,6 +827,11 @@ export interface NexusGenFieldTypeNames {
     searchable: 'Boolean'
     template: 'Int'
     uri: 'String'
+  }
+  Thread: {
+    // field return type name
+    id: 'Int'
+    target_class: 'String'
   }
   User: {
     // field return type name

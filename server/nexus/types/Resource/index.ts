@@ -1,4 +1,7 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import { objectType, unionType } from 'nexus'
+import { NexusGenObjects } from 'server/nexus/generated/nexus'
+import { commentSelect } from '../Query/definitions/society/Comment'
 
 export * from './Company'
 export * from './City'
@@ -46,6 +49,40 @@ export const Resource = objectType({
     })
     t.field('CreatedBy', {
       type: 'User',
+    })
+    t.nonNull.list.nonNull.field('Comments', {
+      type: 'Comment',
+      description: 'Комментарии',
+      async resolve(resource, _args, ctx) {
+        const thread = await ctx.prisma.bani684_society_threads.findFirst({
+          where: {
+            target_id: {
+              equals: resource.id,
+            },
+            target_class: {
+              equals: 'modResource',
+            },
+          },
+        })
+
+        if (thread) {
+          const comments: NexusGenObjects['Comment'][] = await ctx.prisma.bani684_society_comments.findMany(
+            {
+              where: {
+                thread_id: thread.id,
+              },
+              orderBy: {
+                createdon: 'asc',
+              },
+              select: commentSelect,
+            }
+          )
+
+          return comments
+        }
+
+        return []
+      },
     })
   },
 })
