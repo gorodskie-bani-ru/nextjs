@@ -4,9 +4,8 @@ query resources(
   $take: Int
   $skip: Int
   $withContent: Boolean = false
-  $withCreatedBy: Boolean = false
-) # $withComments: Boolean = false
-{
+  $withCreatedBy: Boolean = false # $withComments: Boolean = false
+) {
   resources(where: $where, orderBy: $orderBy, take: $take, skip: $skip) {
     ... on Resource {
       ...resource

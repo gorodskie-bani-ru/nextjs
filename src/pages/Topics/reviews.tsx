@@ -35,7 +35,7 @@ const getQueryParams = (
     where: {
       template: {
         // in: [15, 28],
-        equals: 15,
+        equals: 28,
       },
     },
     orderBy: {
@@ -47,9 +47,9 @@ const getQueryParams = (
 }
 
 /**
- * Топики
+ * Обзоры и отзывы о заведениях
  */
-const TopicsPage: Page = () => {
+const ReviewPage: Page = () => {
   const router = useRouter()
 
   const { query } = router
@@ -84,7 +84,10 @@ const TopicsPage: Page = () => {
 
   return (
     <>
-      <NextSeo title="Новости" />
+      <NextSeo
+        title="Обзоры и отзывы"
+        description="Обзоры и отзывы о банях и саунах"
+      />
 
       <View
         // {...queryResult}
@@ -104,7 +107,7 @@ const TopicsPage: Page = () => {
   )
 }
 
-TopicsPage.getInitialProps = async (context) => {
+ReviewPage.getInitialProps = async (context) => {
   const { apolloClient } = context
 
   await apolloClient.query({
@@ -122,4 +125,4 @@ TopicsPage.getInitialProps = async (context) => {
   return {}
 }
 
-export default TopicsPage
+export default ReviewPage

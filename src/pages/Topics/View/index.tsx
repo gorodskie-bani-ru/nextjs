@@ -13,7 +13,7 @@ const TopicsView: React.FC<TopicsViewProps> = ({
     return (
       <TopicsViewStyled {...other}>
         {topics.map((n) => {
-          return <Topic key={n.id} topic={n} />
+          return <Topic key={n.id} topic={n} withComments={false} />
         })}
 
         <Pagination {...pagination} />

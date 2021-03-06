@@ -94,7 +94,7 @@ const ResourcePage: Page<ResourcePageProps> = () => {
       return (
         <>
           <NextSeo title={object.pagetitle} />
-          <Topic topic={object} />
+          <Topic topic={object} withComments />
         </>
       )
     } else {

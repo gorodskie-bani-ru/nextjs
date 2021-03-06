@@ -9,7 +9,7 @@ import moment from 'moment'
 import Paper from '../Paper'
 import Comment from '../Comment'
 
-const Topic: React.FC<TopicProps> = ({ topic, ...other }) => {
+const Topic: React.FC<TopicProps> = ({ topic, withComments, ...other }) => {
   const content = useMemo(() => {
     if (!topic.content) {
       return null
@@ -33,7 +33,7 @@ const Topic: React.FC<TopicProps> = ({ topic, ...other }) => {
   }, [topic.content])
 
   const comments = useMemo(() => {
-    if (!topic.Comments.length) {
+    if (!withComments || !topic.Comments.length) {
       return null
     }
 
@@ -45,7 +45,7 @@ const Topic: React.FC<TopicProps> = ({ topic, ...other }) => {
         })}
       </div>
     )
-  }, [topic.Comments])
+  }, [topic.Comments, withComments])
 
   return useMemo(() => {
     return (

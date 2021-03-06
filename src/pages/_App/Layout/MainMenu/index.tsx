@@ -280,6 +280,10 @@ const MainMenu: React.FC = () => {
   // TODO Remove
   citiesList
 
+  const preventDefault = useCallback((event: React.MouseEvent) => {
+    event.preventDefault()
+  }, [])
+
   return useMemo(() => {
     const user = null
 
@@ -417,6 +421,7 @@ const MainMenu: React.FC = () => {
                     title="Рейтинги заведений"
                     className="dropdown-toggle"
                     data-toggle="dropdown"
+                    onClick={preventDefault}
                   >
                     Публикации <i className="fa fa-angle-down"></i>
                   </a>
@@ -544,7 +549,7 @@ const MainMenu: React.FC = () => {
         </div>
       </div>
     )
-  }, [baseUrl, closeMenu])
+  }, [closeMenu, preventDefault])
   // }
 }
 
