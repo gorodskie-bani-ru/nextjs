@@ -1,0 +1,29 @@
+query comments(
+  $where: bani684_society_commentsWhereInput
+  $orderBy: [bani684_society_commentsOrderByInput!]
+  $take: Int
+  $skip: Int
+) {
+  comments(where: $where, orderBy: $orderBy, take: $take, skip: $skip) {
+    ...comment
+  }
+
+  commentsCount(where: $where)
+}
+
+fragment comment on Comment {
+  ...commentNoNesting
+  CreatedBy {
+    ...user_
+  }
+}
+
+fragment commentNoNesting on Comment {
+  id
+  text
+  raw_text
+  createdon
+  published
+  deleted
+  comments_count
+}

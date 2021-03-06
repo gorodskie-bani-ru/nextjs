@@ -7,7 +7,7 @@ const Link: React.FC<LinkProps> = ({ children, href, title, ...other }) => {
   return (
     <>
       <NextLink href={href}>
-        <LinkStyled title={title} {...other}>
+        <LinkStyled title={title} href={href.toString()} {...other}>
           {children}
         </LinkStyled>
       </NextLink>

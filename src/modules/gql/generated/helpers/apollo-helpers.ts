@@ -10,6 +10,17 @@ export type CityFieldPolicy = {
 	template?: FieldPolicy<any> | FieldReadFunction<any>,
 	uri?: FieldPolicy<any> | FieldReadFunction<any>
 };
+export type CommentKeySpecifier = ('CreatedBy' | 'comments_count' | 'createdon' | 'deleted' | 'id' | 'published' | 'raw_text' | 'text' | CommentKeySpecifier)[];
+export type CommentFieldPolicy = {
+	CreatedBy?: FieldPolicy<any> | FieldReadFunction<any>,
+	comments_count?: FieldPolicy<any> | FieldReadFunction<any>,
+	createdon?: FieldPolicy<any> | FieldReadFunction<any>,
+	deleted?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	published?: FieldPolicy<any> | FieldReadFunction<any>,
+	raw_text?: FieldPolicy<any> | FieldReadFunction<any>,
+	text?: FieldPolicy<any> | FieldReadFunction<any>
+};
 export type CompanyKeySpecifier = ('TemplateVarValues' | 'address' | 'addressComments' | 'alias' | 'content' | 'coords' | 'createdby' | 'createdon' | 'description' | 'editedby' | 'editedon' | 'gallery' | 'id' | 'image' | 'longtitle' | 'pagetitle' | 'prices' | 'published' | 'searchable' | 'template' | 'uri' | 'workTime' | CompanyKeySpecifier)[];
 export type CompanyFieldPolicy = {
 	TemplateVarValues?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -47,9 +58,11 @@ export type GalleryImageFieldPolicy = {
 	image?: FieldPolicy<any> | FieldReadFunction<any>,
 	title?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type QueryKeySpecifier = ('cities' | 'companies' | 'resources' | 'user' | 'users' | 'usersCount' | QueryKeySpecifier)[];
+export type QueryKeySpecifier = ('cities' | 'comments' | 'commentsCount' | 'companies' | 'resources' | 'user' | 'users' | 'usersCount' | QueryKeySpecifier)[];
 export type QueryFieldPolicy = {
 	cities?: FieldPolicy<any> | FieldReadFunction<any>,
+	comments?: FieldPolicy<any> | FieldReadFunction<any>,
+	commentsCount?: FieldPolicy<any> | FieldReadFunction<any>,
 	companies?: FieldPolicy<any> | FieldReadFunction<any>,
 	resources?: FieldPolicy<any> | FieldReadFunction<any>,
 	user?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -99,6 +112,10 @@ export type TypedTypePolicies = TypePolicies & {
 	City?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | CityKeySpecifier | (() => undefined | CityKeySpecifier),
 		fields?: CityFieldPolicy,
+	},
+	Comment?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | CommentKeySpecifier | (() => undefined | CommentKeySpecifier),
+		fields?: CommentFieldPolicy,
 	},
 	Company?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | CompanyKeySpecifier | (() => undefined | CompanyKeySpecifier),

@@ -8,7 +8,12 @@ import { UserLinkStyled } from './styled'
 /**
  * Ссылка на страницу пользователя
  */
-const UserLink: React.FC<UserLinkProps> = ({ user, ...other }) => {
+const UserLink: React.FC<UserLinkProps> = ({
+  user,
+  showName = true,
+  showAvatar = true,
+  ...other
+}) => {
   return useMemo(() => {
     return (
       <UserLinkStyled {...other}>
@@ -16,15 +21,14 @@ const UserLink: React.FC<UserLinkProps> = ({ user, ...other }) => {
           href={`/profile/${user.username}`}
           title={user.fullname || user.username || undefined}
         >
-          {user.image && (
+          {showAvatar && user.image && (
             <img src={imageFormats(user.image, 'thumb')} className="avatar" />
           )}{' '}
-          {user.fullname || user.username}
+          {showName && (user.fullname || user.username)}
         </Link>
       </UserLinkStyled>
     )
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [other, user.username])
+  }, [other, showAvatar, showName, user.fullname, user.image, user.username])
 }
 
 export default UserLink

@@ -21,10 +21,22 @@ export type Scalars = {
   DateTime: globalThis.Date;
 };
 
+export interface Bani684SiteContentListRelationFilter {
+  every?: Maybe<Bani684SiteContentWhereInput>;
+  none?: Maybe<Bani684SiteContentWhereInput>;
+  some?: Maybe<Bani684SiteContentWhereInput>;
+}
+
 export interface Bani684SiteTmplvarContentvaluesListRelationFilter {
   every?: Maybe<Bani684SiteTmplvarContentvaluesWhereInput>;
   none?: Maybe<Bani684SiteTmplvarContentvaluesWhereInput>;
   some?: Maybe<Bani684SiteTmplvarContentvaluesWhereInput>;
+}
+
+export interface Bani684SocietyCommentsListRelationFilter {
+  every?: Maybe<Bani684SocietyCommentsWhereInput>;
+  none?: Maybe<Bani684SocietyCommentsWhereInput>;
+  some?: Maybe<Bani684SocietyCommentsWhereInput>;
 }
 
 export interface BoolFilter {
@@ -44,6 +56,21 @@ export interface City {
   pagetitle: Scalars['String'];
   template: Scalars['Int'];
   uri?: Maybe<Scalars['String']>;
+}
+
+/** Комментарий */
+export interface Comment {
+  __typename?: 'Comment';
+  CreatedBy?: Maybe<User>;
+  comments_count: Scalars['Int'];
+  createdon?: Maybe<Scalars['DateTime']>;
+  /** 0 || 1 */
+  deleted?: Maybe<Scalars['String']>;
+  id: Scalars['Int'];
+  /** 0 || 1 */
+  published?: Maybe<Scalars['String']>;
+  raw_text?: Maybe<Scalars['String']>;
+  text?: Maybe<Scalars['String']>;
 }
 
 /** Компания */
@@ -87,6 +114,17 @@ export interface Coordinates {
 }
 
 
+export interface DateTimeNullableFilter {
+  equals?: Maybe<Scalars['DateTime']>;
+  gt?: Maybe<Scalars['DateTime']>;
+  gte?: Maybe<Scalars['DateTime']>;
+  in?: Maybe<Array<Scalars['DateTime']>>;
+  lt?: Maybe<Scalars['DateTime']>;
+  lte?: Maybe<Scalars['DateTime']>;
+  not?: Maybe<NestedDateTimeNullableFilter>;
+  notIn?: Maybe<Array<Scalars['DateTime']>>;
+}
+
 export interface GalleryImage {
   __typename?: 'GalleryImage';
   description: Scalars['String'];
@@ -119,6 +157,17 @@ export interface IntNullableFilter {
 export interface NestedBoolFilter {
   equals?: Maybe<Scalars['Boolean']>;
   not?: Maybe<NestedBoolFilter>;
+}
+
+export interface NestedDateTimeNullableFilter {
+  equals?: Maybe<Scalars['DateTime']>;
+  gt?: Maybe<Scalars['DateTime']>;
+  gte?: Maybe<Scalars['DateTime']>;
+  in?: Maybe<Array<Scalars['DateTime']>>;
+  lt?: Maybe<Scalars['DateTime']>;
+  lte?: Maybe<Scalars['DateTime']>;
+  not?: Maybe<NestedDateTimeNullableFilter>;
+  notIn?: Maybe<Array<Scalars['DateTime']>>;
 }
 
 export interface NestedIntFilter {
@@ -175,6 +224,10 @@ export interface Query {
   __typename?: 'Query';
   /** Города */
   cities: Array<City>;
+  /** Комментарии */
+  comments: Array<Comment>;
+  /** Количество Комментариев */
+  commentsCount: Scalars['Int'];
   /** Компании */
   companies: Array<Company>;
   /** Ресурсы */
@@ -192,6 +245,20 @@ export type QueryCitiesArgs = {
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<Bani684SiteContentWhereInput>;
+};
+
+
+export type QueryCommentsArgs = {
+  cursor?: Maybe<Bani684SocietyCommentsWhereUniqueInput>;
+  orderBy?: Maybe<Array<Bani684SocietyCommentsOrderByInput>>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
+  where?: Maybe<Bani684SocietyCommentsWhereInput>;
+};
+
+
+export type QueryCommentsCountArgs = {
+  where?: Maybe<Bani684SocietyCommentsWhereInput>;
 };
 
 
@@ -305,6 +372,7 @@ export interface UserAttributes {
 }
 
 export interface Bani684SiteContentOrderByInput {
+  CreatedBy?: Maybe<Bani684UsersOrderByInput>;
   alias?: Maybe<SortOrder>;
   cacheable?: Maybe<SortOrder>;
   class_key?: Maybe<SortOrder>;
@@ -352,6 +420,7 @@ export interface Bani684SiteContentOrderByInput {
 
 export interface Bani684SiteContentWhereInput {
   AND?: Maybe<Array<Bani684SiteContentWhereInput>>;
+  CreatedBy?: Maybe<Bani684UsersWhereInput>;
   NOT?: Maybe<Array<Bani684SiteContentWhereInput>>;
   OR?: Maybe<Array<Bani684SiteContentWhereInput>>;
   TemplateVarValues?: Maybe<Bani684SiteTmplvarContentvaluesListRelationFilter>;
@@ -421,6 +490,53 @@ export interface Bani684SiteTmplvarContentvaluesWhereInput {
   id?: Maybe<IntFilter>;
   tmplvarid?: Maybe<IntFilter>;
   value?: Maybe<StringFilter>;
+}
+
+export interface Bani684SocietyCommentsOrderByInput {
+  CreatedBy?: Maybe<Bani684UsersOrderByInput>;
+  comments_count?: Maybe<SortOrder>;
+  createdby?: Maybe<SortOrder>;
+  createdon?: Maybe<SortOrder>;
+  deleted?: Maybe<SortOrder>;
+  deletedby?: Maybe<SortOrder>;
+  deletedon?: Maybe<SortOrder>;
+  editedby?: Maybe<SortOrder>;
+  editedon?: Maybe<SortOrder>;
+  id?: Maybe<SortOrder>;
+  ip?: Maybe<SortOrder>;
+  parent?: Maybe<SortOrder>;
+  properties?: Maybe<SortOrder>;
+  published?: Maybe<SortOrder>;
+  raw_text?: Maybe<SortOrder>;
+  text?: Maybe<SortOrder>;
+  thread_id?: Maybe<SortOrder>;
+}
+
+export interface Bani684SocietyCommentsWhereInput {
+  AND?: Maybe<Array<Bani684SocietyCommentsWhereInput>>;
+  CreatedBy?: Maybe<Bani684UsersWhereInput>;
+  NOT?: Maybe<Array<Bani684SocietyCommentsWhereInput>>;
+  OR?: Maybe<Array<Bani684SocietyCommentsWhereInput>>;
+  comments_count?: Maybe<IntFilter>;
+  createdby?: Maybe<IntFilter>;
+  createdon?: Maybe<DateTimeNullableFilter>;
+  deleted?: Maybe<StringFilter>;
+  deletedby?: Maybe<IntNullableFilter>;
+  deletedon?: Maybe<DateTimeNullableFilter>;
+  editedby?: Maybe<IntNullableFilter>;
+  editedon?: Maybe<DateTimeNullableFilter>;
+  id?: Maybe<IntFilter>;
+  ip?: Maybe<StringFilter>;
+  parent?: Maybe<IntNullableFilter>;
+  properties?: Maybe<StringNullableFilter>;
+  published?: Maybe<StringFilter>;
+  raw_text?: Maybe<StringFilter>;
+  text?: Maybe<StringFilter>;
+  thread_id?: Maybe<IntNullableFilter>;
+}
+
+export interface Bani684SocietyCommentsWhereUniqueInput {
+  id?: Maybe<Scalars['Int']>;
 }
 
 export interface Bani684UserAttributesOrderByInput {
@@ -513,7 +629,9 @@ export interface Bani684UsersWhereInput {
   Attributes?: Maybe<Bani684UserAttributesWhereInput>;
   NOT?: Maybe<Array<Bani684UsersWhereInput>>;
   OR?: Maybe<Array<Bani684UsersWhereInput>>;
+  Resources?: Maybe<Bani684SiteContentListRelationFilter>;
   active?: Maybe<BoolFilter>;
+  bani684_society_comments?: Maybe<Bani684SocietyCommentsListRelationFilter>;
   cachepwd?: Maybe<StringFilter>;
   class_key?: Maybe<StringFilter>;
   contract_date?: Maybe<IntNullableFilter>;

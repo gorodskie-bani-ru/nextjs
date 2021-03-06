@@ -507,8 +507,8 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'blogid' | 'topicid' | 'rank'
     }
     bani684SocietyCommentss: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'thread_id' | 'parent' | 'text' | 'raw_text' | 'ip' | 'createdon' | 'createdby' | 'editedon' | 'editedby' | 'published' | 'deleted' | 'deletedon' | 'deletedby' | 'comments_count' | 'properties'
-      ordering: 'id' | 'thread_id' | 'parent' | 'text' | 'raw_text' | 'ip' | 'createdon' | 'createdby' | 'editedon' | 'editedby' | 'published' | 'deleted' | 'deletedon' | 'deletedby' | 'comments_count' | 'properties'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'thread_id' | 'parent' | 'text' | 'raw_text' | 'ip' | 'createdon' | 'createdby' | 'editedon' | 'editedby' | 'published' | 'deleted' | 'deletedon' | 'deletedby' | 'comments_count' | 'properties' | 'CreatedBy'
+      ordering: 'id' | 'thread_id' | 'parent' | 'text' | 'raw_text' | 'ip' | 'createdon' | 'createdby' | 'editedon' | 'editedby' | 'published' | 'deleted' | 'deletedon' | 'deletedby' | 'comments_count' | 'properties' | 'CreatedBy'
     }
     bani684SocietyEmailMessagess: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'user_id' | 'subject' | 'message' | 'date' | 'status'
@@ -563,7 +563,7 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'name' | 'description' | 'service_url' | 'username' | 'api_key' | 'created' | 'updated' | 'active' | 'priority' | 'properties'
     }
     bani684Userss: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'username' | 'password' | 'cachepwd' | 'class_key' | 'active' | 'remote_key' | 'remote_data' | 'hash_class' | 'salt' | 'primary_group' | 'session_stale' | 'sudo' | 'createdon' | 'delegate' | 'offer' | 'offer_date' | 'contract_date' | 'createdby' | 'Attributes' | 'Resources'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'username' | 'password' | 'cachepwd' | 'class_key' | 'active' | 'remote_key' | 'remote_data' | 'hash_class' | 'salt' | 'primary_group' | 'session_stale' | 'sudo' | 'createdon' | 'delegate' | 'offer' | 'offer_date' | 'contract_date' | 'createdby' | 'Attributes' | 'Resources' | 'bani684_society_comments'
       ordering: 'id' | 'username' | 'password' | 'cachepwd' | 'class_key' | 'active' | 'remote_key' | 'remote_data' | 'hash_class' | 'salt' | 'primary_group' | 'session_stale' | 'sudo' | 'createdon' | 'delegate' | 'offer' | 'offer_date' | 'contract_date' | 'createdby' | 'Attributes'
     }
     bani684UserAttributess: {
@@ -944,6 +944,10 @@ interface NexusPrismaInputs {
     Resources: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'type' | 'contentType' | 'pagetitle' | 'longtitle' | 'description' | 'alias' | 'link_attributes' | 'published' | 'pub_date' | 'unpub_date' | 'parent' | 'isfolder' | 'introtext' | 'content' | 'richtext' | 'template' | 'menuindex' | 'searchable' | 'cacheable' | 'createdby' | 'createdon' | 'editedby' | 'editedon' | 'deleted' | 'deletedon' | 'deletedby' | 'publishedon' | 'publishedby' | 'menutitle' | 'donthit' | 'privateweb' | 'privatemgr' | 'content_dispo' | 'hidemenu' | 'class_key' | 'context_key' | 'content_type' | 'uri' | 'uri_override' | 'hide_children_in_tree' | 'show_in_tree' | 'properties' | 'TemplateVarValues' | 'CreatedBy'
       ordering: 'id' | 'type' | 'contentType' | 'pagetitle' | 'longtitle' | 'description' | 'alias' | 'link_attributes' | 'published' | 'pub_date' | 'unpub_date' | 'parent' | 'isfolder' | 'introtext' | 'content' | 'richtext' | 'template' | 'menuindex' | 'searchable' | 'cacheable' | 'createdby' | 'createdon' | 'editedby' | 'editedon' | 'deleted' | 'deletedon' | 'deletedby' | 'publishedon' | 'publishedby' | 'menutitle' | 'donthit' | 'privateweb' | 'privatemgr' | 'content_dispo' | 'hidemenu' | 'class_key' | 'context_key' | 'content_type' | 'uri' | 'uri_override' | 'hide_children_in_tree' | 'show_in_tree' | 'properties' | 'CreatedBy'
+    }
+    bani684_society_comments: {
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'thread_id' | 'parent' | 'text' | 'raw_text' | 'ip' | 'createdon' | 'createdby' | 'editedon' | 'editedby' | 'published' | 'deleted' | 'deletedon' | 'deletedby' | 'comments_count' | 'properties' | 'CreatedBy'
+      ordering: 'id' | 'thread_id' | 'parent' | 'text' | 'raw_text' | 'ip' | 'createdon' | 'createdby' | 'editedon' | 'editedby' | 'published' | 'deleted' | 'deletedon' | 'deletedby' | 'comments_count' | 'properties' | 'CreatedBy'
     }
   }
   bani684_user_attributes: {
@@ -2834,6 +2838,7 @@ interface NexusPrismaOutputs {
     deletedby: 'Int'
     comments_count: 'Int'
     properties: 'String'
+    CreatedBy: 'bani684_users'
   }
   bani684_society_email_messages: {
     id: 'Int'
@@ -2972,6 +2977,7 @@ interface NexusPrismaOutputs {
     createdby: 'Int'
     Attributes: 'bani684_user_attributes'
     Resources: 'bani684_site_content'
+    bani684_society_comments: 'bani684_society_comments'
   }
   bani684_user_attributes: {
     id: 'Int'

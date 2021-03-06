@@ -53,10 +53,27 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['bani684_site_tmplvar_contentvaluesWhereInput'] | null // bani684_site_tmplvar_contentvaluesWhereInput
     some?: NexusGenInputs['bani684_site_tmplvar_contentvaluesWhereInput'] | null // bani684_site_tmplvar_contentvaluesWhereInput
   }
+  Bani684_society_commentsListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['bani684_society_commentsWhereInput'] | null // bani684_society_commentsWhereInput
+    none?: NexusGenInputs['bani684_society_commentsWhereInput'] | null // bani684_society_commentsWhereInput
+    some?: NexusGenInputs['bani684_society_commentsWhereInput'] | null // bani684_society_commentsWhereInput
+  }
   BoolFilter: {
     // input type
     equals?: boolean | null // Boolean
     not?: NexusGenInputs['NestedBoolFilter'] | null // NestedBoolFilter
+  }
+  DateTimeNullableFilter: {
+    // input type
+    equals?: NexusGenScalars['DateTime'] | null // DateTime
+    gt?: NexusGenScalars['DateTime'] | null // DateTime
+    gte?: NexusGenScalars['DateTime'] | null // DateTime
+    in?: NexusGenScalars['DateTime'][] | null // [DateTime!]
+    lt?: NexusGenScalars['DateTime'] | null // DateTime
+    lte?: NexusGenScalars['DateTime'] | null // DateTime
+    not?: NexusGenInputs['NestedDateTimeNullableFilter'] | null // NestedDateTimeNullableFilter
+    notIn?: NexusGenScalars['DateTime'][] | null // [DateTime!]
   }
   IntFilter: {
     // input type
@@ -84,6 +101,17 @@ export interface NexusGenInputs {
     // input type
     equals?: boolean | null // Boolean
     not?: NexusGenInputs['NestedBoolFilter'] | null // NestedBoolFilter
+  }
+  NestedDateTimeNullableFilter: {
+    // input type
+    equals?: NexusGenScalars['DateTime'] | null // DateTime
+    gt?: NexusGenScalars['DateTime'] | null // DateTime
+    gte?: NexusGenScalars['DateTime'] | null // DateTime
+    in?: NexusGenScalars['DateTime'][] | null // [DateTime!]
+    lt?: NexusGenScalars['DateTime'] | null // DateTime
+    lte?: NexusGenScalars['DateTime'] | null // DateTime
+    not?: NexusGenInputs['NestedDateTimeNullableFilter'] | null // NestedDateTimeNullableFilter
+    notIn?: NexusGenScalars['DateTime'][] | null // [DateTime!]
   }
   NestedIntFilter: {
     // input type
@@ -282,6 +310,53 @@ export interface NexusGenInputs {
     tmplvarid?: NexusGenInputs['IntFilter'] | null // IntFilter
     value?: NexusGenInputs['StringFilter'] | null // StringFilter
   }
+  bani684_society_commentsOrderByInput: {
+    // input type
+    CreatedBy?: NexusGenInputs['bani684_usersOrderByInput'] | null // bani684_usersOrderByInput
+    comments_count?: NexusGenEnums['SortOrder'] | null // SortOrder
+    createdby?: NexusGenEnums['SortOrder'] | null // SortOrder
+    createdon?: NexusGenEnums['SortOrder'] | null // SortOrder
+    deleted?: NexusGenEnums['SortOrder'] | null // SortOrder
+    deletedby?: NexusGenEnums['SortOrder'] | null // SortOrder
+    deletedon?: NexusGenEnums['SortOrder'] | null // SortOrder
+    editedby?: NexusGenEnums['SortOrder'] | null // SortOrder
+    editedon?: NexusGenEnums['SortOrder'] | null // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    ip?: NexusGenEnums['SortOrder'] | null // SortOrder
+    parent?: NexusGenEnums['SortOrder'] | null // SortOrder
+    properties?: NexusGenEnums['SortOrder'] | null // SortOrder
+    published?: NexusGenEnums['SortOrder'] | null // SortOrder
+    raw_text?: NexusGenEnums['SortOrder'] | null // SortOrder
+    text?: NexusGenEnums['SortOrder'] | null // SortOrder
+    thread_id?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  bani684_society_commentsWhereInput: {
+    // input type
+    AND?: NexusGenInputs['bani684_society_commentsWhereInput'][] | null // [bani684_society_commentsWhereInput!]
+    CreatedBy?: NexusGenInputs['bani684_usersWhereInput'] | null // bani684_usersWhereInput
+    NOT?: NexusGenInputs['bani684_society_commentsWhereInput'][] | null // [bani684_society_commentsWhereInput!]
+    OR?: NexusGenInputs['bani684_society_commentsWhereInput'][] | null // [bani684_society_commentsWhereInput!]
+    comments_count?: NexusGenInputs['IntFilter'] | null // IntFilter
+    createdby?: NexusGenInputs['IntFilter'] | null // IntFilter
+    createdon?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
+    deleted?: NexusGenInputs['StringFilter'] | null // StringFilter
+    deletedby?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    deletedon?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
+    editedby?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    editedon?: NexusGenInputs['DateTimeNullableFilter'] | null // DateTimeNullableFilter
+    id?: NexusGenInputs['IntFilter'] | null // IntFilter
+    ip?: NexusGenInputs['StringFilter'] | null // StringFilter
+    parent?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    properties?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
+    published?: NexusGenInputs['StringFilter'] | null // StringFilter
+    raw_text?: NexusGenInputs['StringFilter'] | null // StringFilter
+    text?: NexusGenInputs['StringFilter'] | null // StringFilter
+    thread_id?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+  }
+  bani684_society_commentsWhereUniqueInput: {
+    // input type
+    id?: number | null // Int
+  }
   bani684_user_attributesOrderByInput: {
     // input type
     address?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -375,6 +450,9 @@ export interface NexusGenInputs {
     OR?: NexusGenInputs['bani684_usersWhereInput'][] | null // [bani684_usersWhereInput!]
     Resources?: NexusGenInputs['Bani684_site_contentListRelationFilter'] | null // Bani684_site_contentListRelationFilter
     active?: NexusGenInputs['BoolFilter'] | null // BoolFilter
+    bani684_society_comments?:
+      | NexusGenInputs['Bani684_society_commentsListRelationFilter']
+      | null // Bani684_society_commentsListRelationFilter
     cachepwd?: NexusGenInputs['StringFilter'] | null // StringFilter
     class_key?: NexusGenInputs['StringFilter'] | null // StringFilter
     contract_date?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
@@ -426,6 +504,17 @@ export interface NexusGenObjects {
     pagetitle: string // String!
     template: number // Int!
     uri?: string | null // String
+  }
+  Comment: {
+    // root type
+    CreatedBy?: NexusGenRootTypes['User'] | null // User
+    comments_count: number // Int!
+    createdon?: NexusGenScalars['DateTime'] | null // DateTime
+    deleted?: string | null // String
+    id: number // Int!
+    published?: string | null // String
+    raw_text?: string | null // String
+    text?: string | null // String
   }
   Company: {
     // root type
@@ -530,6 +619,17 @@ export interface NexusGenFieldTypes {
     template: number // Int!
     uri: string | null // String
   }
+  Comment: {
+    // field return type
+    CreatedBy: NexusGenRootTypes['User'] | null // User
+    comments_count: number // Int!
+    createdon: NexusGenScalars['DateTime'] | null // DateTime
+    deleted: string | null // String
+    id: number // Int!
+    published: string | null // String
+    raw_text: string | null // String
+    text: string | null // String
+  }
   Company: {
     // field return type
     TemplateVarValues:
@@ -572,6 +672,8 @@ export interface NexusGenFieldTypes {
   Query: {
     // field return type
     cities: NexusGenRootTypes['City'][] // [City!]!
+    comments: NexusGenRootTypes['Comment'][] // [Comment!]!
+    commentsCount: number // Int!
     companies: NexusGenRootTypes['Company'][] // [Company!]!
     resources: NexusGenRootTypes['ResourceUnion'][] // [ResourceUnion!]!
     user: NexusGenRootTypes['User'] | null // User
@@ -633,6 +735,17 @@ export interface NexusGenFieldTypeNames {
     template: 'Int'
     uri: 'String'
   }
+  Comment: {
+    // field return type name
+    CreatedBy: 'User'
+    comments_count: 'Int'
+    createdon: 'DateTime'
+    deleted: 'String'
+    id: 'Int'
+    published: 'String'
+    raw_text: 'String'
+    text: 'String'
+  }
   Company: {
     // field return type name
     TemplateVarValues: 'bani684_site_tmplvar_contentvalues'
@@ -673,6 +786,8 @@ export interface NexusGenFieldTypeNames {
   Query: {
     // field return type name
     cities: 'City'
+    comments: 'Comment'
+    commentsCount: 'Int'
     companies: 'Company'
     resources: 'ResourceUnion'
     user: 'User'
@@ -729,6 +844,18 @@ export interface NexusGenArgTypes {
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['bani684_site_contentWhereInput'] | null // bani684_site_contentWhereInput
+    }
+    comments: {
+      // args
+      cursor?: NexusGenInputs['bani684_society_commentsWhereUniqueInput'] | null // bani684_society_commentsWhereUniqueInput
+      orderBy?: NexusGenInputs['bani684_society_commentsOrderByInput'][] | null // [bani684_society_commentsOrderByInput!]
+      skip?: number | null // Int
+      take?: number | null // Int
+      where?: NexusGenInputs['bani684_society_commentsWhereInput'] | null // bani684_society_commentsWhereInput
+    }
+    commentsCount: {
+      // args
+      where?: NexusGenInputs['bani684_society_commentsWhereInput'] | null // bani684_society_commentsWhereInput
     }
     companies: {
       // args

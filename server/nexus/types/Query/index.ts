@@ -8,6 +8,7 @@ import {
   resources,
   // resourcesCount,
 } from './definitions/Resource'
+import { society } from './definitions/society'
 
 export const Query = objectType({
   name: 'Query',
@@ -16,6 +17,7 @@ export const Query = objectType({
     cities(t)
     resources(t)
     userDefinitions(t)
+    society(t)
     // resourcesCount(t)
 
     // t.nonNull.list.field("resources", {

@@ -1293,7 +1293,7 @@ model bani684_society_comments {
   raw_text       String    @db.Text
   ip             String    @default("0.0.0.0") @db.VarChar(16)
   createdon      DateTime? @db.DateTime(0)
-  createdby      Int?      @db.UnsignedInt
+  createdby      Int       @db.UnsignedInt
   editedon       DateTime? @db.DateTime(0)
   editedby       Int?      @db.UnsignedInt
   published      String    @default("1") @db.Char(1)
@@ -1302,6 +1302,8 @@ model bani684_society_comments {
   deletedby      Int?      @db.UnsignedInt
   comments_count Int       @default(0) @db.UnsignedInt
   properties     String?   @db.Text
+
+  CreatedBy bani684_users @relation(fields: [createdby], references: [id])
 
   @@index([createdby], name: "createdby")
   @@index([deleted], name: "deleted")
@@ -1500,6 +1502,7 @@ model bani684_users {
   @@index([offer_date], name: "offer_date")
   @@index([primary_group], name: "primary_group")
   @@index([remote_key], name: "remote_key")
+  bani684_society_comments bani684_society_comments[]
 }
 
 model bani684_user_attributes {

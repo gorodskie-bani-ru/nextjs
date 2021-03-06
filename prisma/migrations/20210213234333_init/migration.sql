@@ -1483,7 +1483,7 @@ CREATE TABLE `bani684_society_comments` (
     `raw_text` TEXT NOT NULL,
     `ip` VARCHAR(16) NOT NULL DEFAULT '0.0.0.0',
     `createdon` DATETIME(0),
-    `createdby` INTEGER UNSIGNED,
+    `createdby` INTEGER UNSIGNED NOT NULL,
     `editedon` DATETIME(0),
     `editedby` INTEGER UNSIGNED,
     `published` CHAR(1) NOT NULL DEFAULT '1',

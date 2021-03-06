@@ -13,6 +13,12 @@ input Bani684_site_tmplvar_contentvaluesListRelationFilter {
   some: bani684_site_tmplvar_contentvaluesWhereInput
 }
 
+input Bani684_society_commentsListRelationFilter {
+  every: bani684_society_commentsWhereInput
+  none: bani684_society_commentsWhereInput
+  some: bani684_society_commentsWhereInput
+}
+
 input BoolFilter {
   equals: Boolean
   not: NestedBoolFilter
@@ -34,6 +40,28 @@ type City {
   pagetitle: String!
   template: Int!
   uri: String
+}
+
+"""
+Комментарий
+"""
+type Comment {
+  CreatedBy: User
+  comments_count: Int!
+  createdon: DateTime
+
+  """
+  0 || 1
+  """
+  deleted: String
+  id: Int!
+
+  """
+  0 || 1
+  """
+  published: String
+  raw_text: String
+  text: String
 }
 
 """
@@ -99,6 +127,17 @@ A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `dat
 """
 scalar DateTime
 
+input DateTimeNullableFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: NestedDateTimeNullableFilter
+  notIn: [DateTime!]
+}
+
 type GalleryImage {
   description: String!
   image: String!
@@ -130,6 +169,17 @@ input IntNullableFilter {
 input NestedBoolFilter {
   equals: Boolean
   not: NestedBoolFilter
+}
+
+input NestedDateTimeNullableFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: NestedDateTimeNullableFilter
+  notIn: [DateTime!]
 }
 
 input NestedIntFilter {
@@ -193,6 +243,22 @@ type Query {
     take: Int
     where: bani684_site_contentWhereInput
   ): [City!]!
+
+  """
+  Комментарии
+  """
+  comments(
+    cursor: bani684_society_commentsWhereUniqueInput
+    orderBy: [bani684_society_commentsOrderByInput!]
+    skip: Int
+    take: Int
+    where: bani684_society_commentsWhereInput
+  ): [Comment!]!
+
+  """
+  Количество Комментариев
+  """
+  commentsCount(where: bani684_society_commentsWhereInput): Int!
 
   """
   Компании
@@ -429,6 +495,53 @@ input bani684_site_tmplvar_contentvaluesWhereInput {
   value: StringFilter
 }
 
+input bani684_society_commentsOrderByInput {
+  CreatedBy: bani684_usersOrderByInput
+  comments_count: SortOrder
+  createdby: SortOrder
+  createdon: SortOrder
+  deleted: SortOrder
+  deletedby: SortOrder
+  deletedon: SortOrder
+  editedby: SortOrder
+  editedon: SortOrder
+  id: SortOrder
+  ip: SortOrder
+  parent: SortOrder
+  properties: SortOrder
+  published: SortOrder
+  raw_text: SortOrder
+  text: SortOrder
+  thread_id: SortOrder
+}
+
+input bani684_society_commentsWhereInput {
+  AND: [bani684_society_commentsWhereInput!]
+  CreatedBy: bani684_usersWhereInput
+  NOT: [bani684_society_commentsWhereInput!]
+  OR: [bani684_society_commentsWhereInput!]
+  comments_count: IntFilter
+  createdby: IntFilter
+  createdon: DateTimeNullableFilter
+  deleted: StringFilter
+  deletedby: IntNullableFilter
+  deletedon: DateTimeNullableFilter
+  editedby: IntNullableFilter
+  editedon: DateTimeNullableFilter
+  id: IntFilter
+  ip: StringFilter
+  parent: IntNullableFilter
+  properties: StringNullableFilter
+  published: StringFilter
+  raw_text: StringFilter
+  text: StringFilter
+  thread_id: IntNullableFilter
+}
+
+input bani684_society_commentsWhereUniqueInput {
+  id: Int
+}
+
 input bani684_user_attributesOrderByInput {
   address: SortOrder
   blocked: SortOrder
@@ -521,6 +634,7 @@ input bani684_usersWhereInput {
   OR: [bani684_usersWhereInput!]
   Resources: Bani684_site_contentListRelationFilter
   active: BoolFilter
+  bani684_society_comments: Bani684_society_commentsListRelationFilter
   cachepwd: StringFilter
   class_key: StringFilter
   contract_date: IntNullableFilter

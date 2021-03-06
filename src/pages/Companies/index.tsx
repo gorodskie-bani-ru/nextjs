@@ -4,10 +4,10 @@ import {
   CompaniesDocument,
   CompaniesQueryResult,
 } from 'src/modules/gql/generated'
-import { NextPageContextCustom } from '../_App/interfaces'
+import { Page } from '../_App/interfaces'
 import Link from 'next/link'
 
-const CompaniesPage = () => {
+const CompaniesPage: Page = () => {
   const {
     // loading,
     // error,
@@ -43,7 +43,7 @@ const CompaniesPage = () => {
   )
 }
 
-CompaniesPage.getInitialProps = async (appContext: NextPageContextCustom) => {
+CompaniesPage.getInitialProps = async (appContext) => {
   /**
    * Load global API data
    */
