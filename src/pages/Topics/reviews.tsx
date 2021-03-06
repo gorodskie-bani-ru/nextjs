@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react'
 import {
-  ResourcesDocument,
-  ResourcesQueryVariables,
-  useResourcesQuery,
+  ReviewsDocument,
+  ReviewsQueryVariables,
+  useReviewsQuery,
   SortOrder,
 } from 'src/modules/gql/generated'
 
@@ -11,12 +11,12 @@ import View from './View'
 import { Page } from '../_App/interfaces'
 import { useRouter } from 'next/router'
 import { ParsedUrlQuery } from 'querystring'
-import { TopicsViewProps } from './View/interfaces'
+// import { TopicsViewProps } from './View/interfaces'
 import { NextSeo } from 'next-seo'
 
 const getQueryParams = (
   query: ParsedUrlQuery
-): ResourcesQueryVariables & { page: number } => {
+): ReviewsQueryVariables & { page: number } => {
   let skip: number | undefined
 
   const take = 10
@@ -60,7 +60,7 @@ const ReviewPage: Page = () => {
     }
   }, [query])
 
-  const response = useResourcesQuery({
+  const response = useReviewsQuery({
     variables: queryVariables,
     onError: console.error,
   })
@@ -69,18 +69,6 @@ const ReviewPage: Page = () => {
 
   const page =
     (query.page && typeof query.page === 'string' && parseInt(query.page)) || 1
-
-  const topics = useMemo(() => {
-    const topics: TopicsViewProps['topics'] = []
-
-    response.data?.resources.map((n) => {
-      if (n.__typename === 'Resource') {
-        topics.push(n)
-      }
-    })
-
-    return topics
-  }, [response.data?.resources])
 
   return (
     <>
@@ -96,7 +84,7 @@ const ReviewPage: Page = () => {
         // variables={variables}
         // page={page}
         // loading={loading}
-        topics={topics}
+        topics={response.data?.reviews || []}
         pagination={{
           limit: response.variables?.take || 0,
           page,
@@ -111,7 +99,7 @@ ReviewPage.getInitialProps = async (context) => {
   const { apolloClient } = context
 
   await apolloClient.query({
-    query: ResourcesDocument,
+    query: ReviewsDocument,
 
     /**
      * Важно, чтобы все переменные запроса серверные и фронтовые совпадали,

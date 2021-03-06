@@ -1,4 +1,5 @@
 /* eslint-disable */
+// @ts-nocheck
 
 /** 
 * ФАЙЛ ГЕНЕРИРУЕТСЯ АВТОМАТИЧЕСКИ, ПРАВИТЬ ЕГО НЕ НУЖНО 
@@ -8,7 +9,7 @@
 
 import * as Types from './types';
 
-import { ResourceFragment } from './resource';
+import { ResourceCityFragment, ResourceCompanyFragment, ResourceRatingFragment, ResourceResourceFragment, ResourceReviewFragment, ResourceTopicFragment } from './resource';
 import { CompanyFieldsFragment } from './CompanyFields';
 import { CityFragment } from './city';
 import { gql } from '@apollo/client';
@@ -34,8 +35,8 @@ export type ResourcesQuery = { __typename?: 'Query', resourcesCount: number, res
     & CompanyFieldsFragment
   ) | { __typename?: 'Rating' } | (
     { __typename?: 'Resource' }
-    & ResourceFragment
-  )> };
+    & ResourceResourceFragment
+  ) | { __typename?: 'Review' } | { __typename?: 'Topic' }> };
 
 
 export const ResourcesDocument = gql`

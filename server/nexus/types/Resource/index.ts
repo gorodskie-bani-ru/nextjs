@@ -3,6 +3,7 @@
 export * from './Company'
 export * from './City'
 export * from './Rating'
+export * from './Topic'
 export * from './Resource'
 
 // export const ResourceUnion = unionType({

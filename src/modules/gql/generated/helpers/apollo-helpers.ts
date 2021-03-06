@@ -67,7 +67,7 @@ export type GalleryImageFieldPolicy = {
 	image?: FieldPolicy<any> | FieldReadFunction<any>,
 	title?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type QueryKeySpecifier = ('cities' | 'comments' | 'commentsCount' | 'companies' | 'ratings' | 'resources' | 'resourcesCount' | 'user' | 'users' | 'usersCount' | QueryKeySpecifier)[];
+export type QueryKeySpecifier = ('cities' | 'comments' | 'commentsCount' | 'companies' | 'ratings' | 'resources' | 'resourcesCount' | 'reviews' | 'topics' | 'user' | 'users' | 'usersCount' | QueryKeySpecifier)[];
 export type QueryFieldPolicy = {
 	cities?: FieldPolicy<any> | FieldReadFunction<any>,
 	comments?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -76,6 +76,8 @@ export type QueryFieldPolicy = {
 	ratings?: FieldPolicy<any> | FieldReadFunction<any>,
 	resources?: FieldPolicy<any> | FieldReadFunction<any>,
 	resourcesCount?: FieldPolicy<any> | FieldReadFunction<any>,
+	reviews?: FieldPolicy<any> | FieldReadFunction<any>,
+	topics?: FieldPolicy<any> | FieldReadFunction<any>,
 	user?: FieldPolicy<any> | FieldReadFunction<any>,
 	users?: FieldPolicy<any> | FieldReadFunction<any>,
 	usersCount?: FieldPolicy<any> | FieldReadFunction<any>
@@ -137,10 +139,48 @@ export type ResourceInterfaceFieldPolicy = {
 	template?: FieldPolicy<any> | FieldReadFunction<any>,
 	uri?: FieldPolicy<any> | FieldReadFunction<any>
 };
+export type ReviewKeySpecifier = ('Comments' | 'CreatedBy' | 'TemplateVarValues' | 'alias' | 'content' | 'createdby' | 'createdon' | 'description' | 'id' | 'image' | 'longtitle' | 'pagetitle' | 'published' | 'searchable' | 'template' | 'uri' | ReviewKeySpecifier)[];
+export type ReviewFieldPolicy = {
+	Comments?: FieldPolicy<any> | FieldReadFunction<any>,
+	CreatedBy?: FieldPolicy<any> | FieldReadFunction<any>,
+	TemplateVarValues?: FieldPolicy<any> | FieldReadFunction<any>,
+	alias?: FieldPolicy<any> | FieldReadFunction<any>,
+	content?: FieldPolicy<any> | FieldReadFunction<any>,
+	createdby?: FieldPolicy<any> | FieldReadFunction<any>,
+	createdon?: FieldPolicy<any> | FieldReadFunction<any>,
+	description?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	image?: FieldPolicy<any> | FieldReadFunction<any>,
+	longtitle?: FieldPolicy<any> | FieldReadFunction<any>,
+	pagetitle?: FieldPolicy<any> | FieldReadFunction<any>,
+	published?: FieldPolicy<any> | FieldReadFunction<any>,
+	searchable?: FieldPolicy<any> | FieldReadFunction<any>,
+	template?: FieldPolicy<any> | FieldReadFunction<any>,
+	uri?: FieldPolicy<any> | FieldReadFunction<any>
+};
 export type ThreadKeySpecifier = ('id' | 'target_class' | ThreadKeySpecifier)[];
 export type ThreadFieldPolicy = {
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	target_class?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type TopicKeySpecifier = ('Comments' | 'CreatedBy' | 'TemplateVarValues' | 'alias' | 'content' | 'createdby' | 'createdon' | 'description' | 'id' | 'image' | 'longtitle' | 'pagetitle' | 'published' | 'searchable' | 'template' | 'uri' | TopicKeySpecifier)[];
+export type TopicFieldPolicy = {
+	Comments?: FieldPolicy<any> | FieldReadFunction<any>,
+	CreatedBy?: FieldPolicy<any> | FieldReadFunction<any>,
+	TemplateVarValues?: FieldPolicy<any> | FieldReadFunction<any>,
+	alias?: FieldPolicy<any> | FieldReadFunction<any>,
+	content?: FieldPolicy<any> | FieldReadFunction<any>,
+	createdby?: FieldPolicy<any> | FieldReadFunction<any>,
+	createdon?: FieldPolicy<any> | FieldReadFunction<any>,
+	description?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	image?: FieldPolicy<any> | FieldReadFunction<any>,
+	longtitle?: FieldPolicy<any> | FieldReadFunction<any>,
+	pagetitle?: FieldPolicy<any> | FieldReadFunction<any>,
+	published?: FieldPolicy<any> | FieldReadFunction<any>,
+	searchable?: FieldPolicy<any> | FieldReadFunction<any>,
+	template?: FieldPolicy<any> | FieldReadFunction<any>,
+	uri?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type UserKeySpecifier = ('Attributes' | 'active' | 'createdon' | 'email' | 'fullname' | 'id' | 'image' | 'username' | UserKeySpecifier)[];
 export type UserFieldPolicy = {
@@ -203,9 +243,17 @@ export type TypedTypePolicies = TypePolicies & {
 		keyFields?: false | ResourceInterfaceKeySpecifier | (() => undefined | ResourceInterfaceKeySpecifier),
 		fields?: ResourceInterfaceFieldPolicy,
 	},
+	Review?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | ReviewKeySpecifier | (() => undefined | ReviewKeySpecifier),
+		fields?: ReviewFieldPolicy,
+	},
 	Thread?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | ThreadKeySpecifier | (() => undefined | ThreadKeySpecifier),
 		fields?: ThreadFieldPolicy,
+	},
+	Topic?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | TopicKeySpecifier | (() => undefined | TopicKeySpecifier),
+		fields?: TopicFieldPolicy,
 	},
 	User?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | UserKeySpecifier | (() => undefined | UserKeySpecifier),

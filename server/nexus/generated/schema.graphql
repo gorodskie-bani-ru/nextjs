@@ -311,6 +311,28 @@ type Query {
   Количество ресурсов
   """
   resourcesCount(where: bani684_site_contentWhereInput): Int!
+
+  """
+  Обзоры заведений
+  """
+  reviews(
+    cursor: bani684_site_contentWhereUniqueInput
+    orderBy: [bani684_site_contentOrderByInput!]
+    skip: Int
+    take: Int
+    where: bani684_site_contentWhereInput
+  ): [Review!]!
+
+  """
+  Новости
+  """
+  topics(
+    cursor: bani684_site_contentWhereUniqueInput
+    orderBy: [bani684_site_contentOrderByInput!]
+    skip: Int
+    take: Int
+    where: bani684_site_contentWhereInput
+  ): [Topic!]!
   user(where: bani684_usersWhereUniqueInput!): User
   users(
     cursor: bani684_usersWhereUniqueInput
@@ -395,6 +417,31 @@ interface ResourceInterface {
   uri: String
 }
 
+"""
+Отзыв о заведении
+"""
+type Review implements ResourceInterface {
+  """
+  Комментарии
+  """
+  Comments: [Comment!]!
+  CreatedBy: User
+  TemplateVarValues: [bani684_site_tmplvar_contentvalues!]
+  alias: String
+  content: String
+  createdby: Int!
+  createdon: DateTime!
+  description: String!
+  id: Int!
+  image: String
+  longtitle: String!
+  pagetitle: String!
+  published: Boolean!
+  searchable: Boolean!
+  template: Int!
+  uri: String
+}
+
 enum SortOrder {
   asc
   desc
@@ -434,6 +481,31 @@ input StringNullableFilter {
 type Thread {
   id: Int!
   target_class: String!
+}
+
+"""
+Топик
+"""
+type Topic implements ResourceInterface {
+  """
+  Комментарии
+  """
+  Comments: [Comment!]!
+  CreatedBy: User
+  TemplateVarValues: [bani684_site_tmplvar_contentvalues!]
+  alias: String
+  content: String
+  createdby: Int!
+  createdon: DateTime!
+  description: String!
+  id: Int!
+  image: String
+  longtitle: String!
+  pagetitle: String!
+  published: Boolean!
+  searchable: Boolean!
+  template: Int!
+  uri: String
 }
 
 """

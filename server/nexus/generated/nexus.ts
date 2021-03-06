@@ -593,10 +593,48 @@ export interface NexusGenObjects {
     template: number // Int!
     uri?: string | null // String
   }
+  Review: {
+    // root type
+    CreatedBy?: NexusGenRootTypes['User'] | null // User
+    TemplateVarValues?:
+      | NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][]
+      | null // [bani684_site_tmplvar_contentvalues!]
+    alias?: string | null // String
+    content?: string | null // String
+    createdby: number // Int!
+    createdon: NexusGenScalars['DateTime'] // DateTime!
+    description: string // String!
+    id: number // Int!
+    longtitle: string // String!
+    pagetitle: string // String!
+    published: boolean // Boolean!
+    searchable: boolean // Boolean!
+    template: number // Int!
+    uri?: string | null // String
+  }
   Thread: {
     // root type
     id: number // Int!
     target_class: string // String!
+  }
+  Topic: {
+    // root type
+    CreatedBy?: NexusGenRootTypes['User'] | null // User
+    TemplateVarValues?:
+      | NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][]
+      | null // [bani684_site_tmplvar_contentvalues!]
+    alias?: string | null // String
+    content?: string | null // String
+    createdby: number // Int!
+    createdon: NexusGenScalars['DateTime'] // DateTime!
+    description: string // String!
+    id: number // Int!
+    longtitle: string // String!
+    pagetitle: string // String!
+    published: boolean // Boolean!
+    searchable: boolean // Boolean!
+    template: number // Int!
+    uri?: string | null // String
   }
   User: {
     // root type
@@ -627,6 +665,8 @@ export interface NexusGenInterfaces {
     | NexusGenRootTypes['Company']
     | NexusGenRootTypes['Rating']
     | NexusGenRootTypes['Resource']
+    | NexusGenRootTypes['Review']
+    | NexusGenRootTypes['Topic']
 }
 
 export interface NexusGenUnions {}
@@ -719,6 +759,8 @@ export interface NexusGenFieldTypes {
     ratings: NexusGenRootTypes['Rating'][] // [Rating!]!
     resources: NexusGenRootTypes['ResourceInterface'][] // [ResourceInterface!]!
     resourcesCount: number // Int!
+    reviews: NexusGenRootTypes['Review'][] // [Review!]!
+    topics: NexusGenRootTypes['Topic'][] // [Topic!]!
     user: NexusGenRootTypes['User'] | null // User
     users: NexusGenRootTypes['User'][] // [User!]!
     usersCount: number // Int!
@@ -765,10 +807,52 @@ export interface NexusGenFieldTypes {
     template: number // Int!
     uri: string | null // String
   }
+  Review: {
+    // field return type
+    Comments: NexusGenRootTypes['Comment'][] // [Comment!]!
+    CreatedBy: NexusGenRootTypes['User'] | null // User
+    TemplateVarValues:
+      | NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][]
+      | null // [bani684_site_tmplvar_contentvalues!]
+    alias: string | null // String
+    content: string | null // String
+    createdby: number // Int!
+    createdon: NexusGenScalars['DateTime'] // DateTime!
+    description: string // String!
+    id: number // Int!
+    image: string | null // String
+    longtitle: string // String!
+    pagetitle: string // String!
+    published: boolean // Boolean!
+    searchable: boolean // Boolean!
+    template: number // Int!
+    uri: string | null // String
+  }
   Thread: {
     // field return type
     id: number // Int!
     target_class: string // String!
+  }
+  Topic: {
+    // field return type
+    Comments: NexusGenRootTypes['Comment'][] // [Comment!]!
+    CreatedBy: NexusGenRootTypes['User'] | null // User
+    TemplateVarValues:
+      | NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][]
+      | null // [bani684_site_tmplvar_contentvalues!]
+    alias: string | null // String
+    content: string | null // String
+    createdby: number // Int!
+    createdon: NexusGenScalars['DateTime'] // DateTime!
+    description: string // String!
+    id: number // Int!
+    image: string | null // String
+    longtitle: string // String!
+    pagetitle: string // String!
+    published: boolean // Boolean!
+    searchable: boolean // Boolean!
+    template: number // Int!
+    uri: string | null // String
   }
   User: {
     // field return type
@@ -895,6 +979,8 @@ export interface NexusGenFieldTypeNames {
     ratings: 'Rating'
     resources: 'ResourceInterface'
     resourcesCount: 'Int'
+    reviews: 'Review'
+    topics: 'Topic'
     user: 'User'
     users: 'User'
     usersCount: 'Int'
@@ -937,10 +1023,48 @@ export interface NexusGenFieldTypeNames {
     template: 'Int'
     uri: 'String'
   }
+  Review: {
+    // field return type name
+    Comments: 'Comment'
+    CreatedBy: 'User'
+    TemplateVarValues: 'bani684_site_tmplvar_contentvalues'
+    alias: 'String'
+    content: 'String'
+    createdby: 'Int'
+    createdon: 'DateTime'
+    description: 'String'
+    id: 'Int'
+    image: 'String'
+    longtitle: 'String'
+    pagetitle: 'String'
+    published: 'Boolean'
+    searchable: 'Boolean'
+    template: 'Int'
+    uri: 'String'
+  }
   Thread: {
     // field return type name
     id: 'Int'
     target_class: 'String'
+  }
+  Topic: {
+    // field return type name
+    Comments: 'Comment'
+    CreatedBy: 'User'
+    TemplateVarValues: 'bani684_site_tmplvar_contentvalues'
+    alias: 'String'
+    content: 'String'
+    createdby: 'Int'
+    createdon: 'DateTime'
+    description: 'String'
+    id: 'Int'
+    image: 'String'
+    longtitle: 'String'
+    pagetitle: 'String'
+    published: 'Boolean'
+    searchable: 'Boolean'
+    template: 'Int'
+    uri: 'String'
   }
   User: {
     // field return type name
@@ -1036,6 +1160,22 @@ export interface NexusGenArgTypes {
       // args
       where?: NexusGenInputs['bani684_site_contentWhereInput'] | null // bani684_site_contentWhereInput
     }
+    reviews: {
+      // args
+      cursor?: NexusGenInputs['bani684_site_contentWhereUniqueInput'] | null // bani684_site_contentWhereUniqueInput
+      orderBy?: NexusGenInputs['bani684_site_contentOrderByInput'][] | null // [bani684_site_contentOrderByInput!]
+      skip?: number | null // Int
+      take?: number | null // Int
+      where?: NexusGenInputs['bani684_site_contentWhereInput'] | null // bani684_site_contentWhereInput
+    }
+    topics: {
+      // args
+      cursor?: NexusGenInputs['bani684_site_contentWhereUniqueInput'] | null // bani684_site_contentWhereUniqueInput
+      orderBy?: NexusGenInputs['bani684_site_contentOrderByInput'][] | null // [bani684_site_contentOrderByInput!]
+      skip?: number | null // Int
+      take?: number | null // Int
+      where?: NexusGenInputs['bani684_site_contentWhereInput'] | null // bani684_site_contentWhereInput
+    }
     user: {
       // args
       where: NexusGenInputs['bani684_usersWhereUniqueInput'] // bani684_usersWhereUniqueInput!
@@ -1056,7 +1196,13 @@ export interface NexusGenArgTypes {
 }
 
 export interface NexusGenAbstractTypeMembers {
-  ResourceInterface: 'City' | 'Company' | 'Rating' | 'Resource'
+  ResourceInterface:
+    | 'City'
+    | 'Company'
+    | 'Rating'
+    | 'Resource'
+    | 'Review'
+    | 'Topic'
 }
 
 export interface NexusGenTypeInterfaces {
@@ -1064,6 +1210,8 @@ export interface NexusGenTypeInterfaces {
   Company: 'ResourceInterface'
   Rating: 'ResourceInterface'
   Resource: 'ResourceInterface'
+  Review: 'ResourceInterface'
+  Topic: 'ResourceInterface'
 }
 
 export type NexusGenObjectNames = keyof NexusGenObjects

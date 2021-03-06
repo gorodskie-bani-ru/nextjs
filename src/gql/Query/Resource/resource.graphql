@@ -23,7 +23,7 @@ query resources(
   resourcesCount(where: $where)
 }
 
-fragment resource on Resource {
+fragment resource on ResourceInterface {
   ...resourceNoNesting
   CreatedBy @include(if: $withCreatedBy) {
     ...user_
@@ -35,7 +35,7 @@ fragment resource on Resource {
   }
 }
 
-fragment resourceNoNesting on Resource {
+fragment resourceNoNesting on ResourceInterface {
   id
   pagetitle
   uri

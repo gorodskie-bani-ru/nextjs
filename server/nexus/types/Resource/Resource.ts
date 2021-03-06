@@ -31,6 +31,14 @@ export const ResourceInterface = interfaceType({
     else if (item.template === 30) {
       return 'Rating'
     }
+    // Общая публикация
+    else if (item.template === 15) {
+      return 'Topic'
+    }
+    // Отзыв о заведении
+    else if (item.template === 28) {
+      return 'Review'
+    }
     return 'Resource'
   },
   definition(t) {

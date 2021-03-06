@@ -1,4 +1,5 @@
 /* eslint-disable */
+// @ts-nocheck
 
 /** 
 * ФАЙЛ ГЕНЕРИРУЕТСЯ АВТОМАТИЧЕСКИ, ПРАВИТЬ ЕГО НЕ НУЖНО 
@@ -247,6 +248,10 @@ export interface Query {
   resources: Array<ResourceInterface>;
   /** Количество ресурсов */
   resourcesCount: Scalars['Int'];
+  /** Обзоры заведений */
+  reviews: Array<Review>;
+  /** Новости */
+  topics: Array<Topic>;
   user?: Maybe<User>;
   users: Array<User>;
   /** Количество пользователей */
@@ -304,6 +309,24 @@ export type QueryResourcesArgs = {
 
 
 export type QueryResourcesCountArgs = {
+  where?: Maybe<Bani684SiteContentWhereInput>;
+};
+
+
+export type QueryReviewsArgs = {
+  cursor?: Maybe<Bani684SiteContentWhereUniqueInput>;
+  orderBy?: Maybe<Array<Bani684SiteContentOrderByInput>>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
+  where?: Maybe<Bani684SiteContentWhereInput>;
+};
+
+
+export type QueryTopicsArgs = {
+  cursor?: Maybe<Bani684SiteContentWhereUniqueInput>;
+  orderBy?: Maybe<Array<Bani684SiteContentOrderByInput>>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
   where?: Maybe<Bani684SiteContentWhereInput>;
 };
 
@@ -389,6 +412,28 @@ export type ResourceInterface = {
   uri?: Maybe<Scalars['String']>;
 };
 
+/** Отзыв о заведении */
+export interface Review extends ResourceInterface {
+  __typename?: 'Review';
+  /** Комментарии */
+  Comments: Array<Comment>;
+  CreatedBy?: Maybe<User>;
+  TemplateVarValues?: Maybe<Array<Bani684SiteTmplvarContentvalues>>;
+  alias?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['String']>;
+  createdby: Scalars['Int'];
+  createdon: Scalars['DateTime'];
+  description: Scalars['String'];
+  id: Scalars['Int'];
+  image?: Maybe<Scalars['String']>;
+  longtitle: Scalars['String'];
+  pagetitle: Scalars['String'];
+  published: Scalars['Boolean'];
+  searchable: Scalars['Boolean'];
+  template: Scalars['Int'];
+  uri?: Maybe<Scalars['String']>;
+}
+
 export enum SortOrder {
   ASC = 'asc',
   DESC = 'desc'
@@ -427,6 +472,28 @@ export interface Thread {
   __typename?: 'Thread';
   id: Scalars['Int'];
   target_class: Scalars['String'];
+}
+
+/** Топик */
+export interface Topic extends ResourceInterface {
+  __typename?: 'Topic';
+  /** Комментарии */
+  Comments: Array<Comment>;
+  CreatedBy?: Maybe<User>;
+  TemplateVarValues?: Maybe<Array<Bani684SiteTmplvarContentvalues>>;
+  alias?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['String']>;
+  createdby: Scalars['Int'];
+  createdon: Scalars['DateTime'];
+  description: Scalars['String'];
+  id: Scalars['Int'];
+  image?: Maybe<Scalars['String']>;
+  longtitle: Scalars['String'];
+  pagetitle: Scalars['String'];
+  published: Scalars['Boolean'];
+  searchable: Scalars['Boolean'];
+  template: Scalars['Int'];
+  uri?: Maybe<Scalars['String']>;
 }
 
 /** Пользователь */
