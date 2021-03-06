@@ -3,9 +3,9 @@
 
 import { arg, list, nonNull, ObjectDefinitionBlock } from 'nexus/dist/core'
 import { Prisma } from '@prisma/client'
-import { userSelect } from './User'
+import { userSelect } from '../User'
 
-export const resources = (t: ObjectDefinitionBlock<'Query'>) => {
+export default (t: ObjectDefinitionBlock<'Query'>) => {
   const defaultWhere: Prisma.bani684_site_contentFindManyArgs['where'] = {
     deleted: false,
     published: true,

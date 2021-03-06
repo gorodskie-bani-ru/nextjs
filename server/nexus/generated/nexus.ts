@@ -560,6 +560,7 @@ export interface NexusGenObjects {
     createdby: number // Int!
     createdon: NexusGenScalars['DateTime'] // DateTime!
     description: string // String!
+    foot?: boolean | null // Boolean
     id: number // Int!
     longtitle: string // String!
     pagetitle: string // String!
@@ -699,6 +700,7 @@ export interface NexusGenFieldTypes {
     createdby: number // Int!
     createdon: NexusGenScalars['DateTime'] // DateTime!
     description: string // String!
+    foot: boolean | null // Boolean
     id: number // Int!
     longtitle: string // String!
     pagetitle: string // String!
@@ -820,6 +822,7 @@ export interface NexusGenFieldTypeNames {
     createdby: 'Int'
     createdon: 'DateTime'
     description: 'String'
+    foot: 'Boolean'
     id: 'Int'
     longtitle: 'String'
     pagetitle: 'String'

@@ -312,6 +312,7 @@ type Resource {
   createdby: Int!
   createdon: DateTime!
   description: String!
+  foot: Boolean
   id: Int!
   longtitle: String!
   pagetitle: String!

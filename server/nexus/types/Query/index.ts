@@ -1,20 +1,13 @@
 /* eslint-disable @typescript-eslint/ban-ts-ignore */
 
 import { objectType } from 'nexus'
-import { companies } from './definitions/Company'
-import { cities } from './definitions/City'
 import userDefinitions from './definitions/User'
-import {
-  resources,
-  // resourcesCount,
-} from './definitions/Resource'
+import resources from './definitions/Resource'
 import { society } from './definitions/society'
 
 export const Query = objectType({
   name: 'Query',
   definition(t) {
-    companies(t)
-    cities(t)
     resources(t)
     userDefinitions(t)
     society(t)

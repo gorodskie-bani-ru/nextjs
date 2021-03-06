@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/camelcase */
 
 import { ObjectDefinitionBlock } from 'nexus/dist/core'
-import { companiesResolver } from '../resolvers/companiesResolver'
+import { companiesResolver } from '../../resolvers/companiesResolver'
 // import { NexusGenObjects } from 'server/nexus/generated/nexus'
 
 export const companies = (t: ObjectDefinitionBlock<'Query'>) => {
