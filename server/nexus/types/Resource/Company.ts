@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import { objectType } from 'nexus'
 import { TemplateVarIDs } from '../../constants'
-import { coordsResolver } from '../Query/resolvers/coords'
+import { coords } from './definitions/coords'
 
 export const Company = objectType({
   name: 'Company',
@@ -10,23 +10,8 @@ export const Company = objectType({
   definition(t) {
     t.implements('ResourceInterface')
 
-    //   t.nonNull.int('id')
-    //   t.nonNull.string('pagetitle')
-    //   t.nonNull.string('longtitle')
-    //   t.nonNull.string('description')
-    //   t.nonNull.int('createdby')
-    //   t.nonNull.date('createdon')
-    //   // t.nonNull.date("pubdate")
-    //   t.string('content')
-    //   t.string('uri')
-    //   t.string('alias')
-    //   t.nonNull.int('template')
-    //   t.nonNull.boolean('published')
-    //   t.nonNull.boolean('searchable')
-    //   // t.nonNull.date("publishedon")
-    //   t.nonNull.int('editedby')
-    //   t.nonNull.date('editedon')
-    //   // t.nonNull.string("alias")
+    coords(t)
+
     t.string('address', {
       description: 'Адрес (без указания города)',
       resolve(parent) {
@@ -76,12 +61,6 @@ export const Company = objectType({
     //   // t.field('coords', {
     //   //   type: 'Coordinates',
     //   // })
-
-    t.field('coords', {
-      type: 'Coordinates',
-      description: 'Координаты',
-      resolve: coordsResolver,
-    })
 
     //   // t.nonNull.string('email')
     //   t.list.nonNull.field('TemplateVarValues', {

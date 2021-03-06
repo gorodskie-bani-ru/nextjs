@@ -1,5 +1,5 @@
 import { objectType } from 'nexus'
-import { coordsResolver } from '../Query/resolvers/coords'
+import { coords } from './definitions/coords'
 
 export const City = objectType({
   name: 'City',
@@ -7,24 +7,6 @@ export const City = objectType({
 
   definition(t) {
     t.implements('ResourceInterface')
-    //   t.nonNull.int('id')
-    //   t.nonNull.string('pagetitle')
-    //   t.nonNull.string('longtitle')
-    //   t.nonNull.int('template')
-    //   t.string('uri')
-    //   t.string('alias')
-    //   // t.field('coords', {
-    //   //   type: 'Coordinates',
-    //   // })
-
-    t.field('coords', {
-      type: 'Coordinates',
-      description: 'Координаты',
-      resolve: coordsResolver,
-    })
-
-    //   t.list.nonNull.field('TemplateVarValues', {
-    //     type: 'bani684_site_tmplvar_contentvalues',
-    //   })
+    coords(t)
   },
 })
