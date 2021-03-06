@@ -24,12 +24,17 @@ query resources(
 }
 
 fragment resource on Resource {
+  ...resourceNoNesting
+  CreatedBy @include(if: $withCreatedBy) {
+    ...user_
+  }
+}
+
+fragment resourceNoNesting on Resource {
   id
   pagetitle
   uri
   createdon
+  template
   content @include(if: $withContent)
-  CreatedBy @include(if: $withCreatedBy) {
-    ...user_
-  }
 }

@@ -8,23 +8,25 @@
 
 import * as Types from './types';
 
+import { ResourceNoNestingFragment } from './resourceNoNesting';
 import { UserFragment } from './user_';
 import { gql } from '@apollo/client';
+import { ResourceNoNestingFragmentDoc } from './resourceNoNesting';
 import { UserFragmentDoc } from './user_';
-export type ResourceFragment = { __typename?: 'Resource', id: number, pagetitle: string, uri?: Types.Maybe<string>, createdon: globalThis.Date, content?: Types.Maybe<string>, CreatedBy?: Types.Maybe<(
+export type ResourceFragment = (
+  { __typename?: 'Resource', CreatedBy?: Types.Maybe<(
     { __typename?: 'User' }
     & UserFragment
-  )> };
+  )> }
+  & ResourceNoNestingFragment
+);
 
 export const ResourceFragmentDoc = gql`
     fragment resource on Resource {
-  id
-  pagetitle
-  uri
-  createdon
-  content @include(if: $withContent)
+  ...resourceNoNesting
   CreatedBy @include(if: $withCreatedBy) {
     ...user_
   }
 }
-    ${UserFragmentDoc}`;
+    ${ResourceNoNestingFragmentDoc}
+${UserFragmentDoc}`;

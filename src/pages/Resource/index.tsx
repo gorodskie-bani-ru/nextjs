@@ -20,6 +20,8 @@ import { useRouter, NextRouter } from 'next/router'
 
 import { ResourcePageProps } from './interfaces'
 import CompanyView from '../Companies/Company/View'
+import Topic from 'src/components/ui/Topic'
+import { NextSeo } from 'next-seo'
 
 export const getResourceVariables = (
   router: NextRouter | NextPageContextCustom
@@ -53,6 +55,8 @@ export const getResourceVariables = (
         },
       ],
     },
+    withContent: true,
+    withCreatedBy: true,
   }
 
   return variables
@@ -79,6 +83,18 @@ const ResourcePage: Page<ResourcePageProps> = () => {
       //
 
       return <CompanyView company={object} />
+    }
+    // Topic
+    else if (
+      object.__typename === 'Resource' &&
+      [15, 28].includes(object.template)
+    ) {
+      return (
+        <>
+          <NextSeo title={object.pagetitle} />
+          <Topic topic={object} />
+        </>
+      )
     } else {
       throw new Error('Unknown Resource type')
     }
@@ -147,7 +163,17 @@ ResourcePage.getInitialProps = async (context) => {
   return {
     queryResult,
     statusCode:
-      !object || !object.__typename || !['Company'].includes(object.__typename)
+      !object ||
+      !object.__typename ||
+      !(
+        // Company
+        (
+          ['Company'].includes(object.__typename) ||
+          // Topics
+          (object.__typename === 'Resource' &&
+            [15, 28].includes(object.template))
+        )
+      )
         ? 404
         : undefined,
     // type,

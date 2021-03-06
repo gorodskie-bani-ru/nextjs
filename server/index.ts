@@ -57,6 +57,7 @@ app.prepare().then(() => {
    * Проксирование на картинки
    */
   server.use('/images/', siteProxy)
+  server.use('/wp-content/', siteProxy)
 
   graphqlServer.applyMiddleware({
     app: server,
