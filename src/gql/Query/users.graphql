@@ -23,4 +23,5 @@ fragment user_ on User {
   active
   createdon
   image
+  email
 }

@@ -85,11 +85,12 @@ export type ResourceFieldPolicy = {
 	template?: FieldPolicy<any> | FieldReadFunction<any>,
 	uri?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type UserKeySpecifier = ('Attributes' | 'active' | 'createdon' | 'fullname' | 'id' | 'image' | 'username' | UserKeySpecifier)[];
+export type UserKeySpecifier = ('Attributes' | 'active' | 'createdon' | 'email' | 'fullname' | 'id' | 'image' | 'username' | UserKeySpecifier)[];
 export type UserFieldPolicy = {
 	Attributes?: FieldPolicy<any> | FieldReadFunction<any>,
 	active?: FieldPolicy<any> | FieldReadFunction<any>,
 	createdon?: FieldPolicy<any> | FieldReadFunction<any>,
+	email?: FieldPolicy<any> | FieldReadFunction<any>,
 	fullname?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	image?: FieldPolicy<any> | FieldReadFunction<any>,

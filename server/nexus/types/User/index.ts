@@ -27,7 +27,11 @@ export const User = objectType({
     t.nonNull.boolean('active')
     // t.nonNull.boolean('blocked')
     t.nonNull.date('createdon')
-    // t.string('email')
+    t.string('email', {
+      resolve() {
+        return null
+      },
+    })
     t.string('username')
     t.string('image', {
       description: 'Аватар',

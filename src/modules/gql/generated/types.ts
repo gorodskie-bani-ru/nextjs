@@ -356,6 +356,7 @@ export interface User {
   Attributes?: Maybe<UserAttributes>;
   active: Scalars['Boolean'];
   createdon: Scalars['DateTime'];
+  email?: Maybe<Scalars['String']>;
   fullname?: Maybe<Scalars['String']>;
   id: Scalars['Int'];
   /** Аватар */

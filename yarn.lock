@@ -2224,6 +2224,21 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.8.2.tgz#1fd24b99e417176566f8ada718fd16dbc7ef2b7a"
   integrity sha512-7PRna6st1As9DBTXO3Lf1lYw7bi+b/6kE2OPjvvdWHLfBxTI01FW1HSqt4akYzKe1Cta3bmhuwct4OAF2EVemA==
 
+"@prisma-cms/component@^2.0.6":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@prisma-cms/component/-/component-2.2.2.tgz#b11ad84adc72bd06450aeaa2c56136323a72199e"
+  integrity sha512-toDJmbmgzMH/mTYdZZ6TnuJ+6pB99RtIz1g2IBbWhm9KNFnAFhqF6+4aac3bhzlefhl/gn4T1Xo7lwyzHeVBsw==
+  dependencies:
+    "@prisma-cms/context" "^2.0.2"
+    material-ui "1.0.0-beta.43"
+    roddeh-i18n "^1.2.0"
+    urijs "^1.19.2"
+
+"@prisma-cms/context@^2.0.2":
+  version "2.0.14"
+  resolved "https://registry.yarnpkg.com/@prisma-cms/context/-/context-2.0.14.tgz#12ca6ff896e236f9fbcfed42a56c5af0fb7fcffb"
+  integrity sha512-rbIs7QQC9flTY1qoxvzE+aje2vEM8s7Lutls87NAmN74pP4nEw+XSYsdwsgn7argwRU8ZzdkLmMquPPJ/CVR+g==
+
 "@prisma-cms/editor@^2.0.8":
   version "2.0.8"
   resolved "https://registry.yarnpkg.com/@prisma-cms/editor/-/editor-2.0.8.tgz#6bc7773d5bb754b93579508d62244d2699fec35f"
@@ -2236,6 +2251,18 @@
     material-ui-icons "^1.0.0-beta.17"
     prismjs "^1.22.0"
     urijs "^1.19.2"
+
+"@prisma-cms/uploader@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@prisma-cms/uploader/-/uploader-2.0.1.tgz#eea01453f363cafa7415431fb8d73cb955768bea"
+  integrity sha512-arbl3U2yPF3dbt0oDhjXJhr1vTCbhoiREUULpJHFJA0z4F+QAKNSGVxI83zCZOArRhUwi3xO3MvxQPkzbh0ltA==
+  dependencies:
+    "@apollo/client" "^3.2.5"
+    "@prisma-cms/component" "^2.0.6"
+    graphql "^15.4.0"
+    graphql-tag "^2.11.0"
+    material-ui "1.0.0-beta.43"
+    material-ui-icons "^1.0.0-beta.17"
 
 "@prisma/client@^2.18.0":
   version "2.18.0"
@@ -8787,7 +8814,7 @@ graphql-ws@4.1.5:
   resolved "https://registry.yarnpkg.com/graphql-ws/-/graphql-ws-4.1.5.tgz#03526b29acb54a424a9fbe300a4bd69ff65a50b3"
   integrity sha512-yUQ1AjegD1Y9jDS699kyw7Mw+9H+rILm2HoS8N5a5B5YTH93xy3yifFhAJpKGc2wb/8yGdlVy8gTcud0TPqi6Q==
 
-graphql@^15.1.0, graphql@^15.3.0:
+graphql@^15.1.0, graphql@^15.3.0, graphql@^15.4.0:
   version "15.5.0"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-15.5.0.tgz#39d19494dbe69d1ea719915b578bf920344a69d5"
   integrity sha512-OmaM7y0kaK31NKG31q4YbD2beNYa6jBBKtMFT6gLYJljHLJr42IqJ8KX08u3Li/0ifzTU5HjmoOOrwa5BRLeDA==
@@ -14545,6 +14572,11 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
   dependencies:
     hash-base "^3.0.0"
     inherits "^2.0.1"
+
+roddeh-i18n@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/roddeh-i18n/-/roddeh-i18n-1.2.0.tgz#c71db4cb77a75b55e5aa5d07724176c1413ac89e"
+  integrity sha512-iD6ToyUFHbkk1XvUqfBhdj8LHiLbVlq7PqRWgyIMVvzy1UlRRBBjKIu4Mo1s5clHmgS3xCpIWICfxlU/bcVeiQ==
 
 rsvp@^4.8.4:
   version "4.8.5"

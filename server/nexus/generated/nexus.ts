@@ -703,6 +703,7 @@ export interface NexusGenFieldTypes {
     Attributes: NexusGenRootTypes['UserAttributes'] | null // UserAttributes
     active: boolean // Boolean!
     createdon: NexusGenScalars['DateTime'] // DateTime!
+    email: string | null // String
     fullname: string | null // String
     id: number // Int!
     image: string | null // String
@@ -815,6 +816,7 @@ export interface NexusGenFieldTypeNames {
     Attributes: 'UserAttributes'
     active: 'Boolean'
     createdon: 'DateTime'
+    email: 'String'
     fullname: 'String'
     id: 'Int'
     image: 'String'
