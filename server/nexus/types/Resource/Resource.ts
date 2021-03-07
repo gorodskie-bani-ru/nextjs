@@ -1,7 +1,6 @@
-/* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/camelcase */
 import { interfaceType, objectType } from 'nexus'
-import { TemplateVarIDs } from '../../constants'
+// import { TemplateVarIDs } from '../../constants'
 import { NexusGenObjects } from 'server/nexus/generated/nexus'
 import { commentSelect } from '../Query/definitions/society/Comment'
 
@@ -61,16 +60,6 @@ export const ResourceInterface = interfaceType({
     })
     t.field('CreatedBy', {
       type: 'User',
-    })
-
-    t.string('image', {
-      resolve(parent) {
-        return (
-          parent.TemplateVarValues?.find(
-            (n) => n.tmplvarid === TemplateVarIDs.image
-          )?.value || null
-        )
-      },
     })
 
     // TODO Создать отдельные типы Обзор и Топик и перенести получение комментов туда

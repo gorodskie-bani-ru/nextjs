@@ -2,6 +2,7 @@
 
 import { Prisma } from '@prisma/client'
 import { FieldResolver, ObjectDefinitionBlock } from 'nexus/dist/core'
+import { TemplateVarIDs } from '../../../../constants'
 
 const companiesResolver: FieldResolver<'Query', 'companies'> = (
   _,
@@ -16,46 +17,60 @@ const companiesResolver: FieldResolver<'Query', 'companies'> = (
   const { deleted = false, published = true, hidemenu = false } =
     variables.where || {}
 
-  return ctx.prisma.bani684_site_content.findMany({
-    ...variables,
-    where: {
-      AND: [
-        {
-          template: 27,
-          deleted,
-          published,
-          hidemenu,
-        },
-        {
-          ...variables.where,
-        },
-      ],
-    },
-    select: {
-      id: true,
-      pagetitle: true,
-      longtitle: true,
-      description: true,
-      alias: true,
-      uri: true,
-      content: true,
-      published: true,
-      createdby: true,
-      createdon: true,
-      editedby: true,
-      editedon: true,
-      template: true,
-      searchable: true,
-      TemplateVarValues: {
-        select: {
-          id: true,
-          contentid: true,
-          tmplvarid: true,
-          value: true,
+  return ctx.prisma.bani684_site_content
+    .findMany({
+      ...variables,
+      where: {
+        AND: [
+          {
+            template: 27,
+            deleted,
+            published,
+            hidemenu,
+          },
+          {
+            ...variables.where,
+          },
+        ],
+      },
+      select: {
+        id: true,
+        pagetitle: true,
+        longtitle: true,
+        description: true,
+        alias: true,
+        uri: true,
+        content: true,
+        published: true,
+        createdby: true,
+        createdon: true,
+        editedby: true,
+        editedon: true,
+        template: true,
+        searchable: true,
+        TemplateVarValues: {
+          select: {
+            id: true,
+            contentid: true,
+            tmplvarid: true,
+            value: true,
+          },
         },
       },
-    },
-  })
+    })
+    .then((resources) => {
+      return resources.map((resource) => {
+        const image =
+          resource.TemplateVarValues?.find(
+            (n) => n.tmplvarid === TemplateVarIDs.image
+          )?.value || null
+
+        return {
+          ...resource,
+          image,
+        }
+      })
+    })
 }
 
 export const companies = (t: ObjectDefinitionBlock<'Query'>) => {

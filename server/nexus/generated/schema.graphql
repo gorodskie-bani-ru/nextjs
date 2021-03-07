@@ -51,7 +51,6 @@ type City implements ResourceInterface {
   createdon: DateTime!
   description: String!
   id: Int!
-  image: String
   longtitle: String!
   pagetitle: String!
   published: Boolean!
@@ -407,6 +406,11 @@ type Query {
     take: Int
     where: bani684_society_votesWhereInput
   ): [Vote!]!
+
+  """
+  Средние значения по голосам
+  """
+  votesByRating: [Votes!]!
 }
 
 """
@@ -425,7 +429,6 @@ type Rating implements ResourceInterface {
   createdon: DateTime!
   description: String!
   id: Int!
-  image: String
   longtitle: String!
   pagetitle: String!
   published: Boolean!
@@ -447,7 +450,6 @@ type Resource implements ResourceInterface {
   createdon: DateTime!
   description: String!
   id: Int!
-  image: String
   longtitle: String!
   pagetitle: String!
   published: Boolean!
@@ -469,7 +471,6 @@ interface ResourceInterface {
   createdon: DateTime!
   description: String!
   id: Int!
-  image: String
   longtitle: String!
   pagetitle: String!
   published: Boolean!
@@ -494,7 +495,6 @@ type Review implements ResourceInterface {
   createdon: DateTime!
   description: String!
   id: Int!
-  image: String
   longtitle: String!
   pagetitle: String!
   published: Boolean!
@@ -560,7 +560,6 @@ type Topic implements ResourceInterface {
   createdon: DateTime!
   description: String!
   id: Int!
-  image: String
   longtitle: String!
   pagetitle: String!
   published: Boolean!
@@ -619,6 +618,23 @@ type Vote {
   Значение оценки
   """
   vote_value: Float!
+}
+
+"""
+Сгруппированные голоса
+"""
+type Votes {
+  Company: Company!
+  avg: VotesAvg!
+  target_id: Int!
+  type: Int
+}
+
+"""
+Средние значения голосов
+"""
+type VotesAvg {
+  vote_value_avg: Float!
 }
 
 input bani684_site_contentOrderByInput {

@@ -643,6 +643,7 @@ export interface NexusGenObjects {
     createdon: NexusGenScalars['DateTime'] // DateTime!
     description: string // String!
     id: number // Int!
+    image?: string | null // String
     longtitle: string // String!
     pagetitle: string // String!
     published: boolean // Boolean!
@@ -772,6 +773,17 @@ export interface NexusGenObjects {
     vote_direction: string // String!
     vote_value: number // Float!
   }
+  Votes: {
+    // root type
+    Company: NexusGenRootTypes['Company'] // Company!
+    avg: NexusGenRootTypes['VotesAvg'] // VotesAvg!
+    target_id: number // Int!
+    type?: number | null // Int
+  }
+  VotesAvg: {
+    // root type
+    vote_value_avg: number // Float!
+  }
   bani684_site_tmplvar_contentvalues: {
     // root type
     contentid: number // Int!
@@ -814,7 +826,6 @@ export interface NexusGenFieldTypes {
     createdon: NexusGenScalars['DateTime'] // DateTime!
     description: string // String!
     id: number // Int!
-    image: string | null // String
     longtitle: string // String!
     pagetitle: string // String!
     published: boolean // Boolean!
@@ -887,6 +898,7 @@ export interface NexusGenFieldTypes {
     users: NexusGenRootTypes['User'][] // [User!]!
     usersCount: number // Int!
     votes: NexusGenRootTypes['Vote'][] // [Vote!]!
+    votesByRating: NexusGenRootTypes['Votes'][] // [Votes!]!
   }
   Rating: {
     // field return type
@@ -901,7 +913,6 @@ export interface NexusGenFieldTypes {
     createdon: NexusGenScalars['DateTime'] // DateTime!
     description: string // String!
     id: number // Int!
-    image: string | null // String
     longtitle: string // String!
     pagetitle: string // String!
     published: boolean // Boolean!
@@ -922,7 +933,6 @@ export interface NexusGenFieldTypes {
     createdon: NexusGenScalars['DateTime'] // DateTime!
     description: string // String!
     id: number // Int!
-    image: string | null // String
     longtitle: string // String!
     pagetitle: string // String!
     published: boolean // Boolean!
@@ -943,7 +953,6 @@ export interface NexusGenFieldTypes {
     createdon: NexusGenScalars['DateTime'] // DateTime!
     description: string // String!
     id: number // Int!
-    image: string | null // String
     longtitle: string // String!
     pagetitle: string // String!
     published: boolean // Boolean!
@@ -969,7 +978,6 @@ export interface NexusGenFieldTypes {
     createdon: NexusGenScalars['DateTime'] // DateTime!
     description: string // String!
     id: number // Int!
-    image: string | null // String
     longtitle: string // String!
     pagetitle: string // String!
     published: boolean // Boolean!
@@ -1008,6 +1016,17 @@ export interface NexusGenFieldTypes {
     vote_direction: string // String!
     vote_value: number // Float!
   }
+  Votes: {
+    // field return type
+    Company: NexusGenRootTypes['Company'] // Company!
+    avg: NexusGenRootTypes['VotesAvg'] // VotesAvg!
+    target_id: number // Int!
+    type: number | null // Int
+  }
+  VotesAvg: {
+    // field return type
+    vote_value_avg: number // Float!
+  }
   bani684_site_tmplvar_contentvalues: {
     // field return type
     contentid: number // Int!
@@ -1028,7 +1047,6 @@ export interface NexusGenFieldTypes {
     createdon: NexusGenScalars['DateTime'] // DateTime!
     description: string // String!
     id: number // Int!
-    image: string | null // String
     longtitle: string // String!
     pagetitle: string // String!
     published: boolean // Boolean!
@@ -1051,7 +1069,6 @@ export interface NexusGenFieldTypeNames {
     createdon: 'DateTime'
     description: 'String'
     id: 'Int'
-    image: 'String'
     longtitle: 'String'
     pagetitle: 'String'
     published: 'Boolean'
@@ -1122,6 +1139,7 @@ export interface NexusGenFieldTypeNames {
     users: 'User'
     usersCount: 'Int'
     votes: 'Vote'
+    votesByRating: 'Votes'
   }
   Rating: {
     // field return type name
@@ -1134,7 +1152,6 @@ export interface NexusGenFieldTypeNames {
     createdon: 'DateTime'
     description: 'String'
     id: 'Int'
-    image: 'String'
     longtitle: 'String'
     pagetitle: 'String'
     published: 'Boolean'
@@ -1153,7 +1170,6 @@ export interface NexusGenFieldTypeNames {
     createdon: 'DateTime'
     description: 'String'
     id: 'Int'
-    image: 'String'
     longtitle: 'String'
     pagetitle: 'String'
     published: 'Boolean'
@@ -1172,7 +1188,6 @@ export interface NexusGenFieldTypeNames {
     createdon: 'DateTime'
     description: 'String'
     id: 'Int'
-    image: 'String'
     longtitle: 'String'
     pagetitle: 'String'
     published: 'Boolean'
@@ -1196,7 +1211,6 @@ export interface NexusGenFieldTypeNames {
     createdon: 'DateTime'
     description: 'String'
     id: 'Int'
-    image: 'String'
     longtitle: 'String'
     pagetitle: 'String'
     published: 'Boolean'
@@ -1235,6 +1249,17 @@ export interface NexusGenFieldTypeNames {
     vote_direction: 'String'
     vote_value: 'Float'
   }
+  Votes: {
+    // field return type name
+    Company: 'Company'
+    avg: 'VotesAvg'
+    target_id: 'Int'
+    type: 'Int'
+  }
+  VotesAvg: {
+    // field return type name
+    vote_value_avg: 'Float'
+  }
   bani684_site_tmplvar_contentvalues: {
     // field return type name
     contentid: 'Int'
@@ -1253,7 +1278,6 @@ export interface NexusGenFieldTypeNames {
     createdon: 'DateTime'
     description: 'String'
     id: 'Int'
-    image: 'String'
     longtitle: 'String'
     pagetitle: 'String'
     published: 'Boolean'

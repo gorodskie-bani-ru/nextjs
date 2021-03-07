@@ -12,6 +12,20 @@ export const Company = objectType({
 
     coords(t)
 
+    /**
+     * Если прописать резолвер, то поле не будет определено в типе объекта,
+     * а оно нужно, чтобы можно было с чистым запросом прописать
+     */
+    t.string('image', {
+      // resolve(parent) {
+      //   return (
+      //     parent.TemplateVarValues?.find(
+      //       (n) => n.tmplvarid === TemplateVarIDs.image
+      //     )?.value || null
+      //   )
+      // },
+    })
+
     t.string('address', {
       description: 'Адрес (без указания города)',
       resolve(parent) {

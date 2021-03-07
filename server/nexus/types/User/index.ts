@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { objectType } from 'nexus'
 
 export const UserAttributes = objectType({
