@@ -1097,7 +1097,7 @@ model bani684_site_content {
   TemplateVarValues bani684_site_tmplvar_contentvalues[]
 
   CreatedBy bani684_users           @relation(fields: [createdby], references: [id])
-  Votes     bani684_society_votes[] 
+  Votes     bani684_society_votes[]
 
   @@index([alias], name: "alias")
   @@index([parent, menuindex, id], name: "cache_refresh_idx")
@@ -1406,7 +1406,8 @@ model bani684_society_votes {
   vote_date      DateTime @default(now("0")) @db.DateTime(0)
 
 
-  Type bani684_site_content? @relation(fields: [type], references: [id])
+  Type      bani684_site_content? @relation(fields: [type], references: [id])
+  CreatedBy bani684_users         @relation(fields: [user_id], references: [id])
   @@unique([target_id, target_class, user_id, type], name: "target_id")
   @@unique([thread_id, user_id, type], name: "thread_id")
 }
@@ -1499,6 +1500,7 @@ model bani684_users {
   Resources  bani684_site_content[]
 
   bani684_society_comments bani684_society_comments[]
+  bani684_society_votes bani684_society_votes[]
   @@index([class_key], name: "class_key")
   @@index([contract_date], name: "contract_date")
   @@index([createdby], name: "createdby")

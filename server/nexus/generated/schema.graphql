@@ -396,6 +396,17 @@ type Query {
   Количество пользователей
   """
   usersCount(where: bani684_usersWhereInput): Int!
+
+  """
+  Оценки
+  """
+  votes(
+    cursor: bani684_society_votesWhereUniqueInput
+    orderBy: [bani684_society_votesOrderByInput!]
+    skip: Int
+    take: Int
+    where: bani684_society_votesWhereInput
+  ): [Vote!]!
 }
 
 """
@@ -585,6 +596,31 @@ type UserAttributes {
   photo: String!
 }
 
+"""
+Оценка
+"""
+type Vote {
+  CreatedBy: User
+  Type: Rating
+  id: Int!
+  target_class: String!
+  target_id: Int!
+  thread_id: Int
+  type: Int
+  user_id: Int!
+  vote_date: DateTime!
+
+  """
+  1 || - || 0
+  """
+  vote_direction: String!
+
+  """
+  Значение оценки
+  """
+  vote_value: Float!
+}
+
 input bani684_site_contentOrderByInput {
   CreatedBy: bani684_usersOrderByInput
   alias: SortOrder
@@ -753,8 +789,36 @@ input bani684_society_commentsWhereUniqueInput {
   id: Int
 }
 
+input bani684_society_votesOrderByInput {
+  CreatedBy: bani684_usersOrderByInput
+  Type: bani684_site_contentOrderByInput
+  id: SortOrder
+  target_class: SortOrder
+  target_id: SortOrder
+  thread_id: SortOrder
+  type: SortOrder
+  user_id: SortOrder
+  vote_date: SortOrder
+  vote_direction: SortOrder
+  vote_value: SortOrder
+}
+
+input bani684_society_votesTarget_idCompoundUniqueInput {
+  target_class: String!
+  target_id: Int!
+  type: Int!
+  user_id: Int!
+}
+
+input bani684_society_votesThread_idCompoundUniqueInput {
+  thread_id: Int!
+  type: Int!
+  user_id: Int!
+}
+
 input bani684_society_votesWhereInput {
   AND: [bani684_society_votesWhereInput!]
+  CreatedBy: bani684_usersWhereInput
   NOT: [bani684_society_votesWhereInput!]
   OR: [bani684_society_votesWhereInput!]
   Type: bani684_site_contentWhereInput
@@ -767,6 +831,12 @@ input bani684_society_votesWhereInput {
   vote_date: DateTimeFilter
   vote_direction: StringFilter
   vote_value: FloatFilter
+}
+
+input bani684_society_votesWhereUniqueInput {
+  id: Int
+  target_id: bani684_society_votesTarget_idCompoundUniqueInput
+  thread_id: bani684_society_votesThread_idCompoundUniqueInput
 }
 
 input bani684_user_attributesOrderByInput {
@@ -862,6 +932,7 @@ input bani684_usersWhereInput {
   Resources: Bani684_site_contentListRelationFilter
   active: BoolFilter
   bani684_society_comments: Bani684_society_commentsListRelationFilter
+  bani684_society_votes: Bani684_society_votesListRelationFilter
   cachepwd: StringFilter
   class_key: StringFilter
   contract_date: IntNullableFilter

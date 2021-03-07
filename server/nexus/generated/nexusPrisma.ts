@@ -543,8 +543,8 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'internalKey' | 'createdon'
     }
     bani684SocietyVotess: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'target_id' | 'target_class' | 'type' | 'thread_id' | 'user_id' | 'vote_direction' | 'vote_value' | 'vote_date' | 'Type'
-      ordering: 'id' | 'target_id' | 'target_class' | 'type' | 'thread_id' | 'user_id' | 'vote_direction' | 'vote_value' | 'vote_date' | 'Type'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'target_id' | 'target_class' | 'type' | 'thread_id' | 'user_id' | 'vote_direction' | 'vote_value' | 'vote_date' | 'Type' | 'CreatedBy'
+      ordering: 'id' | 'target_id' | 'target_class' | 'type' | 'thread_id' | 'user_id' | 'vote_direction' | 'vote_value' | 'vote_date' | 'Type' | 'CreatedBy'
     }
     bani684SystemEventnamess: {
       filtering: 'AND' | 'OR' | 'NOT' | 'name' | 'service' | 'groupname'
@@ -563,7 +563,7 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'name' | 'description' | 'service_url' | 'username' | 'api_key' | 'created' | 'updated' | 'active' | 'priority' | 'properties'
     }
     bani684Userss: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'username' | 'password' | 'cachepwd' | 'class_key' | 'active' | 'remote_key' | 'remote_data' | 'hash_class' | 'salt' | 'primary_group' | 'session_stale' | 'sudo' | 'createdon' | 'delegate' | 'offer' | 'offer_date' | 'contract_date' | 'createdby' | 'Attributes' | 'Resources' | 'bani684_society_comments'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'username' | 'password' | 'cachepwd' | 'class_key' | 'active' | 'remote_key' | 'remote_data' | 'hash_class' | 'salt' | 'primary_group' | 'session_stale' | 'sudo' | 'createdon' | 'delegate' | 'offer' | 'offer_date' | 'contract_date' | 'createdby' | 'Attributes' | 'Resources' | 'bani684_society_comments' | 'bani684_society_votes'
       ordering: 'id' | 'username' | 'password' | 'cachepwd' | 'class_key' | 'active' | 'remote_key' | 'remote_data' | 'hash_class' | 'salt' | 'primary_group' | 'session_stale' | 'sudo' | 'createdon' | 'delegate' | 'offer' | 'offer_date' | 'contract_date' | 'createdby' | 'Attributes'
     }
     bani684UserAttributess: {
@@ -865,8 +865,8 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'tmplvarid' | 'contentid' | 'value' | 'Resource'
     }
     Votes: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'target_id' | 'target_class' | 'type' | 'thread_id' | 'user_id' | 'vote_direction' | 'vote_value' | 'vote_date' | 'Type'
-      ordering: 'id' | 'target_id' | 'target_class' | 'type' | 'thread_id' | 'user_id' | 'vote_direction' | 'vote_value' | 'vote_date' | 'Type'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'target_id' | 'target_class' | 'type' | 'thread_id' | 'user_id' | 'vote_direction' | 'vote_value' | 'vote_date' | 'Type' | 'CreatedBy'
+      ordering: 'id' | 'target_id' | 'target_class' | 'type' | 'thread_id' | 'user_id' | 'vote_direction' | 'vote_value' | 'vote_date' | 'Type' | 'CreatedBy'
     }
   }
   bani684_site_htmlsnippets: {
@@ -952,6 +952,10 @@ interface NexusPrismaInputs {
     bani684_society_comments: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'thread_id' | 'parent' | 'text' | 'raw_text' | 'ip' | 'createdon' | 'createdby' | 'editedon' | 'editedby' | 'published' | 'deleted' | 'deletedon' | 'deletedby' | 'comments_count' | 'properties' | 'CreatedBy'
       ordering: 'id' | 'thread_id' | 'parent' | 'text' | 'raw_text' | 'ip' | 'createdon' | 'createdby' | 'editedon' | 'editedby' | 'published' | 'deleted' | 'deletedon' | 'deletedby' | 'comments_count' | 'properties' | 'CreatedBy'
+    }
+    bani684_society_votes: {
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'target_id' | 'target_class' | 'type' | 'thread_id' | 'user_id' | 'vote_direction' | 'vote_value' | 'vote_date' | 'Type' | 'CreatedBy'
+      ordering: 'id' | 'target_id' | 'target_class' | 'type' | 'thread_id' | 'user_id' | 'vote_direction' | 'vote_value' | 'vote_date' | 'Type' | 'CreatedBy'
     }
   }
   bani684_user_attributes: {
@@ -2914,6 +2918,7 @@ interface NexusPrismaOutputs {
     vote_value: 'Float'
     vote_date: 'DateTime'
     Type: 'bani684_site_content'
+    CreatedBy: 'bani684_users'
   }
   bani684_system_eventnames: {
     name: 'String'
@@ -2984,6 +2989,7 @@ interface NexusPrismaOutputs {
     Attributes: 'bani684_user_attributes'
     Resources: 'bani684_site_content'
     bani684_society_comments: 'bani684_society_comments'
+    bani684_society_votes: 'bani684_society_votes'
   }
   bani684_user_attributes: {
     id: 'Int'
