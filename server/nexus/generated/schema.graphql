@@ -19,6 +19,12 @@ input Bani684_society_commentsListRelationFilter {
   some: bani684_society_commentsWhereInput
 }
 
+input Bani684_society_votesListRelationFilter {
+  every: bani684_society_votesWhereInput
+  none: bani684_society_votesWhereInput
+  some: bani684_society_votesWhereInput
+}
+
 input BoolFilter {
   equals: Boolean
   not: NestedBoolFilter
@@ -142,6 +148,17 @@ A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `dat
 """
 scalar DateTime
 
+input DateTimeFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: NestedDateTimeFilter
+  notIn: [DateTime!]
+}
+
 input DateTimeNullableFilter {
   equals: DateTime
   gt: DateTime
@@ -151,6 +168,17 @@ input DateTimeNullableFilter {
   lte: DateTime
   not: NestedDateTimeNullableFilter
   notIn: [DateTime!]
+}
+
+input FloatFilter {
+  equals: Float
+  gt: Float
+  gte: Float
+  in: [Float!]
+  lt: Float
+  lte: Float
+  not: NestedFloatFilter
+  notIn: [Float!]
 }
 
 type GalleryImage {
@@ -186,6 +214,17 @@ input NestedBoolFilter {
   not: NestedBoolFilter
 }
 
+input NestedDateTimeFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: NestedDateTimeFilter
+  notIn: [DateTime!]
+}
+
 input NestedDateTimeNullableFilter {
   equals: DateTime
   gt: DateTime
@@ -195,6 +234,17 @@ input NestedDateTimeNullableFilter {
   lte: DateTime
   not: NestedDateTimeNullableFilter
   notIn: [DateTime!]
+}
+
+input NestedFloatFilter {
+  equals: Float
+  gt: Float
+  gte: Float
+  in: [Float!]
+  lt: Float
+  lte: Float
+  not: NestedFloatFilter
+  notIn: [Float!]
 }
 
 input NestedIntFilter {
@@ -588,6 +638,7 @@ input bani684_site_contentWhereInput {
   NOT: [bani684_site_contentWhereInput!]
   OR: [bani684_site_contentWhereInput!]
   TemplateVarValues: Bani684_site_tmplvar_contentvaluesListRelationFilter
+  Votes: Bani684_society_votesListRelationFilter
   alias: StringNullableFilter
   cacheable: BoolFilter
   class_key: StringFilter
@@ -700,6 +751,22 @@ input bani684_society_commentsWhereInput {
 
 input bani684_society_commentsWhereUniqueInput {
   id: Int
+}
+
+input bani684_society_votesWhereInput {
+  AND: [bani684_society_votesWhereInput!]
+  NOT: [bani684_society_votesWhereInput!]
+  OR: [bani684_society_votesWhereInput!]
+  Type: bani684_site_contentWhereInput
+  id: IntFilter
+  target_class: StringFilter
+  target_id: IntFilter
+  thread_id: IntNullableFilter
+  type: IntNullableFilter
+  user_id: IntFilter
+  vote_date: DateTimeFilter
+  vote_direction: StringFilter
+  vote_value: FloatFilter
 }
 
 input bani684_user_attributesOrderByInput {

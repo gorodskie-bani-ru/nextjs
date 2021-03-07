@@ -459,7 +459,7 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'access' | 'data'
     }
     bani684SiteContents: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'type' | 'contentType' | 'pagetitle' | 'longtitle' | 'description' | 'alias' | 'link_attributes' | 'published' | 'pub_date' | 'unpub_date' | 'parent' | 'isfolder' | 'introtext' | 'content' | 'richtext' | 'template' | 'menuindex' | 'searchable' | 'cacheable' | 'createdby' | 'createdon' | 'editedby' | 'editedon' | 'deleted' | 'deletedon' | 'deletedby' | 'publishedon' | 'publishedby' | 'menutitle' | 'donthit' | 'privateweb' | 'privatemgr' | 'content_dispo' | 'hidemenu' | 'class_key' | 'context_key' | 'content_type' | 'uri' | 'uri_override' | 'hide_children_in_tree' | 'show_in_tree' | 'properties' | 'TemplateVarValues' | 'CreatedBy'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'type' | 'contentType' | 'pagetitle' | 'longtitle' | 'description' | 'alias' | 'link_attributes' | 'published' | 'pub_date' | 'unpub_date' | 'parent' | 'isfolder' | 'introtext' | 'content' | 'richtext' | 'template' | 'menuindex' | 'searchable' | 'cacheable' | 'createdby' | 'createdon' | 'editedby' | 'editedon' | 'deleted' | 'deletedon' | 'deletedby' | 'publishedon' | 'publishedby' | 'menutitle' | 'donthit' | 'privateweb' | 'privatemgr' | 'content_dispo' | 'hidemenu' | 'class_key' | 'context_key' | 'content_type' | 'uri' | 'uri_override' | 'hide_children_in_tree' | 'show_in_tree' | 'properties' | 'TemplateVarValues' | 'CreatedBy' | 'Votes'
       ordering: 'id' | 'type' | 'contentType' | 'pagetitle' | 'longtitle' | 'description' | 'alias' | 'link_attributes' | 'published' | 'pub_date' | 'unpub_date' | 'parent' | 'isfolder' | 'introtext' | 'content' | 'richtext' | 'template' | 'menuindex' | 'searchable' | 'cacheable' | 'createdby' | 'createdon' | 'editedby' | 'editedon' | 'deleted' | 'deletedon' | 'deletedby' | 'publishedon' | 'publishedby' | 'menutitle' | 'donthit' | 'privateweb' | 'privatemgr' | 'content_dispo' | 'hidemenu' | 'class_key' | 'context_key' | 'content_type' | 'uri' | 'uri_override' | 'hide_children_in_tree' | 'show_in_tree' | 'properties' | 'CreatedBy'
     }
     bani684SiteHtmlsnippetss: {
@@ -543,8 +543,8 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'internalKey' | 'createdon'
     }
     bani684SocietyVotess: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'target_id' | 'target_class' | 'type' | 'thread_id' | 'user_id' | 'vote_direction' | 'vote_value' | 'vote_date'
-      ordering: 'id' | 'target_id' | 'target_class' | 'type' | 'thread_id' | 'user_id' | 'vote_direction' | 'vote_value' | 'vote_date'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'target_id' | 'target_class' | 'type' | 'thread_id' | 'user_id' | 'vote_direction' | 'vote_value' | 'vote_date' | 'Type'
+      ordering: 'id' | 'target_id' | 'target_class' | 'type' | 'thread_id' | 'user_id' | 'vote_direction' | 'vote_value' | 'vote_date' | 'Type'
     }
     bani684SystemEventnamess: {
       filtering: 'AND' | 'OR' | 'NOT' | 'name' | 'service' | 'groupname'
@@ -864,6 +864,10 @@ interface NexusPrismaInputs {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'tmplvarid' | 'contentid' | 'value' | 'Resource'
       ordering: 'id' | 'tmplvarid' | 'contentid' | 'value' | 'Resource'
     }
+    Votes: {
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'target_id' | 'target_class' | 'type' | 'thread_id' | 'user_id' | 'vote_direction' | 'vote_value' | 'vote_date' | 'Type'
+      ordering: 'id' | 'target_id' | 'target_class' | 'type' | 'thread_id' | 'user_id' | 'vote_direction' | 'vote_value' | 'vote_date' | 'Type'
+    }
   }
   bani684_site_htmlsnippets: {
 
@@ -942,7 +946,7 @@ interface NexusPrismaInputs {
   }
   bani684_users: {
     Resources: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'type' | 'contentType' | 'pagetitle' | 'longtitle' | 'description' | 'alias' | 'link_attributes' | 'published' | 'pub_date' | 'unpub_date' | 'parent' | 'isfolder' | 'introtext' | 'content' | 'richtext' | 'template' | 'menuindex' | 'searchable' | 'cacheable' | 'createdby' | 'createdon' | 'editedby' | 'editedon' | 'deleted' | 'deletedon' | 'deletedby' | 'publishedon' | 'publishedby' | 'menutitle' | 'donthit' | 'privateweb' | 'privatemgr' | 'content_dispo' | 'hidemenu' | 'class_key' | 'context_key' | 'content_type' | 'uri' | 'uri_override' | 'hide_children_in_tree' | 'show_in_tree' | 'properties' | 'TemplateVarValues' | 'CreatedBy'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'type' | 'contentType' | 'pagetitle' | 'longtitle' | 'description' | 'alias' | 'link_attributes' | 'published' | 'pub_date' | 'unpub_date' | 'parent' | 'isfolder' | 'introtext' | 'content' | 'richtext' | 'template' | 'menuindex' | 'searchable' | 'cacheable' | 'createdby' | 'createdon' | 'editedby' | 'editedon' | 'deleted' | 'deletedon' | 'deletedby' | 'publishedon' | 'publishedby' | 'menutitle' | 'donthit' | 'privateweb' | 'privatemgr' | 'content_dispo' | 'hidemenu' | 'class_key' | 'context_key' | 'content_type' | 'uri' | 'uri_override' | 'hide_children_in_tree' | 'show_in_tree' | 'properties' | 'TemplateVarValues' | 'CreatedBy' | 'Votes'
       ordering: 'id' | 'type' | 'contentType' | 'pagetitle' | 'longtitle' | 'description' | 'alias' | 'link_attributes' | 'published' | 'pub_date' | 'unpub_date' | 'parent' | 'isfolder' | 'introtext' | 'content' | 'richtext' | 'template' | 'menuindex' | 'searchable' | 'cacheable' | 'createdby' | 'createdon' | 'editedby' | 'editedon' | 'deleted' | 'deletedon' | 'deletedby' | 'publishedon' | 'publishedby' | 'menutitle' | 'donthit' | 'privateweb' | 'privatemgr' | 'content_dispo' | 'hidemenu' | 'class_key' | 'context_key' | 'content_type' | 'uri' | 'uri_override' | 'hide_children_in_tree' | 'show_in_tree' | 'properties' | 'CreatedBy'
     }
     bani684_society_comments: {
@@ -2701,6 +2705,7 @@ interface NexusPrismaOutputs {
     properties: 'String'
     TemplateVarValues: 'bani684_site_tmplvar_contentvalues'
     CreatedBy: 'bani684_users'
+    Votes: 'bani684_society_votes'
   }
   bani684_site_htmlsnippets: {
     id: 'Int'
@@ -2908,6 +2913,7 @@ interface NexusPrismaOutputs {
     vote_direction: 'String'
     vote_value: 'Float'
     vote_date: 'DateTime'
+    Type: 'bani684_site_content'
   }
   bani684_system_eventnames: {
     name: 'String'

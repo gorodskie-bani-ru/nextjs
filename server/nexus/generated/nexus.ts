@@ -59,10 +59,27 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['bani684_society_commentsWhereInput'] | null // bani684_society_commentsWhereInput
     some?: NexusGenInputs['bani684_society_commentsWhereInput'] | null // bani684_society_commentsWhereInput
   }
+  Bani684_society_votesListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['bani684_society_votesWhereInput'] | null // bani684_society_votesWhereInput
+    none?: NexusGenInputs['bani684_society_votesWhereInput'] | null // bani684_society_votesWhereInput
+    some?: NexusGenInputs['bani684_society_votesWhereInput'] | null // bani684_society_votesWhereInput
+  }
   BoolFilter: {
     // input type
     equals?: boolean | null // Boolean
     not?: NexusGenInputs['NestedBoolFilter'] | null // NestedBoolFilter
+  }
+  DateTimeFilter: {
+    // input type
+    equals?: NexusGenScalars['DateTime'] | null // DateTime
+    gt?: NexusGenScalars['DateTime'] | null // DateTime
+    gte?: NexusGenScalars['DateTime'] | null // DateTime
+    in?: NexusGenScalars['DateTime'][] | null // [DateTime!]
+    lt?: NexusGenScalars['DateTime'] | null // DateTime
+    lte?: NexusGenScalars['DateTime'] | null // DateTime
+    not?: NexusGenInputs['NestedDateTimeFilter'] | null // NestedDateTimeFilter
+    notIn?: NexusGenScalars['DateTime'][] | null // [DateTime!]
   }
   DateTimeNullableFilter: {
     // input type
@@ -74,6 +91,17 @@ export interface NexusGenInputs {
     lte?: NexusGenScalars['DateTime'] | null // DateTime
     not?: NexusGenInputs['NestedDateTimeNullableFilter'] | null // NestedDateTimeNullableFilter
     notIn?: NexusGenScalars['DateTime'][] | null // [DateTime!]
+  }
+  FloatFilter: {
+    // input type
+    equals?: number | null // Float
+    gt?: number | null // Float
+    gte?: number | null // Float
+    in?: number[] | null // [Float!]
+    lt?: number | null // Float
+    lte?: number | null // Float
+    not?: NexusGenInputs['NestedFloatFilter'] | null // NestedFloatFilter
+    notIn?: number[] | null // [Float!]
   }
   IntFilter: {
     // input type
@@ -102,6 +130,17 @@ export interface NexusGenInputs {
     equals?: boolean | null // Boolean
     not?: NexusGenInputs['NestedBoolFilter'] | null // NestedBoolFilter
   }
+  NestedDateTimeFilter: {
+    // input type
+    equals?: NexusGenScalars['DateTime'] | null // DateTime
+    gt?: NexusGenScalars['DateTime'] | null // DateTime
+    gte?: NexusGenScalars['DateTime'] | null // DateTime
+    in?: NexusGenScalars['DateTime'][] | null // [DateTime!]
+    lt?: NexusGenScalars['DateTime'] | null // DateTime
+    lte?: NexusGenScalars['DateTime'] | null // DateTime
+    not?: NexusGenInputs['NestedDateTimeFilter'] | null // NestedDateTimeFilter
+    notIn?: NexusGenScalars['DateTime'][] | null // [DateTime!]
+  }
   NestedDateTimeNullableFilter: {
     // input type
     equals?: NexusGenScalars['DateTime'] | null // DateTime
@@ -112,6 +151,17 @@ export interface NexusGenInputs {
     lte?: NexusGenScalars['DateTime'] | null // DateTime
     not?: NexusGenInputs['NestedDateTimeNullableFilter'] | null // NestedDateTimeNullableFilter
     notIn?: NexusGenScalars['DateTime'][] | null // [DateTime!]
+  }
+  NestedFloatFilter: {
+    // input type
+    equals?: number | null // Float
+    gt?: number | null // Float
+    gte?: number | null // Float
+    in?: number[] | null // [Float!]
+    lt?: number | null // Float
+    lte?: number | null // Float
+    not?: NexusGenInputs['NestedFloatFilter'] | null // NestedFloatFilter
+    notIn?: number[] | null // [Float!]
   }
   NestedIntFilter: {
     // input type
@@ -247,6 +297,7 @@ export interface NexusGenInputs {
     TemplateVarValues?:
       | NexusGenInputs['Bani684_site_tmplvar_contentvaluesListRelationFilter']
       | null // Bani684_site_tmplvar_contentvaluesListRelationFilter
+    Votes?: NexusGenInputs['Bani684_society_votesListRelationFilter'] | null // Bani684_society_votesListRelationFilter
     alias?: NexusGenInputs['StringNullableFilter'] | null // StringNullableFilter
     cacheable?: NexusGenInputs['BoolFilter'] | null // BoolFilter
     class_key?: NexusGenInputs['StringFilter'] | null // StringFilter
@@ -356,6 +407,22 @@ export interface NexusGenInputs {
   bani684_society_commentsWhereUniqueInput: {
     // input type
     id?: number | null // Int
+  }
+  bani684_society_votesWhereInput: {
+    // input type
+    AND?: NexusGenInputs['bani684_society_votesWhereInput'][] | null // [bani684_society_votesWhereInput!]
+    NOT?: NexusGenInputs['bani684_society_votesWhereInput'][] | null // [bani684_society_votesWhereInput!]
+    OR?: NexusGenInputs['bani684_society_votesWhereInput'][] | null // [bani684_society_votesWhereInput!]
+    Type?: NexusGenInputs['bani684_site_contentWhereInput'] | null // bani684_site_contentWhereInput
+    id?: NexusGenInputs['IntFilter'] | null // IntFilter
+    target_class?: NexusGenInputs['StringFilter'] | null // StringFilter
+    target_id?: NexusGenInputs['IntFilter'] | null // IntFilter
+    thread_id?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    type?: NexusGenInputs['IntNullableFilter'] | null // IntNullableFilter
+    user_id?: NexusGenInputs['IntFilter'] | null // IntFilter
+    vote_date?: NexusGenInputs['DateTimeFilter'] | null // DateTimeFilter
+    vote_direction?: NexusGenInputs['StringFilter'] | null // StringFilter
+    vote_value?: NexusGenInputs['FloatFilter'] | null // FloatFilter
   }
   bani684_user_attributesOrderByInput: {
     // input type

@@ -1096,7 +1096,8 @@ model bani684_site_content {
 
   TemplateVarValues bani684_site_tmplvar_contentvalues[]
 
-  CreatedBy bani684_users @relation(fields: [createdby], references: [id])
+  CreatedBy bani684_users           @relation(fields: [createdby], references: [id])
+  Votes     bani684_society_votes[] 
 
   @@index([alias], name: "alias")
   @@index([parent, menuindex, id], name: "cache_refresh_idx")
@@ -1397,13 +1398,15 @@ model bani684_society_votes {
   id             Int      @id @default(autoincrement()) @db.UnsignedInt
   target_id      Int      @db.UnsignedInt
   target_class   String   @db.VarChar(100)
-  type           Int      @default(0) @db.UnsignedInt
+  type           Int?     @db.UnsignedInt
   thread_id      Int?     @db.UnsignedInt
   user_id        Int      @db.UnsignedInt
   vote_direction String   @default("0") @db.Char(1)
   vote_value     Float    @default(0.000) @db.Float
   vote_date      DateTime @default(now("0")) @db.DateTime(0)
 
+
+  Type bani684_site_content? @relation(fields: [type], references: [id])
   @@unique([target_id, target_class, user_id, type], name: "target_id")
   @@unique([thread_id, user_id, type], name: "thread_id")
 }
@@ -1495,6 +1498,7 @@ model bani684_users {
   Attributes bani684_user_attributes?
   Resources  bani684_site_content[]
 
+  bani684_society_comments bani684_society_comments[]
   @@index([class_key], name: "class_key")
   @@index([contract_date], name: "contract_date")
   @@index([createdby], name: "createdby")
@@ -1502,7 +1506,6 @@ model bani684_users {
   @@index([offer_date], name: "offer_date")
   @@index([primary_group], name: "primary_group")
   @@index([remote_key], name: "remote_key")
-  bani684_society_comments bani684_society_comments[]
 }
 
 model bani684_user_attributes {

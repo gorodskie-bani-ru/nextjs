@@ -1607,7 +1607,7 @@ CREATE TABLE `bani684_society_votes` (
     `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
     `target_id` INTEGER UNSIGNED NOT NULL,
     `target_class` VARCHAR(100) NOT NULL,
-    `type` INTEGER UNSIGNED NOT NULL DEFAULT 0,
+    `type` INTEGER UNSIGNED,
     `thread_id` INTEGER UNSIGNED,
     `user_id` INTEGER UNSIGNED NOT NULL,
     `vote_direction` CHAR(1) NOT NULL DEFAULT '0',
