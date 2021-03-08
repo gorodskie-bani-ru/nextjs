@@ -1,95 +1,58 @@
-import React, { useMemo } from 'react'
-import {
-  ResourcesDocument,
-  ResourcesQueryVariables,
-  useResourcesQuery,
-  SortOrder,
-} from 'src/modules/gql/generated'
+import React, { useContext, useMemo } from 'react'
 
 import View from './View'
 
 import { Page } from '../_App/interfaces'
-import { useRouter } from 'next/router'
-import { ParsedUrlQuery } from 'querystring'
 import { NextSeo } from 'next-seo'
-
-const getQueryParams = (
-  query: ParsedUrlQuery
-): ResourcesQueryVariables & { page: number } => {
-  let skip: number | undefined
-
-  const take = 10
-
-  const page =
-    (query.page && typeof query.page === 'string' && parseInt(query.page)) || 0
-
-  if (page > 1) {
-    skip = (page - 1) * take
-  }
-
-  return {
-    page,
-    skip,
-    take,
-    where: {
-      parent: {
-        equals: 1349,
-      },
-    },
-    orderBy: {
-      menuindex: SortOrder.ASC,
-    },
-    withContent: true,
-    withCreatedBy: true,
-  }
-}
+import {
+  useVotesByRatingQuery,
+  VotesByRatingDocument,
+} from 'src/modules/gql/generated'
+import { AppContext } from '../_App/Context'
 
 /**
- * Топики
+ * Рейтинги
  */
 const RatingsPage: Page = () => {
-  const router = useRouter()
+  const response = useVotesByRatingQuery()
 
-  const { query } = router
+  const context = useContext(AppContext)
 
-  const { ...queryVariables } = useMemo(() => {
-    return {
-      ...getQueryParams(query),
+  return useMemo(() => {
+    const ratingTypes = response.data?.ratings
+
+    if (!ratingTypes?.length) {
+      return null
     }
-  }, [query])
 
-  const response = useResourcesQuery({
-    variables: queryVariables,
-    onError: console.error,
-  })
+    return (
+      <>
+        <NextSeo
+          title="Рейтинги бань и саун"
+          description={`Оценки по критериям ${ratingTypes
+            .map((n) => `"${n.pagetitle}"`)
+            .join(', ')}`}
+        />
 
-  response
-
-  return (
-    <>
-      <NextSeo
-        title="Рейтинги бань и саун"
-        description="Оценки по критериям Парилка, Интерьер..."
-      />
-
-      <View />
-    </>
-  )
+        <View
+          ratingsTypes={ratingTypes}
+          votes={context?.appData?.companies_rating || []}
+          companies={response.data?.companies || []}
+        />
+      </>
+    )
+  }, [
+    context?.appData?.companies_rating,
+    response.data?.companies,
+    response.data?.ratings,
+  ])
 }
 
 RatingsPage.getInitialProps = async (context) => {
   const { apolloClient } = context
 
   await apolloClient.query({
-    query: ResourcesDocument,
-
-    /**
-     * Важно, чтобы все переменные запроса серверные и фронтовые совпадали,
-     * иначе при рендеринге не будут получены данные из кеша и рендер будет пустой.
-     */
-    variables: {
-      ...getQueryParams(context.query),
-    },
+    query: VotesByRatingDocument,
   })
 
   return {}

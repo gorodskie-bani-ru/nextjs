@@ -83,6 +83,7 @@ export const votes = (t: ObjectDefinitionBlock<'Query'>) => {
 
       type CompaniesResult = {
         company_id: NexusGenObjects['Company']['id']
+        company_uri: NexusGenObjects['Company']['uri']
         company_pagetitle: NexusGenObjects['Company']['pagetitle']
         company_createdby: NexusGenObjects['Company']['createdby']
         company_createdon: NexusGenObjects['Company']['createdon']
@@ -149,6 +150,7 @@ export const votes = (t: ObjectDefinitionBlock<'Query'>) => {
             )
             .select({
               company_id: 'company.id',
+              company_uri: 'company.uri',
               company_pagetitle: 'company.pagetitle',
               company_createdby: 'company.createdby',
               company_createdon: 'company.createdon',
@@ -183,6 +185,7 @@ export const votes = (t: ObjectDefinitionBlock<'Query'>) => {
           'target_id',
           'voteValueAvg',
           'company_id',
+          'company_uri',
           'company_pagetitle',
           'company_createdby',
           'company_createdon',
@@ -206,6 +209,7 @@ export const votes = (t: ObjectDefinitionBlock<'Query'>) => {
             voteValueAvg,
 
             company_id,
+            company_uri,
             company_pagetitle,
             company_createdby,
             company_createdon,
@@ -225,6 +229,7 @@ export const votes = (t: ObjectDefinitionBlock<'Query'>) => {
             },
             Company: {
               id: company_id,
+              uri: company_uri,
               pagetitle: company_pagetitle,
               createdby: company_createdby,
               createdon: company_createdon,

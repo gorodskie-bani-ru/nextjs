@@ -9,24 +9,35 @@
 
 import * as Types from './types';
 
+import { RatingFragment } from './rating';
+import { CompanyFieldsFragment } from './CompanyFields';
 import { gql } from '@apollo/client';
+import { RatingFragmentDoc } from './rating';
+import { CompanyFieldsFragmentDoc } from './CompanyFields';
 import * as Apollo from '@apollo/client';
 export type VotesByRatingQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type VotesByRatingQuery = { __typename?: 'Query', votesByRating: Array<{ __typename?: 'Votes', type?: Types.Maybe<number>, avg: { __typename?: 'VotesAvg', voteValueAvg: number } }> };
+export type VotesByRatingQuery = { __typename?: 'Query', ratings: Array<(
+    { __typename?: 'Rating' }
+    & RatingFragment
+  )>, companies: Array<(
+    { __typename?: 'Company' }
+    & CompanyFieldsFragment
+  )> };
 
 
 export const VotesByRatingDocument = gql`
     query votesByRating {
-  votesByRating {
-    type
-    avg {
-      voteValueAvg
-    }
+  ratings {
+    ...rating
+  }
+  companies {
+    ...CompanyFields
   }
 }
-    `;
+    ${RatingFragmentDoc}
+${CompanyFieldsFragmentDoc}`;
 
 /**
  * __useVotesByRatingQuery__

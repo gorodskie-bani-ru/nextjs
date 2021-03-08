@@ -8,6 +8,7 @@ export * from './comment';
 export * from './commentNoNesting';
 export * from './comments';
 export * from './companies';
+export * from './rating';
 export * from './resource';
 export * from './resourceNoNesting';
 export * from './resources';
