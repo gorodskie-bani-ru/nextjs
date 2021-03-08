@@ -2,7 +2,7 @@
 
 import { objectType } from 'nexus'
 import userDefinitions from './definitions/User'
-import resources from './definitions/Resource'
+import { resources } from './definitions/Resource'
 import { society } from './definitions/society'
 
 export const Query = objectType({

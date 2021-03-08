@@ -128,7 +128,7 @@ export interface Coordinates {
   __typename?: 'Coordinates';
   lat: Scalars['Float'];
   lng: Scalars['Float'];
-  /** Дефолтное знаяение приближенности карты. Используется в городах. */
+  /** Дефолтное значение приближенности карты. Используется в городах. */
   zoom?: Maybe<Scalars['Int']>;
 }
 

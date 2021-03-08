@@ -5,12 +5,19 @@ import { arg, list, nonNull, ObjectDefinitionBlock } from 'nexus/dist/core'
 import { Prisma } from '@prisma/client'
 import { userSelect } from '../User'
 
-export default (t: ObjectDefinitionBlock<'Query'>) => {
+export const Resource = (t: ObjectDefinitionBlock<'Query'>) => {
   const defaultWhere: Prisma.bani684_site_contentFindManyArgs['where'] = {
     deleted: false,
     published: true,
     hidemenu: false,
   }
+
+  // t.crud.bani684SiteContents({
+  //   type: "Resource",
+  //   alias: "contents",
+  //   filtering: true,
+  //   ordering: true,
+  // });
 
   t.nonNull.int('resourcesCount', {
     description: 'Количество ресурсов',
