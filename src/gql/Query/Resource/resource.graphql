@@ -7,9 +7,11 @@ query resources(
   $withCreatedBy: Boolean = false # $withComments: Boolean = false
 ) {
   resources(where: $where, orderBy: $orderBy, take: $take, skip: $skip) {
-    ... on Resource {
-      ...resource
-    }
+    ...resource
+
+    # ... on Resource {
+    #   ...resource
+    # }
 
     ... on Company {
       ...CompanyFields

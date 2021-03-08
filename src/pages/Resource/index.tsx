@@ -85,19 +85,37 @@ const ResourcePage: Page<ResourcePageProps> = () => {
       //
 
       return <CompanyView company={object} />
-    }
-    // Topic
-    else if (
-      object.__typename === 'Resource' &&
-      [15, 28].includes(object.template)
+    } else if (
+      object.__typename === 'Review' ||
+      object.__typename === 'Topic'
     ) {
+      //
+
       return (
         <>
           <NextSeo title={object.pagetitle} />
           <Topic topic={object} withComments />
         </>
       )
-    } else {
+    }
+    // else if (object.__typename === 'City') {
+    //   //
+
+    //   return <CompanyView company={object} />
+    // }
+    // Topic
+    // else if (
+    //   object.__typename === 'Resource' &&
+    //   [15, 28].includes(object.template)
+    // ) {
+    //   return (
+    //     <>
+    //       <NextSeo title={object.pagetitle} />
+    //       <Topic topic={object} withComments />
+    //     </>
+    //   )
+    // }
+    else {
       throw new Error('Unknown Resource type')
     }
   }, [object])
@@ -162,23 +180,25 @@ ResourcePage.getInitialProps = async (context) => {
   //     }
   // }
 
+  let statusCode = 404
+
+  if (object && object.__typename) {
+    if (
+      object.__typename === 'Company' ||
+      object.__typename === 'Review' ||
+      object.__typename === 'Topic'
+      // || (object.__typename === 'Resource' &&
+      //   [15, 28].includes(object.template))
+    ) {
+      statusCode = 200
+    } else if (['City'].includes(object.__typename)) {
+      //
+    }
+  }
+
   return {
     queryResult,
-    statusCode:
-      !object ||
-      !object.__typename ||
-      !(
-        // Company
-        (
-          ['Company'].includes(object.__typename) ||
-          // Topics
-          (object.__typename === 'Resource' &&
-            [15, 28].includes(object.template))
-        )
-      )
-        ? 404
-        : undefined,
-    // type,
+    statusCode,
   }
 }
 

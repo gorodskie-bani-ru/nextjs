@@ -30,21 +30,30 @@ export type ResourcesQueryVariables = Types.Exact<{
 export type ResourcesQuery = { __typename?: 'Query', resourcesCount: number, resources: Array<(
     { __typename?: 'City' }
     & CityFragment
+    & ResourceCityFragment
   ) | (
     { __typename?: 'Company' }
     & CompanyFieldsFragment
-  ) | { __typename?: 'Rating' } | (
+    & ResourceCompanyFragment
+  ) | (
+    { __typename?: 'Rating' }
+    & ResourceRatingFragment
+  ) | (
     { __typename?: 'Resource' }
     & ResourceResourceFragment
-  ) | { __typename?: 'Review' } | { __typename?: 'Topic' }> };
+  ) | (
+    { __typename?: 'Review' }
+    & ResourceReviewFragment
+  ) | (
+    { __typename?: 'Topic' }
+    & ResourceTopicFragment
+  )> };
 
 
 export const ResourcesDocument = gql`
     query resources($where: bani684_site_contentWhereInput, $orderBy: [bani684_site_contentOrderByInput!], $take: Int, $skip: Int, $withContent: Boolean = false, $withCreatedBy: Boolean = false) {
   resources(where: $where, orderBy: $orderBy, take: $take, skip: $skip) {
-    ... on Resource {
-      ...resource
-    }
+    ...resource
     ... on Company {
       ...CompanyFields
     }
