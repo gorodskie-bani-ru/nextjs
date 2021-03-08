@@ -92,7 +92,10 @@ export const votes = (t: ObjectDefinitionBlock<'Query'>) => {
         company_published: NexusGenObjects['Company']['published']
         company_searchable: NexusGenObjects['Company']['searchable']
         company_template: NexusGenObjects['Company']['template']
-        company_image: NexusGenObjects['Company']['image']
+        company_image_id: number | undefined
+        company_image: string | undefined
+        company_gallery_id: number | undefined
+        company_gallery: string | undefined
       }
 
       const query = knex
@@ -171,7 +174,21 @@ export const votes = (t: ObjectDefinitionBlock<'Query'>) => {
                 'tvs_image.contentid': 'company.id',
               }
             )
+            .select('tvs_image.id as company_image_id')
             .select('tvs_image.value as company_image')
+
+            /**
+             * Галерея компании
+             */
+            .leftJoin<bani684_site_tmplvar_contentvalues>(
+              'bani684_site_tmplvar_contentvalues as tvs_gallery',
+              {
+                'tvs_gallery.tmplvarid': TemplateVarIDs.gallery,
+                'tvs_gallery.contentid': 'company.id',
+              }
+            )
+            .select('tvs_gallery.id as company_gallery_id')
+            .select('tvs_gallery.value as company_gallery')
 
             // alias for selection
             .as('t')
@@ -194,13 +211,18 @@ export const votes = (t: ObjectDefinitionBlock<'Query'>) => {
           'company_template',
           'company_description',
           'company_longtitle',
-          'company_image'
+          'company_image',
+          'company_image_id',
+          'company_gallery_id',
+          'company_gallery'
         )
 
       // console.log('SQL', query.toQuery());
 
       // TODO get ReturnType<> from knex and use prisma.$rawQuery
       return query.then((r) => {
+        // console.log("r.length", r.length);
+
         return r.map((n): NexusGenObjects['Votes'] => {
           const {
             type,
@@ -218,8 +240,31 @@ export const votes = (t: ObjectDefinitionBlock<'Query'>) => {
             company_template,
             company_description,
             company_longtitle,
+            company_image_id,
             company_image,
+            company_gallery_id,
+            company_gallery,
           } = n
+
+          const TemplateVarValues: NexusGenObjects['Company']['TemplateVarValues'] = []
+
+          if (company_image_id && company_image) {
+            TemplateVarValues.push({
+              id: company_image_id,
+              tmplvarid: TemplateVarIDs.image,
+              value: company_image,
+              contentid: company_id,
+            })
+          }
+
+          if (company_gallery_id && company_gallery) {
+            TemplateVarValues.push({
+              id: company_gallery_id,
+              tmplvarid: TemplateVarIDs.gallery,
+              value: company_gallery,
+              contentid: company_id,
+            })
+          }
 
           return {
             type,
@@ -238,7 +283,8 @@ export const votes = (t: ObjectDefinitionBlock<'Query'>) => {
               template: company_template,
               description: company_description,
               longtitle: company_longtitle,
-              image: company_image,
+              // image: company_image,
+              TemplateVarValues,
             },
           }
         })

@@ -1,7 +1,44 @@
 /* eslint-disable @typescript-eslint/camelcase */
-import { objectType } from 'nexus'
+import { FieldResolver, objectType } from 'nexus'
 import { TemplateVarIDs } from '../../constants'
+import { imageResolver } from '../Query/resolvers/image'
 import { coords } from './definitions/coords'
+
+const galleryResolver: FieldResolver<'Company', 'gallery'> = (parent) => {
+  type File = {
+    title: string
+    image: string
+    description: string
+  }
+
+  let gallery: File[] = []
+
+  const galleryTV = parent.TemplateVarValues?.find(
+    (n) => n.tmplvarid === TemplateVarIDs.gallery
+  )
+
+  if (galleryTV?.value) {
+    try {
+      gallery = JSON.parse(galleryTV.value)
+        .map(({ title = '', image = '', description = '' }) => {
+          if (!image) {
+            return
+          }
+
+          return {
+            title,
+            image: imageResolver(image),
+            description,
+          }
+        })
+        .filter((n: File | null) => n)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  return gallery
+}
 
 export const Company = objectType({
   name: 'Company',
@@ -13,17 +50,30 @@ export const Company = objectType({
     coords(t)
 
     /**
-     * Если прописать резолвер, то поле не будет определено в типе объекта,
+     * Del. Если прописать резолвер, то поле не будет определено в типе объекта,
      * а оно нужно, чтобы можно было с чистым запросом прописать
      */
     t.string('image', {
-      // resolve(parent) {
-      //   return (
-      //     parent.TemplateVarValues?.find(
-      //       (n) => n.tmplvarid === TemplateVarIDs.image
-      //     )?.value || null
-      //   )
-      // },
+      async resolve(parent, _args, ctx, info) {
+        let image =
+          parent.TemplateVarValues?.find(
+            (n) => n.tmplvarid === TemplateVarIDs.image
+          )?.value || null
+
+        if (image) {
+          image = imageResolver(image)
+        } else {
+          const gallery = await galleryResolver(parent, {}, ctx, info)
+
+          if (gallery && gallery[0]) {
+            const item = await gallery[0]
+
+            image = await item.image
+          }
+        }
+
+        return image
+      },
     })
 
     t.string('address', {
@@ -88,41 +138,7 @@ export const Company = objectType({
 
     t.nonNull.list.nonNull.field('gallery', {
       type: 'GalleryImage',
-      resolve(parent) {
-        type File = {
-          title: string
-          image: string
-          description: string
-        }
-
-        let gallery: File[] = []
-
-        const galleryTV = parent.TemplateVarValues?.find(
-          (n) => n.tmplvarid === TemplateVarIDs.gallery
-        )
-
-        if (galleryTV?.value) {
-          try {
-            gallery = JSON.parse(galleryTV.value)
-              .map(({ title = '', image = '', description = '' }) => {
-                if (!image) {
-                  return
-                }
-
-                return {
-                  title,
-                  image,
-                  description,
-                }
-              })
-              .filter((n: File | null) => n)
-          } catch (error) {
-            console.error(error)
-          }
-        }
-
-        return gallery
-      },
+      resolve: galleryResolver,
     })
   },
 })

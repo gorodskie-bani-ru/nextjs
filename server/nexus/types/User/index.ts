@@ -1,4 +1,5 @@
 import { objectType } from 'nexus'
+import { imageResolver } from '../Query/resolvers/image'
 
 export const UserAttributes = objectType({
   name: 'UserAttributes',
@@ -37,9 +38,11 @@ export const User = objectType({
       resolve(user) {
         const image = user.Attributes?.photo || 'anonymous.jpg'
 
-        return image.startsWith('lazy/')
-          ? `assets/images/${image}`
-          : `assets/society/uploads/images/${image}`
+        return imageResolver(image)
+
+        // return image.startsWith('lazy/')
+        //   ? `assets/images/${image}`
+        //   : `assets/society/uploads/images/${image}`
       },
     })
     // t.boolean('sudo')

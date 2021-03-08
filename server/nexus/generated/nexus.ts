@@ -643,7 +643,6 @@ export interface NexusGenObjects {
     createdon: NexusGenScalars['DateTime'] // DateTime!
     description: string // String!
     id: number // Int!
-    image?: string | null // String
     longtitle: string // String!
     pagetitle: string // String!
     published: boolean // Boolean!
