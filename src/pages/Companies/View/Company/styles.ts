@@ -1,3 +1,4 @@
+import { CompanyRatingStyled } from 'src/components/ui/Company/Rating/styles'
 import { LinkStyled } from 'src/components/ui/Link/styles'
 import styled from 'styled-components'
 
@@ -16,7 +17,17 @@ export const CompaniesViewCompanyStyled = styled.div`
     }
   }
 
-  img.company--image {
-    width: 100%;
+  .imageWrapper {
+    position: relative;
+
+    img.company--image {
+      width: 100%;
+    }
+
+    ${CompanyRatingStyled} {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+    }
   }
 `

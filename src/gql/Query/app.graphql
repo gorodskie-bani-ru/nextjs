@@ -1,0 +1,16 @@
+query appData {
+  # Города
+  cities {
+    ...city
+  }
+
+  # Рейтинги
+  # Общие рейтинги по компаниям
+  companies_rating: votesByRating {
+    type
+    target_id
+    avg {
+      voteValueAvg
+    }
+  }
+}

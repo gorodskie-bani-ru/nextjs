@@ -81,6 +81,11 @@ export const Company = objectType({
     //     type: 'bani684_site_tmplvar_contentvalues',
     //   })
 
+    t.field('rating', {
+      type: 'VotesAvg',
+      description: 'Средний рейтинг',
+    })
+
     t.nonNull.list.nonNull.field('gallery', {
       type: 'GalleryImage',
       resolve(parent) {

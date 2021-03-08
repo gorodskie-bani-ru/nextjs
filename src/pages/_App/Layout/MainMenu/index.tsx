@@ -198,7 +198,7 @@ const MainMenu: React.FC = () => {
    * Формируем список городов с сортировкой
    */
   const { cities, mainCity } = useMemo(() => {
-    const cities = context?.cities ?? []
+    const cities = context?.appData?.cities ?? []
 
     const mainCity = cities[0]
 
@@ -206,7 +206,7 @@ const MainMenu: React.FC = () => {
       cities,
       mainCity,
     }
-  }, [context?.cities])
+  }, [context?.appData?.cities])
 
   const baseUrl = '/'
 

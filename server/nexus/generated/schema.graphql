@@ -122,6 +122,11 @@ type Company implements ResourceInterface {
   """
   prices: String
   published: Boolean!
+
+  """
+  Средний рейтинг
+  """
+  rating: VotesAvg
   searchable: Boolean!
   template: Int!
   uri: String
@@ -634,7 +639,7 @@ type Votes {
 Средние значения голосов
 """
 type VotesAvg {
-  vote_value_avg: Float!
+  voteValueAvg: Float!
 }
 
 input bani684_site_contentOrderByInput {

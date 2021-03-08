@@ -12,7 +12,7 @@ import jquery from 'jquery'
 
 import Head from 'next/head'
 
-import { CitiesDocument, useCitiesQuery } from 'src/modules/gql/generated'
+import { AppDataDocument, useAppDataQuery } from 'src/modules/gql/generated'
 
 import {
   MainApp,
@@ -80,10 +80,10 @@ const App: MainApp<AppProps> = ({ Component, pageProps }) => {
   // debug(chalk[apolloClient ? 'green' : 'red']('MyApp apolloClient exists'))
 
   /**
-   * Получаем города
+   * Получаем основные данные приложения
    */
 
-  const citiesData = useCitiesQuery({
+  const appData = useAppDataQuery({
     client: apolloClient,
   })
 
@@ -93,9 +93,9 @@ const App: MainApp<AppProps> = ({ Component, pageProps }) => {
 
   const context = useMemo<AppContextValue>(() => {
     return {
-      cities: citiesData.data?.cities ?? [],
+      appData: appData.data,
     }
-  }, [citiesData.data?.cities])
+  }, [appData.data])
 
   const content = useMemo(() => {
     const meta: NextSeoProps = {}
@@ -187,10 +187,10 @@ App.getInitialProps = async (appContext: NextAppContext) => {
   }
 
   /**
-   * Получаем все города
+   * Получаем основные данные приложения
    */
   await apolloClient.query({
-    query: CitiesDocument,
+    query: AppDataDocument,
     variables: {},
   })
 

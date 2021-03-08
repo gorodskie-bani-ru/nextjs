@@ -647,6 +647,7 @@ export interface NexusGenObjects {
     longtitle: string // String!
     pagetitle: string // String!
     published: boolean // Boolean!
+    rating?: NexusGenRootTypes['VotesAvg'] | null // VotesAvg
     searchable: boolean // Boolean!
     template: number // Int!
     uri?: string | null // String
@@ -782,7 +783,7 @@ export interface NexusGenObjects {
   }
   VotesAvg: {
     // root type
-    vote_value_avg: number // Float!
+    voteValueAvg: number // Float!
   }
   bani684_site_tmplvar_contentvalues: {
     // root type
@@ -866,6 +867,7 @@ export interface NexusGenFieldTypes {
     pagetitle: string // String!
     prices: string | null // String
     published: boolean // Boolean!
+    rating: NexusGenRootTypes['VotesAvg'] | null // VotesAvg
     searchable: boolean // Boolean!
     template: number // Int!
     uri: string | null // String
@@ -1025,7 +1027,7 @@ export interface NexusGenFieldTypes {
   }
   VotesAvg: {
     // field return type
-    vote_value_avg: number // Float!
+    voteValueAvg: number // Float!
   }
   bani684_site_tmplvar_contentvalues: {
     // field return type
@@ -1107,6 +1109,7 @@ export interface NexusGenFieldTypeNames {
     pagetitle: 'String'
     prices: 'String'
     published: 'Boolean'
+    rating: 'VotesAvg'
     searchable: 'Boolean'
     template: 'Int'
     uri: 'String'
@@ -1258,7 +1261,7 @@ export interface NexusGenFieldTypeNames {
   }
   VotesAvg: {
     // field return type name
-    vote_value_avg: 'Float'
+    voteValueAvg: 'Float'
   }
   bani684_site_tmplvar_contentvalues: {
     // field return type name

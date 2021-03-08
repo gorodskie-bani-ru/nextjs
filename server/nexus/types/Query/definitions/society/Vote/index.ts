@@ -5,7 +5,7 @@ import {
   bani684_society_votes,
   Prisma,
 } from '@prisma/client'
-import { ObjectDefinitionBlock, objectType } from 'nexus/dist/core'
+import { ObjectDefinitionBlock } from 'nexus/dist/core'
 import { TemplateVarIDs } from '../../../../../constants'
 import { NexusGenObjects } from 'server/nexus/generated/nexus'
 import { userSelect } from '../../User'
@@ -46,7 +46,7 @@ export const votes = (t: ObjectDefinitionBlock<'Query'>) => {
 
   t.nonNull.list.nonNull.field('votesByRating', {
     description: 'Средние значения по голосам',
-    type: Votes,
+    type: 'Votes',
     // args: {
     //   where: arg({
     //     type: 'bani684_site_contentWhereInput',
@@ -78,7 +78,7 @@ export const votes = (t: ObjectDefinitionBlock<'Query'>) => {
       // })
 
       type VotesResult = Pick<bani684_society_votes, 'type' | 'target_id'> & {
-        vote_value_avg: number
+        voteValueAvg: number
       }
 
       type CompaniesResult = {
@@ -103,7 +103,7 @@ export const votes = (t: ObjectDefinitionBlock<'Query'>) => {
             .from<VotesResult>(
               knex<bani684_society_votes>('bani684_society_votes')
                 .avg({
-                  vote_value_avg: 'vote_value',
+                  voteValueAvg: 'vote_value',
                 })
 
                 /**
@@ -129,7 +129,7 @@ export const votes = (t: ObjectDefinitionBlock<'Query'>) => {
                  */
                 .orderBy([
                   {
-                    column: 'vote_value_avg',
+                    column: 'voteValueAvg',
                     order: 'desc',
                   },
                 ])
@@ -181,7 +181,7 @@ export const votes = (t: ObjectDefinitionBlock<'Query'>) => {
         .select(
           'type',
           'target_id',
-          'vote_value_avg',
+          'voteValueAvg',
           'company_id',
           'company_pagetitle',
           'company_createdby',
@@ -194,13 +194,16 @@ export const votes = (t: ObjectDefinitionBlock<'Query'>) => {
           'company_image'
         )
 
+      // console.log('SQL', query.toQuery());
+
+      // TODO get ReturnType<> from knex and use prisma.$rawQuery
       return query.then((r) => {
         return r.map((n): NexusGenObjects['Votes'] => {
           const {
             type,
             target_id,
-            // vote_value_avg,
-            vote_value_avg,
+            // voteValueAvg,
+            voteValueAvg,
 
             company_id,
             company_pagetitle,
@@ -218,7 +221,7 @@ export const votes = (t: ObjectDefinitionBlock<'Query'>) => {
             type,
             target_id,
             avg: {
-              vote_value_avg,
+              voteValueAvg,
             },
             Company: {
               id: company_id,
@@ -239,33 +242,9 @@ export const votes = (t: ObjectDefinitionBlock<'Query'>) => {
       // const result = await ctx.prisma.$queryRaw<{
       //   type_id: number
       //   company_id: number
-      //   vote_value_avg: number
+      //   voteValueAvg: number
       //   company_pagetitle: string
       // }[]>(sql.toQuery());
     },
   })
 }
-
-const Votes = objectType({
-  name: 'Votes',
-  description: 'Сгруппированные голоса',
-  definition(t) {
-    t.int('type')
-    t.nonNull.int('target_id')
-    t.nonNull.field('Company', {
-      type: 'Company',
-    })
-
-    t.nonNull.field('avg', {
-      type: VotesAvg,
-    })
-  },
-})
-
-const VotesAvg = objectType({
-  description: 'Средние значения голосов',
-  name: 'VotesAvg',
-  definition(t) {
-    t.nonNull.float('vote_value_avg')
-  },
-})

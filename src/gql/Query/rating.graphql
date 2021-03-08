@@ -1,0 +1,10 @@
+query votesByRating {
+  votesByRating {
+    type
+    # company_id
+    # company_pagetitle
+    avg {
+      voteValueAvg
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react'
+import CompanyRating from 'src/components/ui/Company/Rating'
 import Link from 'src/components/ui/Link'
 import Paper from 'src/components/ui/Paper'
 import Title from 'src/components/ui/Title'
@@ -17,14 +18,17 @@ const CompaniesViewCompany: React.FC<CompaniesViewCompanyProps> = ({
       <CompaniesViewCompanyStyled>
         <Paper>
           <Link href={company.uri || '/'}>
-            <img
-              src={
-                (company.image &&
-                  imageFormats(company.image, 'slider_thumb')) ||
-                undefined
-              }
-              className="company--image"
-            />
+            <div className="imageWrapper">
+              <img
+                src={
+                  (company.image &&
+                    imageFormats(company.image, 'slider_thumb')) ||
+                  undefined
+                }
+                className="company--image"
+              />
+              <CompanyRating company={company} />
+            </div>
 
             <div className="content">
               <Title>{company.pagetitle}</Title>

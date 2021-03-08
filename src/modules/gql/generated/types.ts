@@ -40,6 +40,12 @@ export interface Bani684SocietyCommentsListRelationFilter {
   some?: Maybe<Bani684SocietyCommentsWhereInput>;
 }
 
+export interface Bani684SocietyVotesListRelationFilter {
+  every?: Maybe<Bani684SocietyVotesWhereInput>;
+  none?: Maybe<Bani684SocietyVotesWhereInput>;
+  some?: Maybe<Bani684SocietyVotesWhereInput>;
+}
+
 export interface BoolFilter {
   equals?: Maybe<Scalars['Boolean']>;
   not?: Maybe<NestedBoolFilter>;
@@ -60,7 +66,6 @@ export interface City extends ResourceInterface {
   createdon: Scalars['DateTime'];
   description: Scalars['String'];
   id: Scalars['Int'];
-  image?: Maybe<Scalars['String']>;
   longtitle: Scalars['String'];
   pagetitle: Scalars['String'];
   published: Scalars['Boolean'];
@@ -110,6 +115,8 @@ export interface Company extends ResourceInterface {
   /** Цены */
   prices?: Maybe<Scalars['String']>;
   published: Scalars['Boolean'];
+  /** Средний рейтинг */
+  rating?: Maybe<VotesAvg>;
   searchable: Scalars['Boolean'];
   template: Scalars['Int'];
   uri?: Maybe<Scalars['String']>;
@@ -126,6 +133,17 @@ export interface Coordinates {
 }
 
 
+export interface DateTimeFilter {
+  equals?: Maybe<Scalars['DateTime']>;
+  gt?: Maybe<Scalars['DateTime']>;
+  gte?: Maybe<Scalars['DateTime']>;
+  in?: Maybe<Array<Scalars['DateTime']>>;
+  lt?: Maybe<Scalars['DateTime']>;
+  lte?: Maybe<Scalars['DateTime']>;
+  not?: Maybe<NestedDateTimeFilter>;
+  notIn?: Maybe<Array<Scalars['DateTime']>>;
+}
+
 export interface DateTimeNullableFilter {
   equals?: Maybe<Scalars['DateTime']>;
   gt?: Maybe<Scalars['DateTime']>;
@@ -135,6 +153,17 @@ export interface DateTimeNullableFilter {
   lte?: Maybe<Scalars['DateTime']>;
   not?: Maybe<NestedDateTimeNullableFilter>;
   notIn?: Maybe<Array<Scalars['DateTime']>>;
+}
+
+export interface FloatFilter {
+  equals?: Maybe<Scalars['Float']>;
+  gt?: Maybe<Scalars['Float']>;
+  gte?: Maybe<Scalars['Float']>;
+  in?: Maybe<Array<Scalars['Float']>>;
+  lt?: Maybe<Scalars['Float']>;
+  lte?: Maybe<Scalars['Float']>;
+  not?: Maybe<NestedFloatFilter>;
+  notIn?: Maybe<Array<Scalars['Float']>>;
 }
 
 export interface GalleryImage {
@@ -171,6 +200,17 @@ export interface NestedBoolFilter {
   not?: Maybe<NestedBoolFilter>;
 }
 
+export interface NestedDateTimeFilter {
+  equals?: Maybe<Scalars['DateTime']>;
+  gt?: Maybe<Scalars['DateTime']>;
+  gte?: Maybe<Scalars['DateTime']>;
+  in?: Maybe<Array<Scalars['DateTime']>>;
+  lt?: Maybe<Scalars['DateTime']>;
+  lte?: Maybe<Scalars['DateTime']>;
+  not?: Maybe<NestedDateTimeFilter>;
+  notIn?: Maybe<Array<Scalars['DateTime']>>;
+}
+
 export interface NestedDateTimeNullableFilter {
   equals?: Maybe<Scalars['DateTime']>;
   gt?: Maybe<Scalars['DateTime']>;
@@ -180,6 +220,17 @@ export interface NestedDateTimeNullableFilter {
   lte?: Maybe<Scalars['DateTime']>;
   not?: Maybe<NestedDateTimeNullableFilter>;
   notIn?: Maybe<Array<Scalars['DateTime']>>;
+}
+
+export interface NestedFloatFilter {
+  equals?: Maybe<Scalars['Float']>;
+  gt?: Maybe<Scalars['Float']>;
+  gte?: Maybe<Scalars['Float']>;
+  in?: Maybe<Array<Scalars['Float']>>;
+  lt?: Maybe<Scalars['Float']>;
+  lte?: Maybe<Scalars['Float']>;
+  not?: Maybe<NestedFloatFilter>;
+  notIn?: Maybe<Array<Scalars['Float']>>;
 }
 
 export interface NestedIntFilter {
@@ -256,6 +307,10 @@ export interface Query {
   users: Array<User>;
   /** Количество пользователей */
   usersCount: Scalars['Int'];
+  /** Оценки */
+  votes: Array<Vote>;
+  /** Средние значения по голосам */
+  votesByRating: Array<Votes>;
 }
 
 
@@ -349,6 +404,15 @@ export type QueryUsersCountArgs = {
   where?: Maybe<Bani684UsersWhereInput>;
 };
 
+
+export type QueryVotesArgs = {
+  cursor?: Maybe<Bani684SocietyVotesWhereUniqueInput>;
+  orderBy?: Maybe<Array<Bani684SocietyVotesOrderByInput>>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
+  where?: Maybe<Bani684SocietyVotesWhereInput>;
+};
+
 /** Рейтинг заведений */
 export interface Rating extends ResourceInterface {
   __typename?: 'Rating';
@@ -362,7 +426,6 @@ export interface Rating extends ResourceInterface {
   createdon: Scalars['DateTime'];
   description: Scalars['String'];
   id: Scalars['Int'];
-  image?: Maybe<Scalars['String']>;
   longtitle: Scalars['String'];
   pagetitle: Scalars['String'];
   published: Scalars['Boolean'];
@@ -383,7 +446,6 @@ export interface Resource extends ResourceInterface {
   createdon: Scalars['DateTime'];
   description: Scalars['String'];
   id: Scalars['Int'];
-  image?: Maybe<Scalars['String']>;
   longtitle: Scalars['String'];
   pagetitle: Scalars['String'];
   published: Scalars['Boolean'];
@@ -403,7 +465,6 @@ export type ResourceInterface = {
   createdon: Scalars['DateTime'];
   description: Scalars['String'];
   id: Scalars['Int'];
-  image?: Maybe<Scalars['String']>;
   longtitle: Scalars['String'];
   pagetitle: Scalars['String'];
   published: Scalars['Boolean'];
@@ -425,7 +486,6 @@ export interface Review extends ResourceInterface {
   createdon: Scalars['DateTime'];
   description: Scalars['String'];
   id: Scalars['Int'];
-  image?: Maybe<Scalars['String']>;
   longtitle: Scalars['String'];
   pagetitle: Scalars['String'];
   published: Scalars['Boolean'];
@@ -487,7 +547,6 @@ export interface Topic extends ResourceInterface {
   createdon: Scalars['DateTime'];
   description: Scalars['String'];
   id: Scalars['Int'];
-  image?: Maybe<Scalars['String']>;
   longtitle: Scalars['String'];
   pagetitle: Scalars['String'];
   published: Scalars['Boolean'];
@@ -516,6 +575,39 @@ export interface UserAttributes {
   fullname: Scalars['String'];
   id: Scalars['Int'];
   photo: Scalars['String'];
+}
+
+/** Оценка */
+export interface Vote {
+  __typename?: 'Vote';
+  CreatedBy?: Maybe<User>;
+  Type?: Maybe<Rating>;
+  id: Scalars['Int'];
+  target_class: Scalars['String'];
+  target_id: Scalars['Int'];
+  thread_id?: Maybe<Scalars['Int']>;
+  type?: Maybe<Scalars['Int']>;
+  user_id: Scalars['Int'];
+  vote_date: Scalars['DateTime'];
+  /** 1 || - || 0 */
+  vote_direction: Scalars['String'];
+  /** Значение оценки */
+  vote_value: Scalars['Float'];
+}
+
+/** Сгруппированные голоса */
+export interface Votes {
+  __typename?: 'Votes';
+  Company: Company;
+  avg: VotesAvg;
+  target_id: Scalars['Int'];
+  type?: Maybe<Scalars['Int']>;
+}
+
+/** Средние значения голосов */
+export interface VotesAvg {
+  __typename?: 'VotesAvg';
+  voteValueAvg: Scalars['Float'];
 }
 
 export interface Bani684SiteContentOrderByInput {
@@ -571,6 +663,7 @@ export interface Bani684SiteContentWhereInput {
   NOT?: Maybe<Array<Bani684SiteContentWhereInput>>;
   OR?: Maybe<Array<Bani684SiteContentWhereInput>>;
   TemplateVarValues?: Maybe<Bani684SiteTmplvarContentvaluesListRelationFilter>;
+  Votes?: Maybe<Bani684SocietyVotesListRelationFilter>;
   alias?: Maybe<StringNullableFilter>;
   cacheable?: Maybe<BoolFilter>;
   class_key?: Maybe<StringFilter>;
@@ -686,6 +779,56 @@ export interface Bani684SocietyCommentsWhereUniqueInput {
   id?: Maybe<Scalars['Int']>;
 }
 
+export interface Bani684SocietyVotesOrderByInput {
+  CreatedBy?: Maybe<Bani684UsersOrderByInput>;
+  Type?: Maybe<Bani684SiteContentOrderByInput>;
+  id?: Maybe<SortOrder>;
+  target_class?: Maybe<SortOrder>;
+  target_id?: Maybe<SortOrder>;
+  thread_id?: Maybe<SortOrder>;
+  type?: Maybe<SortOrder>;
+  user_id?: Maybe<SortOrder>;
+  vote_date?: Maybe<SortOrder>;
+  vote_direction?: Maybe<SortOrder>;
+  vote_value?: Maybe<SortOrder>;
+}
+
+export interface Bani684SocietyVotesTargetIdCompoundUniqueInput {
+  target_class: Scalars['String'];
+  target_id: Scalars['Int'];
+  type: Scalars['Int'];
+  user_id: Scalars['Int'];
+}
+
+export interface Bani684SocietyVotesThreadIdCompoundUniqueInput {
+  thread_id: Scalars['Int'];
+  type: Scalars['Int'];
+  user_id: Scalars['Int'];
+}
+
+export interface Bani684SocietyVotesWhereInput {
+  AND?: Maybe<Array<Bani684SocietyVotesWhereInput>>;
+  CreatedBy?: Maybe<Bani684UsersWhereInput>;
+  NOT?: Maybe<Array<Bani684SocietyVotesWhereInput>>;
+  OR?: Maybe<Array<Bani684SocietyVotesWhereInput>>;
+  Type?: Maybe<Bani684SiteContentWhereInput>;
+  id?: Maybe<IntFilter>;
+  target_class?: Maybe<StringFilter>;
+  target_id?: Maybe<IntFilter>;
+  thread_id?: Maybe<IntNullableFilter>;
+  type?: Maybe<IntNullableFilter>;
+  user_id?: Maybe<IntFilter>;
+  vote_date?: Maybe<DateTimeFilter>;
+  vote_direction?: Maybe<StringFilter>;
+  vote_value?: Maybe<FloatFilter>;
+}
+
+export interface Bani684SocietyVotesWhereUniqueInput {
+  id?: Maybe<Scalars['Int']>;
+  target_id?: Maybe<Bani684SocietyVotesTargetIdCompoundUniqueInput>;
+  thread_id?: Maybe<Bani684SocietyVotesThreadIdCompoundUniqueInput>;
+}
+
 export interface Bani684UserAttributesOrderByInput {
   address?: Maybe<SortOrder>;
   blocked?: Maybe<SortOrder>;
@@ -779,6 +922,7 @@ export interface Bani684UsersWhereInput {
   Resources?: Maybe<Bani684SiteContentListRelationFilter>;
   active?: Maybe<BoolFilter>;
   bani684_society_comments?: Maybe<Bani684SocietyCommentsListRelationFilter>;
+  bani684_society_votes?: Maybe<Bani684SocietyVotesListRelationFilter>;
   cachepwd?: Maybe<StringFilter>;
   class_key?: Maybe<StringFilter>;
   contract_date?: Maybe<IntNullableFilter>;

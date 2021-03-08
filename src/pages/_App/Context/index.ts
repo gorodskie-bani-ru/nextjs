@@ -1,8 +1,11 @@
 import React from 'react'
-import { CitiesQuery } from 'src/modules/gql/generated'
+import { AppDataQuery } from 'src/modules/gql/generated'
 
 export type AppContextValue = {
-  cities: CitiesQuery['cities']
+  /**
+   * Основные API-данные приложения
+   */
+  appData: AppDataQuery | undefined
 }
 
 export const AppContext = React.createContext<AppContextValue | null>(null)

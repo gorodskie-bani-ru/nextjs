@@ -7,38 +7,36 @@
 */
 
 
-import * as Types from './types';
-
 import { ResourceCityFragment, ResourceCompanyFragment, ResourceRatingFragment, ResourceResourceFragment, ResourceReviewFragment, ResourceTopicFragment } from './resource';
 import { gql } from '@apollo/client';
 import { ResourceFragmentDoc } from './resource';
 export type TopicCityFragment = (
-  { __typename?: 'City', id: number, pagetitle: string }
+  { __typename?: 'City' }
   & ResourceCityFragment
 );
 
 export type TopicCompanyFragment = (
-  { __typename?: 'Company', id: number, pagetitle: string }
+  { __typename?: 'Company' }
   & ResourceCompanyFragment
 );
 
 export type TopicRatingFragment = (
-  { __typename?: 'Rating', id: number, pagetitle: string }
+  { __typename?: 'Rating' }
   & ResourceRatingFragment
 );
 
 export type TopicResourceFragment = (
-  { __typename?: 'Resource', id: number, pagetitle: string }
+  { __typename?: 'Resource' }
   & ResourceResourceFragment
 );
 
 export type TopicReviewFragment = (
-  { __typename?: 'Review', id: number, pagetitle: string }
+  { __typename?: 'Review' }
   & ResourceReviewFragment
 );
 
 export type TopicTopicFragment = (
-  { __typename?: 'Topic', id: number, pagetitle: string }
+  { __typename?: 'Topic' }
   & ResourceTopicFragment
 );
 
@@ -46,8 +44,6 @@ export type TopicFragment = TopicCityFragment | TopicCompanyFragment | TopicRati
 
 export const TopicFragmentDoc = gql`
     fragment topic on ResourceInterface {
-  id
-  pagetitle
   ...resource
 }
     ${ResourceFragmentDoc}`;

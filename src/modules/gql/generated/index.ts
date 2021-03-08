@@ -1,6 +1,7 @@
 export * from './CompanyFields';
 export * from './Company_';
 export * from './ListCompany';
+export * from './appData';
 export * from './cities';
 export * from './city';
 export * from './comment';
@@ -15,4 +16,5 @@ export * from './topic';
 export * from './topics';
 export * from './user';
 export * from './user_';
-export * from './users';export * from './types';
+export * from './users';
+export * from './votesByRating';export * from './types';

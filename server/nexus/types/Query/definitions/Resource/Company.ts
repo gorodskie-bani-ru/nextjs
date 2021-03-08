@@ -7,7 +7,7 @@ import { TemplateVarIDs } from '../../../../constants'
 const companiesResolver: FieldResolver<'Query', 'companies'> = (
   _,
   args,
-  ctx
+  { prisma }
 ) => {
   const variables = args as Pick<
     Prisma.bani684_site_contentFindManyArgs,
@@ -17,22 +17,27 @@ const companiesResolver: FieldResolver<'Query', 'companies'> = (
   const { deleted = false, published = true, hidemenu = false } =
     variables.where || {}
 
-  return ctx.prisma.bani684_site_content
+  const where: Prisma.bani684_site_contentFindManyArgs['where'] = {
+    AND: [
+      {
+        template: 27,
+        deleted,
+        published,
+        hidemenu,
+      },
+      {
+        ...variables.where,
+      },
+    ],
+  }
+
+  /**
+   * Получаем данные компаний
+   */
+  return prisma.bani684_site_content
     .findMany({
       ...variables,
-      where: {
-        AND: [
-          {
-            template: 27,
-            deleted,
-            published,
-            hidemenu,
-          },
-          {
-            ...variables.where,
-          },
-        ],
-      },
+      where,
       select: {
         id: true,
         pagetitle: true,
