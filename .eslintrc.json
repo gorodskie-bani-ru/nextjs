@@ -21,6 +21,12 @@
     {
       "files": ["src/**/*.{ts,tsx}"],
       "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "patterns": ["material-ui/**"]
+          }
+        ],
         // Deny use require
         "no-restricted-modules": [
           "error",

@@ -10,6 +10,24 @@ export const TopicStyled = styled.div`
     margin-top: 20px;
   }
 
+  .sub-info {
+    &,
+    & > * {
+      display: flex;
+      align-items: center;
+    }
+
+    > * {
+      margin: 0 5px;
+    }
+
+    svg {
+      height: 1rem;
+      width: 1rem;
+      font-size: 1rem;
+    }
+  }
+
   ${CommentStyled} {
     margin: 20px 0;
   }

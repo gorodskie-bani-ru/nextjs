@@ -18,20 +18,20 @@ const Layout: React.FC = ({ children, ...other }) => {
     `
 
     return (
-      <Grid container alignItems="center">
+      <Grid container alignItems="center" spacing={1}>
         <Grid item>
           <div dangerouslySetInnerHTML={{ __html: metrika }} />
         </Grid>
 
         <Grid item>
-          Powered by{' '}
+          &copy;{' '}
           <a
-            href="https://prisma-cms.com"
+            href="https://freecode.academy"
             rel="noreferrer noopener"
             target="_blank"
             title="Разработка сайтов и интернет-магазинов на JavaScript"
           >
-            Prisma-CMS
+            FreeCode.Academy
           </a>
         </Grid>
       </Grid>
@@ -108,13 +108,13 @@ const Layout: React.FC = ({ children, ...other }) => {
                   </Link>
                 </Grid>
 
-                <Grid item>
+                {/* <Grid item>
                   <Link href="/contacts.html">
                     <a title="Разместить информацию о бане">
                       Добавить баню или сауну
                     </a>
                   </Link>
-                </Grid>
+                </Grid> */}
               </Grid>
             </CardContent>
           </div>

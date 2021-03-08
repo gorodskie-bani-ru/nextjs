@@ -2,17 +2,15 @@ import React, { useCallback, useContext, useMemo, useState } from 'react'
 import { UserViewProps } from './interfaces'
 import { UserViewStyled } from './styles'
 // import Link from 'next/link'
-import Typography from 'material-ui/Typography'
 import Context, { PrismaCmsContext } from '@prisma-cms/context'
-import IconButton from 'material-ui/IconButton'
 import SaveIcon from 'material-ui-icons/Save'
 import ResetIcon from 'material-ui-icons/Restore'
 import EditIcon from 'material-ui-icons/ModeEdit'
-import TextField from 'material-ui/TextField'
 import Uploader, { UploaderProps } from '@prisma-cms/uploader'
-import { Grid } from '@material-ui/core'
+import { Grid, IconButton, TextField } from '@material-ui/core'
 import { imageFormats } from 'src/helpers/imageFormats'
 import { UserFragment } from 'src/modules/gql/generated'
+import Title from 'src/components/ui/Title'
 
 const UserView: React.FC<UserViewProps> = ({ user, ...other }) => {
   const context = useContext(Context) as PrismaCmsContext
@@ -261,9 +259,7 @@ const UserView: React.FC<UserViewProps> = ({ user, ...other }) => {
             <Grid item xs={12}>
               <Grid container spacing={2} alignItems="center">
                 <Grid item xs>
-                  <Typography variant="title">
-                    {userEdited?.fullname || userEdited?.username}
-                  </Typography>
+                  <Title>{userEdited?.fullname || userEdited?.username}</Title>
                 </Grid>
 
                 <Grid item>{buttons}</Grid>
