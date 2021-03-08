@@ -49,10 +49,12 @@ const Topic: React.FC<TopicProps> = ({ topic, withComments, ...other }) => {
   }, [topic.Comments, withComments])
 
   return useMemo(() => {
+    const uri = (topic.uri && `/${topic.uri}`) || '#'
+
     return (
       <TopicStyled {...other}>
         <Paper>
-          <Link href={topic.uri || '#'} title={topic.pagetitle}>
+          <Link href={uri} title={topic.pagetitle}>
             <Title>{topic.pagetitle}</Title>
           </Link>
           {content && <div className="content">{content}</div>}
@@ -63,7 +65,7 @@ const Topic: React.FC<TopicProps> = ({ topic, withComments, ...other }) => {
             {topic.createdon && moment(topic.createdon).format('YYYY-MM-DD')}
             <span>|</span>{' '}
             <Link
-              href={topic.uri || '#'}
+              href={uri}
               title={`Комментарии к публикации "${topic.pagetitle}"`}
             >
               <CommentsIcon

@@ -2,18 +2,26 @@ import React, { useContext, useMemo } from 'react'
 
 import View from './View'
 
-import { Page } from '../_App/interfaces'
-import { NextSeo } from 'next-seo'
+import { Page, PageProps } from '../_App/interfaces'
 import {
   useVotesByRatingQuery,
   VotesByRatingDocument,
+  VotesByRatingQuery,
 } from 'src/modules/gql/generated'
 import { AppContext } from '../_App/Context'
+import { RatingsPageViewProps } from './View/interfaces'
 
 /**
  * Рейтинги
  */
-const RatingsPage: Page = () => {
+const RatingsPage: Page<
+  PageProps & {
+    /**
+     * Страница конкретного типа рейтинга
+     */
+    ratingTypeAlias: RatingsPageViewProps['ratingTypeAlias']
+  }
+> = ({ ratingTypeAlias }) => {
   const response = useVotesByRatingQuery()
 
   const context = useContext(AppContext)
@@ -27,35 +35,48 @@ const RatingsPage: Page = () => {
 
     return (
       <>
-        <NextSeo
-          title="Рейтинги бань и саун"
-          description={`Оценки по критериям ${ratingTypes
-            .map((n) => `"${n.pagetitle}"`)
-            .join(', ')}`}
-        />
-
         <View
           ratingsTypes={ratingTypes}
           votes={context?.appData?.companies_rating || []}
           companies={response.data?.companies || []}
+          ratingTypeAlias={ratingTypeAlias}
         />
       </>
     )
   }, [
     context?.appData?.companies_rating,
+    ratingTypeAlias,
     response.data?.companies,
     response.data?.ratings,
   ])
 }
 
 RatingsPage.getInitialProps = async (context) => {
-  const { apolloClient } = context
+  const { apolloClient, query } = context
 
-  await apolloClient.query({
+  const ratingTypeAlias: string | undefined =
+    query.alias && typeof query.alias === 'string' ? query.alias : undefined
+
+  const result = await apolloClient.query<VotesByRatingQuery>({
     query: VotesByRatingDocument,
   })
 
-  return {}
+  let statusCode: number | undefined
+
+  if (
+    // Если не были получены данные рейтингов
+    !result.data.ratings.length ||
+    // или запрошен конкретный рейтинг, но он не найден
+    (ratingTypeAlias &&
+      !result.data.ratings.find((n) => n.alias === ratingTypeAlias))
+  ) {
+    statusCode = 404
+  }
+
+  return {
+    statusCode,
+    ratingTypeAlias,
+  }
 }
 
 export default RatingsPage

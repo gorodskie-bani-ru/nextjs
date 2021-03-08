@@ -7,4 +7,6 @@ export type RatingsPageViewRatingProps = {
   votes: NonNullable<AppContextValue['appData']>['companies_rating']
 
   companies: VotesByRatingQuery['companies']
+
+  showAll: boolean
 }

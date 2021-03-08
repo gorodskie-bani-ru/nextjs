@@ -16,6 +16,7 @@ fragment rating on Rating {
   id
   pagetitle
   uri
+  alias
 }
 
 # Из-за того

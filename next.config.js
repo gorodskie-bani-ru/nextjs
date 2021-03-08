@@ -90,7 +90,7 @@ const webpack = (config, options) => {
   // }
 }
 
-module.exports = (phase, defaultConfig) => {
+module.exports = (phase) => {
   // if(phase === "phase-development-server") {
   if (phase !== 'phase-production-server') {
     const withBundleAnalyzer = require('@next/bundle-analyzer')({
@@ -103,5 +103,7 @@ module.exports = (phase, defaultConfig) => {
   }
 
   // else
-  return defaultConfig
+  return {
+    webpack,
+  }
 }

@@ -6,4 +6,12 @@ export const RatingsPageViewRatingStyled = styled.div`
     display: flex;
     justify-content: center;
   }
+
+  .rating--title {
+    display: flex;
+    align-items: baseline;
+    > * {
+      margin-right: 0.5rem;
+    }
+  }
 `

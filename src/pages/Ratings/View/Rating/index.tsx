@@ -11,11 +11,12 @@ const RatingsPageViewRating: React.FC<RatingsPageViewRatingProps> = ({
   ratingType,
   votes: votesProps,
   companies: companiesProps,
+  showAll: showAllProps,
   ...other
 }) => {
   const limit = 12
 
-  const [showAll, showAllSetter] = useState(false)
+  const [showAll, showAllSetter] = useState(showAllProps)
 
   const toggleShowAll = useCallback(() => {
     showAllSetter(!showAll)
@@ -46,11 +47,15 @@ const RatingsPageViewRating: React.FC<RatingsPageViewRatingProps> = ({
     return (
       <RatingsPageViewRatingStyled {...other}>
         <Paper>
-          <Link href={ratingType.uri || '#'} title={ratingType.pagetitle}>
-            <Title>
+          <Link
+            href={(ratingType.uri && `/${ratingType.uri}`) || '#'}
+            title={ratingType.pagetitle}
+            className="rating--title"
+          >
+            <Title variant="h3">
               {haveMore ? `ТОП ${limit} бань` : `Все бани`} в рейтинге{' '}
-              {ratingType.pagetitle}
             </Title>
+            <Title variant="h2">{ratingType.pagetitle}</Title>
           </Link>
 
           <CompaniesView componies={companies} />
