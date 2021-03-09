@@ -17,6 +17,7 @@ import { ResourceFragmentDoc } from './resource';
 import { CompanyFieldsFragmentDoc } from './CompanyFields';
 import { CityFragmentDoc } from './city';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type ResourcesQueryVariables = Types.Exact<{
   where?: Types.Maybe<Types.Bani684SiteContentWhereInput>;
   orderBy?: Types.Maybe<Array<Types.Bani684SiteContentOrderByInput> | Types.Bani684SiteContentOrderByInput>;
@@ -89,10 +90,12 @@ ${CityFragmentDoc}`;
  * });
  */
 export function useResourcesQuery(baseOptions?: Apollo.QueryHookOptions<ResourcesQuery, ResourcesQueryVariables>) {
-        return Apollo.useQuery<ResourcesQuery, ResourcesQueryVariables>(ResourcesDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ResourcesQuery, ResourcesQueryVariables>(ResourcesDocument, options);
       }
 export function useResourcesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ResourcesQuery, ResourcesQueryVariables>) {
-          return Apollo.useLazyQuery<ResourcesQuery, ResourcesQueryVariables>(ResourcesDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ResourcesQuery, ResourcesQueryVariables>(ResourcesDocument, options);
         }
 export type ResourcesQueryHookResult = ReturnType<typeof useResourcesQuery>;
 export type ResourcesLazyQueryHookResult = ReturnType<typeof useResourcesLazyQuery>;

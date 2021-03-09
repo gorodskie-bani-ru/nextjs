@@ -13,6 +13,7 @@ import { CityFragment } from './city';
 import { gql } from '@apollo/client';
 import { CityFragmentDoc } from './city';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type AppDataQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
@@ -53,10 +54,12 @@ export const AppDataDocument = gql`
  * });
  */
 export function useAppDataQuery(baseOptions?: Apollo.QueryHookOptions<AppDataQuery, AppDataQueryVariables>) {
-        return Apollo.useQuery<AppDataQuery, AppDataQueryVariables>(AppDataDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<AppDataQuery, AppDataQueryVariables>(AppDataDocument, options);
       }
 export function useAppDataLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AppDataQuery, AppDataQueryVariables>) {
-          return Apollo.useLazyQuery<AppDataQuery, AppDataQueryVariables>(AppDataDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<AppDataQuery, AppDataQueryVariables>(AppDataDocument, options);
         }
 export type AppDataQueryHookResult = ReturnType<typeof useAppDataQuery>;
 export type AppDataLazyQueryHookResult = ReturnType<typeof useAppDataLazyQuery>;

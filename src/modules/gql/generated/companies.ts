@@ -13,6 +13,7 @@ import { CompanyFragment } from './Company_';
 import { gql } from '@apollo/client';
 import { CompanyFragmentDoc } from './Company_';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type CompaniesQueryVariables = Types.Exact<{
   skip?: Types.Maybe<Types.Scalars['Int']>;
   take?: Types.Maybe<Types.Scalars['Int']>;
@@ -57,10 +58,12 @@ export const CompaniesDocument = gql`
  * });
  */
 export function useCompaniesQuery(baseOptions?: Apollo.QueryHookOptions<CompaniesQuery, CompaniesQueryVariables>) {
-        return Apollo.useQuery<CompaniesQuery, CompaniesQueryVariables>(CompaniesDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CompaniesQuery, CompaniesQueryVariables>(CompaniesDocument, options);
       }
 export function useCompaniesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CompaniesQuery, CompaniesQueryVariables>) {
-          return Apollo.useLazyQuery<CompaniesQuery, CompaniesQueryVariables>(CompaniesDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CompaniesQuery, CompaniesQueryVariables>(CompaniesDocument, options);
         }
 export type CompaniesQueryHookResult = ReturnType<typeof useCompaniesQuery>;
 export type CompaniesLazyQueryHookResult = ReturnType<typeof useCompaniesLazyQuery>;

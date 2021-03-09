@@ -13,6 +13,7 @@ import { CityFragment } from './city';
 import { gql } from '@apollo/client';
 import { CityFragmentDoc } from './city';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type CitiesQueryVariables = Types.Exact<{
   take?: Types.Maybe<Types.Scalars['Int']>;
   skip?: Types.Maybe<Types.Scalars['Int']>;
@@ -53,10 +54,12 @@ export const CitiesDocument = gql`
  * });
  */
 export function useCitiesQuery(baseOptions?: Apollo.QueryHookOptions<CitiesQuery, CitiesQueryVariables>) {
-        return Apollo.useQuery<CitiesQuery, CitiesQueryVariables>(CitiesDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CitiesQuery, CitiesQueryVariables>(CitiesDocument, options);
       }
 export function useCitiesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CitiesQuery, CitiesQueryVariables>) {
-          return Apollo.useLazyQuery<CitiesQuery, CitiesQueryVariables>(CitiesDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CitiesQuery, CitiesQueryVariables>(CitiesDocument, options);
         }
 export type CitiesQueryHookResult = ReturnType<typeof useCitiesQuery>;
 export type CitiesLazyQueryHookResult = ReturnType<typeof useCitiesLazyQuery>;

@@ -13,6 +13,7 @@ import { UserFragment } from './user_';
 import { gql } from '@apollo/client';
 import { UserFragmentDoc } from './user_';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type UserQueryVariables = Types.Exact<{
   where: Types.Bani684UsersWhereUniqueInput;
 }>;
@@ -49,10 +50,12 @@ export const UserDocument = gql`
  * });
  */
 export function useUserQuery(baseOptions: Apollo.QueryHookOptions<UserQuery, UserQueryVariables>) {
-        return Apollo.useQuery<UserQuery, UserQueryVariables>(UserDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<UserQuery, UserQueryVariables>(UserDocument, options);
       }
 export function useUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UserQuery, UserQueryVariables>) {
-          return Apollo.useLazyQuery<UserQuery, UserQueryVariables>(UserDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<UserQuery, UserQueryVariables>(UserDocument, options);
         }
 export type UserQueryHookResult = ReturnType<typeof useUserQuery>;
 export type UserLazyQueryHookResult = ReturnType<typeof useUserLazyQuery>;

@@ -15,6 +15,7 @@ import { gql } from '@apollo/client';
 import { RatingFragmentDoc } from './rating';
 import { CompanyFieldsFragmentDoc } from './CompanyFields';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type VotesByRatingQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
@@ -55,10 +56,12 @@ ${CompanyFieldsFragmentDoc}`;
  * });
  */
 export function useVotesByRatingQuery(baseOptions?: Apollo.QueryHookOptions<VotesByRatingQuery, VotesByRatingQueryVariables>) {
-        return Apollo.useQuery<VotesByRatingQuery, VotesByRatingQueryVariables>(VotesByRatingDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<VotesByRatingQuery, VotesByRatingQueryVariables>(VotesByRatingDocument, options);
       }
 export function useVotesByRatingLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<VotesByRatingQuery, VotesByRatingQueryVariables>) {
-          return Apollo.useLazyQuery<VotesByRatingQuery, VotesByRatingQueryVariables>(VotesByRatingDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<VotesByRatingQuery, VotesByRatingQueryVariables>(VotesByRatingDocument, options);
         }
 export type VotesByRatingQueryHookResult = ReturnType<typeof useVotesByRatingQuery>;
 export type VotesByRatingLazyQueryHookResult = ReturnType<typeof useVotesByRatingLazyQuery>;

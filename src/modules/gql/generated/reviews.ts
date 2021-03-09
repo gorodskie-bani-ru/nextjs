@@ -13,6 +13,7 @@ import { TopicCityFragment, TopicCompanyFragment, TopicRatingFragment, TopicReso
 import { gql } from '@apollo/client';
 import { TopicFragmentDoc } from './topic';
 import * as Apollo from '@apollo/client';
+const defaultOptions =  {}
 export type ReviewsQueryVariables = Types.Exact<{
   where?: Types.Maybe<Types.Bani684SiteContentWhereInput>;
   orderBy?: Types.Maybe<Array<Types.Bani684SiteContentOrderByInput> | Types.Bani684SiteContentOrderByInput>;
@@ -60,10 +61,12 @@ export const ReviewsDocument = gql`
  * });
  */
 export function useReviewsQuery(baseOptions?: Apollo.QueryHookOptions<ReviewsQuery, ReviewsQueryVariables>) {
-        return Apollo.useQuery<ReviewsQuery, ReviewsQueryVariables>(ReviewsDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ReviewsQuery, ReviewsQueryVariables>(ReviewsDocument, options);
       }
 export function useReviewsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ReviewsQuery, ReviewsQueryVariables>) {
-          return Apollo.useLazyQuery<ReviewsQuery, ReviewsQueryVariables>(ReviewsDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ReviewsQuery, ReviewsQueryVariables>(ReviewsDocument, options);
         }
 export type ReviewsQueryHookResult = ReturnType<typeof useReviewsQuery>;
 export type ReviewsLazyQueryHookResult = ReturnType<typeof useReviewsLazyQuery>;
