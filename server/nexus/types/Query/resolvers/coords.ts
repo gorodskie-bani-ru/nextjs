@@ -7,7 +7,7 @@ import { TemplateVarIDs } from '../../../constants'
  */
 export const coordsResolver = (parent: SourceValue<'City' | 'Company'>) => {
   const coordsTV = parent.TemplateVarValues?.find(
-    (tv) => tv.tmplvarid === TemplateVarIDs.coors
+    (tv) => tv.tmplvarid === TemplateVarIDs.coords
   )
 
   let coords: NexusGenObjects['Coordinates'] | null = null

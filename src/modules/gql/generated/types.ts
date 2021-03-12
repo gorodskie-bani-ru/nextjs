@@ -89,6 +89,16 @@ export interface Comment {
   text?: Maybe<Scalars['String']>;
 }
 
+/** Сортировка по удаленности от координаты */
+export interface CompaniesOrderByCoordsInput {
+  lat: Scalars['Float'];
+  lng: Scalars['Float'];
+}
+
+export interface CompaniesOrderByInput {
+  coords?: Maybe<CompaniesOrderByCoordsInput>;
+}
+
 /** Компания */
 export interface Company extends ResourceInterface {
   __typename?: 'Company';
@@ -338,11 +348,9 @@ export type QueryCommentsCountArgs = {
 
 
 export type QueryCompaniesArgs = {
-  cursor?: Maybe<Bani684SiteContentWhereUniqueInput>;
-  orderBy?: Maybe<Array<Bani684SiteContentOrderByInput>>;
+  orderBy?: Maybe<CompaniesOrderByInput>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
-  where?: Maybe<Bani684SiteContentWhereInput>;
 };
 
 

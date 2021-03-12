@@ -70,6 +70,15 @@ export interface NexusGenInputs {
     equals?: boolean | null // Boolean
     not?: NexusGenInputs['NestedBoolFilter'] | null // NestedBoolFilter
   }
+  CompaniesOrderByCoordsInput: {
+    // input type
+    lat: number // Float!
+    lng: number // Float!
+  }
+  CompaniesOrderByInput: {
+    // input type
+    coords?: NexusGenInputs['CompaniesOrderByCoordsInput'] | null // CompaniesOrderByCoordsInput
+  }
   DateTimeFilter: {
     // input type
     equals?: NexusGenScalars['DateTime'] | null // DateTime
@@ -1313,11 +1322,9 @@ export interface NexusGenArgTypes {
     }
     companies: {
       // args
-      cursor?: NexusGenInputs['bani684_site_contentWhereUniqueInput'] | null // bani684_site_contentWhereUniqueInput
-      orderBy?: NexusGenInputs['bani684_site_contentOrderByInput'][] | null // [bani684_site_contentOrderByInput!]
+      orderBy?: NexusGenInputs['CompaniesOrderByInput'] | null // CompaniesOrderByInput
       skip?: number | null // Int
       take?: number | null // Int
-      where?: NexusGenInputs['bani684_site_contentWhereInput'] | null // bani684_site_contentWhereInput
     }
     ratings: {
       // args

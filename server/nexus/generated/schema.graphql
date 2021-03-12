@@ -82,6 +82,18 @@ type Comment {
 }
 
 """
+Сортировка по удаленности от координаты
+"""
+input CompaniesOrderByCoordsInput {
+  lat: Float!
+  lng: Float!
+}
+
+input CompaniesOrderByInput {
+  coords: CompaniesOrderByCoordsInput
+}
+
+"""
 Компания
 """
 type Company implements ResourceInterface {
@@ -332,13 +344,7 @@ type Query {
   """
   Компании
   """
-  companies(
-    cursor: bani684_site_contentWhereUniqueInput
-    orderBy: [bani684_site_contentOrderByInput!]
-    skip: Int
-    take: Int
-    where: bani684_site_contentWhereInput
-  ): [Company!]!
+  companies(orderBy: CompaniesOrderByInput, skip: Int, take: Int): [Company!]!
 
   """
   Рейтинги заведений

@@ -17,8 +17,7 @@ const defaultOptions =  {}
 export type CompaniesQueryVariables = Types.Exact<{
   skip?: Types.Maybe<Types.Scalars['Int']>;
   take?: Types.Maybe<Types.Scalars['Int']>;
-  where?: Types.Maybe<Types.Bani684SiteContentWhereInput>;
-  orderBy?: Types.Maybe<Array<Types.Bani684SiteContentOrderByInput> | Types.Bani684SiteContentOrderByInput>;
+  orderBy?: Types.Maybe<Types.CompaniesOrderByInput>;
   withContent?: Types.Maybe<Types.Scalars['Boolean']>;
 }>;
 
@@ -30,8 +29,8 @@ export type CompaniesQuery = { __typename?: 'Query', companies: Array<(
 
 
 export const CompaniesDocument = gql`
-    query companies($skip: Int, $take: Int, $where: bani684_site_contentWhereInput, $orderBy: [bani684_site_contentOrderByInput!], $withContent: Boolean = false) {
-  companies(skip: $skip, take: $take, where: $where, orderBy: $orderBy) {
+    query companies($skip: Int, $take: Int, $orderBy: CompaniesOrderByInput, $withContent: Boolean = false) {
+  companies(skip: $skip, take: $take, orderBy: $orderBy) {
     ...Company_
   }
 }
@@ -51,7 +50,6 @@ export const CompaniesDocument = gql`
  *   variables: {
  *      skip: // value for 'skip'
  *      take: // value for 'take'
- *      where: // value for 'where'
  *      orderBy: // value for 'orderBy'
  *      withContent: // value for 'withContent'
  *   },

@@ -9,6 +9,7 @@ import { ObjectDefinitionBlock } from 'nexus/dist/core'
 import { TemplateVarIDs } from '../../../../../constants'
 import { NexusGenObjects } from 'server/nexus/generated/nexus'
 import { userSelect } from '../../User'
+import { CompaniesResult } from '../../Resource/Company'
 
 export const votes = (t: ObjectDefinitionBlock<'Query'>) => {
   t.crud.bani684SocietyVotess({
@@ -79,23 +80,6 @@ export const votes = (t: ObjectDefinitionBlock<'Query'>) => {
 
       type VotesResult = Pick<bani684_society_votes, 'type' | 'target_id'> & {
         voteValueAvg: number
-      }
-
-      type CompaniesResult = {
-        company_id: NexusGenObjects['Company']['id']
-        company_uri: NexusGenObjects['Company']['uri']
-        company_pagetitle: NexusGenObjects['Company']['pagetitle']
-        company_createdby: NexusGenObjects['Company']['createdby']
-        company_createdon: NexusGenObjects['Company']['createdon']
-        company_description: NexusGenObjects['Company']['description']
-        company_longtitle: NexusGenObjects['Company']['longtitle']
-        company_published: NexusGenObjects['Company']['published']
-        company_searchable: NexusGenObjects['Company']['searchable']
-        company_template: NexusGenObjects['Company']['template']
-        company_image_id: number | undefined
-        company_image: string | undefined
-        company_gallery_id: number | undefined
-        company_gallery: string | undefined
       }
 
       const query = knex

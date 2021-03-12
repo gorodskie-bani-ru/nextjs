@@ -2,7 +2,7 @@
  * ID ТВшек
  */
 export const TemplateVarIDs = {
-  coors: 27,
+  coords: 27,
   image: 3,
   gallery: 23,
   address: 14,

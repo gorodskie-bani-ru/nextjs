@@ -6,8 +6,9 @@ query companies(
   # $companiesCenter: InputCoordsType
   $skip: Int
   $take: Int
-  $where: bani684_site_contentWhereInput
-  $orderBy: [bani684_site_contentOrderByInput!]
+  # $where: bani684_site_contentWhereInput
+  # $orderBy: [bani684_site_contentOrderByInput!]
+  $orderBy: CompaniesOrderByInput
   $withContent: Boolean = false
 ) {
   # companiesList(
@@ -26,7 +27,7 @@ query companies(
   #     ...ListCompany
   #   }
   # }
-  companies(skip: $skip, take: $take, where: $where, orderBy: $orderBy) {
+  companies(skip: $skip, take: $take, orderBy: $orderBy) {
     ...Company_
   }
 }
