@@ -23,7 +23,7 @@ const RatingsPageViewRating: React.FC<RatingsPageViewRatingProps> = ({
   }, [showAll])
 
   const { companies, haveMore, total } = useMemo(() => {
-    // const companies: CompaniesViewProps["componies"] = [];
+    // const companies: CompaniesViewProps["companies"] = [];
 
     const votes = votesProps.filter((n) => n.type === ratingType.id)
 
@@ -58,7 +58,7 @@ const RatingsPageViewRating: React.FC<RatingsPageViewRatingProps> = ({
             <Title variant="h2">{ratingType.pagetitle}</Title>
           </Link>
 
-          <CompaniesView componies={companies} />
+          <CompaniesView companies={companies} />
 
           {haveMore && (
             <div className="buttons">

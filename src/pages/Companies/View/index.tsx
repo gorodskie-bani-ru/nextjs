@@ -5,7 +5,7 @@ import { CompaniesViewProps } from './interfaces'
 import { CompaniesViewStyled } from './styles'
 
 const CompaniesView: React.FC<CompaniesViewProps> = ({
-  componies,
+  companies,
   ...other
 }) => {
   return useMemo(() => {
@@ -13,7 +13,7 @@ const CompaniesView: React.FC<CompaniesViewProps> = ({
       <>
         <CompaniesViewStyled {...other}>
           <Grid container>
-            {componies.map((n) => (
+            {companies.map((n) => (
               <Grid key={n.id} item xs={12} sm={6} md={4} lg={3}>
                 <CompaniesViewCompany company={n} />
               </Grid>
@@ -22,7 +22,7 @@ const CompaniesView: React.FC<CompaniesViewProps> = ({
         </CompaniesViewStyled>
       </>
     )
-  }, [componies, other])
+  }, [companies, other])
 }
 
 export default CompaniesView

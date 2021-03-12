@@ -44,7 +44,7 @@ export const MainPage: Page = (): JSX.Element => {
 
       {/* <OldMainPage /> */}
 
-      <CompaniesView componies={companiesResponse.data?.companies || []} />
+      <CompaniesView companies={companiesResponse.data?.companies || []} />
     </>
   )
 }
