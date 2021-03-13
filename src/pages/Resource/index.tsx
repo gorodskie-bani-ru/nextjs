@@ -5,6 +5,9 @@
 
 import React, { useMemo } from 'react'
 import {
+  CompaniesDocument,
+  CompaniesQuery,
+  CompaniesQueryVariables,
   ResourcesDocument,
   ResourcesQuery,
   ResourcesQueryVariables,
@@ -22,6 +25,7 @@ import { ResourcePageProps } from './interfaces'
 import CompanyView from '../Companies/Company/View'
 import Topic from 'src/components/ui/Topic'
 import { NextSeo } from 'next-seo'
+import CityPage, { getCompaniesVariables } from '../Cities/City'
 
 export const getResourceVariables = (
   router: NextRouter | NextPageContextCustom
@@ -85,6 +89,8 @@ const ResourcePage: Page<ResourcePageProps> = () => {
       //
 
       return <CompanyView company={object} />
+    } else if (object.__typename === 'City') {
+      return <CityPage city={object} />
     } else if (
       object.__typename === 'Review' ||
       object.__typename === 'Topic'
@@ -190,6 +196,19 @@ ResourcePage.getInitialProps = async (context) => {
       // || (object.__typename === 'Resource' &&
       //   [15, 28].includes(object.template))
     ) {
+      statusCode = 200
+    } else if (object.__typename === 'City') {
+      /**
+       * Дополнительно получаем данные компаний
+       */
+      await apolloClient.query<CompaniesQuery, CompaniesQueryVariables>({
+        query: CompaniesDocument,
+        variables: getCompaniesVariables({
+          city: object,
+          query: context.query,
+        }).variables,
+      })
+
       statusCode = 200
     } else if (['City'].includes(object.__typename)) {
       //

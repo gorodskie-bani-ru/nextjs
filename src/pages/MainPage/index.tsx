@@ -1,3 +1,4 @@
+import React, { useMemo } from 'react'
 // import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 // import OldMainPage from 'src/components_old/Pages/MainPage'
@@ -15,21 +16,24 @@ import { Page } from '../_App/interfaces'
 import {
   useCompaniesQuery,
   CompaniesDocument,
+  CompaniesQuery,
   CompaniesQueryVariables,
 } from 'src/modules/gql/generated'
 
 import CompaniesView from '../Companies/View'
+import { MainPageProps } from './interfaces'
+import { getCompaniesVariables } from '../Cities/City'
+import { useRouter } from 'next/router'
 
-const variables: CompaniesQueryVariables = {
-  take: 12,
-}
+export const MainPage: Page<MainPageProps> = ({ city }): JSX.Element => {
+  const router = useRouter()
 
-export const MainPage: Page = (): JSX.Element => {
-  // const router = useRouter()
-
-  // const {
-  //   // query: { skip, first },
-  // } = router
+  const { variables, page } = useMemo(() => {
+    return getCompaniesVariables({
+      city,
+      query: router.query,
+    })
+  }, [city, router.query])
 
   const companiesResponse = useCompaniesQuery({
     variables,
@@ -44,20 +48,35 @@ export const MainPage: Page = (): JSX.Element => {
 
       {/* <OldMainPage /> */}
 
-      <CompaniesView companies={companiesResponse.data?.companies || []} />
+      <CompaniesView
+        companies={companiesResponse.data?.companies || []}
+        city={city}
+        pagination={{
+          page,
+          limit: companiesResponse.variables?.take || 0,
+          total: 100,
+        }}
+      />
     </>
   )
 }
 
 MainPage.getInitialProps = async (appContext) => {
-  const { apolloClient } = appContext
+  const { apolloClient, cities, query } = appContext
 
-  await apolloClient.query({
+  const moscow = cities.find((n) => n.id === 1197)
+
+  await apolloClient.query<CompaniesQuery, CompaniesQueryVariables>({
     query: CompaniesDocument,
-    variables,
+    variables: getCompaniesVariables({
+      city: moscow,
+      query,
+    }).variables,
   })
 
-  return {}
+  return {
+    city: moscow,
+  }
 }
 
 export default MainPage

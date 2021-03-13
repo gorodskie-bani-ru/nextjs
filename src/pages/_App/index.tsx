@@ -12,7 +12,12 @@ import jquery from 'jquery'
 
 import Head from 'next/head'
 
-import { AppDataDocument, useAppDataQuery } from 'src/modules/gql/generated'
+import {
+  AppDataDocument,
+  AppDataQuery,
+  AppDataQueryVariables,
+  useAppDataQuery,
+} from 'src/modules/gql/generated'
 
 import {
   MainApp,
@@ -176,23 +181,28 @@ App.getInitialProps = async (appContext: NextAppContext) => {
   })
 
   /**
-   * Передаваемый далее в страницу контекст
-   */
-  const newAppContext = {
-    ...appContext,
-    ctx: {
-      ...appContext.ctx,
-      apolloClient,
-    } as NextPageContextCustom,
-  }
-
-  /**
    * Получаем основные данные приложения
    */
-  await apolloClient.query({
-    query: AppDataDocument,
-    variables: {},
-  })
+  const appData = await apolloClient.query<AppDataQuery, AppDataQueryVariables>(
+    {
+      query: AppDataDocument,
+      variables: {},
+    }
+  )
+
+  /**
+   * Передаваемый далее в страницу контекст
+   */
+  const ctx: NextPageContextCustom = {
+    ...appContext.ctx,
+    apolloClient,
+    cities: appData.data.cities,
+  }
+
+  const newAppContext = {
+    ...appContext,
+    ctx,
+  }
 
   /**
    * Call final _App.getInitialProps, _Document.getInitialProps() and page.getInitialProps()

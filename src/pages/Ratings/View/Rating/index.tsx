@@ -58,7 +58,11 @@ const RatingsPageViewRating: React.FC<RatingsPageViewRatingProps> = ({
             <Title variant="h2">{ratingType.pagetitle}</Title>
           </Link>
 
-          <CompaniesView companies={companies} />
+          <CompaniesView
+            companies={companies}
+            city={undefined}
+            pagination={undefined}
+          />
 
           {haveMore && (
             <div className="buttons">

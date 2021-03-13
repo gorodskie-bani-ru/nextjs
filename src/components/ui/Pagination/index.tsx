@@ -9,11 +9,13 @@ import { PaginationStyled } from './styles'
 export * from './interfaces'
 
 const Pagination: React.FC<PaginationProps> = ({
-  page,
+  page: pageProps,
   limit,
   total,
   ...other
 }) => {
+  const page = pageProps || 1
+
   const router = useRouter()
 
   const getNewLocation = useCallback(
@@ -35,7 +37,7 @@ const Pagination: React.FC<PaginationProps> = ({
     [router.asPath]
   )
 
-  if (!page || !limit || !total) {
+  if (!limit || !total) {
     return null
   }
 
