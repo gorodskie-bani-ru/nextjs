@@ -21,9 +21,9 @@ import {
 
 import {
   MainApp,
-  NextPageContextCustom,
   AppProps,
   AppInitialPropsCustom,
+  NextPageContextCustom,
 } from './interfaces'
 import { NextSeo, NextSeoProps } from 'next-seo'
 import Page404 from '../_Error/404'
