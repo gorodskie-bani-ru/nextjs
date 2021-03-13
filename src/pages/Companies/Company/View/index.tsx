@@ -7,12 +7,17 @@ import { CompanyViewProps } from './interfaces'
 import GallerySlider from './GallerySlider'
 import { imageFormats } from 'src/helpers/imageFormats'
 import { Card, CardHeader } from '@material-ui/core'
-import AddressIcon from './icons/address'
 import Site from './Site'
 
 import Editor, { PrismaCmsEditorProps } from '@prisma-cms/editor'
 
 import dynamic from 'next/dynamic'
+import CompanyWorkTime from './WorkTime'
+import { CompanyViewStyled } from './styles'
+
+import SvgIcon from 'src/components/ui/SvgIcon'
+import addressSvg from './img/address.svg'
+import priceSvg from './img/price.svg'
 
 const ItemMap = dynamic(import('./ItemMap'), {
   ssr: false,
@@ -20,7 +25,10 @@ const ItemMap = dynamic(import('./ItemMap'), {
 
 // import moment from 'moment'
 
-const CompanyView: React.FC<CompanyViewProps> = ({ company: item }) => {
+const CompanyView: React.FC<CompanyViewProps> = ({
+  company: item,
+  ...other
+}) => {
   // const { documentActions, user } = this.context
 
   // const { user: currentUser } = user || {}
@@ -82,7 +90,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company: item }) => {
     // _isDirty,
     // } = item;
     address,
-    workTime,
+    // workTime,
   } = useMemo(() => {
     return itemData
   }, [itemData])
@@ -357,7 +365,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company: item }) => {
                   }}
                   alignItems="center"
                 >
-                  <AddressIcon />{' '}
+                  <SvgIcon src={addressSvg} alt="Адрес" />{' '}
                   <span
                     style={{
                       paddingLeft: 5,
@@ -367,7 +375,8 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company: item }) => {
                     Адрес:
                   </span>{' '}
                   {addresses.reduce<React.ReactNode[]>(
-                    (curr, next) => (curr.length ? [next] : [curr, ', ', next]),
+                    (curr, next) =>
+                      !curr.length ? [next] : [curr, ', ', next],
                     []
                   )}
                 </Grid>
@@ -472,89 +481,16 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company: item }) => {
                 ''
               )}
 
-              {inEditMode ? null : workTime ? (
-                // TODO Restore schedulesContent
-                // || schedulesContent
+              <CompanyWorkTime company={item} />
+
+              {prices ? (
                 <div
                   style={{
                     overflow: 'hidden',
                   }}
                 >
-                  {
-                    // schedulesContent ? (
-                    //   schedulesContent
-                    // ) :
-                    <Grid
-                      container
-                      // gutter={0}
-                      style={{
-                        marginBottom: workTime ? 10 : undefined,
-                      }}
-                    >
-                      {/*
-                            TODO Restore ClockIcon
-                            <ClockIcon /> */}
-                      ClockIcon{' '}
-                      <span
-                        style={{
-                          paddingLeft: 5,
-                          paddingRight: 3,
-                        }}
-                      >
-                        Время работы
-                      </span>
-                    </Grid>
-                  }
-
-                  {(workTime && (
-                    <div
-                      style={{
-                        whiteSpace: 'pre-wrap',
-                      }}
-                    >
-                      {workTime}
-                    </div>
-                  )) ||
-                    null}
-                </div>
-              ) : (
-                ''
-              )}
-
-              {inEditMode ? (
-                <div>
-                  <span
-                    style={{
-                      fontWeight: 800,
-                      fontSize: '12px',
-                      color: 'rgba(0, 0, 0, 0.54)',
-                      display: 'inline-block',
-                      marginTop: 20,
-                    }}
-                  >
-                    Цены
-                  </span>
-
-                  {/* 
-                    TODO Restore Editor
-                    */}
-                  {prices}
-                </div>
-              ) : prices ? (
-                <div
-                  style={{
-                    overflow: 'hidden',
-                  }}
-                >
-                  <Grid
-                    container
-                    // gutter={0}
-                    alignItems="center"
-                  >
-                    {/* 
-                      TODO Restore PriceIcon
-                    <PriceIcon /> */}
-                    PriceIcon{' '}
+                  <Grid container alignItems="center">
+                    <SvgIcon src={priceSvg} alt="Цена" />{' '}
                     <span
                       style={{
                         paddingLeft: 5,
@@ -580,12 +516,13 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company: item }) => {
     )
 
     return (
-      <Card
-        style={{
-          boxShadow: 'none',
-        }}
-      >
-        {/* {id < 0 ? (
+      <CompanyViewStyled {...other}>
+        <Card
+          style={{
+            boxShadow: 'none',
+          }}
+        >
+          {/* {id < 0 ? (
           <CardContent
             style={{
               display: 'flex',
@@ -618,25 +555,25 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company: item }) => {
           </CardContent>
         ) : null} */}
 
-        <CardHeader
-          title={
-            <Grid container alignItems="center">
-              <Grid item xs={12} sm>
-                {inEditMode
-                  ? // <TextField
-                    //   label="Название заведения"
-                    //   error={errors && errors.name ? true : false}
-                    //   helperText={(errors && errors.name) || ''}
-                    //   name="name"
-                    //   value={name || ''}
-                    //   onChange={this.onChange}
-                    //   onFocus={() => this.onFocus('name')}
-                    // />
-                    null
-                  : name}
-              </Grid>
+          <CardHeader
+            title={
+              <Grid container alignItems="center">
+                <Grid item xs={12} sm>
+                  {inEditMode
+                    ? // <TextField
+                      //   label="Название заведения"
+                      //   error={errors && errors.name ? true : false}
+                      //   helperText={(errors && errors.name) || ''}
+                      //   name="name"
+                      //   value={name || ''}
+                      //   onChange={this.onChange}
+                      //   onFocus={() => this.onFocus('name')}
+                      // />
+                      null
+                    : name}
+                </Grid>
 
-              {/* {_isDirty ? (
+                {/* {_isDirty ? (
                 <Grid item>
                   <IconButton
                     onClick={(event) => {
@@ -664,35 +601,35 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company: item }) => {
                   {helper}
                 </Grid>
               ) : null} */}
-            </Grid>
-          }
+              </Grid>
+            }
 
-          // TODO Restore RatingField
-          // subheader={<RatingField item={item} />}
-        />
+            // TODO Restore RatingField
+            // subheader={<RatingField item={item} />}
+          />
 
-        {mainInfo}
+          {mainInfo}
 
-        {itemContent ? (
-          <CardContent>
-            <Paper
-              style={{
-                padding: 15,
-              }}
-              dangerouslySetInnerHTML={{ __html: itemContent }}
-            />
-          </CardContent>
-        ) : null}
+          {itemContent ? (
+            <CardContent>
+              <Paper
+                style={{
+                  padding: 15,
+                }}
+                dangerouslySetInnerHTML={{ __html: itemContent }}
+              />
+            </CardContent>
+          ) : null}
 
-        <ItemMap item={item} />
+          <ItemMap item={item} />
 
-        {Gallery}
+          {Gallery}
 
-        {/* TODO Restore CompanyTopics */}
-        {/* {(!inEditMode && <CompanyTopics item={item} />) || null} */}
+          {/* TODO Restore CompanyTopics */}
+          {/* {(!inEditMode && <CompanyTopics item={item} />) || null} */}
 
-        {/* TODO Restore comments */}
-        {/* {!inEditMode && comments && comments.length ? (
+          {/* TODO Restore comments */}
+          {/* {!inEditMode && comments && comments.length ? (
           <CardContent>
             <Paper
               style={{
@@ -712,9 +649,10 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company: item }) => {
             </Paper>
           </CardContent>
         ) : null} */}
-      </Card>
+        </Card>
+      </CompanyViewStyled>
     )
-  }, [address, gallery, image, item, itemContent, name, prices, workTime])
+  }, [address, gallery, image, item, itemContent, name, other, prices])
 }
 
 export default CompanyView

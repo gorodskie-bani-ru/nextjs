@@ -120,6 +120,10 @@ export type CompaniesResult = {
   company_gallery: string | undefined
   company_coords_id: number | undefined
   company_coords: string | undefined
+  company_address_id: number | undefined
+  company_address: string | undefined
+  company_workTime_id: number | undefined
+  company_workTime: string | undefined
 }
 
 function companiesQuery(this: PrismaContext['knex']) {
@@ -199,6 +203,32 @@ const companiesResolver: FieldResolver<'Query', 'companies'> = (
       .select('tvs_coords.id as company_coords_id')
       .select('tvs_coords.value as company_coords')
 
+      /**
+       * Адрес
+       */
+      .leftJoin<bani684_site_tmplvar_contentvalues>(
+        'bani684_site_tmplvar_contentvalues as tvs_address',
+        {
+          'tvs_address.tmplvarid': TemplateVarIDs.address,
+          'tvs_address.contentid': 'company.id',
+        }
+      )
+      .select('tvs_address.id as company_address_id')
+      .select('tvs_address.value as company_address')
+
+      /**
+       * Рабочее время
+       */
+      .leftJoin<bani684_site_tmplvar_contentvalues>(
+        'bani684_site_tmplvar_contentvalues as tvs_workTime',
+        {
+          'tvs_workTime.tmplvarid': TemplateVarIDs.workTime,
+          'tvs_workTime.contentid': 'company.id',
+        }
+      )
+      .select('tvs_workTime.id as company_workTime_id')
+      .select('tvs_workTime.value as company_workTime')
+
       .select({
         company_id: 'company.id',
         company_uri: 'company.uri',
@@ -259,6 +289,10 @@ const companiesResolver: FieldResolver<'Query', 'companies'> = (
         company_gallery,
         company_coords_id,
         company_coords,
+        company_address_id,
+        company_address,
+        company_workTime_id,
+        company_workTime,
       } = n
 
       const TemplateVarValues: NexusGenObjects['Company']['TemplateVarValues'] = []
@@ -286,6 +320,24 @@ const companiesResolver: FieldResolver<'Query', 'companies'> = (
           id: company_coords_id,
           tmplvarid: TemplateVarIDs.coords,
           value: company_coords,
+          contentid: company_id,
+        })
+      }
+
+      if (company_address_id && company_address) {
+        TemplateVarValues.push({
+          id: company_address_id,
+          tmplvarid: TemplateVarIDs.address,
+          value: company_address,
+          contentid: company_id,
+        })
+      }
+
+      if (company_workTime_id && company_workTime) {
+        TemplateVarValues.push({
+          id: company_workTime_id,
+          tmplvarid: TemplateVarIDs.workTime,
+          value: company_workTime,
           contentid: company_id,
         })
       }
@@ -318,6 +370,9 @@ const companiesResolver: FieldResolver<'Query', 'companies'> = (
     /**
      * Сортировка по координатам
      */
+
+    //  console.log('orderByCoords', orderByCoords);
+
     if (orderByCoords) {
       const { lat, lng } = orderByCoords
 
@@ -325,8 +380,26 @@ const companiesResolver: FieldResolver<'Query', 'companies'> = (
         const aCoords = coordsResolver(a)
         const bCoords = coordsResolver(b)
 
-        if (!aCoords || !bCoords) {
+        // console.log('aCoords', aCoords);
+        // console.log('bCoords', bCoords);
+
+        // if (!aCoords || !bCoords) {
+        //   console.log('-1');
+        //   return -1
+        // }
+
+        /**
+         * Если нет координат у текущей компании, отправляем ее в конец
+         */
+        if (!bCoords) {
           return -1
+        } else if (!aCoords) {
+
+        /**
+         * Если нет координат у предыдущей (не с чем сравнивать),
+         * остаемся на месте
+         */
+          return 0
         }
 
         const { lat: aLat, lng: aLng } = aCoords

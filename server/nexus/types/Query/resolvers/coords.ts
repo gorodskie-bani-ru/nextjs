@@ -14,7 +14,7 @@ export const coordsResolver = (parent: SourceValue<'City' | 'Company'>) => {
 
   if (coordsTV) {
     const arr = coordsTV.value.split(',')
-    if (arr.length === 2) {
+    if (arr.length > 1) {
       const lat = parseFloat(arr[1])
       const lng = parseFloat(arr[0])
       const zoom = parseFloat(arr[2]) || 12
