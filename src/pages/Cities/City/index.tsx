@@ -81,7 +81,7 @@ const CityPage: Page<CityPageProps> = ({ city, ...other }) => {
           pagination={{
             page,
             limit: companiesResponse.variables?.take || 0,
-            total: 100,
+            total: companiesResponse.data?.companiesCount || 0,
           }}
           {...other}
         />
@@ -90,6 +90,7 @@ const CityPage: Page<CityPageProps> = ({ city, ...other }) => {
   }, [
     city,
     companiesResponse.data?.companies,
+    companiesResponse.data?.companiesCount,
     companiesResponse.variables?.take,
     other,
     page,

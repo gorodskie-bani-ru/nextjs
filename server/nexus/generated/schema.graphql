@@ -347,6 +347,11 @@ type Query {
   companies(orderBy: CompaniesOrderByInput, skip: Int, take: Int): [Company!]!
 
   """
+  Подсчет количества компаний
+  """
+  companiesCount: Int!
+
+  """
   Рейтинги заведений
   """
   ratings(

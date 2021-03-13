@@ -3065,6 +3065,22 @@
             "deprecationReason": null
           },
           {
+            "name": "companiesCount",
+            "description": "Подсчет количества компаний",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "ratings",
             "description": "Рейтинги заведений",
             "args": [

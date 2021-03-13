@@ -10,7 +10,11 @@ import {
   intArg,
   ObjectDefinitionBlock,
 } from 'nexus/dist/core'
-import { NexusGenObjects } from 'server/nexus/generated/nexus'
+import { PrismaContext } from 'server/nexus/context'
+import {
+  // NexusGenArgTypes,
+  NexusGenObjects,
+} from 'server/nexus/generated/nexus'
 import { TemplateVarIDs } from '../../../../constants'
 import { coordsResolver } from '../../resolvers/coords'
 
@@ -118,11 +122,27 @@ export type CompaniesResult = {
   company_coords: string | undefined
 }
 
+function companiesQuery(this: PrismaContext['knex']) {
+  const query = this.from<bani684_site_content>(
+    'bani684_site_content as company'
+  )
+  .where({
+    template: 27,
+    deleted: false,
+    published: true,
+    hidemenu: false,
+  })
+
+  return query
+}
+
 const companiesResolver: FieldResolver<'Query', 'companies'> = (
   _,
   args,
-  { knex }
+  ctx
 ) => {
+  const { knex } = ctx
+
   const { take: limit, skip } = args
 
   const orderByCoords = args.orderBy?.coords
@@ -138,23 +158,9 @@ const companiesResolver: FieldResolver<'Query', 'companies'> = (
   /**
    * Получаем данные компаний
    */
-  const query = knex.from<CompaniesResult>(function (this: typeof knex) {
-    const companiesQuery = this.from<bani684_site_content>(
-      'bani684_site_content as company'
-    )
-      .select({
-        company_id: 'company.id',
-        company_uri: 'company.uri',
-        company_pagetitle: 'company.pagetitle',
-        company_createdby: 'company.createdby',
-        company_createdon: 'company.createdon',
-        company_description: 'company.description',
-        company_longtitle: 'company.longtitle',
-        company_published: 'company.published',
-        company_searchable: 'company.searchable',
-        company_template: 'company.template',
-      })
-
+  const query = knex.from<CompaniesResult>(function (this: typeof ctx.knex) {
+    const q2 = companiesQuery
+      .call(this)
       /**
        * Картинка компании
        */
@@ -194,23 +200,28 @@ const companiesResolver: FieldResolver<'Query', 'companies'> = (
       .select('tvs_coords.id as company_coords_id')
       .select('tvs_coords.value as company_coords')
 
-      .where({
-        template: 27,
-        deleted: false,
-        published: true,
-        hidemenu: false,
+      .select({
+        company_id: 'company.id',
+        company_uri: 'company.uri',
+        company_pagetitle: 'company.pagetitle',
+        company_createdby: 'company.createdby',
+        company_createdon: 'company.createdon',
+        company_description: 'company.description',
+        company_longtitle: 'company.longtitle',
+        company_published: 'company.published',
+        company_searchable: 'company.searchable',
+        company_template: 'company.template',
       })
 
       .as('t')
-
     /**
      * Если сортировка по координатам, то берем компании только с координатами
      */
-    if (orderByCoords) {
-      companiesQuery.whereNotNull('tvs_coords.id')
-    }
+    // if (args.orderBy?.coords) {
+    //   query.whereNotNull('tvs_coords.id')
+    // }
 
-    return companiesQuery
+    return q2
   })
 
   // if (limit) {
@@ -386,5 +397,22 @@ export const companies = (t: ObjectDefinitionBlock<'Query'>) => {
       }),
     },
     resolve: companiesResolver,
+  })
+
+  t.nonNull.int('companiesCount', {
+    description: 'Подсчет количества компаний',
+    resolve: async (_, _args, ctx) => {
+      const query = ctx.knex.from(function (this: typeof ctx.knex) {
+        return companiesQuery.call(this).count({ count: '*' }).as('t')
+      })
+
+      return await query.then((r) => {
+        const count = r[0]?.count
+
+        return typeof count === 'number'
+          ? count
+          : (count && parseInt(count)) || 0
+      })
+    },
   })
 }

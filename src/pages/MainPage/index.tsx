@@ -54,7 +54,7 @@ export const MainPage: Page<MainPageProps> = ({ city }): JSX.Element => {
         pagination={{
           page,
           limit: companiesResponse.variables?.take || 0,
-          total: 100,
+          total: companiesResponse.data?.companiesCount || 0,
         }}
       />
     </>

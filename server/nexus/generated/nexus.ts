@@ -899,6 +899,7 @@ export interface NexusGenFieldTypes {
     comments: NexusGenRootTypes['Comment'][] // [Comment!]!
     commentsCount: number // Int!
     companies: NexusGenRootTypes['Company'][] // [Company!]!
+    companiesCount: number // Int!
     ratings: NexusGenRootTypes['Rating'][] // [Rating!]!
     resources: NexusGenRootTypes['ResourceInterface'][] // [ResourceInterface!]!
     resourcesCount: number // Int!
@@ -1141,6 +1142,7 @@ export interface NexusGenFieldTypeNames {
     comments: 'Comment'
     commentsCount: 'Int'
     companies: 'Company'
+    companiesCount: 'Int'
     ratings: 'Rating'
     resources: 'ResourceInterface'
     resourcesCount: 'Int'

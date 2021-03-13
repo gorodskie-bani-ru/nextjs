@@ -27,6 +27,9 @@ query companies(
   #     ...ListCompany
   #   }
   # }
+
+  companiesCount
+
   companies(skip: $skip, take: $take, orderBy: $orderBy) {
     ...Company_
   }

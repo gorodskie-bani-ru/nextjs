@@ -67,12 +67,13 @@ export type GalleryImageFieldPolicy = {
 	image?: FieldPolicy<any> | FieldReadFunction<any>,
 	title?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type QueryKeySpecifier = ('cities' | 'comments' | 'commentsCount' | 'companies' | 'ratings' | 'resources' | 'resourcesCount' | 'reviews' | 'topics' | 'user' | 'users' | 'usersCount' | 'votes' | 'votesByRating' | QueryKeySpecifier)[];
+export type QueryKeySpecifier = ('cities' | 'comments' | 'commentsCount' | 'companies' | 'companiesCount' | 'ratings' | 'resources' | 'resourcesCount' | 'reviews' | 'topics' | 'user' | 'users' | 'usersCount' | 'votes' | 'votesByRating' | QueryKeySpecifier)[];
 export type QueryFieldPolicy = {
 	cities?: FieldPolicy<any> | FieldReadFunction<any>,
 	comments?: FieldPolicy<any> | FieldReadFunction<any>,
 	commentsCount?: FieldPolicy<any> | FieldReadFunction<any>,
 	companies?: FieldPolicy<any> | FieldReadFunction<any>,
+	companiesCount?: FieldPolicy<any> | FieldReadFunction<any>,
 	ratings?: FieldPolicy<any> | FieldReadFunction<any>,
 	resources?: FieldPolicy<any> | FieldReadFunction<any>,
 	resourcesCount?: FieldPolicy<any> | FieldReadFunction<any>,

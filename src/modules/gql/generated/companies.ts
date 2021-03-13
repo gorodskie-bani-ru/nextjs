@@ -22,7 +22,7 @@ export type CompaniesQueryVariables = Types.Exact<{
 }>;
 
 
-export type CompaniesQuery = { __typename?: 'Query', companies: Array<(
+export type CompaniesQuery = { __typename?: 'Query', companiesCount: number, companies: Array<(
     { __typename?: 'Company' }
     & CompanyFragment
   )> };
@@ -30,6 +30,7 @@ export type CompaniesQuery = { __typename?: 'Query', companies: Array<(
 
 export const CompaniesDocument = gql`
     query companies($skip: Int, $take: Int, $orderBy: CompaniesOrderByInput, $withContent: Boolean = false) {
+  companiesCount
   companies(skip: $skip, take: $take, orderBy: $orderBy) {
     ...Company_
   }

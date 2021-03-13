@@ -303,6 +303,8 @@ export interface Query {
   commentsCount: Scalars['Int'];
   /** Компании */
   companies: Array<Company>;
+  /** Подсчет количества компаний */
+  companiesCount: Scalars['Int'];
   /** Рейтинги заведений */
   ratings: Array<Rating>;
   /** Ресурсы */
