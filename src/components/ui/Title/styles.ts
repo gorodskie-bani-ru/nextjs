@@ -1,3 +1,3 @@
 import styled from 'styled-components'
 
-export const TitleStyled = styled.span``
+export const TitleStyled = styled.h1``

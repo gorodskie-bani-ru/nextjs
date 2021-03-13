@@ -8,7 +8,6 @@ import { ThemeProvider } from 'styled-components'
 import theme from 'src/theme'
 
 import { useApollo, initializeApollo } from 'src/lib/apolloClient'
-import jquery from 'jquery'
 
 import Head from 'next/head'
 
@@ -38,21 +37,6 @@ moment.locale('ru')
 // import chalk from 'chalk';
 // import Debug from 'debug';
 // const debug = Debug('apolloClient');
-
-declare global {
-  interface Window {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    $: any
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    jQuery: any
-  }
-}
-
-if (typeof window !== 'undefined') {
-  window.$ = window.jQuery = jquery
-  // eslint-disable-next-line no-restricted-modules
-  require('bootstrap/dist/js/bootstrap')
-}
 
 const withWs = false
 

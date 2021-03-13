@@ -3,9 +3,9 @@ import { useContext } from 'react'
 import { AppContext } from 'src/pages/_App/Context'
 import { CompanyRatingProps } from './interfaces'
 import { CompanyRatingStyled } from './styles'
-import StarIcon from 'material-ui-icons/Star'
-import StarEmptyIcon from 'material-ui-icons/StarBorder'
-import StarHalfIcon from 'material-ui-icons/StarHalf'
+import StarIcon from '@material-ui/icons/Star'
+import StarEmptyIcon from '@material-ui/icons/StarBorder'
+import StarHalfIcon from '@material-ui/icons/StarHalf'
 
 /**
  * Рейтинг компании (звездочки)

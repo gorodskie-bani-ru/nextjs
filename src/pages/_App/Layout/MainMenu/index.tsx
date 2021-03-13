@@ -1,4 +1,10 @@
-import React, { useCallback, useContext, useMemo } from 'react'
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 
 // import PropTypes from 'prop-types'
 
@@ -16,8 +22,10 @@ import Link from 'next/link'
 
 // import cookies from 'js-cookie'
 
-import $ from 'jquery'
 import { AppContext } from 'src/pages/_App/Context'
+import { MainMenuStyled } from './styles'
+
+import logo from './img/bath-logo.png'
 
 const MainMenu: React.FC = () => {
   // static contextTypes = {
@@ -180,9 +188,9 @@ const MainMenu: React.FC = () => {
   //   })
   // }
 
-  const closeMenu = useCallback(() => {
-    $('#navbar-main').removeClass('in')
-  }, [])
+  // const closeMenu = useCallback(() => {
+  //   $('#navbar-main').removeClass('in')
+  // }, [])
 
   // const loginClicked = useCallback(() => {
   //   console.log('loginClicked')
@@ -240,7 +248,11 @@ const MainMenu: React.FC = () => {
       citiesList.push(
         <li key={id}>
           <Link href={link}>
-            <a onClick={closeMenu}>{name}</a>
+            <a
+            // onClick={closeMenu}
+            >
+              {name}
+            </a>
           </Link>
         </li>
       )
@@ -275,7 +287,7 @@ const MainMenu: React.FC = () => {
       )) ||
       null
     )
-  }, [cities, closeMenu, mainCity])
+  }, [cities, mainCity])
 
   // TODO Remove
   citiesList
@@ -283,6 +295,31 @@ const MainMenu: React.FC = () => {
   // const preventDefault = useCallback((event: React.MouseEvent) => {
   //   event.preventDefault()
   // }, [])
+
+  const [opened, openedSetter] = useState(false)
+
+  const toggleMenu = useCallback(() => {
+    openedSetter(!opened)
+  }, [opened])
+
+  /**
+   * Ивент на закрытие меню
+   */
+  useEffect(() => {
+    if (!opened) {
+      return
+    }
+
+    const closeEvent = () => {
+      openedSetter(false)
+    }
+
+    window.document.addEventListener('click', closeEvent)
+
+    return () => {
+      window.document.removeEventListener('click', closeEvent)
+    }
+  }, [opened])
 
   return useMemo(() => {
     // const user = null
@@ -323,50 +360,58 @@ const MainMenu: React.FC = () => {
     //   })
 
     return (
-      <div
-        className="navbar navbar-default"
+      <MainMenuStyled
+        // className="navbar navbar-default"
         // className="navbar navbar-default navbar-fixed-top"
-        style={{
-          marginBottom: 0,
-          borderRadius: 0,
-        }}
+        // style={{
+        //   marginBottom: 0,
+        //   borderRadius: 0,
+        // }}
+        opened={opened}
       >
-        <div className="container">
-          <div className="navbar-header">
-            <Link href={baseUrl}>
-              <a
-                className="navbar-brand"
-                title="Городские бани, главная страница"
-              >
-                <div className="logo">
-                  <i className="str leaf leaf-l"></i>
-                  <span className="str">Городские бани</span>
-                </div>
-              </a>
-            </Link>
-            <button
-              className="navbar-toggle"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbar-main"
-            >
-              <span className="icon-bar"></span>
-              <span className="icon-bar"></span>
-              <span className="icon-bar"></span>
-            </button>
-          </div>
+        {/* <div className="container"> */}
 
-          <div
-            id="navbar-main"
-            className="collapse navbar-collapse navbar-right"
+        <Link href={baseUrl}>
+          <a className="navbar-brand" title="Городские бани, главная страница">
+            {/* <div className="logo"> */}
+            <img src={logo} alt={'logo'} title="Городские бани" />
+            <span className="str">Городские бани</span>
+            {/* </div> */}
+          </a>
+        </Link>
+
+        {/* <div className="navbar-header">
+          <button
+            className="navbar-toggle"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbar-main"
           >
-            <ul
-              className="nav navbar-nav flex align-center"
-              style={{
-                display: 'flex',
-              }}
-            >
-              {/*<li>
+            <span className="icon-bar"></span>
+            <span className="icon-bar"></span>
+            <span className="icon-bar"></span>
+          </button>
+        </div> */}
+
+        <div className="separator" />
+
+        <button className="navbar-toggle" type="button" onClick={toggleMenu}>
+          <span className="icon-bar"></span>
+          <span className="icon-bar"></span>
+          <span className="icon-bar"></span>
+        </button>
+
+        {/* <div
+        // className="collapse navbar-collapse navbar-right"
+        > */}
+        <ul
+          id="navbar-main"
+          // className="nav navbar-nav"
+          // style={{
+          //   display: 'flex',
+          // }}
+        >
+          {/*<li>
               <a 
                 href="/" 
                 title="Все бани на карте" 
@@ -387,12 +432,12 @@ const MainMenu: React.FC = () => {
               </ul>
             </li>*/}
 
-              {/* 
+          {/* 
               // TODO Restore citiesList
               {citiesList} 
               */}
 
-              {/* {(ratingsList && ratingsList.length && (
+          {/* {(ratingsList && ratingsList.length && (
               <li>
                 <Link href="/ratings/">
                   <a
@@ -415,7 +460,7 @@ const MainMenu: React.FC = () => {
             )) ||
               null} */}
 
-              {/* <li>
+          {/* <li>
                 <Link href="/topics/">
                   <a
                     title="Рейтинги заведений"
@@ -492,30 +537,24 @@ const MainMenu: React.FC = () => {
                 </ul>
               </li> */}
 
-              <li>
-                <Link href="/bani-otzivy/">
-                  <a title="Обзоры и отзывы" onClick={closeMenu}>
-                    Обзоры и отзывы
-                  </a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/topics/">
-                  <a title="Новости" onClick={closeMenu}>
-                    Новости
-                  </a>
-                </Link>
-              </li>
+          <li>
+            <Link href="/bani-otzivy/">
+              <a title="Обзоры и отзывы">Обзоры и отзывы</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/topics/">
+              <a title="Новости">Новости</a>
+            </Link>
+          </li>
 
-              <li className="last">
-                <Link href="/contacts.html">
-                  <a title="Контакты" onClick={closeMenu}>
-                    Контакты
-                  </a>
-                </Link>
-              </li>
+          <li className="last">
+            <Link href="/contacts.html">
+              <a title="Контакты">Контакты</a>
+            </Link>
+          </li>
 
-              {/* {user ? (
+          {/* {user ? (
                 <li className="dropdown">
                   <a
                     id="office"
@@ -557,14 +596,14 @@ const MainMenu: React.FC = () => {
                   </a>
                 </li>
               )} */}
-            </ul>
+        </ul>
 
-            {/* <WsProxy /> */}
-          </div>
-        </div>
-      </div>
+        {/* <WsProxy /> */}
+        {/* </div> */}
+        {/* </div> */}
+      </MainMenuStyled>
     )
-  }, [closeMenu])
+  }, [opened, toggleMenu])
   // }
 }
 

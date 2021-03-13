@@ -8,7 +8,7 @@ import UserLink from '../Link/User'
 import moment from 'moment'
 import Paper from '../Paper'
 import Comment from '../Comment'
-import CommentsIcon from 'material-ui-icons/Comment'
+import CommentsIcon from '@material-ui/icons/Comment'
 
 const Topic: React.FC<TopicProps> = ({ topic, withComments, ...other }) => {
   const content = useMemo(() => {
@@ -69,7 +69,7 @@ const Topic: React.FC<TopicProps> = ({ topic, withComments, ...other }) => {
               title={`Комментарии к публикации "${topic.pagetitle}"`}
             >
               <CommentsIcon
-                color={topic.Comments.length ? 'secondary' : 'default'}
+                color={topic.Comments.length ? 'secondary' : undefined}
               />
               {topic.Comments.length}
             </Link>

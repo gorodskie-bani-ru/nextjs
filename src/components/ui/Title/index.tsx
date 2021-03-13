@@ -4,7 +4,7 @@ import { TitleStyled } from './styles'
 
 const Title: React.FC<TitleProps> = ({
   children,
-  variant = 'h2',
+  variant = 'h3',
   ...other
 }) => {
   return (

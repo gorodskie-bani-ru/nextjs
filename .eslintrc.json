@@ -24,7 +24,7 @@
         "no-restricted-imports": [
           "error",
           {
-            "patterns": ["material-ui/**"]
+            "patterns": ["material-ui/**", "material-ui-icons/**"]
           }
         ],
         // Deny use require

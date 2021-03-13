@@ -288,6 +288,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company: item }) => {
             <Grid item>
               {image ? (
                 <img
+                  alt={item.pagetitle}
                   src={imageFormats(image, 'thumb')}
                   style={{
                     cursor: 'pointer',

@@ -26,6 +26,7 @@ const CompaniesViewCompany: React.FC<CompaniesViewCompanyProps> = ({
                   undefined
                 }
                 className="company--image"
+                alt={company.pagetitle}
               />
               <CompanyRating company={company} />
             </div>
