@@ -10,10 +10,16 @@
 import { ResourceNoNestingCityFragment, ResourceNoNestingCompanyFragment, ResourceNoNestingRatingFragment, ResourceNoNestingResourceFragment, ResourceNoNestingReviewFragment, ResourceNoNestingTopicFragment } from './resourceNoNesting';
 import { UserFragment } from './user_';
 import { CommentFragment } from './comment';
+import { TopicReviewFragmentCityFragment, TopicReviewFragmentCompanyFragment, TopicReviewFragmentRatingFragment, TopicReviewFragmentResourceFragment, TopicReviewFragmentReviewFragment, TopicReviewFragmentTopicFragment } from './TopicReviewFragment';
+import { CompanyFieldsFragment } from './CompanyFields';
+import { CityFragment } from './city';
 import { gql } from '@apollo/client';
 import { ResourceNoNestingFragmentDoc } from './resourceNoNesting';
 import { UserFragmentDoc } from './user_';
 import { CommentFragmentDoc } from './comment';
+import { TopicReviewFragmentFragmentDoc } from './TopicReviewFragment';
+import { CompanyFieldsFragmentDoc } from './CompanyFields';
+import { CityFragmentDoc } from './city';
 export type ResourceCityFragment = (
   { __typename?: 'City', CreatedBy?: Types.Maybe<(
     { __typename?: 'User' }
@@ -22,7 +28,9 @@ export type ResourceCityFragment = (
     { __typename?: 'Comment' }
     & CommentFragment
   )> }
+  & CityFragment
   & ResourceNoNestingCityFragment
+  & TopicReviewFragmentCityFragment
 );
 
 export type ResourceCompanyFragment = (
@@ -33,7 +41,9 @@ export type ResourceCompanyFragment = (
     { __typename?: 'Comment' }
     & CommentFragment
   )> }
+  & CompanyFieldsFragment
   & ResourceNoNestingCompanyFragment
+  & TopicReviewFragmentCompanyFragment
 );
 
 export type ResourceRatingFragment = (
@@ -45,6 +55,7 @@ export type ResourceRatingFragment = (
     & CommentFragment
   )> }
   & ResourceNoNestingRatingFragment
+  & TopicReviewFragmentRatingFragment
 );
 
 export type ResourceResourceFragment = (
@@ -56,6 +67,7 @@ export type ResourceResourceFragment = (
     & CommentFragment
   )> }
   & ResourceNoNestingResourceFragment
+  & TopicReviewFragmentResourceFragment
 );
 
 export type ResourceReviewFragment = (
@@ -67,6 +79,7 @@ export type ResourceReviewFragment = (
     & CommentFragment
   )> }
   & ResourceNoNestingReviewFragment
+  & TopicReviewFragmentReviewFragment
 );
 
 export type ResourceTopicFragment = (
@@ -78,6 +91,7 @@ export type ResourceTopicFragment = (
     & CommentFragment
   )> }
   & ResourceNoNestingTopicFragment
+  & TopicReviewFragmentTopicFragment
 );
 
 export type ResourceFragment = ResourceCityFragment | ResourceCompanyFragment | ResourceRatingFragment | ResourceResourceFragment | ResourceReviewFragment | ResourceTopicFragment;
@@ -91,7 +105,17 @@ export const ResourceFragmentDoc = gql`
   Comments {
     ...comment
   }
+  ...TopicReviewFragment
+  ... on Company {
+    ...CompanyFields
+  }
+  ... on City {
+    ...city
+  }
 }
     ${ResourceNoNestingFragmentDoc}
 ${UserFragmentDoc}
-${CommentFragmentDoc}`;
+${CommentFragmentDoc}
+${TopicReviewFragmentFragmentDoc}
+${CompanyFieldsFragmentDoc}
+${CityFragmentDoc}`;

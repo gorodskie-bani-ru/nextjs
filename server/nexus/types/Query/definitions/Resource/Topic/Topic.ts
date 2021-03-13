@@ -63,6 +63,12 @@ export const topics = (t: ObjectDefinitionBlock<'Query'>) => {
           CreatedBy: {
             select: userSelect,
           },
+          Tags: {
+            distinct: ['tag'],
+            select: {
+              tag: true,
+            },
+          },
         },
       })
     },

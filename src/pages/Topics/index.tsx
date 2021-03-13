@@ -93,6 +93,7 @@ const TopicsPage: Page = () => {
         // variables={variables}
         // page={page}
         // loading={loading}
+        title="Все новости"
         topics={response.data?.topics || []}
         pagination={{
           limit: response.variables?.take || 0,

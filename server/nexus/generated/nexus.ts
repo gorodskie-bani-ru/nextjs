@@ -59,6 +59,12 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['bani684_society_commentsWhereInput'] | null // bani684_society_commentsWhereInput
     some?: NexusGenInputs['bani684_society_commentsWhereInput'] | null // bani684_society_commentsWhereInput
   }
+  Bani684_society_topic_tagsListRelationFilter: {
+    // input type
+    every?: NexusGenInputs['bani684_society_topic_tagsWhereInput'] | null // bani684_society_topic_tagsWhereInput
+    none?: NexusGenInputs['bani684_society_topic_tagsWhereInput'] | null // bani684_society_topic_tagsWhereInput
+    some?: NexusGenInputs['bani684_society_topic_tagsWhereInput'] | null // bani684_society_topic_tagsWhereInput
+  }
   Bani684_society_votesListRelationFilter: {
     // input type
     every?: NexusGenInputs['bani684_society_votesWhereInput'] | null // bani684_society_votesWhereInput
@@ -303,6 +309,7 @@ export interface NexusGenInputs {
     CreatedBy?: NexusGenInputs['bani684_usersWhereInput'] | null // bani684_usersWhereInput
     NOT?: NexusGenInputs['bani684_site_contentWhereInput'][] | null // [bani684_site_contentWhereInput!]
     OR?: NexusGenInputs['bani684_site_contentWhereInput'][] | null // [bani684_site_contentWhereInput!]
+    Tags?: NexusGenInputs['Bani684_society_topic_tagsListRelationFilter'] | null // Bani684_society_topic_tagsListRelationFilter
     TemplateVarValues?:
       | NexusGenInputs['Bani684_site_tmplvar_contentvaluesListRelationFilter']
       | null // Bani684_site_tmplvar_contentvaluesListRelationFilter
@@ -416,6 +423,37 @@ export interface NexusGenInputs {
   bani684_society_commentsWhereUniqueInput: {
     // input type
     id?: number | null // Int
+  }
+  bani684_society_topic_tagsOrderByInput: {
+    // input type
+    Resource?: NexusGenInputs['bani684_site_contentOrderByInput'] | null // bani684_site_contentOrderByInput
+    active?: NexusGenEnums['SortOrder'] | null // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    tag?: NexusGenEnums['SortOrder'] | null // SortOrder
+    topic_id?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  bani684_society_topic_tagsTopic_idCompoundUniqueInput: {
+    // input type
+    tag: string // String!
+    topic_id: number // Int!
+  }
+  bani684_society_topic_tagsWhereInput: {
+    // input type
+    AND?: NexusGenInputs['bani684_society_topic_tagsWhereInput'][] | null // [bani684_society_topic_tagsWhereInput!]
+    NOT?: NexusGenInputs['bani684_society_topic_tagsWhereInput'][] | null // [bani684_society_topic_tagsWhereInput!]
+    OR?: NexusGenInputs['bani684_society_topic_tagsWhereInput'][] | null // [bani684_society_topic_tagsWhereInput!]
+    Resource?: NexusGenInputs['bani684_site_contentWhereInput'] | null // bani684_site_contentWhereInput
+    active?: NexusGenInputs['BoolFilter'] | null // BoolFilter
+    id?: NexusGenInputs['IntFilter'] | null // IntFilter
+    tag?: NexusGenInputs['StringFilter'] | null // StringFilter
+    topic_id?: NexusGenInputs['IntFilter'] | null // IntFilter
+  }
+  bani684_society_topic_tagsWhereUniqueInput: {
+    // input type
+    id?: number | null // Int
+    topic_id?:
+      | NexusGenInputs['bani684_society_topic_tagsTopic_idCompoundUniqueInput']
+      | null // bani684_society_topic_tagsTopic_idCompoundUniqueInput
   }
   bani684_society_votesOrderByInput: {
     // input type
@@ -714,6 +752,7 @@ export interface NexusGenObjects {
   Review: {
     // root type
     CreatedBy?: NexusGenRootTypes['User'] | null // User
+    Tags?: NexusGenRootTypes['TopicTag'][] | null // [TopicTag!]
     TemplateVarValues?:
       | NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][]
       | null // [bani684_site_tmplvar_contentvalues!]
@@ -738,6 +777,7 @@ export interface NexusGenObjects {
   Topic: {
     // root type
     CreatedBy?: NexusGenRootTypes['User'] | null // User
+    Tags?: NexusGenRootTypes['TopicTag'][] | null // [TopicTag!]
     TemplateVarValues?:
       | NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][]
       | null // [bani684_site_tmplvar_contentvalues!]
@@ -753,6 +793,10 @@ export interface NexusGenObjects {
     searchable: boolean // Boolean!
     template: number // Int!
     uri?: string | null // String
+  }
+  TopicTag: {
+    // root type
+    tag: string // String!
   }
   User: {
     // root type
@@ -904,6 +948,7 @@ export interface NexusGenFieldTypes {
     resources: NexusGenRootTypes['ResourceInterface'][] // [ResourceInterface!]!
     resourcesCount: number // Int!
     reviews: NexusGenRootTypes['Review'][] // [Review!]!
+    topicTags: NexusGenRootTypes['TopicTag'][] // [TopicTag!]!
     topics: NexusGenRootTypes['Topic'][] // [Topic!]!
     user: NexusGenRootTypes['User'] | null // User
     users: NexusGenRootTypes['User'][] // [User!]!
@@ -955,6 +1000,7 @@ export interface NexusGenFieldTypes {
     // field return type
     Comments: NexusGenRootTypes['Comment'][] // [Comment!]!
     CreatedBy: NexusGenRootTypes['User'] | null // User
+    Tags: NexusGenRootTypes['TopicTag'][] | null // [TopicTag!]
     TemplateVarValues:
       | NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][]
       | null // [bani684_site_tmplvar_contentvalues!]
@@ -980,6 +1026,7 @@ export interface NexusGenFieldTypes {
     // field return type
     Comments: NexusGenRootTypes['Comment'][] // [Comment!]!
     CreatedBy: NexusGenRootTypes['User'] | null // User
+    Tags: NexusGenRootTypes['TopicTag'][] | null // [TopicTag!]
     TemplateVarValues:
       | NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][]
       | null // [bani684_site_tmplvar_contentvalues!]
@@ -995,6 +1042,10 @@ export interface NexusGenFieldTypes {
     searchable: boolean // Boolean!
     template: number // Int!
     uri: string | null // String
+  }
+  TopicTag: {
+    // field return type
+    tag: string // String!
   }
   User: {
     // field return type
@@ -1147,6 +1198,7 @@ export interface NexusGenFieldTypeNames {
     resources: 'ResourceInterface'
     resourcesCount: 'Int'
     reviews: 'Review'
+    topicTags: 'TopicTag'
     topics: 'Topic'
     user: 'User'
     users: 'User'
@@ -1194,6 +1246,7 @@ export interface NexusGenFieldTypeNames {
     // field return type name
     Comments: 'Comment'
     CreatedBy: 'User'
+    Tags: 'TopicTag'
     TemplateVarValues: 'bani684_site_tmplvar_contentvalues'
     alias: 'String'
     content: 'String'
@@ -1217,6 +1270,7 @@ export interface NexusGenFieldTypeNames {
     // field return type name
     Comments: 'Comment'
     CreatedBy: 'User'
+    Tags: 'TopicTag'
     TemplateVarValues: 'bani684_site_tmplvar_contentvalues'
     alias: 'String'
     content: 'String'
@@ -1230,6 +1284,10 @@ export interface NexusGenFieldTypeNames {
     searchable: 'Boolean'
     template: 'Int'
     uri: 'String'
+  }
+  TopicTag: {
+    // field return type name
+    tag: 'String'
   }
   User: {
     // field return type name
@@ -1354,6 +1412,18 @@ export interface NexusGenArgTypes {
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['bani684_site_contentWhereInput'] | null // bani684_site_contentWhereInput
+    }
+    topicTags: {
+      // args
+      cursor?:
+        | NexusGenInputs['bani684_society_topic_tagsWhereUniqueInput']
+        | null // bani684_society_topic_tagsWhereUniqueInput
+      orderBy?:
+        | NexusGenInputs['bani684_society_topic_tagsOrderByInput'][]
+        | null // [bani684_society_topic_tagsOrderByInput!]
+      skip?: number | null // Int
+      take?: number | null // Int
+      where?: NexusGenInputs['bani684_society_topic_tagsWhereInput'] | null // bani684_society_topic_tagsWhereInput
     }
     topics: {
       // args

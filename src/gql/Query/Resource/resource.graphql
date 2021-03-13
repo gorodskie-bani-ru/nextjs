@@ -12,14 +12,6 @@ query resources(
     # ... on Resource {
     #   ...resource
     # }
-
-    ... on Company {
-      ...CompanyFields
-    }
-
-    ... on City {
-      ...city
-    }
   }
 
   resourcesCount(where: $where)
@@ -35,6 +27,16 @@ fragment resource on ResourceInterface {
   Comments {
     ...comment
   }
+
+  ...TopicReviewFragment
+
+  ... on Company {
+    ...CompanyFields
+  }
+
+  ... on City {
+    ...city
+  }
 }
 
 fragment resourceNoNesting on ResourceInterface {
@@ -44,4 +46,18 @@ fragment resourceNoNesting on ResourceInterface {
   createdon
   template
   content @include(if: $withContent)
+}
+
+fragment TopicReviewFragment on ResourceInterface {
+  ... on Topic {
+    Tags {
+      tag
+    }
+  }
+
+  ... on Review {
+    Tags {
+      tag
+    }
+  }
 }

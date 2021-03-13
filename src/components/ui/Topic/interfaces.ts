@@ -1,7 +1,10 @@
-import { TopicFragment } from 'src/modules/gql/generated'
+import {
+  TopicReviewFragment,
+  TopicTopicFragment,
+} from 'src/modules/gql/generated'
 
 export type TopicProps = {
-  topic: TopicFragment
+  topic: TopicReviewFragment | TopicTopicFragment
 
   /**
    * Выводить ли комментарии

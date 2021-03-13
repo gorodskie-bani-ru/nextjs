@@ -67,7 +67,7 @@ export type GalleryImageFieldPolicy = {
 	image?: FieldPolicy<any> | FieldReadFunction<any>,
 	title?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type QueryKeySpecifier = ('cities' | 'comments' | 'commentsCount' | 'companies' | 'companiesCount' | 'ratings' | 'resources' | 'resourcesCount' | 'reviews' | 'topics' | 'user' | 'users' | 'usersCount' | 'votes' | 'votesByRating' | QueryKeySpecifier)[];
+export type QueryKeySpecifier = ('cities' | 'comments' | 'commentsCount' | 'companies' | 'companiesCount' | 'ratings' | 'resources' | 'resourcesCount' | 'reviews' | 'topicTags' | 'topics' | 'user' | 'users' | 'usersCount' | 'votes' | 'votesByRating' | QueryKeySpecifier)[];
 export type QueryFieldPolicy = {
 	cities?: FieldPolicy<any> | FieldReadFunction<any>,
 	comments?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -78,6 +78,7 @@ export type QueryFieldPolicy = {
 	resources?: FieldPolicy<any> | FieldReadFunction<any>,
 	resourcesCount?: FieldPolicy<any> | FieldReadFunction<any>,
 	reviews?: FieldPolicy<any> | FieldReadFunction<any>,
+	topicTags?: FieldPolicy<any> | FieldReadFunction<any>,
 	topics?: FieldPolicy<any> | FieldReadFunction<any>,
 	user?: FieldPolicy<any> | FieldReadFunction<any>,
 	users?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -139,10 +140,11 @@ export type ResourceInterfaceFieldPolicy = {
 	template?: FieldPolicy<any> | FieldReadFunction<any>,
 	uri?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type ReviewKeySpecifier = ('Comments' | 'CreatedBy' | 'TemplateVarValues' | 'alias' | 'content' | 'createdby' | 'createdon' | 'description' | 'id' | 'longtitle' | 'pagetitle' | 'published' | 'searchable' | 'template' | 'uri' | ReviewKeySpecifier)[];
+export type ReviewKeySpecifier = ('Comments' | 'CreatedBy' | 'Tags' | 'TemplateVarValues' | 'alias' | 'content' | 'createdby' | 'createdon' | 'description' | 'id' | 'longtitle' | 'pagetitle' | 'published' | 'searchable' | 'template' | 'uri' | ReviewKeySpecifier)[];
 export type ReviewFieldPolicy = {
 	Comments?: FieldPolicy<any> | FieldReadFunction<any>,
 	CreatedBy?: FieldPolicy<any> | FieldReadFunction<any>,
+	Tags?: FieldPolicy<any> | FieldReadFunction<any>,
 	TemplateVarValues?: FieldPolicy<any> | FieldReadFunction<any>,
 	alias?: FieldPolicy<any> | FieldReadFunction<any>,
 	content?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -162,10 +164,11 @@ export type ThreadFieldPolicy = {
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	target_class?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type TopicKeySpecifier = ('Comments' | 'CreatedBy' | 'TemplateVarValues' | 'alias' | 'content' | 'createdby' | 'createdon' | 'description' | 'id' | 'longtitle' | 'pagetitle' | 'published' | 'searchable' | 'template' | 'uri' | TopicKeySpecifier)[];
+export type TopicKeySpecifier = ('Comments' | 'CreatedBy' | 'Tags' | 'TemplateVarValues' | 'alias' | 'content' | 'createdby' | 'createdon' | 'description' | 'id' | 'longtitle' | 'pagetitle' | 'published' | 'searchable' | 'template' | 'uri' | TopicKeySpecifier)[];
 export type TopicFieldPolicy = {
 	Comments?: FieldPolicy<any> | FieldReadFunction<any>,
 	CreatedBy?: FieldPolicy<any> | FieldReadFunction<any>,
+	Tags?: FieldPolicy<any> | FieldReadFunction<any>,
 	TemplateVarValues?: FieldPolicy<any> | FieldReadFunction<any>,
 	alias?: FieldPolicy<any> | FieldReadFunction<any>,
 	content?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -179,6 +182,10 @@ export type TopicFieldPolicy = {
 	searchable?: FieldPolicy<any> | FieldReadFunction<any>,
 	template?: FieldPolicy<any> | FieldReadFunction<any>,
 	uri?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type TopicTagKeySpecifier = ('tag' | TopicTagKeySpecifier)[];
+export type TopicTagFieldPolicy = {
+	tag?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type UserKeySpecifier = ('Attributes' | 'active' | 'createdon' | 'email' | 'fullname' | 'id' | 'image' | 'username' | UserKeySpecifier)[];
 export type UserFieldPolicy = {
@@ -277,6 +284,10 @@ export type TypedTypePolicies = TypePolicies & {
 	Topic?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | TopicKeySpecifier | (() => undefined | TopicKeySpecifier),
 		fields?: TopicFieldPolicy,
+	},
+	TopicTag?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | TopicTagKeySpecifier | (() => undefined | TopicTagKeySpecifier),
+		fields?: TopicTagFieldPolicy,
 	},
 	User?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | UserKeySpecifier | (() => undefined | UserKeySpecifier),

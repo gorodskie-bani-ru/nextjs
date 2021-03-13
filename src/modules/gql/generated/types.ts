@@ -40,6 +40,12 @@ export interface Bani684SocietyCommentsListRelationFilter {
   some?: Maybe<Bani684SocietyCommentsWhereInput>;
 }
 
+export interface Bani684SocietyTopicTagsListRelationFilter {
+  every?: Maybe<Bani684SocietyTopicTagsWhereInput>;
+  none?: Maybe<Bani684SocietyTopicTagsWhereInput>;
+  some?: Maybe<Bani684SocietyTopicTagsWhereInput>;
+}
+
 export interface Bani684SocietyVotesListRelationFilter {
   every?: Maybe<Bani684SocietyVotesWhereInput>;
   none?: Maybe<Bani684SocietyVotesWhereInput>;
@@ -313,6 +319,7 @@ export interface Query {
   resourcesCount: Scalars['Int'];
   /** Обзоры заведений */
   reviews: Array<Review>;
+  topicTags: Array<TopicTag>;
   /** Новости */
   topics: Array<Topic>;
   user?: Maybe<User>;
@@ -384,6 +391,15 @@ export type QueryReviewsArgs = {
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<Bani684SiteContentWhereInput>;
+};
+
+
+export type QueryTopicTagsArgs = {
+  cursor?: Maybe<Bani684SocietyTopicTagsWhereUniqueInput>;
+  orderBy?: Maybe<Array<Bani684SocietyTopicTagsOrderByInput>>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
+  where?: Maybe<Bani684SocietyTopicTagsWhereInput>;
 };
 
 
@@ -489,6 +505,7 @@ export interface Review extends ResourceInterface {
   /** Комментарии */
   Comments: Array<Comment>;
   CreatedBy?: Maybe<User>;
+  Tags?: Maybe<Array<TopicTag>>;
   TemplateVarValues?: Maybe<Array<Bani684SiteTmplvarContentvalues>>;
   alias?: Maybe<Scalars['String']>;
   content?: Maybe<Scalars['String']>;
@@ -550,6 +567,7 @@ export interface Topic extends ResourceInterface {
   /** Комментарии */
   Comments: Array<Comment>;
   CreatedBy?: Maybe<User>;
+  Tags?: Maybe<Array<TopicTag>>;
   TemplateVarValues?: Maybe<Array<Bani684SiteTmplvarContentvalues>>;
   alias?: Maybe<Scalars['String']>;
   content?: Maybe<Scalars['String']>;
@@ -563,6 +581,11 @@ export interface Topic extends ResourceInterface {
   searchable: Scalars['Boolean'];
   template: Scalars['Int'];
   uri?: Maybe<Scalars['String']>;
+}
+
+export interface TopicTag {
+  __typename?: 'TopicTag';
+  tag: Scalars['String'];
 }
 
 /** Пользователь */
@@ -672,6 +695,7 @@ export interface Bani684SiteContentWhereInput {
   CreatedBy?: Maybe<Bani684UsersWhereInput>;
   NOT?: Maybe<Array<Bani684SiteContentWhereInput>>;
   OR?: Maybe<Array<Bani684SiteContentWhereInput>>;
+  Tags?: Maybe<Bani684SocietyTopicTagsListRelationFilter>;
   TemplateVarValues?: Maybe<Bani684SiteTmplvarContentvaluesListRelationFilter>;
   Votes?: Maybe<Bani684SocietyVotesListRelationFilter>;
   alias?: Maybe<StringNullableFilter>;
@@ -787,6 +811,35 @@ export interface Bani684SocietyCommentsWhereInput {
 
 export interface Bani684SocietyCommentsWhereUniqueInput {
   id?: Maybe<Scalars['Int']>;
+}
+
+export interface Bani684SocietyTopicTagsOrderByInput {
+  Resource?: Maybe<Bani684SiteContentOrderByInput>;
+  active?: Maybe<SortOrder>;
+  id?: Maybe<SortOrder>;
+  tag?: Maybe<SortOrder>;
+  topic_id?: Maybe<SortOrder>;
+}
+
+export interface Bani684SocietyTopicTagsTopicIdCompoundUniqueInput {
+  tag: Scalars['String'];
+  topic_id: Scalars['Int'];
+}
+
+export interface Bani684SocietyTopicTagsWhereInput {
+  AND?: Maybe<Array<Bani684SocietyTopicTagsWhereInput>>;
+  NOT?: Maybe<Array<Bani684SocietyTopicTagsWhereInput>>;
+  OR?: Maybe<Array<Bani684SocietyTopicTagsWhereInput>>;
+  Resource?: Maybe<Bani684SiteContentWhereInput>;
+  active?: Maybe<BoolFilter>;
+  id?: Maybe<IntFilter>;
+  tag?: Maybe<StringFilter>;
+  topic_id?: Maybe<IntFilter>;
+}
+
+export interface Bani684SocietyTopicTagsWhereUniqueInput {
+  id?: Maybe<Scalars['Int']>;
+  topic_id?: Maybe<Bani684SocietyTopicTagsTopicIdCompoundUniqueInput>;
 }
 
 export interface Bani684SocietyVotesOrderByInput {

@@ -1,6 +1,7 @@
 export * from './CompanyFields';
 export * from './Company_';
 export * from './ListCompany';
+export * from './TopicReviewFragment';
 export * from './appData';
 export * from './cities';
 export * from './city';
@@ -14,6 +15,7 @@ export * from './resourceNoNesting';
 export * from './resources';
 export * from './reviews';
 export * from './topic';
+export * from './topicTags';
 export * from './topics';
 export * from './user';
 export * from './user_';

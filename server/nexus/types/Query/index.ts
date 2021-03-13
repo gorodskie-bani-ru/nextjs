@@ -4,6 +4,7 @@ import { objectType } from 'nexus'
 import userDefinitions from './definitions/User'
 import { resources } from './definitions/Resource'
 import { society } from './definitions/society'
+import { topicTags } from './definitions/TopicTag'
 
 export const Query = objectType({
   name: 'Query',
@@ -11,6 +12,7 @@ export const Query = objectType({
     resources(t)
     userDefinitions(t)
     society(t)
+    topicTags(t)
     // resourcesCount(t)
 
     // t.nonNull.list.field("resources", {

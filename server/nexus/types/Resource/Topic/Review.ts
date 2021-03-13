@@ -6,5 +6,9 @@ export const Review = objectType({
 
   definition(t) {
     t.implements('ResourceInterface')
+
+    t.list.nonNull.field('Tags', {
+      type: 'TopicTag',
+    })
   },
 })

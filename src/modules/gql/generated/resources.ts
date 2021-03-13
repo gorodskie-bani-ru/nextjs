@@ -10,12 +10,8 @@
 import * as Types from './types';
 
 import { ResourceCityFragment, ResourceCompanyFragment, ResourceRatingFragment, ResourceResourceFragment, ResourceReviewFragment, ResourceTopicFragment } from './resource';
-import { CompanyFieldsFragment } from './CompanyFields';
-import { CityFragment } from './city';
 import { gql } from '@apollo/client';
 import { ResourceFragmentDoc } from './resource';
-import { CompanyFieldsFragmentDoc } from './CompanyFields';
-import { CityFragmentDoc } from './city';
 import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
 export type ResourcesQueryVariables = Types.Exact<{
@@ -30,11 +26,9 @@ export type ResourcesQueryVariables = Types.Exact<{
 
 export type ResourcesQuery = { __typename?: 'Query', resourcesCount: number, resources: Array<(
     { __typename?: 'City' }
-    & CityFragment
     & ResourceCityFragment
   ) | (
     { __typename?: 'Company' }
-    & CompanyFieldsFragment
     & ResourceCompanyFragment
   ) | (
     { __typename?: 'Rating' }
@@ -55,18 +49,10 @@ export const ResourcesDocument = gql`
     query resources($where: bani684_site_contentWhereInput, $orderBy: [bani684_site_contentOrderByInput!], $take: Int, $skip: Int, $withContent: Boolean = false, $withCreatedBy: Boolean = false) {
   resources(where: $where, orderBy: $orderBy, take: $take, skip: $skip) {
     ...resource
-    ... on Company {
-      ...CompanyFields
-    }
-    ... on City {
-      ...city
-    }
   }
   resourcesCount(where: $where)
 }
-    ${ResourceFragmentDoc}
-${CompanyFieldsFragmentDoc}
-${CityFragmentDoc}`;
+    ${ResourceFragmentDoc}`;
 
 /**
  * __useResourcesQuery__

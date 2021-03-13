@@ -1,0 +1,10 @@
+query topicTags(
+  $where: bani684_society_topic_tagsWhereInput
+  $orderBy: [bani684_society_topic_tagsOrderByInput!]
+  $take: Int
+  $skip: Int
+) {
+  topicTags(where: $where, orderBy: $orderBy, take: $take, skip: $skip) {
+    tag
+  }
+}

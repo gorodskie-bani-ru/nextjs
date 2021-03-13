@@ -19,6 +19,12 @@ input Bani684_society_commentsListRelationFilter {
   some: bani684_society_commentsWhereInput
 }
 
+input Bani684_society_topic_tagsListRelationFilter {
+  every: bani684_society_topic_tagsWhereInput
+  none: bani684_society_topic_tagsWhereInput
+  some: bani684_society_topic_tagsWhereInput
+}
+
 input Bani684_society_votesListRelationFilter {
   every: bani684_society_votesWhereInput
   none: bani684_society_votesWhereInput
@@ -387,6 +393,13 @@ type Query {
     take: Int
     where: bani684_site_contentWhereInput
   ): [Review!]!
+  topicTags(
+    cursor: bani684_society_topic_tagsWhereUniqueInput
+    orderBy: [bani684_society_topic_tagsOrderByInput!]
+    skip: Int
+    take: Int
+    where: bani684_society_topic_tagsWhereInput
+  ): [TopicTag!]!
 
   """
   Новости
@@ -504,6 +517,7 @@ type Review implements ResourceInterface {
   """
   Comments: [Comment!]!
   CreatedBy: User
+  Tags: [TopicTag!]
   TemplateVarValues: [bani684_site_tmplvar_contentvalues!]
   alias: String
   content: String
@@ -569,6 +583,7 @@ type Topic implements ResourceInterface {
   """
   Comments: [Comment!]!
   CreatedBy: User
+  Tags: [TopicTag!]
   TemplateVarValues: [bani684_site_tmplvar_contentvalues!]
   alias: String
   content: String
@@ -582,6 +597,10 @@ type Topic implements ResourceInterface {
   searchable: Boolean!
   template: Int!
   uri: String
+}
+
+type TopicTag {
+  tag: String!
 }
 
 """
@@ -705,6 +724,7 @@ input bani684_site_contentWhereInput {
   CreatedBy: bani684_usersWhereInput
   NOT: [bani684_site_contentWhereInput!]
   OR: [bani684_site_contentWhereInput!]
+  Tags: Bani684_society_topic_tagsListRelationFilter
   TemplateVarValues: Bani684_site_tmplvar_contentvaluesListRelationFilter
   Votes: Bani684_society_votesListRelationFilter
   alias: StringNullableFilter
@@ -819,6 +839,35 @@ input bani684_society_commentsWhereInput {
 
 input bani684_society_commentsWhereUniqueInput {
   id: Int
+}
+
+input bani684_society_topic_tagsOrderByInput {
+  Resource: bani684_site_contentOrderByInput
+  active: SortOrder
+  id: SortOrder
+  tag: SortOrder
+  topic_id: SortOrder
+}
+
+input bani684_society_topic_tagsTopic_idCompoundUniqueInput {
+  tag: String!
+  topic_id: Int!
+}
+
+input bani684_society_topic_tagsWhereInput {
+  AND: [bani684_society_topic_tagsWhereInput!]
+  NOT: [bani684_society_topic_tagsWhereInput!]
+  OR: [bani684_society_topic_tagsWhereInput!]
+  Resource: bani684_site_contentWhereInput
+  active: BoolFilter
+  id: IntFilter
+  tag: StringFilter
+  topic_id: IntFilter
+}
+
+input bani684_society_topic_tagsWhereUniqueInput {
+  id: Int
+  topic_id: bani684_society_topic_tagsTopic_idCompoundUniqueInput
 }
 
 input bani684_society_votesOrderByInput {

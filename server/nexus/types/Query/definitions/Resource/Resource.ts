@@ -90,6 +90,12 @@ export const Resource = (t: ObjectDefinitionBlock<'Query'>) => {
           CreatedBy: {
             select: userSelect,
           },
+          Tags: {
+            distinct: ['tag'],
+            select: {
+              tag: true,
+            },
+          },
         },
       })
       return result

@@ -84,6 +84,7 @@ const ReviewPage: Page = () => {
         // variables={variables}
         // page={page}
         // loading={loading}
+        title="Обзоры и отзывы о банях и саунах"
         topics={response.data?.reviews || []}
         pagination={{
           limit: response.variables?.take || 0,

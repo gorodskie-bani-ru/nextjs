@@ -9,6 +9,7 @@ import moment from 'moment'
 import Paper from '../Paper'
 import Comment from '../Comment'
 import CommentsIcon from '@material-ui/icons/Comment'
+import Tags from '../Tags'
 
 const Topic: React.FC<TopicProps> = ({ topic, withComments, ...other }) => {
   const content = useMemo(() => {
@@ -48,6 +49,10 @@ const Topic: React.FC<TopicProps> = ({ topic, withComments, ...other }) => {
     )
   }, [topic.Comments, withComments])
 
+  const tags = useMemo(() => {
+    return <Tags tags={topic.Tags || []} />
+  }, [topic])
+
   return useMemo(() => {
     const uri = (topic.uri && `/${topic.uri}`) || '#'
 
@@ -75,18 +80,21 @@ const Topic: React.FC<TopicProps> = ({ topic, withComments, ...other }) => {
             </Link>
           </div>
 
+          {tags}
+
           {comments}
         </Paper>
       </TopicStyled>
     )
   }, [
-    other,
     topic.uri,
     topic.pagetitle,
     topic.CreatedBy,
     topic.createdon,
     topic.Comments.length,
+    other,
     content,
+    tags,
     comments,
   ])
 }

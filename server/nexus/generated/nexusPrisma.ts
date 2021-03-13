@@ -459,7 +459,7 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'access' | 'data'
     }
     bani684SiteContents: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'type' | 'contentType' | 'pagetitle' | 'longtitle' | 'description' | 'alias' | 'link_attributes' | 'published' | 'pub_date' | 'unpub_date' | 'parent' | 'isfolder' | 'introtext' | 'content' | 'richtext' | 'template' | 'menuindex' | 'searchable' | 'cacheable' | 'createdby' | 'createdon' | 'editedby' | 'editedon' | 'deleted' | 'deletedon' | 'deletedby' | 'publishedon' | 'publishedby' | 'menutitle' | 'donthit' | 'privateweb' | 'privatemgr' | 'content_dispo' | 'hidemenu' | 'class_key' | 'context_key' | 'content_type' | 'uri' | 'uri_override' | 'hide_children_in_tree' | 'show_in_tree' | 'properties' | 'TemplateVarValues' | 'CreatedBy' | 'Votes'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'type' | 'contentType' | 'pagetitle' | 'longtitle' | 'description' | 'alias' | 'link_attributes' | 'published' | 'pub_date' | 'unpub_date' | 'parent' | 'isfolder' | 'introtext' | 'content' | 'richtext' | 'template' | 'menuindex' | 'searchable' | 'cacheable' | 'createdby' | 'createdon' | 'editedby' | 'editedon' | 'deleted' | 'deletedon' | 'deletedby' | 'publishedon' | 'publishedby' | 'menutitle' | 'donthit' | 'privateweb' | 'privatemgr' | 'content_dispo' | 'hidemenu' | 'class_key' | 'context_key' | 'content_type' | 'uri' | 'uri_override' | 'hide_children_in_tree' | 'show_in_tree' | 'properties' | 'TemplateVarValues' | 'CreatedBy' | 'Votes' | 'Tags'
       ordering: 'id' | 'type' | 'contentType' | 'pagetitle' | 'longtitle' | 'description' | 'alias' | 'link_attributes' | 'published' | 'pub_date' | 'unpub_date' | 'parent' | 'isfolder' | 'introtext' | 'content' | 'richtext' | 'template' | 'menuindex' | 'searchable' | 'cacheable' | 'createdby' | 'createdon' | 'editedby' | 'editedon' | 'deleted' | 'deletedon' | 'deletedby' | 'publishedon' | 'publishedby' | 'menutitle' | 'donthit' | 'privateweb' | 'privatemgr' | 'content_dispo' | 'hidemenu' | 'class_key' | 'context_key' | 'content_type' | 'uri' | 'uri_override' | 'hide_children_in_tree' | 'show_in_tree' | 'properties' | 'CreatedBy'
     }
     bani684SiteHtmlsnippetss: {
@@ -535,8 +535,8 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'resourceid' | 'content_hash' | 'short_text' | 'raw_content' | 'topic_tags'
     }
     bani684SocietyTopicTagss: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'topic_id' | 'tag' | 'active'
-      ordering: 'id' | 'topic_id' | 'tag' | 'active'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'topic_id' | 'tag' | 'active' | 'Resource'
+      ordering: 'id' | 'topic_id' | 'tag' | 'active' | 'Resource'
     }
     bani684SocietyUserAttributess: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'internalKey' | 'createdon'
@@ -868,6 +868,10 @@ interface NexusPrismaInputs {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'target_id' | 'target_class' | 'type' | 'thread_id' | 'user_id' | 'vote_direction' | 'vote_value' | 'vote_date' | 'Type' | 'CreatedBy'
       ordering: 'id' | 'target_id' | 'target_class' | 'type' | 'thread_id' | 'user_id' | 'vote_direction' | 'vote_value' | 'vote_date' | 'Type' | 'CreatedBy'
     }
+    Tags: {
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'topic_id' | 'tag' | 'active' | 'Resource'
+      ordering: 'id' | 'topic_id' | 'tag' | 'active' | 'Resource'
+    }
   }
   bani684_site_htmlsnippets: {
 
@@ -946,7 +950,7 @@ interface NexusPrismaInputs {
   }
   bani684_users: {
     Resources: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'type' | 'contentType' | 'pagetitle' | 'longtitle' | 'description' | 'alias' | 'link_attributes' | 'published' | 'pub_date' | 'unpub_date' | 'parent' | 'isfolder' | 'introtext' | 'content' | 'richtext' | 'template' | 'menuindex' | 'searchable' | 'cacheable' | 'createdby' | 'createdon' | 'editedby' | 'editedon' | 'deleted' | 'deletedon' | 'deletedby' | 'publishedon' | 'publishedby' | 'menutitle' | 'donthit' | 'privateweb' | 'privatemgr' | 'content_dispo' | 'hidemenu' | 'class_key' | 'context_key' | 'content_type' | 'uri' | 'uri_override' | 'hide_children_in_tree' | 'show_in_tree' | 'properties' | 'TemplateVarValues' | 'CreatedBy' | 'Votes'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'type' | 'contentType' | 'pagetitle' | 'longtitle' | 'description' | 'alias' | 'link_attributes' | 'published' | 'pub_date' | 'unpub_date' | 'parent' | 'isfolder' | 'introtext' | 'content' | 'richtext' | 'template' | 'menuindex' | 'searchable' | 'cacheable' | 'createdby' | 'createdon' | 'editedby' | 'editedon' | 'deleted' | 'deletedon' | 'deletedby' | 'publishedon' | 'publishedby' | 'menutitle' | 'donthit' | 'privateweb' | 'privatemgr' | 'content_dispo' | 'hidemenu' | 'class_key' | 'context_key' | 'content_type' | 'uri' | 'uri_override' | 'hide_children_in_tree' | 'show_in_tree' | 'properties' | 'TemplateVarValues' | 'CreatedBy' | 'Votes' | 'Tags'
       ordering: 'id' | 'type' | 'contentType' | 'pagetitle' | 'longtitle' | 'description' | 'alias' | 'link_attributes' | 'published' | 'pub_date' | 'unpub_date' | 'parent' | 'isfolder' | 'introtext' | 'content' | 'richtext' | 'template' | 'menuindex' | 'searchable' | 'cacheable' | 'createdby' | 'createdon' | 'editedby' | 'editedon' | 'deleted' | 'deletedon' | 'deletedby' | 'publishedon' | 'publishedby' | 'menutitle' | 'donthit' | 'privateweb' | 'privatemgr' | 'content_dispo' | 'hidemenu' | 'class_key' | 'context_key' | 'content_type' | 'uri' | 'uri_override' | 'hide_children_in_tree' | 'show_in_tree' | 'properties' | 'CreatedBy'
     }
     bani684_society_comments: {
@@ -2710,6 +2714,7 @@ interface NexusPrismaOutputs {
     TemplateVarValues: 'bani684_site_tmplvar_contentvalues'
     CreatedBy: 'bani684_users'
     Votes: 'bani684_society_votes'
+    Tags: 'bani684_society_topic_tags'
   }
   bani684_site_htmlsnippets: {
     id: 'Int'
@@ -2901,6 +2906,7 @@ interface NexusPrismaOutputs {
     topic_id: 'Int'
     tag: 'String'
     active: 'Boolean'
+    Resource: 'bani684_site_content'
   }
   bani684_society_user_attributes: {
     id: 'Int'

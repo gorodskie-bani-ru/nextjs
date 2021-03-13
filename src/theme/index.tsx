@@ -20,11 +20,16 @@ const colors = {
   },
 }
 
+const background = {
+  default: '#dcdcdc',
+}
+
 /**
  * Итоговая тема
  */
 const theme = {
   colors,
+  background,
   breakpoints,
 }
 
