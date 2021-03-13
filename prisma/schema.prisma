@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["groupBy"]
 }
 
@@ -1097,8 +1097,9 @@ model bani684_site_content {
 
   TemplateVarValues bani684_site_tmplvar_contentvalues[]
 
-  CreatedBy bani684_users           @relation(fields: [createdby], references: [id])
+  CreatedBy bani684_users                @relation(fields: [createdby], references: [id])
   Votes     bani684_society_votes[]
+  Tags      bani684_society_topic_tags[]
 
   @@index([alias], name: "alias")
   @@index([parent, menuindex, id], name: "cache_refresh_idx")
@@ -1383,6 +1384,8 @@ model bani684_society_topic_tags {
   tag      String  @db.VarChar(100)
   active   Boolean @default(true)
 
+  Resource bani684_site_content @relation(fields: [topic_id], references: [id])
+
   @@unique([topic_id, tag], name: "topic_id")
   @@index([active], name: "active")
 }
@@ -1501,7 +1504,7 @@ model bani684_users {
   Resources  bani684_site_content[]
 
   bani684_society_comments bani684_society_comments[]
-  bani684_society_votes bani684_society_votes[]
+  bani684_society_votes    bani684_society_votes[]
   @@index([class_key], name: "class_key")
   @@index([contract_date], name: "contract_date")
   @@index([createdby], name: "createdby")
