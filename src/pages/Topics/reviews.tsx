@@ -73,7 +73,7 @@ const ReviewPage: Page = () => {
   return (
     <>
       <NextSeo
-        title="Обзоры и отзывы"
+        title="Обзоры и отзывы о банях и саунах"
         description="Обзоры и отзывы о банях и саунах"
       />
 

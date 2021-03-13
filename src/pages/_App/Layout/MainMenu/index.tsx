@@ -439,7 +439,7 @@ const MainMenu: React.FC = () => {
 
           {/* {(ratingsList && ratingsList.length && (
               <li>
-                <Link href="/ratings/">
+                <Link href="/ratings">
                   <a
                     title="Рейтинги заведений"
                     className="dropdown-toggle"
@@ -461,7 +461,7 @@ const MainMenu: React.FC = () => {
               null} */}
 
           {/* <li>
-                <Link href="/topics/">
+                <Link href="/topics">
                   <a
                     title="Рейтинги заведений"
                     className="dropdown-toggle"
@@ -473,7 +473,7 @@ const MainMenu: React.FC = () => {
                 </Link>
                 <ul className="dropdown-menu">
                   <li className="first">
-                    <Link href="/bani-otzivy/">
+                    <Link href="/bani-otzivy">
                       <a
                         title="Обзоры и отзывы"
                         onClick={closeMenu}
@@ -488,8 +488,8 @@ const MainMenu: React.FC = () => {
                   </li>
                   <li className="">
                     <Link
-                      // to="/topics/"
-                      href="/topics/"
+                      // to="/topics"
+                      href="/topics"
                     >
                       <a
                         title="Новости"
@@ -505,7 +505,7 @@ const MainMenu: React.FC = () => {
                   </li>
                   {user ? (
                     <li className="">
-                      <Link href="/topics/create/">
+                      <Link href="/topics/create">
                         <a
                           title="Добавить публикацию"
                           rel="nofollow"
@@ -538,12 +538,12 @@ const MainMenu: React.FC = () => {
               </li> */}
 
           <li>
-            <Link href="/bani-otzivy/">
+            <Link href="/bani-otzivy">
               <a title="Обзоры и отзывы">Обзоры и отзывы</a>
             </Link>
           </li>
           <li>
-            <Link href="/topics/">
+            <Link href="/topics">
               <a title="Новости">Новости</a>
             </Link>
           </li>

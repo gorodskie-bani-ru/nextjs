@@ -94,6 +94,7 @@ const Layout: React.FC = ({ children, ...other }) => {
             <CardContent>
               <Grid
                 container
+                spacing={1}
                 style={{
                   paddingTop: 30,
                 }}
@@ -103,8 +104,20 @@ const Layout: React.FC = ({ children, ...other }) => {
                 </Grid>
 
                 <Grid item>
-                  <Link href="/ratings/">
+                  <Link href="/ratings">
                     <a title="Рейтинги бань">Рейтинги бань</a>
+                  </Link>
+                </Grid>
+
+                <Grid item>
+                  <Link href="/tag">
+                    <a title="Теги">Теги</a>
+                  </Link>
+                </Grid>
+
+                <Grid item>
+                  <Link href="/people">
+                    <a title="Участники">Участники</a>
                   </Link>
                 </Grid>
 

@@ -247,8 +247,8 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company: item }) => {
     //   editVersionsList = (
     //     <div>
     //       <Link
-    //         to="/edits/"
-    //         href="/edits/"
+    //         to="/edits"
+    //         href="/edits"
     //         rel="nofollow"
     //         className="flex align-center"
     //       >

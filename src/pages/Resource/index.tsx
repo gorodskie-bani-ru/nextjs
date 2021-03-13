@@ -88,7 +88,15 @@ const ResourcePage: Page<ResourcePageProps> = () => {
     if (object.__typename === 'Company') {
       //
 
-      return <CompanyView company={object} />
+      return (
+        <>
+          <NextSeo
+            title={object.pagetitle}
+            description={`Все информация о "${object.pagetitle}"`}
+          />
+          <CompanyView company={object} />
+        </>
+      )
     } else if (object.__typename === 'City') {
       return <CityPage city={object} />
     } else if (
