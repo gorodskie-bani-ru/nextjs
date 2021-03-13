@@ -5,9 +5,9 @@ import React, { useCallback, useContext, useMemo } from 'react'
 import Link from 'next/link'
 
 // import Grid from '@material-ui/core/Grid'
-import IconButton from '@material-ui/core/IconButton'
+// import IconButton from '@material-ui/core/IconButton'
 // import LoginIcon from '@material-ui/icons/PermIdentity'
-import AddIcon from '@material-ui/icons/Add'
+// import AddIcon from '@material-ui/icons/Add'
 // import AtentionIcon from 'material-ui-icons/ErrorOutline'
 
 // import Avatar from 'modules/Site/components/fields/User/avatar.js'
@@ -280,12 +280,12 @@ const MainMenu: React.FC = () => {
   // TODO Remove
   citiesList
 
-  const preventDefault = useCallback((event: React.MouseEvent) => {
-    event.preventDefault()
-  }, [])
+  // const preventDefault = useCallback((event: React.MouseEvent) => {
+  //   event.preventDefault()
+  // }, [])
 
   return useMemo(() => {
-    const user = null
+    // const user = null
 
     // const { username } = user || {}
 
@@ -415,7 +415,7 @@ const MainMenu: React.FC = () => {
             )) ||
               null} */}
 
-              <li>
+              {/* <li>
                 <Link href="/topics/">
                   <a
                     title="Рейтинги заведений"
@@ -490,6 +490,21 @@ const MainMenu: React.FC = () => {
                     </li>
                   ) : null}
                 </ul>
+              </li> */}
+
+              <li>
+                <Link href="/bani-otzivy/">
+                  <a title="Обзоры и отзывы" onClick={closeMenu}>
+                    Обзоры и отзывы
+                  </a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/topics/">
+                  <a title="Новости" onClick={closeMenu}>
+                    Новости
+                  </a>
+                </Link>
               </li>
 
               <li className="last">
@@ -549,7 +564,7 @@ const MainMenu: React.FC = () => {
         </div>
       </div>
     )
-  }, [closeMenu, preventDefault])
+  }, [closeMenu])
   // }
 }
 

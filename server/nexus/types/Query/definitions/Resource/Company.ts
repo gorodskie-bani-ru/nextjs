@@ -125,8 +125,7 @@ export type CompaniesResult = {
 function companiesQuery(this: PrismaContext['knex']) {
   const query = this.from<bani684_site_content>(
     'bani684_site_content as company'
-  )
-  .where({
+  ).where({
     template: 27,
     deleted: false,
     published: true,
