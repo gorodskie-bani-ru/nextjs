@@ -4,7 +4,8 @@ query topics(
   $take: Int
   $skip: Int
   $withContent: Boolean = false
-  $withCreatedBy: Boolean = false # $withComments: Boolean = false
+  $withCreatedBy: Boolean = false
+  $withComments: Boolean = false
 ) {
   topics(where: $where, orderBy: $orderBy, take: $take, skip: $skip) {
     ...topic
@@ -19,7 +20,8 @@ query reviews(
   $take: Int
   $skip: Int
   $withContent: Boolean = false
-  $withCreatedBy: Boolean = false # $withComments: Boolean = false
+  $withCreatedBy: Boolean = false
+  $withComments: Boolean = false
 ) {
   reviews(where: $where, orderBy: $orderBy, take: $take, skip: $skip) {
     ...topic

@@ -16,7 +16,9 @@ import { RatingFragmentDoc } from './rating';
 import { CompanyFieldsFragmentDoc } from './CompanyFields';
 import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
-export type VotesByRatingQueryVariables = Types.Exact<{ [key: string]: never; }>;
+export type VotesByRatingQueryVariables = Types.Exact<{
+  withComments?: Types.Maybe<Types.Scalars['Boolean']>;
+}>;
 
 
 export type VotesByRatingQuery = { __typename?: 'Query', ratings: Array<(
@@ -29,7 +31,7 @@ export type VotesByRatingQuery = { __typename?: 'Query', ratings: Array<(
 
 
 export const VotesByRatingDocument = gql`
-    query votesByRating {
+    query votesByRating($withComments: Boolean = false) {
   ratings {
     ...rating
   }
@@ -52,6 +54,7 @@ ${CompanyFieldsFragmentDoc}`;
  * @example
  * const { data, loading, error } = useVotesByRatingQuery({
  *   variables: {
+ *      withComments: // value for 'withComments'
  *   },
  * });
  */

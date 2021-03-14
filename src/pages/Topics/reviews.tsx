@@ -43,6 +43,7 @@ const getQueryParams = (
     },
     withContent: true,
     withCreatedBy: true,
+    withComments: true,
   }
 }
 

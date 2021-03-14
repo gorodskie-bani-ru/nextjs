@@ -11,6 +11,7 @@ import { Card, CardHeader } from '@material-ui/core'
 import Site from './Site'
 
 import Editor, { PrismaCmsEditorProps } from '@prisma-cms/editor'
+// import ReactDecliner from 'react-decliner';
 
 import dynamic from 'next/dynamic'
 import CompanyWorkTime from './WorkTime'
@@ -22,6 +23,8 @@ import priceSvg from './img/price.svg'
 import metroSvg from './img/metro.svg'
 import siteSvg from './img/site.svg'
 import phoneSvg from './img/phone.svg'
+// import Title from 'src/components/ui/Title'
+import CommentsPageView from 'src/pages/Comments/View'
 
 const ItemMap = dynamic(import('./ItemMap'), {
   ssr: false,
@@ -29,11 +32,8 @@ const ItemMap = dynamic(import('./ItemMap'), {
 
 // import moment from 'moment'
 
-const CompanyView: React.FC<CompanyViewProps> = ({
-  company: item,
-  ...other
-}) => {
-  const itemData = item
+const CompanyView: React.FC<CompanyViewProps> = ({ company, ...other }) => {
+  console.log('company', company)
 
   const {
     // id,
@@ -66,20 +66,22 @@ const CompanyView: React.FC<CompanyViewProps> = ({
 
     // _errors: errors,
     // _isDirty,
-    // } = item;
+    // } = company;
     address,
     site,
   } = useMemo(() => {
-    return itemData
-  }, [itemData])
+    return company
+  }, [company])
 
   const prices = useMemo(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     // let prices: Record<string, any> | string | undefined
 
-    if (item.prices) {
+    if (company.prices) {
       try {
-        const prices = JSON.parse(item.prices) as PrismaCmsEditorProps['value']
+        const prices = JSON.parse(
+          company.prices
+        ) as PrismaCmsEditorProps['value']
 
         return prices && typeof prices === 'object' ? (
           <Editor
@@ -100,7 +102,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({
 
             //   const { name, value } = target
 
-            //   let { _isDirty } = item
+            //   let { _isDirty } = company
 
             //   _isDirty = _isDirty || {}
 
@@ -108,7 +110,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({
             //     prices: value,
             //   })
 
-            //   Object.assign(item, {
+            //   Object.assign(company, {
             //     prices,
             //     _isDirty,
             //   })
@@ -118,19 +120,19 @@ const CompanyView: React.FC<CompanyViewProps> = ({
           />
         ) : null
       } catch (error) {
-        // console.error('JSON.parse error', error, item.prices)
+        // console.error('JSON.parse error', error, company.prices)
         // TODO На сервере это или строка или JSON
 
-        return item.prices ? (
+        return company.prices ? (
           <div
             dangerouslySetInnerHTML={{
-              __html: item.prices,
+              __html: company.prices,
             }}
           />
         ) : null
       }
     }
-  }, [item.prices])
+  }, [company.prices])
 
   return useMemo(() => {
     // const {
@@ -232,7 +234,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({
     // const editDateInfo =
     //   (id > 0 && (
     //     <Grid
-    //       item
+    //       company
     //       xs={12}
     //       style={{
     //         marginTop: 15,
@@ -256,7 +258,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({
             <Grid item>
               {image ? (
                 <img
-                  alt={item.pagetitle}
+                  alt={company.pagetitle}
                   src={imageFormats(image, 'thumb')}
                   style={{
                     cursor: 'pointer',
@@ -287,7 +289,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({
                         const { 0: image } = response.object || {}
 
                         if (image && image.url) {
-                          this.updateItem(item, {
+                          this.updateItem(company, {
                             image: image.url,
                             imageFormats: {
                               thumb: '/images/resized/thumb/' + image.url,
@@ -437,7 +439,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({
                 ''
               )}
 
-              <CompanyWorkTime company={item} />
+              <CompanyWorkTime company={company} />
 
               {prices ? (
                 <div
@@ -527,7 +529,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({
                 </Grid>
 
                 {/* {_isDirty ? (
-                <Grid item>
+                <Grid company>
                   <IconButton
                     onClick={(event) => {
                       this.saveItem()
@@ -540,10 +542,10 @@ const CompanyView: React.FC<CompanyViewProps> = ({
                   {helper}
                 </Grid>
               ) : canEdit ? (
-                <Grid item>
+                <Grid company>
                   <IconButton
                     onClick={(event) => {
-                      this.updateItem(item, {})
+                      this.updateItem(company, {})
                     }}
                   >
                     <EditIcon
@@ -558,7 +560,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({
             }
 
             // TODO Restore RatingField
-            // subheader={<RatingField item={item} />}
+            // subheader={<RatingField company={company} />}
           />
 
           {mainInfo}
@@ -574,34 +576,43 @@ const CompanyView: React.FC<CompanyViewProps> = ({
             </CardContent>
           ) : null}
 
-          <ItemMap item={item} />
+          <ItemMap item={company} />
 
           {Gallery}
 
           {/* TODO Restore CompanyTopics */}
-          {/* {(!inEditMode && <CompanyTopics item={item} />) || null} */}
+          {/* {(!inEditMode && <CompanyTopics company={company} />) || null} */}
 
-          {/* TODO Restore comments */}
-          {/* {!inEditMode && comments && comments.length ? (
-          <CardContent>
-            <Paper
-              style={{
-                padding: 15,
-              }}
-            >
-              <Typography type="title">
-                {comments.length} комментариев
-              </Typography>
+          {!inEditMode && company.Comments?.length ? (
+            <CardContent>
+              <Paper
+                style={{
+                  padding: 15,
+                }}
+              >
+                {/* <Title>
+                  {company.Comments.length} <ReactDecliner 
+                    num={company.Comments.length}
+                    one="комментарий"
+                    two="комментария"
+                    many="комментариев"
+                  />
+                </Title> */}
 
-              <Comments
+                <CommentsPageView
+                  comments={company.Comments}
+                  pagination={undefined}
+                />
+
+                {/* <Comments
                 comments={comments}
-                resource={item}
+                resource={company}
                 newCommentForm={newCommentForm}
                 // onSuccess={::this.reloadData}
-              />
-            </Paper>
-          </CardContent>
-        ) : null} */}
+              /> */}
+              </Paper>
+            </CardContent>
+          ) : null}
         </Card>
       </CompanyViewStyled>
     )
@@ -609,7 +620,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({
     address,
     gallery,
     image,
-    item,
+    company,
     itemContent,
     metro,
     name,

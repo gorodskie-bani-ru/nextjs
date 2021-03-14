@@ -88,6 +88,8 @@ export const ResourceInterface = interfaceType({
             {
               where: {
                 thread_id: thread.id,
+                deleted: '0',
+                published: '1',
               },
               orderBy: {
                 createdon: 'asc',

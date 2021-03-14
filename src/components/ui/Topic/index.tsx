@@ -35,14 +35,14 @@ const Topic: React.FC<TopicProps> = ({ topic, withComments, ...other }) => {
   }, [topic.content])
 
   const comments = useMemo(() => {
-    if (!withComments || !topic.Comments.length) {
+    if (!withComments || !topic.Comments?.length) {
       return null
     }
 
     return (
       <div className="comments">
         <Title variant="h3">Комментарии</Title>
-        {topic.Comments.map((n) => {
+        {topic.Comments?.map((n) => {
           return <Comment key={n.id} comment={n} />
         })}
       </div>
@@ -74,9 +74,9 @@ const Topic: React.FC<TopicProps> = ({ topic, withComments, ...other }) => {
               title={`Комментарии к публикации "${topic.pagetitle}"`}
             >
               <CommentsIcon
-                color={topic.Comments.length ? 'secondary' : undefined}
+                color={topic.Comments?.length ? 'secondary' : undefined}
               />
-              {topic.Comments.length}
+              {topic.Comments?.length}
             </Link>
           </div>
 
@@ -91,7 +91,7 @@ const Topic: React.FC<TopicProps> = ({ topic, withComments, ...other }) => {
     topic.pagetitle,
     topic.CreatedBy,
     topic.createdon,
-    topic.Comments.length,
+    topic.Comments?.length,
     other,
     content,
     tags,

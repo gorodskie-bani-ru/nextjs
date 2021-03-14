@@ -19,7 +19,7 @@ const CommentsPageView: React.FC<CommentsPageViewProps> = ({
             return <CommentsPageViewComment key={n.id} comment={n} />
           })}
 
-          <Pagination {...pagination} />
+          {pagination ? <Pagination {...pagination} /> : null}
         </CommentsPageViewStyled>
       </>
     )

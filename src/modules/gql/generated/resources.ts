@@ -21,6 +21,7 @@ export type ResourcesQueryVariables = Types.Exact<{
   skip?: Types.Maybe<Types.Scalars['Int']>;
   withContent?: Types.Maybe<Types.Scalars['Boolean']>;
   withCreatedBy?: Types.Maybe<Types.Scalars['Boolean']>;
+  withComments?: Types.Maybe<Types.Scalars['Boolean']>;
 }>;
 
 
@@ -46,7 +47,7 @@ export type ResourcesQuery = { __typename?: 'Query', resourcesCount: number, res
 
 
 export const ResourcesDocument = gql`
-    query resources($where: bani684_site_contentWhereInput, $orderBy: [bani684_site_contentOrderByInput!], $take: Int, $skip: Int, $withContent: Boolean = false, $withCreatedBy: Boolean = false) {
+    query resources($where: bani684_site_contentWhereInput, $orderBy: [bani684_site_contentOrderByInput!], $take: Int, $skip: Int, $withContent: Boolean = false, $withCreatedBy: Boolean = false, $withComments: Boolean = false) {
   resources(where: $where, orderBy: $orderBy, take: $take, skip: $skip) {
     ...resource
   }
@@ -72,6 +73,7 @@ export const ResourcesDocument = gql`
  *      skip: // value for 'skip'
  *      withContent: // value for 'withContent'
  *      withCreatedBy: // value for 'withCreatedBy'
+ *      withComments: // value for 'withComments'
  *   },
  * });
  */

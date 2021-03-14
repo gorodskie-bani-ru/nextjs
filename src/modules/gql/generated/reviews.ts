@@ -21,6 +21,7 @@ export type ReviewsQueryVariables = Types.Exact<{
   skip?: Types.Maybe<Types.Scalars['Int']>;
   withContent?: Types.Maybe<Types.Scalars['Boolean']>;
   withCreatedBy?: Types.Maybe<Types.Scalars['Boolean']>;
+  withComments?: Types.Maybe<Types.Scalars['Boolean']>;
 }>;
 
 
@@ -31,7 +32,7 @@ export type ReviewsQuery = { __typename?: 'Query', resourcesCount: number, revie
 
 
 export const ReviewsDocument = gql`
-    query reviews($where: bani684_site_contentWhereInput, $orderBy: [bani684_site_contentOrderByInput!], $take: Int, $skip: Int, $withContent: Boolean = false, $withCreatedBy: Boolean = false) {
+    query reviews($where: bani684_site_contentWhereInput, $orderBy: [bani684_site_contentOrderByInput!], $take: Int, $skip: Int, $withContent: Boolean = false, $withCreatedBy: Boolean = false, $withComments: Boolean = false) {
   reviews(where: $where, orderBy: $orderBy, take: $take, skip: $skip) {
     ...topic
   }
@@ -57,6 +58,7 @@ export const ReviewsDocument = gql`
  *      skip: // value for 'skip'
  *      withContent: // value for 'withContent'
  *      withCreatedBy: // value for 'withCreatedBy'
+ *      withComments: // value for 'withComments'
  *   },
  * });
  */

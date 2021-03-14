@@ -19,6 +19,7 @@ export type CompaniesQueryVariables = Types.Exact<{
   take?: Types.Maybe<Types.Scalars['Int']>;
   orderBy?: Types.Maybe<Types.CompaniesOrderByInput>;
   withContent?: Types.Maybe<Types.Scalars['Boolean']>;
+  withComments?: Types.Maybe<Types.Scalars['Boolean']>;
 }>;
 
 
@@ -29,7 +30,7 @@ export type CompaniesQuery = { __typename?: 'Query', companiesCount: number, com
 
 
 export const CompaniesDocument = gql`
-    query companies($skip: Int, $take: Int, $orderBy: CompaniesOrderByInput, $withContent: Boolean = false) {
+    query companies($skip: Int, $take: Int, $orderBy: CompaniesOrderByInput, $withContent: Boolean = false, $withComments: Boolean = false) {
   companiesCount
   companies(skip: $skip, take: $take, orderBy: $orderBy) {
     ...Company_
@@ -53,6 +54,7 @@ export const CompaniesDocument = gql`
  *      take: // value for 'take'
  *      orderBy: // value for 'orderBy'
  *      withContent: // value for 'withContent'
+ *      withComments: // value for 'withComments'
  *   },
  * });
  */

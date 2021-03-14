@@ -1,4 +1,4 @@
-query votesByRating {
+query votesByRating($withComments: Boolean = false) {
   ratings {
     ...rating
   }

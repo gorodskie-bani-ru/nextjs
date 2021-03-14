@@ -10,6 +10,7 @@ query companies(
   # $orderBy: [bani684_site_contentOrderByInput!]
   $orderBy: CompaniesOrderByInput
   $withContent: Boolean = false
+  $withComments: Boolean = false
 ) {
   # companiesList(
   #   limit: $companiesLimit
@@ -172,6 +173,10 @@ fragment CompanyFields on Company {
 
   Schedules {
     ...shedules
+  }
+
+  Comments @include(if: $withComments) {
+    ...comment
   }
 
   # schedule @include(if:$companyGetSchedules)

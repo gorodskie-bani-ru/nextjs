@@ -4,5 +4,5 @@ import { CommentsPageViewCommentProps } from './Comment/interfaces'
 export type CommentsPageViewProps = {
   comments: CommentsPageViewCommentProps['comment'][]
 
-  pagination: PaginationProps
+  pagination: PaginationProps | undefined
 }
