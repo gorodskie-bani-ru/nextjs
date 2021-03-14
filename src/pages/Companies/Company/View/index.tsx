@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useMemo } from 'react'
 import CardContent from '@material-ui/core/CardContent'
 import Paper from '@material-ui/core/Paper'
@@ -115,13 +116,13 @@ const CompanyView: React.FC<CompanyViewProps> = ({
         // console.error('JSON.parse error', error, item.prices)
         // TODO На сервере это или строка или JSON
 
-        return (
+        return item.prices ? (
           <div
             dangerouslySetInnerHTML={{
               __html: item.prices,
             }}
           />
-        )
+        ) : null
       }
     }
   }, [item.prices])
@@ -473,10 +474,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({
                     </span>
                   </Grid>
 
-                  {/* 
-                    TODO Restore Editor
-                  <Editor name="prices" value={prices || ''} readOnly /> 
-                  */}
+                  {prices}
                 </div>
               ) : null}
             </Grid>
