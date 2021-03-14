@@ -19,6 +19,7 @@ import { CompanyViewStyled } from './styles'
 import SvgIcon from 'src/components/ui/SvgIcon'
 import addressSvg from './img/address.svg'
 import priceSvg from './img/price.svg'
+import metroSvg from './img/metro.svg'
 
 const ItemMap = dynamic(import('./ItemMap'), {
   ssr: false,
@@ -58,6 +59,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({
     // schedule_family,
 
     // prices,
+    metro,
 
     // _errors: errors,
     // _isDirty,
@@ -135,9 +137,6 @@ const CompanyView: React.FC<CompanyViewProps> = ({
     //   // prices,
     //   approved,
     // } = tvs || {}
-
-    // TODO Restore metro
-    const metro = null
 
     // TODO Restore phones
     const phones = ''
@@ -262,10 +261,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({
             padding: 15,
           }}
         >
-          <Grid
-            container
-            // gutter={0}
-          >
+          <Grid container spacing={1}>
             <Grid item>
               {image ? (
                 <img
@@ -366,11 +362,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({
                   }}
                   alignItems="center"
                 >
-                  {/* <MetroIcon />{' '} */}
-                  {/* 
-                    TODO Resotre icon
-                  */}
-                  MetroIcon
+                  <SvgIcon src={metroSvg} alt="metro" />
                   <span
                     style={{
                       paddingLeft: 5,
@@ -622,7 +614,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({
         </Card>
       </CompanyViewStyled>
     )
-  }, [address, gallery, image, item, itemContent, name, other, prices])
+  }, [address, gallery, image, item, itemContent, metro, name, other, prices])
 }
 
 export default CompanyView

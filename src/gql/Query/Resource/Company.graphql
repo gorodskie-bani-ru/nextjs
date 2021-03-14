@@ -160,8 +160,8 @@ fragment CompanyFields on Company {
   #   work_time
   workTime
   prices
+  metro
   # pricesComments
-  #   metro
   #   approved
   # }
 

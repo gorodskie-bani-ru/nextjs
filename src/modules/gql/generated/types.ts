@@ -132,6 +132,8 @@ export interface Company extends ResourceInterface {
   id: Scalars['Int'];
   image?: Maybe<Scalars['String']>;
   longtitle: Scalars['String'];
+  /** Метро */
+  metro?: Maybe<Scalars['String']>;
   pagetitle: Scalars['String'];
   /** Цены */
   prices?: Maybe<Scalars['String']>;

@@ -142,6 +142,11 @@ type Company implements ResourceInterface {
   id: Int!
   image: String
   longtitle: String!
+
+  """
+  Метро
+  """
+  metro: String
   pagetitle: String!
 
   """

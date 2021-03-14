@@ -10,4 +10,5 @@ export const TemplateVarIDs = {
   prices: 20,
   // pricesComments: 21,
   workTime: 19,
+  metro: 22,
 }

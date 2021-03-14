@@ -947,6 +947,7 @@ export interface NexusGenFieldTypes {
     id: number // Int!
     image: string | null // String
     longtitle: string // String!
+    metro: string | null // String
     pagetitle: string // String!
     prices: string | null // String
     properties: NexusGenScalars['JSON'] | null // JSON
@@ -1227,6 +1228,7 @@ export interface NexusGenFieldTypeNames {
     id: 'Int'
     image: 'String'
     longtitle: 'String'
+    metro: 'String'
     pagetitle: 'String'
     prices: 'String'
     properties: 'JSON'

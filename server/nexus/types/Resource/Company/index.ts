@@ -119,6 +119,16 @@ export const Company = objectType({
         )
       },
     })
+    t.string('metro', {
+      description: 'Метро',
+      resolve(parent) {
+        return (
+          parent.TemplateVarValues?.find(
+            (n) => n.tmplvarid === TemplateVarIDs.metro
+          )?.value || null
+        )
+      },
+    })
     //   // t.string('pricesComments', {
     //   //   description: "Комментарии к ценам",
     //   //   resolve(parent) {
