@@ -150,6 +150,11 @@ type Company implements ResourceInterface {
   pagetitle: String!
 
   """
+  Телефоны
+  """
+  phones: String
+
+  """
   Цены
   """
   prices: String

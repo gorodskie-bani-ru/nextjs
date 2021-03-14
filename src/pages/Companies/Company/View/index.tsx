@@ -60,6 +60,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({
 
     // prices,
     metro,
+    phones,
 
     // _errors: errors,
     // _isDirty,
@@ -137,9 +138,6 @@ const CompanyView: React.FC<CompanyViewProps> = ({
     //   // prices,
     //   approved,
     // } = tvs || {}
-
-    // TODO Restore phones
-    const phones = ''
 
     // TODO Restore site
     const site = ''
@@ -398,18 +396,24 @@ const CompanyView: React.FC<CompanyViewProps> = ({
                   >
                     Телефон:
                   </span>{' '}
-                  {/* {phones
+                  {phones
                     .split(/,|;/)
                     .map((n) => n && n.trim())
                     .filter((n) => n)
-                    .map((phone) => {
+                    .map((phone, index) => {
                       return phone && phone.length > 8 ? (
-                        <a href={`tel:${phone}`}>{phone}</a>
+                        <a key={index} href={`tel:${phone}`}>
+                          {phone}
+                        </a>
                       ) : (
                         phone
                       )
                     })
-                    .reduce((a, b) => [a, ', ', b])} */}
+                    .reduce<React.ReactNode[]>(
+                      (curr, next) =>
+                        !curr.length ? [next] : [curr, ', ', next],
+                      []
+                    )}
                 </Grid>
               ) : (
                 ''
@@ -614,7 +618,18 @@ const CompanyView: React.FC<CompanyViewProps> = ({
         </Card>
       </CompanyViewStyled>
     )
-  }, [address, gallery, image, item, itemContent, metro, name, other, prices])
+  }, [
+    address,
+    gallery,
+    image,
+    item,
+    itemContent,
+    metro,
+    name,
+    other,
+    phones,
+    prices,
+  ])
 }
 
 export default CompanyView

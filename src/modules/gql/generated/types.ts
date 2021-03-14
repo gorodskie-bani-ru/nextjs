@@ -135,6 +135,8 @@ export interface Company extends ResourceInterface {
   /** Метро */
   metro?: Maybe<Scalars['String']>;
   pagetitle: Scalars['String'];
+  /** Телефоны */
+  phones?: Maybe<Scalars['String']>;
   /** Цены */
   prices?: Maybe<Scalars['String']>;
   /** @deprecated Временно для получения данных расписания. Используйте вместо этого schedules */

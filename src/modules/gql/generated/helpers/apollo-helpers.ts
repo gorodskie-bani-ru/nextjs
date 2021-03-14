@@ -30,7 +30,7 @@ export type CommentFieldPolicy = {
 	raw_text?: FieldPolicy<any> | FieldReadFunction<any>,
 	text?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type CompanyKeySpecifier = ('Comments' | 'CreatedBy' | 'Schedules' | 'TemplateVarValues' | 'address' | 'addressComments' | 'alias' | 'content' | 'coords' | 'createdby' | 'createdon' | 'description' | 'gallery' | 'id' | 'image' | 'longtitle' | 'metro' | 'pagetitle' | 'prices' | 'properties' | 'published' | 'rating' | 'searchable' | 'template' | 'uri' | 'workTime' | CompanyKeySpecifier)[];
+export type CompanyKeySpecifier = ('Comments' | 'CreatedBy' | 'Schedules' | 'TemplateVarValues' | 'address' | 'addressComments' | 'alias' | 'content' | 'coords' | 'createdby' | 'createdon' | 'description' | 'gallery' | 'id' | 'image' | 'longtitle' | 'metro' | 'pagetitle' | 'phones' | 'prices' | 'properties' | 'published' | 'rating' | 'searchable' | 'template' | 'uri' | 'workTime' | CompanyKeySpecifier)[];
 export type CompanyFieldPolicy = {
 	Comments?: FieldPolicy<any> | FieldReadFunction<any>,
 	CreatedBy?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -50,6 +50,7 @@ export type CompanyFieldPolicy = {
 	longtitle?: FieldPolicy<any> | FieldReadFunction<any>,
 	metro?: FieldPolicy<any> | FieldReadFunction<any>,
 	pagetitle?: FieldPolicy<any> | FieldReadFunction<any>,
+	phones?: FieldPolicy<any> | FieldReadFunction<any>,
 	prices?: FieldPolicy<any> | FieldReadFunction<any>,
 	properties?: FieldPolicy<any> | FieldReadFunction<any>,
 	published?: FieldPolicy<any> | FieldReadFunction<any>,

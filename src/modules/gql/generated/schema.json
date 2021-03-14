@@ -1052,6 +1052,18 @@
             "deprecationReason": null
           },
           {
+            "name": "phones",
+            "description": "Телефоны",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "prices",
             "description": "Цены",
             "args": [],

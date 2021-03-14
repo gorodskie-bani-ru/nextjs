@@ -156,8 +156,7 @@ fragment CompanyFields on Company {
   address
   #   site
   #   facility_type
-  #   phones
-  #   work_time
+  phones
   workTime
   prices
   metro

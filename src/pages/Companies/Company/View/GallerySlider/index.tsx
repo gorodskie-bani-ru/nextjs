@@ -4,7 +4,7 @@ import { CompanyViewProps } from '../interfaces'
 const GallerySlider: React.FC<{
   gallery: CompanyViewProps['company']['gallery']
 }> = () => {
-  return <>GallerySlider</>
+  return <></>
 }
 
 export default GallerySlider

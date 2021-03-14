@@ -129,6 +129,16 @@ export const Company = objectType({
         )
       },
     })
+    t.string('phones', {
+      description: 'Телефоны',
+      resolve(parent) {
+        return (
+          parent.TemplateVarValues?.find(
+            (n) => n.tmplvarid === TemplateVarIDs.phones
+          )?.value || null
+        )
+      },
+    })
     //   // t.string('pricesComments', {
     //   //   description: "Комментарии к ценам",
     //   //   resolve(parent) {

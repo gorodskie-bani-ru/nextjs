@@ -7,6 +7,7 @@ export const TemplateVarIDs = {
   gallery: 23,
   address: 14,
   addressComments: 15,
+  phones: 16,
   prices: 20,
   // pricesComments: 21,
   workTime: 19,

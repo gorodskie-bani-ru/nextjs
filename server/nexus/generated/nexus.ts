@@ -949,6 +949,7 @@ export interface NexusGenFieldTypes {
     longtitle: string // String!
     metro: string | null // String
     pagetitle: string // String!
+    phones: string | null // String
     prices: string | null // String
     properties: NexusGenScalars['JSON'] | null // JSON
     published: boolean // Boolean!
@@ -1230,6 +1231,7 @@ export interface NexusGenFieldTypeNames {
     longtitle: 'String'
     metro: 'String'
     pagetitle: 'String'
+    phones: 'String'
     prices: 'String'
     properties: 'JSON'
     published: 'Boolean'
