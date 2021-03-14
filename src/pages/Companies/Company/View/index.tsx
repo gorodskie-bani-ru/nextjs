@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useMemo } from 'react'
 import CardContent from '@material-ui/core/CardContent'
 import Paper from '@material-ui/core/Paper'
@@ -33,8 +32,6 @@ const ItemMap = dynamic(import('./ItemMap'), {
 // import moment from 'moment'
 
 const CompanyView: React.FC<CompanyViewProps> = ({ company, ...other }) => {
-  console.log('company', company)
-
   const {
     // id,
     // id: companyId,
