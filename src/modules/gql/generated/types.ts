@@ -145,6 +145,8 @@ export interface Company extends ResourceInterface {
   /** Средний рейтинг */
   rating?: Maybe<VotesAvg>;
   searchable: Scalars['Boolean'];
+  /** Сайт */
+  site?: Maybe<Scalars['String']>;
   template: Scalars['Int'];
   uri?: Maybe<Scalars['String']>;
   /** Рабочее время */

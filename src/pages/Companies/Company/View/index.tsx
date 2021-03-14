@@ -20,6 +20,8 @@ import SvgIcon from 'src/components/ui/SvgIcon'
 import addressSvg from './img/address.svg'
 import priceSvg from './img/price.svg'
 import metroSvg from './img/metro.svg'
+import siteSvg from './img/site.svg'
+import phoneSvg from './img/phone.svg'
 
 const ItemMap = dynamic(import('./ItemMap'), {
   ssr: false,
@@ -66,7 +68,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({
     // _isDirty,
     // } = item;
     address,
-    // workTime,
+    site,
   } = useMemo(() => {
     return itemData
   }, [itemData])
@@ -134,18 +136,9 @@ const CompanyView: React.FC<CompanyViewProps> = ({
     // const {
     //   metro,
     //   phones,
-    //   site,
     //   // prices,
     //   approved,
     // } = tvs || {}
-
-    // TODO Restore site
-    const site = ''
-
-    // let schedules = [];
-
-    // TODO Fix
-    // const schedulesContent = <SchedulesList company={item} />
 
     // const inEditMode = _isDirty ? true : false
     const inEditMode = false
@@ -384,10 +377,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({
                   }}
                   alignItems="center"
                 >
-                  {/*
-                  TODO Fix icon
-                  <PhoneIcon /> */}
-                  PhoneIcon{' '}
+                  <SvgIcon src={phoneSvg} alt="phone" />{' '}
                   <span
                     style={{
                       paddingLeft: 5,
@@ -428,10 +418,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({
                   }}
                   alignItems="center"
                 >
-                  {/* 
-                  TODO Restore icon */}
-                  SiteIcon
-                  {/* <SiteIcon />{' '} */}
+                  <SvgIcon src={siteSvg} alt="site" />{' '}
                   <span
                     style={{
                       paddingLeft: 5,
@@ -629,6 +616,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({
     other,
     phones,
     prices,
+    site,
   ])
 }
 

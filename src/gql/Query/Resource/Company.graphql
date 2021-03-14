@@ -154,7 +154,7 @@ fragment CompanyFields on Company {
   # tvs @include(if:$getTVs)
   # {
   address
-  #   site
+  site
   #   facility_type
   phones
   workTime

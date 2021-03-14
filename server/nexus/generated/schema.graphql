@@ -169,6 +169,11 @@ type Company implements ResourceInterface {
   """
   rating: VotesAvg
   searchable: Boolean!
+
+  """
+  Сайт
+  """
+  site: String
   template: Int!
   uri: String
 

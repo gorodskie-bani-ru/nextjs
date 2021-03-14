@@ -955,6 +955,7 @@ export interface NexusGenFieldTypes {
     published: boolean // Boolean!
     rating: NexusGenRootTypes['VotesAvg'] | null // VotesAvg
     searchable: boolean // Boolean!
+    site: string | null // String
     template: number // Int!
     uri: string | null // String
     workTime: string | null // String
@@ -1237,6 +1238,7 @@ export interface NexusGenFieldTypeNames {
     published: 'Boolean'
     rating: 'VotesAvg'
     searchable: 'Boolean'
+    site: 'String'
     template: 'Int'
     uri: 'String'
     workTime: 'String'

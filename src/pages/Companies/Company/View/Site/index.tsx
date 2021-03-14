@@ -11,14 +11,14 @@ const Site: React.FC<{
   return useMemo(() => {
     return (
       <a
-        href={/^http.*?:\/\//.test(site) ? site : `http://${site}`}
+        href={/^https?:\/\//.test(site) ? site : `http://${site}`}
         target="_blank"
         rel={['noreferrer', approved ? 'follow' : 'nofollow'].join(' ')}
         {...other}
       >
         {site
-          .replace(/(^http.*?:\/\/|\/+$)/g, '')
-          .replace(/^www./, '')
+          .replace(/(^https?:\/\/|\/+$)/g, '')
+          .replace(/^www\./, '')
           .replace(/\/.*/, '')}
       </a>
     )
