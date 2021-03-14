@@ -59,6 +59,10 @@ type City implements ResourceInterface {
   id: Int!
   longtitle: String!
   pagetitle: String!
+  properties: JSON
+    @deprecated(
+      reason: "Временно для получения данных расписания. Используйте вместо этого schedules"
+    )
   published: Boolean!
   searchable: Boolean!
   template: Int!
@@ -108,6 +112,11 @@ type Company implements ResourceInterface {
   """
   Comments: [Comment!]!
   CreatedBy: User
+
+  """
+  Расписание работы
+  """
+  Schedules: Schedules
   TemplateVarValues: [bani684_site_tmplvar_contentvalues!]
 
   """
@@ -139,6 +148,10 @@ type Company implements ResourceInterface {
   Цены
   """
   prices: String
+  properties: JSON
+    @deprecated(
+      reason: "Временно для получения данных расписания. Используйте вместо этого schedules"
+    )
   published: Boolean!
 
   """
@@ -230,6 +243,8 @@ input IntNullableFilter {
   not: NestedIntNullableFilter
   notIn: [Int!]
 }
+
+scalar JSON
 
 input NestedBoolFilter {
   equals: Boolean
@@ -460,6 +475,10 @@ type Rating implements ResourceInterface {
   id: Int!
   longtitle: String!
   pagetitle: String!
+  properties: JSON
+    @deprecated(
+      reason: "Временно для получения данных расписания. Используйте вместо этого schedules"
+    )
   published: Boolean!
   searchable: Boolean!
   template: Int!
@@ -481,6 +500,10 @@ type Resource implements ResourceInterface {
   id: Int!
   longtitle: String!
   pagetitle: String!
+  properties: JSON
+    @deprecated(
+      reason: "Временно для получения данных расписания. Используйте вместо этого schedules"
+    )
   published: Boolean!
   searchable: Boolean!
   template: Int!
@@ -502,6 +525,10 @@ interface ResourceInterface {
   id: Int!
   longtitle: String!
   pagetitle: String!
+  properties: JSON
+    @deprecated(
+      reason: "Временно для получения данных расписания. Используйте вместо этого schedules"
+    )
   published: Boolean!
   searchable: Boolean!
   template: Int!
@@ -527,10 +554,60 @@ type Review implements ResourceInterface {
   id: Int!
   longtitle: String!
   pagetitle: String!
+  properties: JSON
+    @deprecated(
+      reason: "Временно для получения данных расписания. Используйте вместо этого schedules"
+    )
   published: Boolean!
   searchable: Boolean!
   template: Int!
   uri: String
+}
+
+"""
+Время работы
+"""
+type Schedule {
+  end: ScheduleData
+  start: ScheduleData!
+}
+
+"""
+Данные времени работы
+"""
+type ScheduleData {
+  day: Int
+  hour: Int
+  minute: Int
+  month: Int
+  second: Int
+  weekDay: Int
+  year: Int
+}
+
+"""
+Все варианты расписания
+"""
+type Schedules {
+  """
+  Общее расписание
+  """
+  Schedule: [Schedule]
+
+  """
+  Расписание для семьи
+  """
+  ScheduleFamily: [Schedule]
+
+  """
+  Расписание для мужчин
+  """
+  ScheduleMen: [Schedule]
+
+  """
+  Расписание для женщин
+  """
+  ScheduleWomen: [Schedule]
 }
 
 enum SortOrder {
@@ -593,6 +670,10 @@ type Topic implements ResourceInterface {
   id: Int!
   longtitle: String!
   pagetitle: String!
+  properties: JSON
+    @deprecated(
+      reason: "Временно для получения данных расписания. Используйте вместо этого schedules"
+    )
   published: Boolean!
   searchable: Boolean!
   template: Int!

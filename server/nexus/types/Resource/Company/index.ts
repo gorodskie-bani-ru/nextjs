@@ -1,8 +1,11 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import { FieldResolver, objectType } from 'nexus'
-import { TemplateVarIDs } from '../../constants'
-import { imageResolver } from '../Query/resolvers/image'
-import { coords } from './definitions/coords'
+import { NexusGenObjects } from 'server/nexus/generated/nexus'
+import { TemplateVarIDs } from '../../../constants'
+import { imageResolver } from '../../Query/resolvers/image'
+import { coords } from '../definitions/coords'
+
+export * from './Schedule'
 
 const galleryResolver: FieldResolver<'Company', 'gallery'> = (parent) => {
   type File = {
@@ -134,6 +137,36 @@ export const Company = objectType({
     t.field('rating', {
       type: 'VotesAvg',
       description: 'Средний рейтинг',
+    })
+
+    t.field('Schedules', {
+      type: 'Schedules',
+      description: 'Расписание работы',
+      resolve(parent) {
+        let Schedules: NexusGenObjects['Schedules'] | null = null
+
+        if (parent.properties) {
+          try {
+            const {
+              schedule: Schedule,
+              schedule_men: ScheduleMen,
+              schedule_women: ScheduleWomen,
+              schedule_family: ScheduleFamily,
+            } = JSON.parse(parent.properties)
+
+            Schedules = {
+              Schedule,
+              ScheduleMen,
+              ScheduleWomen,
+              ScheduleFamily,
+            }
+          } catch (error) {
+            console.error('Company::Schedules JSON parse error', error)
+          }
+        }
+
+        return Schedules
+      },
     })
 
     t.nonNull.list.nonNull.field('gallery', {

@@ -124,6 +124,7 @@ export type CompaniesResult = {
   company_address: string | undefined
   company_workTime_id: number | undefined
   company_workTime: string | undefined
+  company_properties: string | undefined
 }
 
 function companiesQuery(this: PrismaContext['knex']) {
@@ -240,6 +241,7 @@ const companiesResolver: FieldResolver<'Query', 'companies'> = (
         company_published: 'company.published',
         company_searchable: 'company.searchable',
         company_template: 'company.template',
+        company_properties: 'company.properties',
       })
 
       .as('t')
@@ -293,6 +295,7 @@ const companiesResolver: FieldResolver<'Query', 'companies'> = (
         company_address,
         company_workTime_id,
         company_workTime,
+        company_properties,
       } = n
 
       const TemplateVarValues: NexusGenObjects['Company']['TemplateVarValues'] = []
@@ -354,6 +357,7 @@ const companiesResolver: FieldResolver<'Query', 'companies'> = (
         description: company_description,
         longtitle: company_longtitle,
         // image: company_image,
+        properties: company_properties,
         TemplateVarValues,
         // type,
         // target_id,
@@ -394,11 +398,10 @@ const companiesResolver: FieldResolver<'Query', 'companies'> = (
         if (!bCoords) {
           return -1
         } else if (!aCoords) {
-
-        /**
-         * Если нет координат у предыдущей (не с чем сравнивать),
-         * остаемся на месте
-         */
+          /**
+           * Если нет координат у предыдущей (не с чем сравнивать),
+           * остаемся на месте
+           */
           return 0
         }
 

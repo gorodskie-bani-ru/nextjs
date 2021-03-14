@@ -55,6 +55,11 @@ export const ResourceInterface = interfaceType({
     t.nonNull.boolean('published')
     t.nonNull.int('createdby')
     t.nonNull.boolean('searchable')
+    t.field('properties', {
+      type: 'JSON',
+      deprecation:
+        'Временно для получения данных расписания. Используйте вместо этого schedules',
+    })
     t.list.nonNull.field('TemplateVarValues', {
       type: 'bani684_site_tmplvar_contentvalues',
     })

@@ -79,6 +79,7 @@ export const Resource = (t: ObjectDefinitionBlock<'Query'>) => {
           content: true,
           editedby: true,
           editedon: true,
+          properties: true,
           TemplateVarValues: {
             select: {
               id: true,

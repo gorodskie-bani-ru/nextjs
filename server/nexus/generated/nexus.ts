@@ -645,6 +645,7 @@ export interface NexusGenScalars {
   Boolean: boolean
   ID: string
   DateTime: any
+  JSON: any
 }
 
 export interface NexusGenObjects {
@@ -662,6 +663,7 @@ export interface NexusGenObjects {
     id: number // Int!
     longtitle: string // String!
     pagetitle: string // String!
+    properties?: NexusGenScalars['JSON'] | null // JSON
     published: boolean // Boolean!
     searchable: boolean // Boolean!
     template: number // Int!
@@ -692,6 +694,7 @@ export interface NexusGenObjects {
     id: number // Int!
     longtitle: string // String!
     pagetitle: string // String!
+    properties?: NexusGenScalars['JSON'] | null // JSON
     published: boolean // Boolean!
     rating?: NexusGenRootTypes['VotesAvg'] | null // VotesAvg
     searchable: boolean // Boolean!
@@ -725,6 +728,7 @@ export interface NexusGenObjects {
     id: number // Int!
     longtitle: string // String!
     pagetitle: string // String!
+    properties?: NexusGenScalars['JSON'] | null // JSON
     published: boolean // Boolean!
     searchable: boolean // Boolean!
     template: number // Int!
@@ -744,6 +748,7 @@ export interface NexusGenObjects {
     id: number // Int!
     longtitle: string // String!
     pagetitle: string // String!
+    properties?: NexusGenScalars['JSON'] | null // JSON
     published: boolean // Boolean!
     searchable: boolean // Boolean!
     template: number // Int!
@@ -764,10 +769,33 @@ export interface NexusGenObjects {
     id: number // Int!
     longtitle: string // String!
     pagetitle: string // String!
+    properties?: NexusGenScalars['JSON'] | null // JSON
     published: boolean // Boolean!
     searchable: boolean // Boolean!
     template: number // Int!
     uri?: string | null // String
+  }
+  Schedule: {
+    // root type
+    end?: NexusGenRootTypes['ScheduleData'] | null // ScheduleData
+    start: NexusGenRootTypes['ScheduleData'] // ScheduleData!
+  }
+  ScheduleData: {
+    // root type
+    day?: number | null // Int
+    hour?: number | null // Int
+    minute?: number | null // Int
+    month?: number | null // Int
+    second?: number | null // Int
+    weekDay?: number | null // Int
+    year?: number | null // Int
+  }
+  Schedules: {
+    // root type
+    Schedule?: Array<NexusGenRootTypes['Schedule'] | null> | null // [Schedule]
+    ScheduleFamily?: Array<NexusGenRootTypes['Schedule'] | null> | null // [Schedule]
+    ScheduleMen?: Array<NexusGenRootTypes['Schedule'] | null> | null // [Schedule]
+    ScheduleWomen?: Array<NexusGenRootTypes['Schedule'] | null> | null // [Schedule]
   }
   Thread: {
     // root type
@@ -789,6 +817,7 @@ export interface NexusGenObjects {
     id: number // Int!
     longtitle: string // String!
     pagetitle: string // String!
+    properties?: NexusGenScalars['JSON'] | null // JSON
     published: boolean // Boolean!
     searchable: boolean // Boolean!
     template: number // Int!
@@ -881,6 +910,7 @@ export interface NexusGenFieldTypes {
     id: number // Int!
     longtitle: string // String!
     pagetitle: string // String!
+    properties: NexusGenScalars['JSON'] | null // JSON
     published: boolean // Boolean!
     searchable: boolean // Boolean!
     template: number // Int!
@@ -901,6 +931,7 @@ export interface NexusGenFieldTypes {
     // field return type
     Comments: NexusGenRootTypes['Comment'][] // [Comment!]!
     CreatedBy: NexusGenRootTypes['User'] | null // User
+    Schedules: NexusGenRootTypes['Schedules'] | null // Schedules
     TemplateVarValues:
       | NexusGenRootTypes['bani684_site_tmplvar_contentvalues'][]
       | null // [bani684_site_tmplvar_contentvalues!]
@@ -918,6 +949,7 @@ export interface NexusGenFieldTypes {
     longtitle: string // String!
     pagetitle: string // String!
     prices: string | null // String
+    properties: NexusGenScalars['JSON'] | null // JSON
     published: boolean // Boolean!
     rating: NexusGenRootTypes['VotesAvg'] | null // VotesAvg
     searchable: boolean // Boolean!
@@ -971,6 +1003,7 @@ export interface NexusGenFieldTypes {
     id: number // Int!
     longtitle: string // String!
     pagetitle: string // String!
+    properties: NexusGenScalars['JSON'] | null // JSON
     published: boolean // Boolean!
     searchable: boolean // Boolean!
     template: number // Int!
@@ -991,6 +1024,7 @@ export interface NexusGenFieldTypes {
     id: number // Int!
     longtitle: string // String!
     pagetitle: string // String!
+    properties: NexusGenScalars['JSON'] | null // JSON
     published: boolean // Boolean!
     searchable: boolean // Boolean!
     template: number // Int!
@@ -1012,10 +1046,33 @@ export interface NexusGenFieldTypes {
     id: number // Int!
     longtitle: string // String!
     pagetitle: string // String!
+    properties: NexusGenScalars['JSON'] | null // JSON
     published: boolean // Boolean!
     searchable: boolean // Boolean!
     template: number // Int!
     uri: string | null // String
+  }
+  Schedule: {
+    // field return type
+    end: NexusGenRootTypes['ScheduleData'] | null // ScheduleData
+    start: NexusGenRootTypes['ScheduleData'] // ScheduleData!
+  }
+  ScheduleData: {
+    // field return type
+    day: number | null // Int
+    hour: number | null // Int
+    minute: number | null // Int
+    month: number | null // Int
+    second: number | null // Int
+    weekDay: number | null // Int
+    year: number | null // Int
+  }
+  Schedules: {
+    // field return type
+    Schedule: Array<NexusGenRootTypes['Schedule'] | null> | null // [Schedule]
+    ScheduleFamily: Array<NexusGenRootTypes['Schedule'] | null> | null // [Schedule]
+    ScheduleMen: Array<NexusGenRootTypes['Schedule'] | null> | null // [Schedule]
+    ScheduleWomen: Array<NexusGenRootTypes['Schedule'] | null> | null // [Schedule]
   }
   Thread: {
     // field return type
@@ -1038,6 +1095,7 @@ export interface NexusGenFieldTypes {
     id: number // Int!
     longtitle: string // String!
     pagetitle: string // String!
+    properties: NexusGenScalars['JSON'] | null // JSON
     published: boolean // Boolean!
     searchable: boolean // Boolean!
     template: number // Int!
@@ -1111,6 +1169,7 @@ export interface NexusGenFieldTypes {
     id: number // Int!
     longtitle: string // String!
     pagetitle: string // String!
+    properties: NexusGenScalars['JSON'] | null // JSON
     published: boolean // Boolean!
     searchable: boolean // Boolean!
     template: number // Int!
@@ -1133,6 +1192,7 @@ export interface NexusGenFieldTypeNames {
     id: 'Int'
     longtitle: 'String'
     pagetitle: 'String'
+    properties: 'JSON'
     published: 'Boolean'
     searchable: 'Boolean'
     template: 'Int'
@@ -1153,6 +1213,7 @@ export interface NexusGenFieldTypeNames {
     // field return type name
     Comments: 'Comment'
     CreatedBy: 'User'
+    Schedules: 'Schedules'
     TemplateVarValues: 'bani684_site_tmplvar_contentvalues'
     address: 'String'
     addressComments: 'String'
@@ -1168,6 +1229,7 @@ export interface NexusGenFieldTypeNames {
     longtitle: 'String'
     pagetitle: 'String'
     prices: 'String'
+    properties: 'JSON'
     published: 'Boolean'
     rating: 'VotesAvg'
     searchable: 'Boolean'
@@ -1219,6 +1281,7 @@ export interface NexusGenFieldTypeNames {
     id: 'Int'
     longtitle: 'String'
     pagetitle: 'String'
+    properties: 'JSON'
     published: 'Boolean'
     searchable: 'Boolean'
     template: 'Int'
@@ -1237,6 +1300,7 @@ export interface NexusGenFieldTypeNames {
     id: 'Int'
     longtitle: 'String'
     pagetitle: 'String'
+    properties: 'JSON'
     published: 'Boolean'
     searchable: 'Boolean'
     template: 'Int'
@@ -1256,10 +1320,33 @@ export interface NexusGenFieldTypeNames {
     id: 'Int'
     longtitle: 'String'
     pagetitle: 'String'
+    properties: 'JSON'
     published: 'Boolean'
     searchable: 'Boolean'
     template: 'Int'
     uri: 'String'
+  }
+  Schedule: {
+    // field return type name
+    end: 'ScheduleData'
+    start: 'ScheduleData'
+  }
+  ScheduleData: {
+    // field return type name
+    day: 'Int'
+    hour: 'Int'
+    minute: 'Int'
+    month: 'Int'
+    second: 'Int'
+    weekDay: 'Int'
+    year: 'Int'
+  }
+  Schedules: {
+    // field return type name
+    Schedule: 'Schedule'
+    ScheduleFamily: 'Schedule'
+    ScheduleMen: 'Schedule'
+    ScheduleWomen: 'Schedule'
   }
   Thread: {
     // field return type name
@@ -1280,6 +1367,7 @@ export interface NexusGenFieldTypeNames {
     id: 'Int'
     longtitle: 'String'
     pagetitle: 'String'
+    properties: 'JSON'
     published: 'Boolean'
     searchable: 'Boolean'
     template: 'Int'
@@ -1351,6 +1439,7 @@ export interface NexusGenFieldTypeNames {
     id: 'Int'
     longtitle: 'String'
     pagetitle: 'String'
+    properties: 'JSON'
     published: 'Boolean'
     searchable: 'Boolean'
     template: 'Int'
