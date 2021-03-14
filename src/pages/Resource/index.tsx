@@ -135,7 +135,28 @@ const ResourcePage: Page<ResourcePageProps> = () => {
 }
 
 ResourcePage.getInitialProps = async (context) => {
-  const { apolloClient } = context
+  const { apolloClient, query, res } = context
+
+  /**
+   * Редиректим со страниц с даннми координат
+   */
+  if (res && Array.isArray(query.path) && query.path.length) {
+    const path = [...query.path]
+
+    const coordsPath = path.find((n) => /^@\d+/.test(n))
+
+    if (coordsPath) {
+      path.pop()
+
+      // TODO Поправить тип для res
+      // https://freecode.academy/tasks/ckm95xkamgc0h07306qnymjuk
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
+      res.redirect(301, '/' + path.join('/'))
+
+      return {}
+    }
+  }
 
   const variables = getResourceVariables(context)
 
