@@ -2,10 +2,13 @@ import { NextSeo } from 'next-seo'
 import React, { useMemo } from 'react'
 import {
   SortOrder,
+  TopicTag,
+  TopicTagsDocument,
+  TopicTagsQuery,
   TopicTagsQueryVariables,
-  useTopicTagsQuery,
+  // useTopicTagsQuery,
 } from 'src/modules/gql/generated'
-import { Page } from '../_App/interfaces'
+import { Page, PageProps } from '../_App/interfaces'
 import TagsPageView from './View'
 
 const variables: TopicTagsQueryVariables = {
@@ -14,10 +17,14 @@ const variables: TopicTagsQueryVariables = {
   },
 }
 
-const TagsPage: Page = () => {
-  const response = useTopicTagsQuery({
-    variables,
-  })
+type TagsPageProps = PageProps & {
+  tags: TopicTag[]
+}
+
+const TagsPage: Page<TagsPageProps> = ({ tags }) => {
+  // const response = useTopicTagsQuery({
+  //   variables,
+  // })
 
   return useMemo(() => {
     return (
@@ -27,10 +34,24 @@ const TagsPage: Page = () => {
           description="Все теги отзывов и обзоров общественных бань и саун"
         />
 
-        <TagsPageView tags={response.data?.topicTags || []} />
+        <TagsPageView tags={tags} />
       </>
     )
-  }, [response.data?.topicTags])
+  }, [tags])
+}
+
+TagsPage.getInitialProps = async ({ apolloClient }) => {
+  const tags: TagsPageProps['tags'] = (
+    await apolloClient.query<TopicTagsQuery, TopicTagsQueryVariables>({
+      query: TopicTagsDocument,
+      variables,
+    })
+  ).data.topicTags
+
+  return {
+    tags,
+    statusCode: !tags.length ? 404 : undefined,
+  }
 }
 
 export default TagsPage
