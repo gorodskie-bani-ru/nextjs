@@ -568,7 +568,7 @@ type Review implements ResourceInterface {
 Время работы
 """
 type Schedule {
-  end: ScheduleData
+  end: ScheduleData!
   start: ScheduleData!
 }
 
@@ -576,13 +576,13 @@ type Schedule {
 Данные времени работы
 """
 type ScheduleData {
-  day: Int
-  hour: Int
-  minute: Int
-  month: Int
-  second: Int
-  weekDay: Int
-  year: Int
+  day: Int!
+  hour: Int!
+  minute: Int!
+  month: Int!
+  second: Int!
+  weekDay: Int!
+  year: Int!
 }
 
 """

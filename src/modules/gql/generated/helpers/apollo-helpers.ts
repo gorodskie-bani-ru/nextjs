@@ -1,5 +1,5 @@
 import { FieldPolicy, FieldReadFunction, TypePolicies, TypePolicy } from '@apollo/client/cache';
-export type CityKeySpecifier = ('Comments' | 'CreatedBy' | 'TemplateVarValues' | 'alias' | 'content' | 'coords' | 'createdby' | 'createdon' | 'description' | 'id' | 'longtitle' | 'pagetitle' | 'published' | 'searchable' | 'template' | 'uri' | CityKeySpecifier)[];
+export type CityKeySpecifier = ('Comments' | 'CreatedBy' | 'TemplateVarValues' | 'alias' | 'content' | 'coords' | 'createdby' | 'createdon' | 'description' | 'id' | 'longtitle' | 'pagetitle' | 'properties' | 'published' | 'searchable' | 'template' | 'uri' | CityKeySpecifier)[];
 export type CityFieldPolicy = {
 	Comments?: FieldPolicy<any> | FieldReadFunction<any>,
 	CreatedBy?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -13,6 +13,7 @@ export type CityFieldPolicy = {
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	longtitle?: FieldPolicy<any> | FieldReadFunction<any>,
 	pagetitle?: FieldPolicy<any> | FieldReadFunction<any>,
+	properties?: FieldPolicy<any> | FieldReadFunction<any>,
 	published?: FieldPolicy<any> | FieldReadFunction<any>,
 	searchable?: FieldPolicy<any> | FieldReadFunction<any>,
 	template?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -29,10 +30,11 @@ export type CommentFieldPolicy = {
 	raw_text?: FieldPolicy<any> | FieldReadFunction<any>,
 	text?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type CompanyKeySpecifier = ('Comments' | 'CreatedBy' | 'TemplateVarValues' | 'address' | 'addressComments' | 'alias' | 'content' | 'coords' | 'createdby' | 'createdon' | 'description' | 'gallery' | 'id' | 'image' | 'longtitle' | 'pagetitle' | 'prices' | 'published' | 'rating' | 'searchable' | 'template' | 'uri' | 'workTime' | CompanyKeySpecifier)[];
+export type CompanyKeySpecifier = ('Comments' | 'CreatedBy' | 'Schedules' | 'TemplateVarValues' | 'address' | 'addressComments' | 'alias' | 'content' | 'coords' | 'createdby' | 'createdon' | 'description' | 'gallery' | 'id' | 'image' | 'longtitle' | 'pagetitle' | 'prices' | 'properties' | 'published' | 'rating' | 'searchable' | 'template' | 'uri' | 'workTime' | CompanyKeySpecifier)[];
 export type CompanyFieldPolicy = {
 	Comments?: FieldPolicy<any> | FieldReadFunction<any>,
 	CreatedBy?: FieldPolicy<any> | FieldReadFunction<any>,
+	Schedules?: FieldPolicy<any> | FieldReadFunction<any>,
 	TemplateVarValues?: FieldPolicy<any> | FieldReadFunction<any>,
 	address?: FieldPolicy<any> | FieldReadFunction<any>,
 	addressComments?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -48,6 +50,7 @@ export type CompanyFieldPolicy = {
 	longtitle?: FieldPolicy<any> | FieldReadFunction<any>,
 	pagetitle?: FieldPolicy<any> | FieldReadFunction<any>,
 	prices?: FieldPolicy<any> | FieldReadFunction<any>,
+	properties?: FieldPolicy<any> | FieldReadFunction<any>,
 	published?: FieldPolicy<any> | FieldReadFunction<any>,
 	rating?: FieldPolicy<any> | FieldReadFunction<any>,
 	searchable?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -86,7 +89,7 @@ export type QueryFieldPolicy = {
 	votes?: FieldPolicy<any> | FieldReadFunction<any>,
 	votesByRating?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type RatingKeySpecifier = ('Comments' | 'CreatedBy' | 'TemplateVarValues' | 'alias' | 'content' | 'createdby' | 'createdon' | 'description' | 'id' | 'longtitle' | 'pagetitle' | 'published' | 'searchable' | 'template' | 'uri' | RatingKeySpecifier)[];
+export type RatingKeySpecifier = ('Comments' | 'CreatedBy' | 'TemplateVarValues' | 'alias' | 'content' | 'createdby' | 'createdon' | 'description' | 'id' | 'longtitle' | 'pagetitle' | 'properties' | 'published' | 'searchable' | 'template' | 'uri' | RatingKeySpecifier)[];
 export type RatingFieldPolicy = {
 	Comments?: FieldPolicy<any> | FieldReadFunction<any>,
 	CreatedBy?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -99,12 +102,13 @@ export type RatingFieldPolicy = {
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	longtitle?: FieldPolicy<any> | FieldReadFunction<any>,
 	pagetitle?: FieldPolicy<any> | FieldReadFunction<any>,
+	properties?: FieldPolicy<any> | FieldReadFunction<any>,
 	published?: FieldPolicy<any> | FieldReadFunction<any>,
 	searchable?: FieldPolicy<any> | FieldReadFunction<any>,
 	template?: FieldPolicy<any> | FieldReadFunction<any>,
 	uri?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type ResourceKeySpecifier = ('Comments' | 'CreatedBy' | 'TemplateVarValues' | 'alias' | 'content' | 'createdby' | 'createdon' | 'description' | 'id' | 'longtitle' | 'pagetitle' | 'published' | 'searchable' | 'template' | 'uri' | ResourceKeySpecifier)[];
+export type ResourceKeySpecifier = ('Comments' | 'CreatedBy' | 'TemplateVarValues' | 'alias' | 'content' | 'createdby' | 'createdon' | 'description' | 'id' | 'longtitle' | 'pagetitle' | 'properties' | 'published' | 'searchable' | 'template' | 'uri' | ResourceKeySpecifier)[];
 export type ResourceFieldPolicy = {
 	Comments?: FieldPolicy<any> | FieldReadFunction<any>,
 	CreatedBy?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -117,12 +121,13 @@ export type ResourceFieldPolicy = {
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	longtitle?: FieldPolicy<any> | FieldReadFunction<any>,
 	pagetitle?: FieldPolicy<any> | FieldReadFunction<any>,
+	properties?: FieldPolicy<any> | FieldReadFunction<any>,
 	published?: FieldPolicy<any> | FieldReadFunction<any>,
 	searchable?: FieldPolicy<any> | FieldReadFunction<any>,
 	template?: FieldPolicy<any> | FieldReadFunction<any>,
 	uri?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type ResourceInterfaceKeySpecifier = ('Comments' | 'CreatedBy' | 'TemplateVarValues' | 'alias' | 'content' | 'createdby' | 'createdon' | 'description' | 'id' | 'longtitle' | 'pagetitle' | 'published' | 'searchable' | 'template' | 'uri' | ResourceInterfaceKeySpecifier)[];
+export type ResourceInterfaceKeySpecifier = ('Comments' | 'CreatedBy' | 'TemplateVarValues' | 'alias' | 'content' | 'createdby' | 'createdon' | 'description' | 'id' | 'longtitle' | 'pagetitle' | 'properties' | 'published' | 'searchable' | 'template' | 'uri' | ResourceInterfaceKeySpecifier)[];
 export type ResourceInterfaceFieldPolicy = {
 	Comments?: FieldPolicy<any> | FieldReadFunction<any>,
 	CreatedBy?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -135,12 +140,13 @@ export type ResourceInterfaceFieldPolicy = {
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	longtitle?: FieldPolicy<any> | FieldReadFunction<any>,
 	pagetitle?: FieldPolicy<any> | FieldReadFunction<any>,
+	properties?: FieldPolicy<any> | FieldReadFunction<any>,
 	published?: FieldPolicy<any> | FieldReadFunction<any>,
 	searchable?: FieldPolicy<any> | FieldReadFunction<any>,
 	template?: FieldPolicy<any> | FieldReadFunction<any>,
 	uri?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type ReviewKeySpecifier = ('Comments' | 'CreatedBy' | 'Tags' | 'TemplateVarValues' | 'alias' | 'content' | 'createdby' | 'createdon' | 'description' | 'id' | 'longtitle' | 'pagetitle' | 'published' | 'searchable' | 'template' | 'uri' | ReviewKeySpecifier)[];
+export type ReviewKeySpecifier = ('Comments' | 'CreatedBy' | 'Tags' | 'TemplateVarValues' | 'alias' | 'content' | 'createdby' | 'createdon' | 'description' | 'id' | 'longtitle' | 'pagetitle' | 'properties' | 'published' | 'searchable' | 'template' | 'uri' | ReviewKeySpecifier)[];
 export type ReviewFieldPolicy = {
 	Comments?: FieldPolicy<any> | FieldReadFunction<any>,
 	CreatedBy?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -154,17 +160,40 @@ export type ReviewFieldPolicy = {
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	longtitle?: FieldPolicy<any> | FieldReadFunction<any>,
 	pagetitle?: FieldPolicy<any> | FieldReadFunction<any>,
+	properties?: FieldPolicy<any> | FieldReadFunction<any>,
 	published?: FieldPolicy<any> | FieldReadFunction<any>,
 	searchable?: FieldPolicy<any> | FieldReadFunction<any>,
 	template?: FieldPolicy<any> | FieldReadFunction<any>,
 	uri?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type ScheduleKeySpecifier = ('end' | 'start' | ScheduleKeySpecifier)[];
+export type ScheduleFieldPolicy = {
+	end?: FieldPolicy<any> | FieldReadFunction<any>,
+	start?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type ScheduleDataKeySpecifier = ('day' | 'hour' | 'minute' | 'month' | 'second' | 'weekDay' | 'year' | ScheduleDataKeySpecifier)[];
+export type ScheduleDataFieldPolicy = {
+	day?: FieldPolicy<any> | FieldReadFunction<any>,
+	hour?: FieldPolicy<any> | FieldReadFunction<any>,
+	minute?: FieldPolicy<any> | FieldReadFunction<any>,
+	month?: FieldPolicy<any> | FieldReadFunction<any>,
+	second?: FieldPolicy<any> | FieldReadFunction<any>,
+	weekDay?: FieldPolicy<any> | FieldReadFunction<any>,
+	year?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type SchedulesKeySpecifier = ('Schedule' | 'ScheduleFamily' | 'ScheduleMen' | 'ScheduleWomen' | SchedulesKeySpecifier)[];
+export type SchedulesFieldPolicy = {
+	Schedule?: FieldPolicy<any> | FieldReadFunction<any>,
+	ScheduleFamily?: FieldPolicy<any> | FieldReadFunction<any>,
+	ScheduleMen?: FieldPolicy<any> | FieldReadFunction<any>,
+	ScheduleWomen?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type ThreadKeySpecifier = ('id' | 'target_class' | ThreadKeySpecifier)[];
 export type ThreadFieldPolicy = {
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	target_class?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type TopicKeySpecifier = ('Comments' | 'CreatedBy' | 'Tags' | 'TemplateVarValues' | 'alias' | 'content' | 'createdby' | 'createdon' | 'description' | 'id' | 'longtitle' | 'pagetitle' | 'published' | 'searchable' | 'template' | 'uri' | TopicKeySpecifier)[];
+export type TopicKeySpecifier = ('Comments' | 'CreatedBy' | 'Tags' | 'TemplateVarValues' | 'alias' | 'content' | 'createdby' | 'createdon' | 'description' | 'id' | 'longtitle' | 'pagetitle' | 'properties' | 'published' | 'searchable' | 'template' | 'uri' | TopicKeySpecifier)[];
 export type TopicFieldPolicy = {
 	Comments?: FieldPolicy<any> | FieldReadFunction<any>,
 	CreatedBy?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -178,6 +207,7 @@ export type TopicFieldPolicy = {
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	longtitle?: FieldPolicy<any> | FieldReadFunction<any>,
 	pagetitle?: FieldPolicy<any> | FieldReadFunction<any>,
+	properties?: FieldPolicy<any> | FieldReadFunction<any>,
 	published?: FieldPolicy<any> | FieldReadFunction<any>,
 	searchable?: FieldPolicy<any> | FieldReadFunction<any>,
 	template?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -276,6 +306,18 @@ export type TypedTypePolicies = TypePolicies & {
 	Review?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | ReviewKeySpecifier | (() => undefined | ReviewKeySpecifier),
 		fields?: ReviewFieldPolicy,
+	},
+	Schedule?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | ScheduleKeySpecifier | (() => undefined | ScheduleKeySpecifier),
+		fields?: ScheduleFieldPolicy,
+	},
+	ScheduleData?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | ScheduleDataKeySpecifier | (() => undefined | ScheduleDataKeySpecifier),
+		fields?: ScheduleDataFieldPolicy,
+	},
+	Schedules?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | SchedulesKeySpecifier | (() => undefined | SchedulesKeySpecifier),
+		fields?: SchedulesFieldPolicy,
 	},
 	Thread?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | ThreadKeySpecifier | (() => undefined | ThreadKeySpecifier),

@@ -1,6 +1,6 @@
 import { NextSeo } from 'next-seo'
 import React, { useMemo } from 'react'
-import { useCitiesQuery } from 'src/modules/gql/generated'
+import { SortOrder, useCitiesQuery } from 'src/modules/gql/generated'
 import { Page } from '../_App/interfaces'
 import CitiesPageView from './View'
 
@@ -8,7 +8,14 @@ import CitiesPageView from './View'
  * Страница всех городов
  */
 const CitiesPage: Page = () => {
-  const citiesData = useCitiesQuery()
+  const citiesData = useCitiesQuery({
+    variables: {
+      orderBy: {
+        // TODO Сейчас сортировка связана с appData
+        pagetitle: SortOrder.ASC,
+      },
+    },
+  })
 
   return useMemo(() => {
     return (

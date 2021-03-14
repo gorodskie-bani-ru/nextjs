@@ -25,7 +25,7 @@ export type AppDataQuery = { __typename?: 'Query', cities: Array<(
 
 export const AppDataDocument = gql`
     query appData {
-  cities {
+  cities(orderBy: {pagetitle: asc}) {
     ...city
   }
   companies_rating: votesByRating {

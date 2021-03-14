@@ -1,0 +1,33 @@
+fragment shedules on Schedules {
+  Schedule {
+    ...schedule
+  }
+  ScheduleMen {
+    ...schedule
+  }
+  ScheduleWomen {
+    ...schedule
+  }
+  ScheduleFamily {
+    ...schedule
+  }
+}
+
+fragment schedule on Schedule {
+  start {
+    ...scheduleData
+  }
+  end {
+    ...scheduleData
+  }
+}
+
+fragment scheduleData on ScheduleData {
+  year
+  month
+  day
+  hour
+  minute
+  second
+  weekDay
+}

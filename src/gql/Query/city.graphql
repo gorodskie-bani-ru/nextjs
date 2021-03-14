@@ -5,6 +5,7 @@ query cities(
   $take: Int
   $skip: Int
   $where: bani684_site_contentWhereInput
+  $orderBy: [bani684_site_contentOrderByInput!]
 ) {
   cities: cities(
     # limit: $resourcesLimit
@@ -14,6 +15,7 @@ query cities(
     take: $take
     skip: $skip
     where: $where
+    orderBy: $orderBy
   ) {
     ...city
   }

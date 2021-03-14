@@ -1,6 +1,6 @@
 query appData {
   # Города
-  cities {
+  cities(orderBy: { pagetitle: asc }) {
     ...city
   }
 

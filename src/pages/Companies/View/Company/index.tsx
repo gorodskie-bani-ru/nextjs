@@ -4,6 +4,7 @@ import Link from 'src/components/ui/Link'
 import Paper from 'src/components/ui/Paper'
 import Title from 'src/components/ui/Title'
 import { imageFormats } from 'src/helpers/imageFormats'
+import SchedulesList from '../../Company/View/WorkTime/SchedulesList'
 import { CompaniesViewCompanyProps } from './interfaces'
 import { CompaniesViewCompanyStyled } from './styles'
 
@@ -17,8 +18,8 @@ const CompaniesViewCompany: React.FC<CompaniesViewCompanyProps> = ({
     return (
       <CompaniesViewCompanyStyled>
         <Paper>
-          <Link href={company.uri || '/'}>
-            <div className="imageWrapper">
+          <div className="imageWrapper">
+            <Link href={company.uri || '/'}>
               <img
                 src={
                   (company.image &&
@@ -28,15 +29,25 @@ const CompaniesViewCompany: React.FC<CompaniesViewCompanyProps> = ({
                 className="company--image"
                 alt={company.pagetitle}
               />
-              <CompanyRating company={company} />
-            </div>
+            </Link>
+            <CompanyRating company={company} />
+          </div>
 
-            <div className="content">
+          <div className="content">
+            <Link href={company.uri || '/'}>
               <Title>{company.pagetitle}</Title>
+            </Link>
 
-              {company.address}
-            </div>
-          </Link>
+            {company.address}
+
+            {(company.Schedules && (
+              <SchedulesList
+                Schedules={company.Schedules}
+                showOffDates={false}
+              />
+            )) ||
+              null}
+          </div>
         </Paper>
       </CompaniesViewCompanyStyled>
     )

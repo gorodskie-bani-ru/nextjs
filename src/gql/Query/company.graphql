@@ -171,6 +171,10 @@ fragment CompanyFields on Company {
     description
   }
 
+  Schedules {
+    ...shedules
+  }
+
   # schedule @include(if:$companyGetSchedules)
   # {
   #   ...ScheduleDay

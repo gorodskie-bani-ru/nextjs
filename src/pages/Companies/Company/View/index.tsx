@@ -29,35 +29,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({
   company: item,
   ...other
 }) => {
-  // const { documentActions, user } = this.context
-
-  // const { user: currentUser } = user || {}
-
-  // let {
-  //   // company: item,
-  //   tabIndex,
-  // } = this.state
-
-  // if (!item) {
-  //   return null
-  // }
-
-  // let itemData = { ...item }
   const itemData = item
-
-  // const {
-  //   // galleryItem,
-  //   // galleryExpanded,
-  //   sending,
-  //   diffs,
-  // } = this.state
-
-  // const newCommentForm = currentUser ? true : false
-
-  // Перегружаем измененные данные
-  // if (diffs && diffs.data) {
-  //   Object.assign(itemData, diffs.data)
-  // }
 
   const {
     // id,

@@ -777,18 +777,18 @@ export interface NexusGenObjects {
   }
   Schedule: {
     // root type
-    end?: NexusGenRootTypes['ScheduleData'] | null // ScheduleData
+    end: NexusGenRootTypes['ScheduleData'] // ScheduleData!
     start: NexusGenRootTypes['ScheduleData'] // ScheduleData!
   }
   ScheduleData: {
     // root type
-    day?: number | null // Int
-    hour?: number | null // Int
-    minute?: number | null // Int
-    month?: number | null // Int
-    second?: number | null // Int
-    weekDay?: number | null // Int
-    year?: number | null // Int
+    day: number // Int!
+    hour: number // Int!
+    minute: number // Int!
+    month: number // Int!
+    second: number // Int!
+    weekDay: number // Int!
+    year: number // Int!
   }
   Schedules: {
     // root type
@@ -1054,18 +1054,18 @@ export interface NexusGenFieldTypes {
   }
   Schedule: {
     // field return type
-    end: NexusGenRootTypes['ScheduleData'] | null // ScheduleData
+    end: NexusGenRootTypes['ScheduleData'] // ScheduleData!
     start: NexusGenRootTypes['ScheduleData'] // ScheduleData!
   }
   ScheduleData: {
     // field return type
-    day: number | null // Int
-    hour: number | null // Int
-    minute: number | null // Int
-    month: number | null // Int
-    second: number | null // Int
-    weekDay: number | null // Int
-    year: number | null // Int
+    day: number // Int!
+    hour: number // Int!
+    minute: number // Int!
+    month: number // Int!
+    second: number // Int!
+    weekDay: number // Int!
+    year: number // Int!
   }
   Schedules: {
     // field return type

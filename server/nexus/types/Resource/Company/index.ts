@@ -147,18 +147,44 @@ export const Company = objectType({
 
         if (parent.properties) {
           try {
-            const {
-              schedule: Schedule,
-              schedule_men: ScheduleMen,
-              schedule_women: ScheduleWomen,
-              schedule_family: ScheduleFamily,
-            } = JSON.parse(parent.properties)
+            const data = JSON.parse(parent.properties) as {
+              schedule: NexusGenObjects['Schedule'][] | null
+              schedule_men: NexusGenObjects['Schedule'][] | null
+              schedule_women: NexusGenObjects['Schedule'][] | null
+              schedule_family: NexusGenObjects['Schedule'][] | null
+            } | null
 
-            Schedules = {
-              Schedule,
-              ScheduleMen,
-              ScheduleWomen,
-              ScheduleFamily,
+            if (data && typeof data === 'object' && !Array.isArray(data)) {
+              const {
+                schedule: Schedule,
+                schedule_men: ScheduleMen,
+                schedule_women: ScheduleWomen,
+                schedule_family: ScheduleFamily,
+              } = data
+
+              Schedules = {
+                Schedule: Schedule
+                  ? Schedule.map((n: NexusGenObjects['Schedule'], index) =>
+                      prepareShedule(n, index)
+                    ).filter((n) => n)
+                  : null,
+                ScheduleMen: ScheduleMen
+                  ? ScheduleMen.map((n: NexusGenObjects['Schedule'], index) =>
+                      prepareShedule(n, index)
+                    ).filter((n) => n)
+                  : null,
+                ScheduleWomen: ScheduleWomen
+                  ? ScheduleWomen.map((n: NexusGenObjects['Schedule'], index) =>
+                      prepareShedule(n, index)
+                    ).filter((n) => n)
+                  : null,
+                ScheduleFamily: ScheduleFamily
+                  ? ScheduleFamily.map(
+                      (n: NexusGenObjects['Schedule'], index) =>
+                        prepareShedule(n, index)
+                    ).filter((n) => n)
+                  : null,
+              }
             }
           } catch (error) {
             console.error('Company::Schedules JSON parse error', error)
@@ -175,3 +201,54 @@ export const Company = objectType({
     })
   },
 })
+
+function prepareShedule(
+  Schedule: NexusGenObjects['Schedule'] | null,
+  index: number
+): NexusGenObjects['Schedule'] | null {
+  if (!Schedule) {
+    return null
+  }
+
+  const {
+    start: {
+      day: dayStart = 0,
+      hour: hourStart = 0,
+      minute: minuteStart = 0,
+      month: monthStart = 0,
+      second: secondStart = 0,
+      weekDay: weekDayStart = index,
+      year: yearStart = 0,
+    },
+    end: {
+      day: dayEnd = 0,
+      hour: hourEnd = 0,
+      minute: minuteEnd = 0,
+      month: monthEnd = 0,
+      second: secondEnd = 0,
+      weekDay: weekDayEnd = index,
+      year: yearEnd = 0,
+    },
+  } = Schedule
+
+  return {
+    start: {
+      day: dayStart,
+      hour: hourStart,
+      minute: minuteStart,
+      month: monthStart,
+      second: secondStart,
+      weekDay: weekDayStart,
+      year: yearStart,
+    },
+    end: {
+      day: dayEnd,
+      hour: hourEnd,
+      minute: minuteEnd,
+      month: monthEnd,
+      second: secondEnd,
+      weekDay: weekDayEnd,
+      year: yearEnd,
+    },
+  }
+}

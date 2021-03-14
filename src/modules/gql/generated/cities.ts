@@ -18,6 +18,7 @@ export type CitiesQueryVariables = Types.Exact<{
   take?: Types.Maybe<Types.Scalars['Int']>;
   skip?: Types.Maybe<Types.Scalars['Int']>;
   where?: Types.Maybe<Types.Bani684SiteContentWhereInput>;
+  orderBy?: Types.Maybe<Array<Types.Bani684SiteContentOrderByInput> | Types.Bani684SiteContentOrderByInput>;
 }>;
 
 
@@ -28,8 +29,8 @@ export type CitiesQuery = { __typename?: 'Query', cities: Array<(
 
 
 export const CitiesDocument = gql`
-    query cities($take: Int, $skip: Int, $where: bani684_site_contentWhereInput) {
-  cities: cities(take: $take, skip: $skip, where: $where) {
+    query cities($take: Int, $skip: Int, $where: bani684_site_contentWhereInput, $orderBy: [bani684_site_contentOrderByInput!]) {
+  cities: cities(take: $take, skip: $skip, where: $where, orderBy: $orderBy) {
     ...city
   }
 }
@@ -50,6 +51,7 @@ export const CitiesDocument = gql`
  *      take: // value for 'take'
  *      skip: // value for 'skip'
  *      where: // value for 'where'
+ *      orderBy: // value for 'orderBy'
  *   },
  * });
  */

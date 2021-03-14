@@ -20,6 +20,7 @@ export type Scalars = {
   Float: number;
   /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
   DateTime: globalThis.Date;
+  JSON: any;
 };
 
 export interface Bani684SiteContentListRelationFilter {
@@ -74,6 +75,8 @@ export interface City extends ResourceInterface {
   id: Scalars['Int'];
   longtitle: Scalars['String'];
   pagetitle: Scalars['String'];
+  /** @deprecated Временно для получения данных расписания. Используйте вместо этого schedules */
+  properties?: Maybe<Scalars['JSON']>;
   published: Scalars['Boolean'];
   searchable: Scalars['Boolean'];
   template: Scalars['Int'];
@@ -111,6 +114,8 @@ export interface Company extends ResourceInterface {
   /** Комментарии */
   Comments: Array<Comment>;
   CreatedBy?: Maybe<User>;
+  /** Расписание работы */
+  Schedules?: Maybe<Schedules>;
   TemplateVarValues?: Maybe<Array<Bani684SiteTmplvarContentvalues>>;
   /** Адрес (без указания города) */
   address?: Maybe<Scalars['String']>;
@@ -130,6 +135,8 @@ export interface Company extends ResourceInterface {
   pagetitle: Scalars['String'];
   /** Цены */
   prices?: Maybe<Scalars['String']>;
+  /** @deprecated Временно для получения данных расписания. Используйте вместо этого schedules */
+  properties?: Maybe<Scalars['JSON']>;
   published: Scalars['Boolean'];
   /** Средний рейтинг */
   rating?: Maybe<VotesAvg>;
@@ -210,6 +217,7 @@ export interface IntNullableFilter {
   not?: Maybe<NestedIntNullableFilter>;
   notIn?: Maybe<Array<Scalars['Int']>>;
 }
+
 
 export interface NestedBoolFilter {
   equals?: Maybe<Scalars['Boolean']>;
@@ -454,6 +462,8 @@ export interface Rating extends ResourceInterface {
   id: Scalars['Int'];
   longtitle: Scalars['String'];
   pagetitle: Scalars['String'];
+  /** @deprecated Временно для получения данных расписания. Используйте вместо этого schedules */
+  properties?: Maybe<Scalars['JSON']>;
   published: Scalars['Boolean'];
   searchable: Scalars['Boolean'];
   template: Scalars['Int'];
@@ -474,6 +484,8 @@ export interface Resource extends ResourceInterface {
   id: Scalars['Int'];
   longtitle: Scalars['String'];
   pagetitle: Scalars['String'];
+  /** @deprecated Временно для получения данных расписания. Используйте вместо этого schedules */
+  properties?: Maybe<Scalars['JSON']>;
   published: Scalars['Boolean'];
   searchable: Scalars['Boolean'];
   template: Scalars['Int'];
@@ -493,6 +505,8 @@ export type ResourceInterface = {
   id: Scalars['Int'];
   longtitle: Scalars['String'];
   pagetitle: Scalars['String'];
+  /** @deprecated Временно для получения данных расписания. Используйте вместо этого schedules */
+  properties?: Maybe<Scalars['JSON']>;
   published: Scalars['Boolean'];
   searchable: Scalars['Boolean'];
   template: Scalars['Int'];
@@ -515,10 +529,44 @@ export interface Review extends ResourceInterface {
   id: Scalars['Int'];
   longtitle: Scalars['String'];
   pagetitle: Scalars['String'];
+  /** @deprecated Временно для получения данных расписания. Используйте вместо этого schedules */
+  properties?: Maybe<Scalars['JSON']>;
   published: Scalars['Boolean'];
   searchable: Scalars['Boolean'];
   template: Scalars['Int'];
   uri?: Maybe<Scalars['String']>;
+}
+
+/** Время работы */
+export interface Schedule {
+  __typename?: 'Schedule';
+  end: ScheduleData;
+  start: ScheduleData;
+}
+
+/** Данные времени работы */
+export interface ScheduleData {
+  __typename?: 'ScheduleData';
+  day: Scalars['Int'];
+  hour: Scalars['Int'];
+  minute: Scalars['Int'];
+  month: Scalars['Int'];
+  second: Scalars['Int'];
+  weekDay: Scalars['Int'];
+  year: Scalars['Int'];
+}
+
+/** Все варианты расписания */
+export interface Schedules {
+  __typename?: 'Schedules';
+  /** Общее расписание */
+  Schedule?: Maybe<Array<Maybe<Schedule>>>;
+  /** Расписание для семьи */
+  ScheduleFamily?: Maybe<Array<Maybe<Schedule>>>;
+  /** Расписание для мужчин */
+  ScheduleMen?: Maybe<Array<Maybe<Schedule>>>;
+  /** Расписание для женщин */
+  ScheduleWomen?: Maybe<Array<Maybe<Schedule>>>;
 }
 
 export enum SortOrder {
@@ -577,6 +625,8 @@ export interface Topic extends ResourceInterface {
   id: Scalars['Int'];
   longtitle: Scalars['String'];
   pagetitle: Scalars['String'];
+  /** @deprecated Временно для получения данных расписания. Используйте вместо этого schedules */
+  properties?: Maybe<Scalars['JSON']>;
   published: Scalars['Boolean'];
   searchable: Scalars['Boolean'];
   template: Scalars['Int'];

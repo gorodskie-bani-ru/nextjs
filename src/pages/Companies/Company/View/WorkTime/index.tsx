@@ -1,9 +1,9 @@
-import { Grid } from '@material-ui/core'
 import React, { useMemo } from 'react'
 import { CompanyWorkTimeProps } from './interfaces'
 
-import clock from './img/007-clock.svg'
+import clock from './img/clock.svg'
 import SvgIcon from 'src/components/ui/SvgIcon'
+import SchedulesList from './SchedulesList'
 
 const CompanyWorkTime: React.FC<CompanyWorkTimeProps> = ({
   company,
@@ -12,7 +12,11 @@ const CompanyWorkTime: React.FC<CompanyWorkTimeProps> = ({
   return useMemo(() => {
     const workTime = company.workTime
 
-    const schedulesContent = ''
+    const schedulesContent =
+      (company.Schedules && (
+        <SchedulesList Schedules={company.Schedules} showOffDates />
+      )) ||
+      null
 
     if (!workTime && !schedulesContent) {
       return null
@@ -26,15 +30,10 @@ const CompanyWorkTime: React.FC<CompanyWorkTimeProps> = ({
           }}
           {...other}
         >
-          {schedulesContent ? (
-            schedulesContent
-          ) : (
-            <Grid
-              container
-              style={{
-                marginBottom: workTime ? 10 : undefined,
-              }}
-            >
+          {schedulesContent}
+
+          {(workTime && (
+            <div>
               <SvgIcon src={clock} alt="time" />{' '}
               <span
                 style={{
@@ -42,26 +41,24 @@ const CompanyWorkTime: React.FC<CompanyWorkTimeProps> = ({
                   paddingRight: 3,
                 }}
               >
-                Время работы
+                Время работы{' '}
+                {schedulesContent ? ` (дополнительная информация)` : null}
               </span>
-            </Grid>
-          )}
-
-          {(workTime && (
-            <div
-              style={{
-                whiteSpace: 'pre-wrap',
-              }}
-              dangerouslySetInnerHTML={{
-                __html: workTime,
-              }}
-            ></div>
+              <div
+                style={{
+                  whiteSpace: 'pre-wrap',
+                }}
+                dangerouslySetInnerHTML={{
+                  __html: workTime,
+                }}
+              ></div>
+            </div>
           )) ||
             null}
         </div>
       </>
     )
-  }, [company.workTime, other])
+  }, [company.Schedules, company.workTime, other])
 }
 
 export default CompanyWorkTime

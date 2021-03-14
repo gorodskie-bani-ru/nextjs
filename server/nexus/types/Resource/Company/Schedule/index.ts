@@ -4,13 +4,13 @@ export const ScheduleData = objectType({
   name: 'ScheduleData',
   description: 'Данные времени работы',
   definition(t) {
-    t.int('year')
-    t.int('month')
-    t.int('day')
-    t.int('hour')
-    t.int('minute')
-    t.int('second')
-    t.int('weekDay')
+    t.nonNull.int('year')
+    t.nonNull.int('month')
+    t.nonNull.int('day')
+    t.nonNull.int('hour')
+    t.nonNull.int('minute')
+    t.nonNull.int('second')
+    t.nonNull.int('weekDay')
   },
 })
 
@@ -21,7 +21,7 @@ export const Schedule = objectType({
     t.nonNull.field('start', {
       type: 'ScheduleData',
     })
-    t.field('end', {
+    t.nonNull.field('end', {
       type: 'ScheduleData',
     })
   },
