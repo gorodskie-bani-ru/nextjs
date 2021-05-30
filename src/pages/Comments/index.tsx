@@ -44,21 +44,16 @@ const CommentsPage: Page = () => {
 
   const { query } = router
 
-  const { ...queryVariables } = useMemo(() => {
+  const { page, ...variables } = useMemo(() => {
     return {
       ...getQueryParams(query),
     }
   }, [query])
 
   const response = useCommentsQuery({
-    variables: queryVariables,
+    variables,
     onError: console.error,
   })
-
-  // const { variables, loading } = response
-
-  const page =
-    (query.page && typeof query.page === 'string' && parseInt(query.page)) || 1
 
   return (
     <>
