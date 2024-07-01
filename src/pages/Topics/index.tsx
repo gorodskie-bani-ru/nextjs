@@ -55,21 +55,16 @@ const TopicsPage: Page = () => {
 
   const { query } = router
 
-  const { ...queryVariables } = useMemo(() => {
+  const { page, ...variables } = useMemo(() => {
     return {
       ...getQueryParams(query),
     }
   }, [query])
 
   const response = useTopicsQuery({
-    variables: queryVariables,
+    variables,
     onError: console.error,
   })
-
-  // const { variables, loading } = response
-
-  const page =
-    (query.page && typeof query.page === 'string' && parseInt(query.page)) || 1
 
   // const topics = useMemo(() => {
   //   const topics: TopicsViewProps['topics'] = []
