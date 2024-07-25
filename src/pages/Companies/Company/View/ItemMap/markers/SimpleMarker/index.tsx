@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
 import compose from 'recompose/compose'
 import defaultProps from 'recompose/defaultProps'

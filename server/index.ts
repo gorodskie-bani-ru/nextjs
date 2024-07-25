@@ -1,8 +1,13 @@
 import express from 'express'
 import next from 'next'
-import { createProxyMiddleware } from 'http-proxy-middleware'
-// import { endpoint } from '../src/config'
+
+import './config'
 import graphqlServer from './graphqlServer'
+
+import { graphqlUploadExpress } from 'graphql-upload'
+import { imageResizerMiddleware } from './middleware/imageResizer'
+// import { startMailer } from './modules/Mailer'
+// import { context } from './nexus/context'
 
 const cwd = process.cwd()
 
@@ -11,54 +16,60 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
-// const apiProxy = createProxyMiddleware({
-//   target: endpoint,
-//   changeOrigin: true,
-//   ws: true,
-//   pathRewrite: {
-//     '^/api(/|$)': '/',
-//   },
-//   onError: (err, _req, res) => {
-//     console.error('apiProxy onError err', err)
-
-//     res.writeHead(500, {
-//       'Content-Type': 'text/plain',
-//     })
-//     res.end(
-//       'Something went wrong. And we are reporting a custom error message.'
-//     )
-//   },
-//   router: (req) => {
-//     if (!req.headers.referer && req.headers.host) {
-//       req.headers.referer = `http://${req.headers.host}`
-//     }
-
-//     return endpoint
-//   },
-// })
-
-/**
- * Проксирование на nginx
- */
-const siteProxy = createProxyMiddleware({
-  target: process.env.SITE_URL,
-  changeOrigin: true,
-  ws: false,
-})
-
 app.prepare().then(() => {
+  // if (process.env.Sendmail === 'true') {
+  //   startMailer(context)
+  // }
+
   const server = express()
 
-  server.use(express.static(cwd + '/shared'))
+  server.use('/images/', imageResizerMiddleware)
 
-  // server.post('/api/', apiProxy)
+  server.use(express.static(cwd + '/shared'))
+  // server.use(express.static(cwd + '/assets/'))
+
+  // server.use('/uploads', express.static('/'))
+
+  server.use('/uploads', (req, res) => {
+    res.sendFile(
+      cwd + '/uploads/' + decodeURI(req.url),
+      (error: Error & { status?: number; statusCode?: number }) => {
+        if (error) {
+          console.error('server /uploads', error)
+          res.status(error.status || 404).end()
+        }
+      }
+    )
+  })
+
+  server.use('/assets', (req, res) => {
+    res.sendFile(
+      cwd + '/uploads/' + decodeURI(req.url),
+      (error: Error & { status?: number; statusCode?: number }) => {
+        if (error) {
+          console.error('server /uploads', error)
+          res.status(error.status || 404).end()
+        }
+      }
+    )
+  })
 
   /**
-   * Проксирование на картинки
+   * PWA and other public generated files
    */
-  server.use('/images/', siteProxy)
-  server.use('/wp-content/', siteProxy)
+  server.use(express.static(cwd + '/.next/public'))
 
+  // server.use(
+  //   '/api',
+  //   graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }),
+  //   // graphqlHTTP({ schema })
+  // )
+
+  server.use(graphqlUploadExpress())
+
+  /**
+   * API requests
+   */
   graphqlServer.applyMiddleware({
     app: server,
     path: '/api',

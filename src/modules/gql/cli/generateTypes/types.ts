@@ -2,7 +2,7 @@
 import uniq from 'lodash/uniq'
 import path from 'path'
 import util from 'util'
-import glob from 'glob'
+import { glob } from 'glob'
 
 import * as codegen from '@graphql-codegen/cli'
 import { Types } from '@graphql-codegen/plugin-helpers'
@@ -25,6 +25,8 @@ const scalars = {
   Json: 'globalThis.Record<string, any> | globalThis.Array<any>',
   Long: 'number',
   Upload: 'globalThis.File',
+  BigInt: 'string',
+  Bytes: 'string',
 }
 
 const globPromisify = util.promisify(glob)
@@ -39,11 +41,13 @@ const prependText = [
   '* Команда для генерирования этого файла: "yarn generate:types" \n',
   '*/',
   '\n',
+  '// @ts-nocheck',
+  '\n',
   '\n',
 ]
 
 /** Функция получения списка путей файлов запросов с фронта */
-async function getQueryFiles() {
+async function getQueryFiles(): Promise<string[]> {
   const files = uniq(await globPromisify(QUERIES_PATTERN))
   files.sort()
   return files
@@ -148,6 +152,16 @@ async function generateTypesFromSchema() {
   // )
 }
 
+/** Функция создающая Map с graphql файлами
+ * */
+async function createInitialMap(): Promise<Map<string, string>> {
+  const queryFileNames = await getQueryFiles()
+  const queryFileContents = await readFiles(queryFileNames)
+  return new Map(
+    queryFileNames.map((name, index) => [name, queryFileContents[index]])
+  )
+}
+
 /**
  * Функция генерирующая index.ts из Map с graphql файлами
  */
@@ -182,7 +196,7 @@ async function generateTypesFromMap() {
 
   // console.log("documents", documents);
 
-  const codegenConfig = {
+  const codegenConfig: Types.ConfiguredOutput = {
     plugins: [
       {
         add: {
@@ -207,7 +221,7 @@ async function generateTypesFromMap() {
     },
   }
 
-  const input: Types.Config = {
+  const input: Types.Config & { cwd?: string } = {
     schema: path.join(OUTPUT_PATH, 'schema.json'),
     documents,
     config: typescriptPluginConfig,
@@ -240,16 +254,6 @@ async function generateTypesFromMap() {
         .join('\n') + "export * from './types';\n"
     )
   }
-}
-
-/** Функция создающая Map с graphql файлами
- * */
-async function createInitialMap() {
-  const queryFileNames = await getQueryFiles()
-  const queryFileContents = await readFiles(queryFileNames)
-  return new Map(
-    queryFileNames.map((name, index) => [name, queryFileContents[index]])
-  )
 }
 
 /** Функция создающая index.ts */

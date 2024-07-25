@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import React, { useCallback, useMemo, useState } from 'react'
 
 // import GoogleMap from 'material-ui-components/src/GoogleMap';
@@ -75,27 +74,29 @@ const ItemMap: React.FC<ItemMapProps> = ({
     return false
   }, [])
 
-  const onChildMouseDown: GoogleMapReact.Props['onChildMouseDown'] = useCallback(() => {
-    if (!inEditMode()) {
+  const onChildMouseDown: GoogleMapReact.Props['onChildMouseDown'] =
+    useCallback(() => {
+      if (!inEditMode()) {
+        return
+      }
+
+      draggableSetter(false)
+
       return
-    }
+    }, [inEditMode])
 
-    draggableSetter(false)
+  const onChildMouseUp: GoogleMapReact.Props['onChildMouseUp'] =
+    useCallback(() => {
+      if (!inEditMode()) {
+        return
+      }
 
-    return
-  }, [inEditMode])
-
-  const onChildMouseUp: GoogleMapReact.Props['onChildMouseUp'] = useCallback(() => {
-    if (!inEditMode()) {
-      return
-    }
-
-    draggableSetter(true)
-  }, [inEditMode])
+      draggableSetter(true)
+    }, [inEditMode])
 
   // TODO Restore
-  const onChildMouseMove: GoogleMapReact.Props['onChildMouseMove'] = useCallback(
-    (_key, _marker, _newCoords) => {
+  const onChildMouseMove: GoogleMapReact.Props['onChildMouseMove'] =
+    useCallback(() => {
       // if (!this.inEditMode()) {
       //   return;
       // }
@@ -111,12 +112,10 @@ const ItemMap: React.FC<ItemMapProps> = ({
       // updateItem(item, data);
       // onChange && onChange(item, data);
       // this.forceUpdate();
-    },
-    []
-  )
+    }, [])
 
-  const onGoogleApiLoaded: GoogleMapReact.Props['onGoogleApiLoaded'] = useCallback(
-    (api) => {
+  const onGoogleApiLoaded: GoogleMapReact.Props['onGoogleApiLoaded'] =
+    useCallback((api: any) => {
       const { map, maps } = api
 
       mapSetter(map)
@@ -126,9 +125,7 @@ const ItemMap: React.FC<ItemMapProps> = ({
       //   map,
       //   maps,
       // });
-    },
-    []
-  )
+    }, [])
 
   // const {
   //   fullMap,
@@ -165,6 +162,7 @@ const ItemMap: React.FC<ItemMapProps> = ({
             apiKey="AIzaSyDrAAFNMwCrJRoF_D_JlCZ34AK30X-nha0"
             size="600x400"
           >
+            {/* @ts-expect-error types */}
             <Marker
               // color="blue"
               label={(name && name.substr(0, 1)) || undefined}
@@ -202,8 +200,6 @@ const ItemMap: React.FC<ItemMapProps> = ({
             onGoogleApiLoaded={onGoogleApiLoaded}
             options={{
               fullscreenControl: false,
-              // @ts-ignore
-              overviewMapControl: false,
               streetViewControl: true,
               rotateControl: true,
               mapTypeControl: true,
@@ -215,6 +211,8 @@ const ItemMap: React.FC<ItemMapProps> = ({
                   stylers: [{ visibility: 'off' }],
                 },
               ],
+              // @ts-expect-error types
+              overviewMapControl: false,
             }}
           >
             <SimpleMarker lat={lat} lng={lng} map={map}></SimpleMarker>

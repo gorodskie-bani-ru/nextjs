@@ -34,7 +34,7 @@ const CompanyWorkTime: React.FC<CompanyWorkTimeProps> = ({
 
           {(workTime && (
             <div>
-              <SvgIcon src={clock} alt="time" />{' '}
+              <SvgIcon src={clock.src} alt="time" />{' '}
               <span
                 style={{
                   paddingLeft: 5,

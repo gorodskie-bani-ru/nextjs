@@ -14,8 +14,11 @@ const CitiesPageView: React.FC<CitiesPageViewProps> = ({ cities }) => {
 
           return (
             <Grid key={n.id} item xs={12} sm={4} md={3}>
-              <Link href={(n.uri && '/' + n.uri.replace(/\/+$/, '')) || '/'}>
-                <a title={n.pagetitle}>{n.pagetitle}</a>
+              <Link
+                href={(n.uri && '/' + n.uri.replace(/\/+$/, '')) || '/'}
+                title={n.pagetitle}
+              >
+                {n.pagetitle}
               </Link>
             </Grid>
           )

@@ -11,7 +11,9 @@ src/components_old/
 /packages
 /public
 /shared
+/prisma/migrations
 generated
+/tsconfig.tsbuildinfo
 
 # cypress
 /cypress

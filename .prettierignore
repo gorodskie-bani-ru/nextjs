@@ -13,6 +13,8 @@ storybook-static
 /packages
 /public
 /shared
+/prisma/migrations
+/tsconfig.tsbuildinfo
 
 # cypress
 /cypress

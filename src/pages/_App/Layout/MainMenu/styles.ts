@@ -2,7 +2,7 @@ import { minWidth } from 'src/theme/helpers'
 import styled, { css } from 'styled-components'
 
 export type MainMenuStyledProps = {
-  opened: boolean
+  $opened: boolean
 }
 
 export const MainMenuStyled = styled.div<MainMenuStyledProps>`
@@ -44,8 +44,8 @@ export const MainMenuStyled = styled.div<MainMenuStyledProps>`
     padding: 0;
     align-items: center;
 
-    ${({ opened }) => {
-      if (opened) {
+    ${({ $opened }) => {
+      if ($opened) {
         return css`
           display: flex;
           width: 100%;
@@ -88,8 +88,8 @@ export const MainMenuStyled = styled.div<MainMenuStyledProps>`
     border-radius: 4px;
     cursor: pointer;
 
-    ${({ opened }) => {
-      if (opened) {
+    ${({ $opened }) => {
+      if ($opened) {
         return css``
       }
     }}

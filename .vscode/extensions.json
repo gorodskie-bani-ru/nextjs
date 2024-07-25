@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "stpn.vscode-graphql",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "Gruntfuggly.todo-tree",
+    "styled-components.vscode-styled-components"
+  ]
+}

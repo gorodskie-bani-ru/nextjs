@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
 import { Prisma } from '@prisma/client'
 import { arg, ObjectDefinitionBlock } from 'nexus/dist/core'
 

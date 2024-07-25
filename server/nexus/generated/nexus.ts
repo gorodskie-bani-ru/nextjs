@@ -3,8 +3,9 @@
  * Do not make changes to this file directly
  */
 
-import { PrismaContext } from './../context'
-import { core } from 'nexus'
+import type { PrismaContext } from './../context'
+import type { bani684_site_content } from '@prisma/client'
+import type { core } from 'nexus'
 declare global {
   interface NexusGenCustomInputMethods<TypeName extends string> {
     /**
@@ -228,6 +229,11 @@ export interface NexusGenInputs {
     notIn?: string[] | null // [String!]
     startsWith?: string | null // String
   }
+  SortOrderInput: {
+    // input type
+    nulls?: NexusGenEnums['NullsOrder'] | null // NullsOrder
+    sort: NexusGenEnums['SortOrder'] // SortOrder!
+  }
   StringFilter: {
     // input type
     contains?: string | null // String
@@ -256,13 +262,26 @@ export interface NexusGenInputs {
     notIn?: string[] | null // [String!]
     startsWith?: string | null // String
   }
-  bani684_site_contentOrderByInput: {
+  bani684_site_contentOrderByRelationAggregateInput: {
     // input type
-    CreatedBy?: NexusGenInputs['bani684_usersOrderByInput'] | null // bani684_usersOrderByInput
-    alias?: NexusGenEnums['SortOrder'] | null // SortOrder
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  bani684_site_contentOrderByWithRelationInput: {
+    // input type
+    CreatedBy?: NexusGenInputs['bani684_usersOrderByWithRelationInput'] | null // bani684_usersOrderByWithRelationInput
+    Tags?:
+      | NexusGenInputs['bani684_society_topic_tagsOrderByRelationAggregateInput']
+      | null // bani684_society_topic_tagsOrderByRelationAggregateInput
+    TemplateVarValues?:
+      | NexusGenInputs['bani684_site_tmplvar_contentvaluesOrderByRelationAggregateInput']
+      | null // bani684_site_tmplvar_contentvaluesOrderByRelationAggregateInput
+    Votes?:
+      | NexusGenInputs['bani684_society_votesOrderByRelationAggregateInput']
+      | null // bani684_society_votesOrderByRelationAggregateInput
+    alias?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     cacheable?: NexusGenEnums['SortOrder'] | null // SortOrder
     class_key?: NexusGenEnums['SortOrder'] | null // SortOrder
-    content?: NexusGenEnums['SortOrder'] | null // SortOrder
+    content?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     contentType?: NexusGenEnums['SortOrder'] | null // SortOrder
     content_dispo?: NexusGenEnums['SortOrder'] | null // SortOrder
     content_type?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -279,7 +298,7 @@ export interface NexusGenInputs {
     hide_children_in_tree?: NexusGenEnums['SortOrder'] | null // SortOrder
     hidemenu?: NexusGenEnums['SortOrder'] | null // SortOrder
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
-    introtext?: NexusGenEnums['SortOrder'] | null // SortOrder
+    introtext?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     isfolder?: NexusGenEnums['SortOrder'] | null // SortOrder
     link_attributes?: NexusGenEnums['SortOrder'] | null // SortOrder
     longtitle?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -289,7 +308,7 @@ export interface NexusGenInputs {
     parent?: NexusGenEnums['SortOrder'] | null // SortOrder
     privatemgr?: NexusGenEnums['SortOrder'] | null // SortOrder
     privateweb?: NexusGenEnums['SortOrder'] | null // SortOrder
-    properties?: NexusGenEnums['SortOrder'] | null // SortOrder
+    properties?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     pub_date?: NexusGenEnums['SortOrder'] | null // SortOrder
     published?: NexusGenEnums['SortOrder'] | null // SortOrder
     publishedby?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -300,7 +319,7 @@ export interface NexusGenInputs {
     template?: NexusGenEnums['SortOrder'] | null // SortOrder
     type?: NexusGenEnums['SortOrder'] | null // SortOrder
     unpub_date?: NexusGenEnums['SortOrder'] | null // SortOrder
-    uri?: NexusGenEnums['SortOrder'] | null // SortOrder
+    uri?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     uri_override?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
   bani684_site_contentWhereInput: {
@@ -362,6 +381,10 @@ export interface NexusGenInputs {
     // input type
     id?: number | null // Int
   }
+  bani684_site_tmplvar_contentvaluesOrderByRelationAggregateInput: {
+    // input type
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
   bani684_site_tmplvar_contentvaluesWhereInput: {
     // input type
     AND?:
@@ -377,25 +400,29 @@ export interface NexusGenInputs {
     tmplvarid?: NexusGenInputs['IntFilter'] | null // IntFilter
     value?: NexusGenInputs['StringFilter'] | null // StringFilter
   }
-  bani684_society_commentsOrderByInput: {
+  bani684_society_commentsOrderByRelationAggregateInput: {
     // input type
-    CreatedBy?: NexusGenInputs['bani684_usersOrderByInput'] | null // bani684_usersOrderByInput
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  bani684_society_commentsOrderByWithRelationInput: {
+    // input type
+    CreatedBy?: NexusGenInputs['bani684_usersOrderByWithRelationInput'] | null // bani684_usersOrderByWithRelationInput
     comments_count?: NexusGenEnums['SortOrder'] | null // SortOrder
     createdby?: NexusGenEnums['SortOrder'] | null // SortOrder
-    createdon?: NexusGenEnums['SortOrder'] | null // SortOrder
+    createdon?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     deleted?: NexusGenEnums['SortOrder'] | null // SortOrder
-    deletedby?: NexusGenEnums['SortOrder'] | null // SortOrder
-    deletedon?: NexusGenEnums['SortOrder'] | null // SortOrder
-    editedby?: NexusGenEnums['SortOrder'] | null // SortOrder
-    editedon?: NexusGenEnums['SortOrder'] | null // SortOrder
+    deletedby?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    deletedon?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    editedby?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    editedon?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
     ip?: NexusGenEnums['SortOrder'] | null // SortOrder
-    parent?: NexusGenEnums['SortOrder'] | null // SortOrder
-    properties?: NexusGenEnums['SortOrder'] | null // SortOrder
+    parent?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    properties?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     published?: NexusGenEnums['SortOrder'] | null // SortOrder
     raw_text?: NexusGenEnums['SortOrder'] | null // SortOrder
     text?: NexusGenEnums['SortOrder'] | null // SortOrder
-    thread_id?: NexusGenEnums['SortOrder'] | null // SortOrder
+    thread_id?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
   }
   bani684_society_commentsWhereInput: {
     // input type
@@ -424,15 +451,21 @@ export interface NexusGenInputs {
     // input type
     id?: number | null // Int
   }
-  bani684_society_topic_tagsOrderByInput: {
+  bani684_society_topic_tagsOrderByRelationAggregateInput: {
     // input type
-    Resource?: NexusGenInputs['bani684_site_contentOrderByInput'] | null // bani684_site_contentOrderByInput
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  bani684_society_topic_tagsOrderByWithRelationInput: {
+    // input type
+    Resource?:
+      | NexusGenInputs['bani684_site_contentOrderByWithRelationInput']
+      | null // bani684_site_contentOrderByWithRelationInput
     active?: NexusGenEnums['SortOrder'] | null // SortOrder
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
     tag?: NexusGenEnums['SortOrder'] | null // SortOrder
     topic_id?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
-  bani684_society_topic_tagsTopic_idCompoundUniqueInput: {
+  bani684_society_topic_tagsTopic_idTagCompoundUniqueInput: {
     // input type
     tag: string // String!
     topic_id: number // Int!
@@ -451,32 +484,36 @@ export interface NexusGenInputs {
   bani684_society_topic_tagsWhereUniqueInput: {
     // input type
     id?: number | null // Int
-    topic_id?:
-      | NexusGenInputs['bani684_society_topic_tagsTopic_idCompoundUniqueInput']
-      | null // bani684_society_topic_tagsTopic_idCompoundUniqueInput
+    topic_id_tag?:
+      | NexusGenInputs['bani684_society_topic_tagsTopic_idTagCompoundUniqueInput']
+      | null // bani684_society_topic_tagsTopic_idTagCompoundUniqueInput
   }
-  bani684_society_votesOrderByInput: {
+  bani684_society_votesOrderByRelationAggregateInput: {
     // input type
-    CreatedBy?: NexusGenInputs['bani684_usersOrderByInput'] | null // bani684_usersOrderByInput
-    Type?: NexusGenInputs['bani684_site_contentOrderByInput'] | null // bani684_site_contentOrderByInput
+    _count?: NexusGenEnums['SortOrder'] | null // SortOrder
+  }
+  bani684_society_votesOrderByWithRelationInput: {
+    // input type
+    CreatedBy?: NexusGenInputs['bani684_usersOrderByWithRelationInput'] | null // bani684_usersOrderByWithRelationInput
+    Type?: NexusGenInputs['bani684_site_contentOrderByWithRelationInput'] | null // bani684_site_contentOrderByWithRelationInput
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
     target_class?: NexusGenEnums['SortOrder'] | null // SortOrder
     target_id?: NexusGenEnums['SortOrder'] | null // SortOrder
-    thread_id?: NexusGenEnums['SortOrder'] | null // SortOrder
-    type?: NexusGenEnums['SortOrder'] | null // SortOrder
+    thread_id?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    type?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     user_id?: NexusGenEnums['SortOrder'] | null // SortOrder
     vote_date?: NexusGenEnums['SortOrder'] | null // SortOrder
     vote_direction?: NexusGenEnums['SortOrder'] | null // SortOrder
     vote_value?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
-  bani684_society_votesTarget_idCompoundUniqueInput: {
+  bani684_society_votesTarget_idTarget_classUser_idTypeCompoundUniqueInput: {
     // input type
     target_class: string // String!
     target_id: number // Int!
     type: number // Int!
     user_id: number // Int!
   }
-  bani684_society_votesThread_idCompoundUniqueInput: {
+  bani684_society_votesThread_idUser_idTypeCompoundUniqueInput: {
     // input type
     thread_id: number // Int!
     type: number // Int!
@@ -502,15 +539,16 @@ export interface NexusGenInputs {
   bani684_society_votesWhereUniqueInput: {
     // input type
     id?: number | null // Int
-    target_id?:
-      | NexusGenInputs['bani684_society_votesTarget_idCompoundUniqueInput']
-      | null // bani684_society_votesTarget_idCompoundUniqueInput
-    thread_id?:
-      | NexusGenInputs['bani684_society_votesThread_idCompoundUniqueInput']
-      | null // bani684_society_votesThread_idCompoundUniqueInput
+    target_id_target_class_user_id_type?:
+      | NexusGenInputs['bani684_society_votesTarget_idTarget_classUser_idTypeCompoundUniqueInput']
+      | null // bani684_society_votesTarget_idTarget_classUser_idTypeCompoundUniqueInput
+    thread_id_user_id_type?:
+      | NexusGenInputs['bani684_society_votesThread_idUser_idTypeCompoundUniqueInput']
+      | null // bani684_society_votesThread_idUser_idTypeCompoundUniqueInput
   }
-  bani684_user_attributesOrderByInput: {
+  bani684_user_attributesOrderByWithRelationInput: {
     // input type
+    User?: NexusGenInputs['bani684_usersOrderByWithRelationInput'] | null // bani684_usersOrderByWithRelationInput
     address?: NexusGenEnums['SortOrder'] | null // SortOrder
     blocked?: NexusGenEnums['SortOrder'] | null // SortOrder
     blockedafter?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -520,7 +558,7 @@ export interface NexusGenInputs {
     country?: NexusGenEnums['SortOrder'] | null // SortOrder
     dob?: NexusGenEnums['SortOrder'] | null // SortOrder
     email?: NexusGenEnums['SortOrder'] | null // SortOrder
-    extended?: NexusGenEnums['SortOrder'] | null // SortOrder
+    extended?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     failedlogincount?: NexusGenEnums['SortOrder'] | null // SortOrder
     fax?: NexusGenEnums['SortOrder'] | null // SortOrder
     fullname?: NexusGenEnums['SortOrder'] | null // SortOrder
@@ -571,26 +609,37 @@ export interface NexusGenInputs {
     website?: NexusGenInputs['StringFilter'] | null // StringFilter
     zip?: NexusGenInputs['StringFilter'] | null // StringFilter
   }
-  bani684_usersOrderByInput: {
+  bani684_usersOrderByWithRelationInput: {
     // input type
-    Attributes?: NexusGenInputs['bani684_user_attributesOrderByInput'] | null // bani684_user_attributesOrderByInput
+    Attributes?:
+      | NexusGenInputs['bani684_user_attributesOrderByWithRelationInput']
+      | null // bani684_user_attributesOrderByWithRelationInput
+    Resources?:
+      | NexusGenInputs['bani684_site_contentOrderByRelationAggregateInput']
+      | null // bani684_site_contentOrderByRelationAggregateInput
     active?: NexusGenEnums['SortOrder'] | null // SortOrder
+    bani684_society_comments?:
+      | NexusGenInputs['bani684_society_commentsOrderByRelationAggregateInput']
+      | null // bani684_society_commentsOrderByRelationAggregateInput
+    bani684_society_votes?:
+      | NexusGenInputs['bani684_society_votesOrderByRelationAggregateInput']
+      | null // bani684_society_votesOrderByRelationAggregateInput
     cachepwd?: NexusGenEnums['SortOrder'] | null // SortOrder
     class_key?: NexusGenEnums['SortOrder'] | null // SortOrder
-    contract_date?: NexusGenEnums['SortOrder'] | null // SortOrder
-    createdby?: NexusGenEnums['SortOrder'] | null // SortOrder
+    contract_date?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    createdby?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     createdon?: NexusGenEnums['SortOrder'] | null // SortOrder
-    delegate?: NexusGenEnums['SortOrder'] | null // SortOrder
+    delegate?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     hash_class?: NexusGenEnums['SortOrder'] | null // SortOrder
     id?: NexusGenEnums['SortOrder'] | null // SortOrder
-    offer?: NexusGenEnums['SortOrder'] | null // SortOrder
-    offer_date?: NexusGenEnums['SortOrder'] | null // SortOrder
+    offer?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    offer_date?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     password?: NexusGenEnums['SortOrder'] | null // SortOrder
     primary_group?: NexusGenEnums['SortOrder'] | null // SortOrder
-    remote_data?: NexusGenEnums['SortOrder'] | null // SortOrder
-    remote_key?: NexusGenEnums['SortOrder'] | null // SortOrder
+    remote_data?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
+    remote_key?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     salt?: NexusGenEnums['SortOrder'] | null // SortOrder
-    session_stale?: NexusGenEnums['SortOrder'] | null // SortOrder
+    session_stale?: NexusGenInputs['SortOrderInput'] | null // SortOrderInput
     sudo?: NexusGenEnums['SortOrder'] | null // SortOrder
     username?: NexusGenEnums['SortOrder'] | null // SortOrder
   }
@@ -635,6 +684,7 @@ export interface NexusGenInputs {
 }
 
 export interface NexusGenEnums {
+  NullsOrder: 'first' | 'last'
   SortOrder: 'asc' | 'desc'
 }
 
@@ -876,13 +926,7 @@ export interface NexusGenObjects {
 }
 
 export interface NexusGenInterfaces {
-  ResourceInterface:
-    | NexusGenRootTypes['City']
-    | NexusGenRootTypes['Company']
-    | NexusGenRootTypes['Rating']
-    | NexusGenRootTypes['Resource']
-    | NexusGenRootTypes['Review']
-    | NexusGenRootTypes['Topic']
+  ResourceInterface: bani684_site_content
 }
 
 export interface NexusGenUnions {}
@@ -1458,7 +1502,9 @@ export interface NexusGenArgTypes {
     cities: {
       // args
       cursor?: NexusGenInputs['bani684_site_contentWhereUniqueInput'] | null // bani684_site_contentWhereUniqueInput
-      orderBy?: NexusGenInputs['bani684_site_contentOrderByInput'][] | null // [bani684_site_contentOrderByInput!]
+      orderBy?:
+        | NexusGenInputs['bani684_site_contentOrderByWithRelationInput'][]
+        | null // [bani684_site_contentOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['bani684_site_contentWhereInput'] | null // bani684_site_contentWhereInput
@@ -1466,7 +1512,9 @@ export interface NexusGenArgTypes {
     comments: {
       // args
       cursor?: NexusGenInputs['bani684_society_commentsWhereUniqueInput'] | null // bani684_society_commentsWhereUniqueInput
-      orderBy?: NexusGenInputs['bani684_society_commentsOrderByInput'][] | null // [bani684_society_commentsOrderByInput!]
+      orderBy?:
+        | NexusGenInputs['bani684_society_commentsOrderByWithRelationInput'][]
+        | null // [bani684_society_commentsOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['bani684_society_commentsWhereInput'] | null // bani684_society_commentsWhereInput
@@ -1484,14 +1532,18 @@ export interface NexusGenArgTypes {
     ratings: {
       // args
       cursor?: NexusGenInputs['bani684_site_contentWhereUniqueInput'] | null // bani684_site_contentWhereUniqueInput
-      orderBy?: NexusGenInputs['bani684_site_contentOrderByInput'][] | null // [bani684_site_contentOrderByInput!]
+      orderBy?:
+        | NexusGenInputs['bani684_site_contentOrderByWithRelationInput'][]
+        | null // [bani684_site_contentOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['bani684_site_contentWhereInput'] | null // bani684_site_contentWhereInput
     }
     resources: {
       // args
-      orderBy?: NexusGenInputs['bani684_site_contentOrderByInput'][] | null // [bani684_site_contentOrderByInput!]
+      orderBy?:
+        | NexusGenInputs['bani684_site_contentOrderByWithRelationInput'][]
+        | null // [bani684_site_contentOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['bani684_site_contentWhereInput'] | null // bani684_site_contentWhereInput
@@ -1503,7 +1555,9 @@ export interface NexusGenArgTypes {
     reviews: {
       // args
       cursor?: NexusGenInputs['bani684_site_contentWhereUniqueInput'] | null // bani684_site_contentWhereUniqueInput
-      orderBy?: NexusGenInputs['bani684_site_contentOrderByInput'][] | null // [bani684_site_contentOrderByInput!]
+      orderBy?:
+        | NexusGenInputs['bani684_site_contentOrderByWithRelationInput'][]
+        | null // [bani684_site_contentOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['bani684_site_contentWhereInput'] | null // bani684_site_contentWhereInput
@@ -1514,8 +1568,8 @@ export interface NexusGenArgTypes {
         | NexusGenInputs['bani684_society_topic_tagsWhereUniqueInput']
         | null // bani684_society_topic_tagsWhereUniqueInput
       orderBy?:
-        | NexusGenInputs['bani684_society_topic_tagsOrderByInput'][]
-        | null // [bani684_society_topic_tagsOrderByInput!]
+        | NexusGenInputs['bani684_society_topic_tagsOrderByWithRelationInput'][]
+        | null // [bani684_society_topic_tagsOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['bani684_society_topic_tagsWhereInput'] | null // bani684_society_topic_tagsWhereInput
@@ -1523,7 +1577,9 @@ export interface NexusGenArgTypes {
     topics: {
       // args
       cursor?: NexusGenInputs['bani684_site_contentWhereUniqueInput'] | null // bani684_site_contentWhereUniqueInput
-      orderBy?: NexusGenInputs['bani684_site_contentOrderByInput'][] | null // [bani684_site_contentOrderByInput!]
+      orderBy?:
+        | NexusGenInputs['bani684_site_contentOrderByWithRelationInput'][]
+        | null // [bani684_site_contentOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['bani684_site_contentWhereInput'] | null // bani684_site_contentWhereInput
@@ -1535,7 +1591,7 @@ export interface NexusGenArgTypes {
     users: {
       // args
       cursor?: NexusGenInputs['bani684_usersWhereUniqueInput'] | null // bani684_usersWhereUniqueInput
-      orderBy?: NexusGenInputs['bani684_usersOrderByInput'][] | null // [bani684_usersOrderByInput!]
+      orderBy?: NexusGenInputs['bani684_usersOrderByWithRelationInput'][] | null // [bani684_usersOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['bani684_usersWhereInput'] | null // bani684_usersWhereInput
@@ -1547,7 +1603,9 @@ export interface NexusGenArgTypes {
     votes: {
       // args
       cursor?: NexusGenInputs['bani684_society_votesWhereUniqueInput'] | null // bani684_society_votesWhereUniqueInput
-      orderBy?: NexusGenInputs['bani684_society_votesOrderByInput'][] | null // [bani684_society_votesOrderByInput!]
+      orderBy?:
+        | NexusGenInputs['bani684_society_votesOrderByWithRelationInput'][]
+        | null // [bani684_society_votesOrderByWithRelationInput!]
       skip?: number | null // Int
       take?: number | null // Int
       where?: NexusGenInputs['bani684_society_votesWhereInput'] | null // bani684_society_votesWhereInput
@@ -1636,6 +1694,7 @@ export interface NexusGenTypes {
 
 declare global {
   interface NexusGenPluginTypeConfig<TypeName extends string> {}
+  interface NexusGenPluginInputTypeConfig<TypeName extends string> {}
   interface NexusGenPluginFieldConfig<
     TypeName extends string,
     FieldName extends string

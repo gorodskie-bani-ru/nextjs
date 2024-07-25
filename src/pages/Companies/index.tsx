@@ -28,8 +28,8 @@ const CompaniesPage: Page = () => {
 
       return (
         <div key={id}>
-          <Link href={uri}>
-            <a title={name || undefined}>{name}</a>
+          <Link href={uri} title={name || undefined}>
+            {name}
           </Link>
         </div>
       )

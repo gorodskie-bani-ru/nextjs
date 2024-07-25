@@ -295,7 +295,7 @@ model bani684_categories {
   category String @default("") @db.VarChar(45)
   rank     Int    @default(0)
 
-  @@unique([parent, category], name: "category")
+  @@unique([parent, category])
   @@index([parent], name: "parent")
   @@index([rank], name: "rank")
 }
@@ -427,7 +427,7 @@ model bani684_edit_versions {
   target_id Int       @db.UnsignedInt
   data      String?   @db.Text
   createdby Int?      @db.UnsignedInt
-  createdon DateTime  @default(now("0")) @db.DateTime(0)
+  createdon DateTime  @default(now()) @db.DateTime(0)
   editedby  Int?      @db.UnsignedInt
   editedon  DateTime? @db.DateTime(0)
   status    String    @default("0") @db.Char(1)
@@ -799,11 +799,11 @@ model bani684_modhybridauth_user_profile {
   region        String?                                    @db.VarChar(100)
   city          String?                                    @db.VarChar(100)
   zip           Int?                                       @db.UnsignedInt
-  createdon     DateTime                                   @default(now("0")) @db.DateTime(0)
+  createdon     DateTime                                   @default(now()) @db.DateTime(0)
   extended      String?                                    @db.Text
 
-  @@unique([identifier, provider], name: "identifier")
-  @@unique([internalKey, provider], name: "internalKey")
+  @@unique([identifier, provider])
+  @@unique([internalKey, provider])
 }
 
 model bani684_modsearch_indexes {
@@ -821,7 +821,7 @@ model bani684_modxsdk_package {
   version_patch Int    @default(0)
   version_type  String @default("beta") @db.VarChar(100)
 
-  @@unique([name, version_major, version_minor, version_patch, version_type], name: "name")
+  @@unique([name, version_major, version_minor, version_patch, version_type])
 }
 
 model bani684_modxsdk_packagesource {
@@ -848,7 +848,7 @@ model bani684_modxsdk_project_package {
   projectid Int @db.UnsignedInt
   packageid Int @db.UnsignedInt
 
-  @@unique([projectid, packageid], name: "projectid")
+  @@unique([projectid, packageid])
 }
 
 model bani684_modxsdk_vehicle {
@@ -922,7 +922,7 @@ model bani684_monitor_requests {
   uuid                    String   @db.Char(36)
   user_id                 Int      @default(0) @db.UnsignedInt
   ip                      String   @db.VarChar(15)
-  date                    DateTime @default(now("0")) @db.DateTime(0)
+  date                    DateTime @default(now()) @db.DateTime(0)
   from_cache              String   @default("0") @db.Char(1)
   phptemplates_non_cached String   @default("0") @db.Char(1)
   time                    Decimal  @db.Decimal(10, 4)
@@ -1034,7 +1034,7 @@ model bani684_search_stat {
   id     Int      @id @default(autoincrement()) @db.UnsignedInt
   query  String   @default("") @db.VarChar(255)
   finded Int      @default(0) @db.UnsignedSmallInt
-  date   DateTime @default(now("0")) @db.DateTime(0)
+  date   DateTime @default(now()) @db.DateTime(0)
 
   @@index([date], name: "date")
   @@index([finded], name: "finded")
@@ -1093,7 +1093,6 @@ model bani684_site_content {
   hide_children_in_tree Boolean @default(false)
   show_in_tree          Boolean @default(true)
   properties            String? @db.MediumText
-
 
   TemplateVarValues bani684_site_tmplvar_contentvalues[]
 
@@ -1258,8 +1257,8 @@ model bani684_site_tmplvar_contentvalues {
   contentid Int    @default(0) @db.UnsignedInt
   value     String @db.MediumText
 
-
   Resource bani684_site_content @relation(fields: [contentid], references: [id])
+
   @@index([contentid], name: "contentid")
   @@index([tmplvarid], name: "tmplvarid")
   @@index([tmplvarid, contentid], name: "tv_cnt")
@@ -1285,7 +1284,7 @@ model bani684_society_blog_topic {
   topicid Int @db.UnsignedInt
   rank    Int @default(0) @db.UnsignedInt
 
-  @@unique([blogid, topicid], name: "blogid")
+  @@unique([blogid, topicid])
 }
 
 model bani684_society_comments {
@@ -1321,7 +1320,7 @@ model bani684_society_email_messages {
   user_id Int      @db.UnsignedInt
   subject String   @db.VarChar(256)
   message String   @db.Text
-  date    DateTime @default(now("0")) @db.DateTime(0)
+  date    DateTime @default(now()) @db.DateTime(0)
   status  Int      @default(1) @db.TinyInt
 
   @@index([user_id], name: "user_id")
@@ -1341,7 +1340,7 @@ model bani684_society_notice_users {
   user_id   Int @db.UnsignedInt
   active    Int @default(1) @db.UnsignedTinyInt
 
-  @@unique([notice_id, user_id], name: "notice_id")
+  @@unique([notice_id, user_id])
   @@index([active], name: "active")
 }
 
@@ -1350,7 +1349,7 @@ model bani684_society_subscribers {
   subscriberid Int @db.UnsignedInt
   rank         Int @default(0) @db.UnsignedInt
 
-  @@unique([userid, subscriberid], name: "userid")
+  @@unique([userid, subscriberid])
 }
 
 model bani684_society_threads {
@@ -1366,7 +1365,7 @@ model bani684_society_threads {
   negative_votes Int       @default(0) @db.UnsignedInt
   neutral_votes  Int       @default(0) @db.UnsignedInt
 
-  @@unique([target_id, target_class], name: "target_id")
+  @@unique([target_id, target_class])
 }
 
 model bani684_society_topic_attributes {
@@ -1386,8 +1385,8 @@ model bani684_society_topic_tags {
 
   Resource bani684_site_content @relation(fields: [topic_id], references: [id])
 
-  @@unique([topic_id, tag], name: "topic_id")
-  @@index([active], name: "active")
+  @@unique([topic_id, tag])
+  @@index([active])
 }
 
 model bani684_society_user_attributes {
@@ -1407,13 +1406,13 @@ model bani684_society_votes {
   user_id        Int      @db.UnsignedInt
   vote_direction String   @default("0") @db.Char(1)
   vote_value     Float    @default(0.000) @db.Float
-  vote_date      DateTime @default(now("0")) @db.DateTime(0)
-
+  vote_date      DateTime @default(now()) @db.DateTime(0)
 
   Type      bani684_site_content? @relation(fields: [type], references: [id])
   CreatedBy bani684_users         @relation(fields: [user_id], references: [id])
-  @@unique([target_id, target_class, user_id, type], name: "target_id")
-  @@unique([thread_id, user_id, type], name: "thread_id")
+
+  @@unique([target_id, target_class, user_id, type])
+  @@unique([thread_id, user_id, type])
 }
 
 model bani684_system_eventnames {
@@ -1505,6 +1504,7 @@ model bani684_users {
 
   bani684_society_comments bani684_society_comments[]
   bani684_society_votes    bani684_society_votes[]
+
   @@index([class_key], name: "class_key")
   @@index([contract_date], name: "contract_date")
   @@index([createdby], name: "createdby")
@@ -1593,7 +1593,7 @@ model bani684_user_settings {
 model bani684_versionx_chunk {
   version_id  Int      @id @default(autoincrement()) @db.UnsignedInt
   content_id  Int      @db.UnsignedInt
-  saved       DateTime @default(now("0")) @db.DateTime(0)
+  saved       DateTime @default(now()) @db.DateTime(0)
   user        Int      @default(0)
   mode        String   @default("update") @db.VarChar(24)
   marked      Boolean? @default(false)
@@ -1612,7 +1612,7 @@ model bani684_versionx_chunk {
 model bani684_versionx_plugin {
   version_id  Int      @id @default(autoincrement()) @db.UnsignedInt
   content_id  Int      @db.UnsignedInt
-  saved       DateTime @default(now("0")) @db.DateTime(0)
+  saved       DateTime @default(now()) @db.DateTime(0)
   user        Int      @default(0)
   mode        String   @default("update") @db.VarChar(24)
   marked      Boolean? @default(false)
@@ -1632,7 +1632,7 @@ model bani684_versionx_plugin {
 model bani684_versionx_resource {
   version_id  Int      @id @default(autoincrement()) @db.UnsignedInt
   content_id  Int      @db.UnsignedInt
-  saved       DateTime @default(now("0")) @db.DateTime(0)
+  saved       DateTime @default(now()) @db.DateTime(0)
   user        Int      @default(0)
   mode        String   @default("update") @db.VarChar(24)
   marked      Boolean? @default(false)
@@ -1650,7 +1650,7 @@ model bani684_versionx_resource {
 model bani684_versionx_snippet {
   version_id  Int      @id @default(autoincrement()) @db.UnsignedInt
   content_id  Int      @db.UnsignedInt
-  saved       DateTime @default(now("0")) @db.DateTime(0)
+  saved       DateTime @default(now()) @db.DateTime(0)
   user        Int      @default(0)
   mode        String   @default("update") @db.VarChar(24)
   marked      Boolean? @default(false)
@@ -1669,7 +1669,7 @@ model bani684_versionx_snippet {
 model bani684_versionx_template {
   version_id   Int      @id @default(autoincrement()) @db.UnsignedInt
   content_id   Int      @db.UnsignedInt
-  saved        DateTime @default(now("0")) @db.DateTime(0)
+  saved        DateTime @default(now()) @db.DateTime(0)
   user         Int      @default(0)
   mode         String   @default("update") @db.VarChar(24)
   marked       Boolean? @default(false)
@@ -1688,7 +1688,7 @@ model bani684_versionx_template {
 model bani684_versionx_templatevar {
   version_id        Int      @id @default(autoincrement()) @db.UnsignedInt
   content_id        Int      @db.UnsignedInt
-  saved             DateTime @default(now("0")) @db.DateTime(0)
+  saved             DateTime @default(now()) @db.DateTime(0)
   user              Int      @default(0)
   mode              String   @default("update") @db.VarChar(24)
   marked            Boolean? @default(false)

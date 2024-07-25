@@ -349,13 +349,18 @@ input NestedStringNullableFilter {
   startsWith: String
 }
 
+enum NullsOrder {
+  first
+  last
+}
+
 type Query {
   """
   Города
   """
   cities(
     cursor: bani684_site_contentWhereUniqueInput
-    orderBy: [bani684_site_contentOrderByInput!]
+    orderBy: [bani684_site_contentOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: bani684_site_contentWhereInput
@@ -366,7 +371,7 @@ type Query {
   """
   comments(
     cursor: bani684_society_commentsWhereUniqueInput
-    orderBy: [bani684_society_commentsOrderByInput!]
+    orderBy: [bani684_society_commentsOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: bani684_society_commentsWhereInput
@@ -392,7 +397,7 @@ type Query {
   """
   ratings(
     cursor: bani684_site_contentWhereUniqueInput
-    orderBy: [bani684_site_contentOrderByInput!]
+    orderBy: [bani684_site_contentOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: bani684_site_contentWhereInput
@@ -402,7 +407,7 @@ type Query {
   Ресурсы
   """
   resources(
-    orderBy: [bani684_site_contentOrderByInput!]
+    orderBy: [bani684_site_contentOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: bani684_site_contentWhereInput
@@ -418,14 +423,14 @@ type Query {
   """
   reviews(
     cursor: bani684_site_contentWhereUniqueInput
-    orderBy: [bani684_site_contentOrderByInput!]
+    orderBy: [bani684_site_contentOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: bani684_site_contentWhereInput
   ): [Review!]!
   topicTags(
     cursor: bani684_society_topic_tagsWhereUniqueInput
-    orderBy: [bani684_society_topic_tagsOrderByInput!]
+    orderBy: [bani684_society_topic_tagsOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: bani684_society_topic_tagsWhereInput
@@ -436,7 +441,7 @@ type Query {
   """
   topics(
     cursor: bani684_site_contentWhereUniqueInput
-    orderBy: [bani684_site_contentOrderByInput!]
+    orderBy: [bani684_site_contentOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: bani684_site_contentWhereInput
@@ -444,7 +449,7 @@ type Query {
   user(where: bani684_usersWhereUniqueInput!): User
   users(
     cursor: bani684_usersWhereUniqueInput
-    orderBy: [bani684_usersOrderByInput!]
+    orderBy: [bani684_usersOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: bani684_usersWhereInput
@@ -460,7 +465,7 @@ type Query {
   """
   votes(
     cursor: bani684_society_votesWhereUniqueInput
-    orderBy: [bani684_society_votesOrderByInput!]
+    orderBy: [bani684_society_votesOrderByWithRelationInput!]
     skip: Int
     take: Int
     where: bani684_society_votesWhereInput
@@ -630,6 +635,11 @@ enum SortOrder {
   desc
 }
 
+input SortOrderInput {
+  nulls: NullsOrder
+  sort: SortOrder!
+}
+
 input StringFilter {
   contains: String
   endsWith: String
@@ -768,12 +778,19 @@ type VotesAvg {
   voteValueAvg: Float!
 }
 
-input bani684_site_contentOrderByInput {
-  CreatedBy: bani684_usersOrderByInput
-  alias: SortOrder
+input bani684_site_contentOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input bani684_site_contentOrderByWithRelationInput {
+  CreatedBy: bani684_usersOrderByWithRelationInput
+  Tags: bani684_society_topic_tagsOrderByRelationAggregateInput
+  TemplateVarValues: bani684_site_tmplvar_contentvaluesOrderByRelationAggregateInput
+  Votes: bani684_society_votesOrderByRelationAggregateInput
+  alias: SortOrderInput
   cacheable: SortOrder
   class_key: SortOrder
-  content: SortOrder
+  content: SortOrderInput
   contentType: SortOrder
   content_dispo: SortOrder
   content_type: SortOrder
@@ -790,7 +807,7 @@ input bani684_site_contentOrderByInput {
   hide_children_in_tree: SortOrder
   hidemenu: SortOrder
   id: SortOrder
-  introtext: SortOrder
+  introtext: SortOrderInput
   isfolder: SortOrder
   link_attributes: SortOrder
   longtitle: SortOrder
@@ -800,7 +817,7 @@ input bani684_site_contentOrderByInput {
   parent: SortOrder
   privatemgr: SortOrder
   privateweb: SortOrder
-  properties: SortOrder
+  properties: SortOrderInput
   pub_date: SortOrder
   published: SortOrder
   publishedby: SortOrder
@@ -811,7 +828,7 @@ input bani684_site_contentOrderByInput {
   template: SortOrder
   type: SortOrder
   unpub_date: SortOrder
-  uri: SortOrder
+  uri: SortOrderInput
   uri_override: SortOrder
 }
 
@@ -879,6 +896,10 @@ type bani684_site_tmplvar_contentvalues {
   value: String!
 }
 
+input bani684_site_tmplvar_contentvaluesOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
 input bani684_site_tmplvar_contentvaluesWhereInput {
   AND: [bani684_site_tmplvar_contentvaluesWhereInput!]
   NOT: [bani684_site_tmplvar_contentvaluesWhereInput!]
@@ -890,24 +911,28 @@ input bani684_site_tmplvar_contentvaluesWhereInput {
   value: StringFilter
 }
 
-input bani684_society_commentsOrderByInput {
-  CreatedBy: bani684_usersOrderByInput
+input bani684_society_commentsOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input bani684_society_commentsOrderByWithRelationInput {
+  CreatedBy: bani684_usersOrderByWithRelationInput
   comments_count: SortOrder
   createdby: SortOrder
-  createdon: SortOrder
+  createdon: SortOrderInput
   deleted: SortOrder
-  deletedby: SortOrder
-  deletedon: SortOrder
-  editedby: SortOrder
-  editedon: SortOrder
+  deletedby: SortOrderInput
+  deletedon: SortOrderInput
+  editedby: SortOrderInput
+  editedon: SortOrderInput
   id: SortOrder
   ip: SortOrder
-  parent: SortOrder
-  properties: SortOrder
+  parent: SortOrderInput
+  properties: SortOrderInput
   published: SortOrder
   raw_text: SortOrder
   text: SortOrder
-  thread_id: SortOrder
+  thread_id: SortOrderInput
 }
 
 input bani684_society_commentsWhereInput {
@@ -937,15 +962,19 @@ input bani684_society_commentsWhereUniqueInput {
   id: Int
 }
 
-input bani684_society_topic_tagsOrderByInput {
-  Resource: bani684_site_contentOrderByInput
+input bani684_society_topic_tagsOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input bani684_society_topic_tagsOrderByWithRelationInput {
+  Resource: bani684_site_contentOrderByWithRelationInput
   active: SortOrder
   id: SortOrder
   tag: SortOrder
   topic_id: SortOrder
 }
 
-input bani684_society_topic_tagsTopic_idCompoundUniqueInput {
+input bani684_society_topic_tagsTopic_idTagCompoundUniqueInput {
   tag: String!
   topic_id: Int!
 }
@@ -963,31 +992,35 @@ input bani684_society_topic_tagsWhereInput {
 
 input bani684_society_topic_tagsWhereUniqueInput {
   id: Int
-  topic_id: bani684_society_topic_tagsTopic_idCompoundUniqueInput
+  topic_id_tag: bani684_society_topic_tagsTopic_idTagCompoundUniqueInput
 }
 
-input bani684_society_votesOrderByInput {
-  CreatedBy: bani684_usersOrderByInput
-  Type: bani684_site_contentOrderByInput
+input bani684_society_votesOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input bani684_society_votesOrderByWithRelationInput {
+  CreatedBy: bani684_usersOrderByWithRelationInput
+  Type: bani684_site_contentOrderByWithRelationInput
   id: SortOrder
   target_class: SortOrder
   target_id: SortOrder
-  thread_id: SortOrder
-  type: SortOrder
+  thread_id: SortOrderInput
+  type: SortOrderInput
   user_id: SortOrder
   vote_date: SortOrder
   vote_direction: SortOrder
   vote_value: SortOrder
 }
 
-input bani684_society_votesTarget_idCompoundUniqueInput {
+input bani684_society_votesTarget_idTarget_classUser_idTypeCompoundUniqueInput {
   target_class: String!
   target_id: Int!
   type: Int!
   user_id: Int!
 }
 
-input bani684_society_votesThread_idCompoundUniqueInput {
+input bani684_society_votesThread_idUser_idTypeCompoundUniqueInput {
   thread_id: Int!
   type: Int!
   user_id: Int!
@@ -1012,11 +1045,12 @@ input bani684_society_votesWhereInput {
 
 input bani684_society_votesWhereUniqueInput {
   id: Int
-  target_id: bani684_society_votesTarget_idCompoundUniqueInput
-  thread_id: bani684_society_votesThread_idCompoundUniqueInput
+  target_id_target_class_user_id_type: bani684_society_votesTarget_idTarget_classUser_idTypeCompoundUniqueInput
+  thread_id_user_id_type: bani684_society_votesThread_idUser_idTypeCompoundUniqueInput
 }
 
-input bani684_user_attributesOrderByInput {
+input bani684_user_attributesOrderByWithRelationInput {
+  User: bani684_usersOrderByWithRelationInput
   address: SortOrder
   blocked: SortOrder
   blockedafter: SortOrder
@@ -1026,7 +1060,7 @@ input bani684_user_attributesOrderByInput {
   country: SortOrder
   dob: SortOrder
   email: SortOrder
-  extended: SortOrder
+  extended: SortOrderInput
   failedlogincount: SortOrder
   fax: SortOrder
   fullname: SortOrder
@@ -1078,25 +1112,28 @@ input bani684_user_attributesWhereInput {
   zip: StringFilter
 }
 
-input bani684_usersOrderByInput {
-  Attributes: bani684_user_attributesOrderByInput
+input bani684_usersOrderByWithRelationInput {
+  Attributes: bani684_user_attributesOrderByWithRelationInput
+  Resources: bani684_site_contentOrderByRelationAggregateInput
   active: SortOrder
+  bani684_society_comments: bani684_society_commentsOrderByRelationAggregateInput
+  bani684_society_votes: bani684_society_votesOrderByRelationAggregateInput
   cachepwd: SortOrder
   class_key: SortOrder
-  contract_date: SortOrder
-  createdby: SortOrder
+  contract_date: SortOrderInput
+  createdby: SortOrderInput
   createdon: SortOrder
-  delegate: SortOrder
+  delegate: SortOrderInput
   hash_class: SortOrder
   id: SortOrder
-  offer: SortOrder
-  offer_date: SortOrder
+  offer: SortOrderInput
+  offer_date: SortOrderInput
   password: SortOrder
   primary_group: SortOrder
-  remote_data: SortOrder
-  remote_key: SortOrder
+  remote_data: SortOrderInput
+  remote_key: SortOrderInput
   salt: SortOrder
-  session_stale: SortOrder
+  session_stale: SortOrderInput
   sudo: SortOrder
   username: SortOrder
 }

@@ -150,8 +150,7 @@ ResourcePage.getInitialProps = async (context) => {
 
       // TODO Поправить тип для res
       // https://freecode.academy/tasks/ckm95xkamgc0h07306qnymjuk
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
+      // @ts-expect-error types
       res.redirect(301, '/' + path.join('/'))
 
       return {}

@@ -1,6 +1,6 @@
 query users(
   $where: bani684_usersWhereInput
-  $orderBy: [bani684_usersOrderByInput!]
+  $orderBy: [bani684_usersOrderByWithRelationInput!]
   $skip: Int
   $take: Int
 ) {

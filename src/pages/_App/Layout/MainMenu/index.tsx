@@ -247,13 +247,7 @@ const MainMenu: React.FC = () => {
 
       citiesList.push(
         <li key={id}>
-          <Link href={link}>
-            <a
-            // onClick={closeMenu}
-            >
-              {name}
-            </a>
-          </Link>
+          <Link href={link}>{name}</Link>
         </li>
       )
     })
@@ -367,17 +361,17 @@ const MainMenu: React.FC = () => {
         //   marginBottom: 0,
         //   borderRadius: 0,
         // }}
-        opened={opened}
+        $opened={opened}
       >
         {/* <div className="container"> */}
 
-        <Link href={baseUrl}>
-          <a className="navbar-brand" title="Городские бани, главная страница">
-            {/* <div className="logo"> */}
-            <img src={logo} alt={'logo'} title="Городские бани" />
-            <span className="str">Городские бани</span>
-            {/* </div> */}
-          </a>
+        <Link
+          href={baseUrl}
+          className="navbar-brand"
+          title="Городские бани, главная страница"
+        >
+          <img src={logo.src} alt={'logo'} title="Городские бани" />
+          <span className="str">Городские бани</span>
         </Link>
 
         {/* <div className="navbar-header">
@@ -538,19 +532,19 @@ const MainMenu: React.FC = () => {
               </li> */}
 
           <li>
-            <Link href="/bani-otzivy">
-              <a title="Обзоры и отзывы">Обзоры и отзывы</a>
+            <Link href="/bani-otzivy" title="Обзоры и отзывы">
+              Обзоры и отзывы
             </Link>
           </li>
           <li>
-            <Link href="/topics">
-              <a title="Новости">Новости</a>
+            <Link href="/topics" title="Новости">
+              Новости
             </Link>
           </li>
 
           <li className="last">
-            <Link href="/contacts.html">
-              <a title="Контакты">Контакты</a>
+            <Link href="/contacts.html" title="Контакты">
+              Контакты
             </Link>
           </li>
 

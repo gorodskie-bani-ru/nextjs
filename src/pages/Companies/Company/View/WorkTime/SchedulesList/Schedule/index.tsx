@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useMemo } from 'react'
 import { ScheduleProps } from './interfaces'
 
@@ -23,7 +22,7 @@ const Schedule: React.FC<ScheduleProps> = ({
     let icon: JSX.Element | undefined
     let title: string | undefined
 
-    const clockIcon = <SvgIcon alt="clock" src={clickSvg} />
+    const clockIcon = <SvgIcon alt="clock" src={clickSvg.src} />
 
     switch (name) {
       case 'Schedule':
@@ -35,7 +34,7 @@ const Schedule: React.FC<ScheduleProps> = ({
         title = 'Мужские дни'
         icon = (
           <>
-            <SvgIcon alt="clock" src={menSvg} />
+            <SvgIcon alt="clock" src={menSvg.src} />
           </>
         )
 
@@ -45,7 +44,7 @@ const Schedule: React.FC<ScheduleProps> = ({
         title = 'Женские дни'
         icon = (
           <>
-            <SvgIcon alt="clock" src={womenSvg} />
+            <SvgIcon alt="clock" src={womenSvg.src} />
           </>
         )
 
@@ -55,7 +54,7 @@ const Schedule: React.FC<ScheduleProps> = ({
         title = 'Семейные дни'
         icon = (
           <>
-            <SvgIcon alt="clock" src={familySvg} />
+            <SvgIcon alt="clock" src={familySvg.src} />
           </>
         )
 

@@ -1,9 +1,7 @@
-/* eslint-disable @typescript-eslint/camelcase */
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
-
 import { arg, list, nonNull, ObjectDefinitionBlock } from 'nexus/dist/core'
 import { Prisma } from '@prisma/client'
 import { userSelect } from '../User'
+import { NexusGenAllTypes } from 'server/nexus/generated/nexus'
 
 export const Resource = (t: ObjectDefinitionBlock<'Query'>) => {
   const defaultWhere: Prisma.bani684_site_contentFindManyArgs['where'] = {
@@ -48,7 +46,7 @@ export const Resource = (t: ObjectDefinitionBlock<'Query'>) => {
     type: 'ResourceInterface',
     args: {
       where: 'bani684_site_contentWhereInput',
-      orderBy: list(nonNull('bani684_site_contentOrderByInput')),
+      orderBy: list(nonNull('bani684_site_contentOrderByWithRelationInput')),
       take: 'Int',
       skip: 'Int',
     },
@@ -99,7 +97,9 @@ export const Resource = (t: ObjectDefinitionBlock<'Query'>) => {
           },
         },
       })
-      return result
+
+      // TODO Fix types
+      return result as unknown as NexusGenAllTypes['ResourceInterface'][]
     },
   })
 }

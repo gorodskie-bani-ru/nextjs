@@ -1,5 +1,5 @@
 import { SourceValue } from 'nexus/dist/core'
-import { NexusGenObjects } from 'server/nexus/generated/nexus'
+import { NexusGenObjects } from '../../../generated/nexus'
 import { TemplateVarIDs } from '../../../constants'
 
 /**

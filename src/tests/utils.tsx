@@ -10,7 +10,7 @@ import { ThemeProvider } from 'styled-components'
 // For handle css
 import 'jest-styled-components'
 
-import { HeadManagerContext } from 'next/dist/next-server/lib/head-manager-context'
+import { HeadManagerContext } from 'next/dist/shared/lib/head-manager-context.shared-runtime'
 import { Page, PageProps } from 'src/pages/_App/interfaces'
 
 /**
@@ -21,11 +21,18 @@ export { baseRender }
 // re-export everything
 export * from '@testing-library/react'
 
+// TODO TypeError: require.resolveWeak is not a function
+jest.mock('next/dynamic', () => {
+  return () => {
+    return null
+  }
+})
+
 /**
  * Collect tags from next/head
  * https://github.com/vercel/next.js/discussions/11060
  */
-const HeadProvider: React.FC = ({ children }) => {
+const HeadProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   let head: JSX.Element[]
 
   useEffect(() => {
@@ -52,9 +59,16 @@ const HeadProvider: React.FC = ({ children }) => {
 /**
  * Renderer with main App
  */
-const AppProvider: React.FC = ({ children }, pageProps: PageProps) => {
+const AppProvider: React.FC<React.PropsWithChildren> = (
+  { children },
+  pageProps: PageProps
+) => {
   const Component: Page = useMemo(() => {
-    return () => <>{children}</>
+    const Component: Page = () => <>{children}</>
+    Component.getInitialProps = () => {
+      return {}
+    }
+    return Component
   }, [children])
 
   return (
@@ -70,7 +84,7 @@ export const appRender = (ui: ReactElement) => {
 /**
  * Renderer with Theme
  */
-const WithThemeProvider: React.FC = ({ children }) => {
+const WithThemeProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
     <HeadProvider>
       <ThemeProvider theme={theme}>{children}</ThemeProvider>

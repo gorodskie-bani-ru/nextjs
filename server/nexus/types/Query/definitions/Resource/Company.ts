@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
-
 // import { Prisma } from '@prisma/client'
 import { bani684_site_content } from '.prisma/client'
 import { bani684_site_tmplvar_contentvalues } from '@prisma/client'
@@ -10,11 +8,11 @@ import {
   intArg,
   ObjectDefinitionBlock,
 } from 'nexus/dist/core'
-import { PrismaContext } from 'server/nexus/context'
+import { PrismaContext } from '../../../../context'
 import {
   // NexusGenArgTypes,
   NexusGenObjects,
-} from 'server/nexus/generated/nexus'
+} from '../../../../generated/nexus'
 import { TemplateVarIDs } from '../../../../constants'
 import { coordsResolver } from '../../resolvers/coords'
 
@@ -298,7 +296,8 @@ const companiesResolver: FieldResolver<'Query', 'companies'> = (
         company_properties,
       } = n
 
-      const TemplateVarValues: NexusGenObjects['Company']['TemplateVarValues'] = []
+      const TemplateVarValues: NexusGenObjects['Company']['TemplateVarValues'] =
+        []
 
       if (company_image_id && company_image) {
         TemplateVarValues.push({

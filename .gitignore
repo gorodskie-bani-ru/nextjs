@@ -11,10 +11,15 @@
 # next.js
 /.next/
 /out/
+**.tsbuildinfo
 
 # production
 /build
 /dist
+
+# generated
+src/modules/gql/generated
+server/nexus/generated
 
 # misc
 .DS_Store
@@ -35,7 +40,7 @@ yarn-error.log*
 .vercel
 
 # IDE
-.vscode
+# .vscode
 
 # yarn
 # yarn.lock
@@ -49,5 +54,3 @@ storybook-static
 # jest
 __snapshots__
 
-# cypress
-/cypress

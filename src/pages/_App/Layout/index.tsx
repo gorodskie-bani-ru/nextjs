@@ -8,21 +8,10 @@ import MainMenu from './MainMenu'
 /**
  * Общий лейаут для всех страниц сайта
  */
-const Layout: React.FC = ({ children, ...other }) => {
+const Layout: React.FC<React.PropsWithChildren> = ({ children, ...other }) => {
   const counters = useMemo(() => {
-    const metrika = `<!-- Yandex.Metrika informer -->
-      <a rel="noreferrer noopener" href="https://metrika.yandex.ru/stat/?id=26848689&amp;from=informer"
-      target="_blank" rel="nofollow"><img src="https://bs.yandex.ru/informer/26848689/3_1_FFFFFFFF_EFEFEFFF_0_pageviews"
-      style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" onclick="try{Ya.Metrika.informer({i:this,id:26848689,lang:'ru'});return false}catch(e){}"/></a>
-      <!-- /Yandex.Metrika informer -->
-    `
-
     return (
       <Grid container alignItems="center" spacing={1}>
-        <Grid item>
-          <div dangerouslySetInnerHTML={{ __html: metrika }} />
-        </Grid>
-
         <Grid item>
           &copy;{' '}
           <a
@@ -104,20 +93,20 @@ const Layout: React.FC = ({ children, ...other }) => {
                 </Grid>
 
                 <Grid item>
-                  <Link href="/ratings">
-                    <a title="Рейтинги бань">Рейтинги бань</a>
+                  <Link href="/ratings" title="Рейтинги бань">
+                    Рейтинги бань
                   </Link>
                 </Grid>
 
                 <Grid item>
-                  <Link href="/tag">
-                    <a title="Теги">Теги</a>
+                  <Link href="/tag" title="Теги">
+                    Теги
                   </Link>
                 </Grid>
 
                 <Grid item>
-                  <Link href="/people">
-                    <a title="Участники">Участники</a>
+                  <Link href="/people" title="Участники">
+                    Участники
                   </Link>
                 </Grid>
 

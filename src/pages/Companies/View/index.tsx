@@ -19,8 +19,8 @@ const CompaniesView: React.FC<CompaniesViewProps> = ({
           {city ? (
             <p>
               Данные показаны относительно города {city.pagetitle}.{' '}
-              <Link href="/city">
-                <a title="Смотреть бани в других городах">Выбрать город</a>
+              <Link href="/city" title="Смотреть бани в других городах">
+                Выбрать город
               </Link>
             </p>
           ) : null}

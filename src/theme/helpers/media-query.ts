@@ -1,7 +1,7 @@
 import { DefaultTheme, css } from 'styled-components'
 import theme from '..'
 
-export type BreakpointsKey = keyof typeof theme['breakpoints']
+export type BreakpointsKey = keyof (typeof theme)['breakpoints']
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type MinWidth = Record<BreakpointsKey, (args: any) => any>
@@ -11,7 +11,7 @@ export type MinWidth = Record<BreakpointsKey, (args: any) => any>
 /**
  * @media(min-width)...
  */
-export const minWidth = Object.keys(theme['breakpoints']).reduce(
+export const minWidth = Object.keys(theme.breakpoints).reduce(
   (accumulator, _label) => {
     const label = _label as BreakpointsKey
     accumulator[label] = (args: (theme: DefaultTheme) => string | string) => {
@@ -27,7 +27,7 @@ export const minWidth = Object.keys(theme['breakpoints']).reduce(
       }
 
       return css`
-        @media (min-width: ${theme['breakpoints'][label]}px) {
+        @media (min-width: ${theme.breakpoints[label]}px) {
           ${cssString};
         }
       `

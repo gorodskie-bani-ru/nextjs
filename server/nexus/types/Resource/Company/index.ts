@@ -1,11 +1,8 @@
-/* eslint-disable @typescript-eslint/camelcase */
 import { FieldResolver, objectType } from 'nexus'
-import { NexusGenObjects } from 'server/nexus/generated/nexus'
+import { NexusGenObjects } from '../../../generated/nexus'
 import { TemplateVarIDs } from '../../../constants'
 import { imageResolver } from '../../Query/resolvers/image'
 import { coords } from '../definitions/coords'
-
-export * from './Schedule'
 
 const galleryResolver: FieldResolver<'Company', 'gallery'> = (parent) => {
   type File = {

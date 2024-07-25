@@ -24,7 +24,7 @@ export interface NextPageContextCustom extends NextPageContext {
   cities: CityFragment[]
 }
 
-export interface PageProps extends React.PropsWithChildren<{}> {
+export interface PageProps extends React.PropsWithChildren {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   initialApolloState?: any
 

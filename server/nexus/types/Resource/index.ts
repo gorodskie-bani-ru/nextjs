@@ -1,10 +1,11 @@
 // import { unionType } from 'nexus'
 
+export * from './ResourceInterface'
+export * from './Resource'
 export * from './Company'
 export * from './City'
 export * from './Rating'
 export * from './Topic'
-export * from './Resource'
 
 // export const ResourceUnion = unionType({
 //   name: 'ResourceUnion',

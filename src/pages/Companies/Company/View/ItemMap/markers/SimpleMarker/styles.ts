@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import icon from './mapIcon.svg'
 
 export const SimpleMarkerStyled = styled.div`
-  background-image: url('${icon}');
+  background-image: url('${icon.src}');
   position: absolute;
   cursor: pointer;
   width: 49px;

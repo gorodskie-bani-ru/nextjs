@@ -1,6 +1,6 @@
 query topics(
   $where: bani684_site_contentWhereInput
-  $orderBy: [bani684_site_contentOrderByInput!]
+  $orderBy: [bani684_site_contentOrderByWithRelationInput!]
   $take: Int
   $skip: Int
   $withContent: Boolean = false
@@ -16,7 +16,7 @@ query topics(
 
 query reviews(
   $where: bani684_site_contentWhereInput
-  $orderBy: [bani684_site_contentOrderByInput!]
+  $orderBy: [bani684_site_contentOrderByWithRelationInput!]
   $take: Int
   $skip: Int
   $withContent: Boolean = false

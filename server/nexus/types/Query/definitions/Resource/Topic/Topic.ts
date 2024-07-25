@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
-
 import { ObjectDefinitionBlock } from 'nexus/dist/core'
 import { Prisma } from '@prisma/client'
 import { userSelect } from '../../User'
@@ -19,8 +17,11 @@ export const topics = (t: ObjectDefinitionBlock<'Query'>) => {
         'where'
       >
 
-      const { deleted = false, published = true, hidemenu = false } =
-        variables.where || {}
+      const {
+        deleted = false,
+        published = true,
+        hidemenu = false,
+      } = variables.where || {}
 
       return ctx.prisma.bani684_site_content.findMany({
         ...variables,

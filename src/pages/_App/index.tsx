@@ -31,6 +31,7 @@ import Layout from './Layout'
 import { AppContext, AppContextValue } from './Context'
 import { GlobalStyle } from 'src/theme/GlobalStyle'
 import moment from 'moment'
+import { SafeHydrate } from './SafeHydrate'
 
 moment.locale('ru')
 
@@ -120,9 +121,9 @@ const App: MainApp<AppProps> = ({ Component, pageProps }) => {
         {content}
       </>
     )
-  }, [statusCode, pageProps])
+  }, [statusCode, pageProps, Component])
 
-  return (
+  const result = (
     <MuiThemeProvider theme={muiTheme}>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
@@ -133,7 +134,7 @@ const App: MainApp<AppProps> = ({ Component, pageProps }) => {
           <meta name="theme-color" content={muiTheme.palette.primary.main} />
         </Head>
 
-        <style jsx global>{`
+        <style>{`
           #__next {
             height: 100%;
           }
@@ -152,6 +153,12 @@ const App: MainApp<AppProps> = ({ Component, pageProps }) => {
       </ThemeProvider>
     </MuiThemeProvider>
   )
+
+  if (process.env.NEXT_PUBLIC_NO_SSR === 'true') {
+    return <SafeHydrate>{result}</SafeHydrate>
+  }
+
+  return result
 }
 
 App.getInitialProps = async (appContext: NextAppContext) => {

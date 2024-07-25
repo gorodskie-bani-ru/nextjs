@@ -34,7 +34,9 @@ const getQueryParams = (
     take,
     where: {},
     orderBy: {
-      createdon: SortOrder.DESC,
+      createdon: {
+        sort: SortOrder.DESC,
+      },
     },
   }
 }

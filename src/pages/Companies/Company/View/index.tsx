@@ -12,7 +12,7 @@ import Site from './Site'
 import Editor, { PrismaCmsEditorProps } from '@prisma-cms/editor'
 // import ReactDecliner from 'react-decliner';
 
-import dynamic from 'next/dynamic'
+// import dynamic from 'next/dynamic'
 import CompanyWorkTime from './WorkTime'
 import { CompanyViewStyled } from './styles'
 
@@ -25,9 +25,9 @@ import phoneSvg from './img/phone.svg'
 // import Title from 'src/components/ui/Title'
 import CommentsPageView from 'src/pages/Comments/View'
 
-const ItemMap = dynamic(import('./ItemMap'), {
-  ssr: false,
-})
+// const ItemMap = dynamic(import('./ItemMap'), {
+//   ssr: false,
+// })
 
 // import moment from 'moment'
 
@@ -324,7 +324,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company, ...other }) => {
                   }}
                   alignItems="center"
                 >
-                  <SvgIcon src={addressSvg} alt="Адрес" />{' '}
+                  <SvgIcon src={addressSvg.src} alt="Адрес" />{' '}
                   <span
                     style={{
                       paddingLeft: 5,
@@ -352,7 +352,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company, ...other }) => {
                   }}
                   alignItems="center"
                 >
-                  <SvgIcon src={metroSvg} alt="metro" />
+                  <SvgIcon src={metroSvg.src} alt="metro" />
                   <span
                     style={{
                       paddingLeft: 5,
@@ -376,7 +376,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company, ...other }) => {
                   }}
                   alignItems="center"
                 >
-                  <SvgIcon src={phoneSvg} alt="phone" />{' '}
+                  <SvgIcon src={phoneSvg.src} alt="phone" />{' '}
                   <span
                     style={{
                       paddingLeft: 5,
@@ -417,7 +417,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company, ...other }) => {
                   }}
                   alignItems="center"
                 >
-                  <SvgIcon src={siteSvg} alt="site" />{' '}
+                  <SvgIcon src={siteSvg.src} alt="site" />{' '}
                   <span
                     style={{
                       paddingLeft: 5,
@@ -445,7 +445,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company, ...other }) => {
                   }}
                 >
                   <Grid container alignItems="center">
-                    <SvgIcon src={priceSvg} alt="Цена" />{' '}
+                    <SvgIcon src={priceSvg.src} alt="Цена" />{' '}
                     <span
                       style={{
                         paddingLeft: 5,
@@ -573,7 +573,7 @@ const CompanyView: React.FC<CompanyViewProps> = ({ company, ...other }) => {
             </CardContent>
           ) : null}
 
-          <ItemMap item={company} />
+          {/* <ItemMap item={company} /> */}
 
           {Gallery}
 

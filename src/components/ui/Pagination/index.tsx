@@ -54,8 +54,8 @@ const Pagination: React.FC<PaginationProps> = ({
 
     rows.push(
       <li key="page-1-0" className={'control'}>
-        <Link href={href}>
-          <a className={'link'}>«</a>
+        <Link href={href} className={'link'}>
+          «
         </Link>
       </li>
     )
@@ -89,10 +89,11 @@ const Pagination: React.FC<PaginationProps> = ({
 
       rows.push(
         <li key={i} className={'control'}>
-          <Link href={href}>
-            <a className={['link', i === page ? 'active' : null].join(' ')}>
-              {i}
-            </a>
+          <Link
+            href={href}
+            className={['link', i === page ? 'active' : null].join(' ')}
+          >
+            {i}
           </Link>
         </li>
       )
@@ -103,8 +104,8 @@ const Pagination: React.FC<PaginationProps> = ({
 
     rows.push(
       <li key={'page-' + pages + '-0'} className={'control'}>
-        <Link href={href}>
-          <a className={'link'}>»</a>
+        <Link href={href} className={'link'}>
+          »
         </Link>
       </li>
     )

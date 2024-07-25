@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
 import compose from 'recompose/compose'
 import defaultProps from 'recompose/defaultProps'
@@ -10,14 +9,14 @@ import { Motion, spring } from 'react-motion'
 
 const clusterMarkerStyles = {}
 
-export const ClusterMarker: React.FC = ({
+export const ClusterMarker: React.FC<any> = ({
   styles,
   text,
   hovered,
   $hover,
   defaultMotionStyle,
   motionStyle,
-}: any) => (
+}) => (
   <Motion defaultStyle={defaultMotionStyle} style={motionStyle}>
     {({ scale }) => (
       <div

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
 import {
   bani684_site_content,
   bani684_site_tmplvar_contentvalues,
@@ -7,7 +6,7 @@ import {
 } from '@prisma/client'
 import { ObjectDefinitionBlock } from 'nexus/dist/core'
 import { TemplateVarIDs } from '../../../../../constants'
-import { NexusGenObjects } from 'server/nexus/generated/nexus'
+import { NexusGenObjects } from '../../../../../generated/nexus'
 import { userSelect } from '../../User'
 import { CompaniesResult } from '../../Resource/Company'
 
@@ -230,7 +229,8 @@ export const votes = (t: ObjectDefinitionBlock<'Query'>) => {
             company_gallery,
           } = n
 
-          const TemplateVarValues: NexusGenObjects['Company']['TemplateVarValues'] = []
+          const TemplateVarValues: NexusGenObjects['Company']['TemplateVarValues'] =
+            []
 
           if (company_image_id && company_image) {
             TemplateVarValues.push({

@@ -12,16 +12,15 @@ const Link: React.FC<LinkProps> = ({
 }) => {
   return (
     <>
-      <NextLink href={href}>
-        <LinkStyled
-          title={title}
-          href={href.toString()}
-          className={className}
-          {...other}
-        >
-          {children}
-        </LinkStyled>
-      </NextLink>
+      <LinkStyled
+        as={NextLink}
+        title={title}
+        href={href.toString()}
+        className={className}
+        {...other}
+      >
+        {children}
+      </LinkStyled>
     </>
   )
 }

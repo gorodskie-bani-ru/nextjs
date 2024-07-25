@@ -7,7 +7,7 @@ query companies(
   $skip: Int
   $take: Int
   # $where: bani684_site_contentWhereInput
-  # $orderBy: [bani684_site_contentOrderByInput!]
+  # $orderBy: [bani684_site_contentOrderByWithRelationInput!]
   $orderBy: CompaniesOrderByInput
   $withContent: Boolean = false
   $withComments: Boolean = false

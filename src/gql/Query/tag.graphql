@@ -1,6 +1,6 @@
 query topicTags(
   $where: bani684_society_topic_tagsWhereInput
-  $orderBy: [bani684_society_topic_tagsOrderByInput!]
+  $orderBy: [bani684_society_topic_tagsOrderByWithRelationInput!]
   $take: Int
   $skip: Int
 ) {
